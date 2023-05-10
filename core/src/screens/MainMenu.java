@@ -30,7 +30,7 @@ public class MainMenu implements Screen{
     @Override
     public void show() {
         mainMenuBackground = new Texture("Menu/TC_Menu_MainBackground1.png");
-        mainMenuBackgroundBlured = new Texture("Menu/MenuTransition1/MenuTransition1_11.png");
+        mainMenuBackgroundBlured = new Texture("Menu/MenuTransition1/0011.png");
         tempTexture = new Texture("tempRed.png");
         buttonExit = new GameObject(tempTexture, 1436, 331, 262, 97);
         buttonStart = new GameObject(tempTexture, 1408, 473, 330, 109);
