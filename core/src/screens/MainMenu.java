@@ -26,13 +26,11 @@ public class MainMenu implements Screen{
     private Texture buttonExitHovered;
     private Texture buttonExitClicked;
     private Sprite buttonExitHoveredSprite;
-    private float buttonExitHoveredAlpha;
 
     private GameObject buttonStart;
     private Texture buttonStartHovered;
     private Texture buttonStartClicked;
     private Sprite buttonStartHoveredSprite;
-    private float buttonStartHoveredAlpha;
 
     public MainMenu(MyTheChinczyk game){
         this.game = game;
@@ -45,17 +43,15 @@ public class MainMenu implements Screen{
         mainMenuBackgroundBluredSprite = spriteInit(mainMenuBackgroundBlured, 0, 0, 1920, 1080);
         mainMenuBackgroundBluredSpriteAlpha = 0;
 
-        buttonExitHovered = new Texture("tempRed.png");
+        buttonExitHovered = new Texture("Menu/TC_Menu_Exit_Hovered.png");
         buttonExit = new GameObject(buttonExitHovered, 1436, 331, 262, 97);
-        buttonExitClicked = new Texture("tempBlue.png");
-        buttonExitHoveredSprite = spriteInit(buttonExitHovered, 1436, 331, 262, 97);
-        buttonExitHoveredAlpha = 0;
+        buttonExitClicked = new Texture("Menu/TC_Menu_Exit_Clicked.png");
+        buttonExitHoveredSprite = spriteInit(buttonExitHovered, 0, 0, 1920, 1080);
 
-        buttonStartHovered = new Texture("tempBlue.png");
-        buttonStartClicked = new Texture("tempRed.png");
+        buttonStartHovered = new Texture("Menu/TC_Menu_Start_Hovered.png");
+        buttonStartClicked = new Texture("Menu/TC_Menu_Start_Clicked.png");
         buttonStart = new GameObject(buttonStartHovered, 1408, 473, 330, 109);
-        buttonStartHoveredSprite = spriteInit(buttonStartHovered, 1408, 473, 330, 109);
-        buttonStartHoveredAlpha = 0;
+        buttonStartHoveredSprite = spriteInit(buttonStartHovered, 0, 0, 1920, 1080);
     }
 
     @Override
@@ -70,39 +66,13 @@ public class MainMenu implements Screen{
         game.batch.draw(mainMenuBackground, 0, 0,1920,1080);
 
         //OBSŁUGA PRZYCISKU START
-        if(buttonStart.contains(cursorPosition) && !startPressed){
-            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-                startPressed = true;
-                game.batch.draw(buttonStartClicked, 1408, 473,330,109);
-            }
-            else{
-                if(buttonStartHoveredAlpha<0.85f) buttonStartHoveredSprite.setAlpha(buttonStartHoveredAlpha+=9f*delta);
-                else buttonStartHoveredSprite.setAlpha(1);
-                buttonStartHoveredSprite.draw(game.batch);
-            }
-        }
-        else if(buttonStartHoveredAlpha>0){
-            if(buttonStartHoveredAlpha>0.15f) buttonStartHoveredSprite.setAlpha(buttonStartHoveredAlpha-=9f*delta);
-            else buttonStartHoveredSprite.setAlpha(buttonStartHoveredAlpha=0);
-            buttonStartHoveredSprite.draw(game.batch);
+        if(menuButtonFunc(buttonStart,buttonStartClicked,buttonStartHovered, delta, buttonStartHoveredSprite)){
+            startPressed = true;
         }
 
         //OBSŁUGA PRZYCISKU EXIT
-        if(buttonExit.contains(cursorPosition) && !startPressed){
-            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
-                Gdx.app.exit();
-                game.batch.draw(buttonExitClicked, 1408, 473,330,109);
-            }
-            else{
-                if(buttonExitHoveredAlpha<0.85f) buttonExitHoveredSprite.setAlpha(buttonExitHoveredAlpha+=9f*delta);
-                else buttonExitHoveredSprite.setAlpha(1);
-                buttonExitHoveredSprite.draw(game.batch);
-            }
-        }
-        else if(buttonExitHoveredAlpha>0){
-            if(buttonExitHoveredAlpha>0.15f) buttonExitHoveredSprite.setAlpha(buttonExitHoveredAlpha-=9f*delta);
-            else buttonExitHoveredSprite.setAlpha(buttonExitHoveredAlpha=0);
-            buttonExitHoveredSprite.draw(game.batch);
+        if(menuButtonFunc(buttonExit,buttonExitClicked,buttonExitHovered, delta, buttonExitHoveredSprite)){
+            Gdx.app.exit();
         }
 
         //OBSŁUGA TŁA PO WCIŚNIĘCIU START
@@ -133,6 +103,29 @@ public class MainMenu implements Screen{
     private void getMousePosition(){
         Vector3 cursorPosition3 = game.viewport.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
         cursorPosition = new Vector2(cursorPosition3.x, cursorPosition3.y);
+    }
+
+    private boolean menuButtonFunc(GameObject buttonObject,Texture clicked, Texture hovered, float delta, Sprite sprite){
+        getMousePosition();
+        if(buttonObject.contains(cursorPosition) && !startPressed){
+            if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)){
+                sprite.setTexture(clicked);
+                sprite.draw(game.batch);
+                return true;
+            }
+            else{
+                if(buttonObject.alpha<0.85f) sprite.setAlpha(buttonObject.alpha+=9f*delta);
+                else sprite.setAlpha(1);
+                sprite.setTexture(hovered);
+                sprite.draw(game.batch);
+            }
+        }
+        else if(buttonObject.alpha>0){
+            if(buttonObject.alpha>0.15f) sprite.setAlpha(buttonObject.alpha-=9f*delta);
+            else sprite.setAlpha(buttonObject.alpha=0);
+            sprite.draw(game.batch);
+        }
+        return false;
     }
 
     @Override
