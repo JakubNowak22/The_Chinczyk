@@ -19,6 +19,9 @@ public class MyTheChinczyk extends Game {
 	public OrthographicCamera camera;
 	public Viewport viewport;
 
+	public int gameScreen;
+	public int playerCount;
+
 	public SpriteBatch batch;
 
 	
@@ -28,8 +31,8 @@ public class MyTheChinczyk extends Game {
 		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 		viewport = new FitViewport(camera.viewportWidth, camera.viewportHeight, camera);
 		batch = new SpriteBatch();
+		gameScreen = 0;
 		this.setScreen(new MainMenu(this));
-
 	}
 
 	@Override
@@ -37,6 +40,16 @@ public class MyTheChinczyk extends Game {
 		super.render();
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
+
+		if(gameScreen == 1){
+			gameScreen = 0;
+			this.setScreen(new MainMenu(this));
+		}
+		else if(gameScreen == 2){
+			gameScreen = 0;
+			this.setScreen(new MainMenu(this));
+		}
+
 
 	}
 	
