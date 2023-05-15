@@ -169,9 +169,6 @@ public class MainMenu implements Screen{
 
     @Override
     public void render(float delta) {
-        //ScreenUtils.clear(0, 0, 0, 1);
-        //Gdx.gl.glClearColor(0, 0, 0, 1);
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         getMousePosition();
 
         game.batch.begin();
@@ -193,10 +190,10 @@ public class MainMenu implements Screen{
         }
         else{
             game.batch.draw(mainMenuBackground, 0, 0,1920,1080);
-            if (menuButtonFunc(buttonStart, buttonStartClicked, buttonStartHovered, Gdx.graphics.getDeltaTime(), buttonStartHoveredSprite, startPressed)) {
+            if (menuButtonFunc(buttonStart, buttonStartClicked, buttonStartHovered, buttonStartHoveredSprite, startPressed)) {
                 startPressed = true;
             }
-            if (menuButtonFunc(buttonExit, buttonExitClicked, buttonExitHovered, Gdx.graphics.getDeltaTime(), buttonExitHoveredSprite, startPressed)) {
+            if (menuButtonFunc(buttonExit, buttonExitClicked, buttonExitHovered, buttonExitHoveredSprite, startPressed)) {
                 Gdx.app.exit();
             }
             if (startPressed && !menuTransitionAnim.isAnimationFinished(elapsedTime)) {
@@ -213,7 +210,7 @@ public class MainMenu implements Screen{
             }
             else if (startPressed) {
                 game.batch.draw(mainMenuBackground2, 0, 0, 1920, 1080);
-                if (menuButtonFunc(buttonX, buttonXClicked, buttonXHovered, Gdx.graphics.getDeltaTime(), buttonXHoveredSprite, !startPressed) || Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                if (menuButtonFunc(buttonX, buttonXClicked, buttonXHovered, buttonXHoveredSprite, !startPressed) || Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
                     elapsedTime = 0;
                     mapNo = 0;
                     playerCount = 0;
@@ -221,29 +218,25 @@ public class MainMenu implements Screen{
                 }
                 if(mapNo!=0 && playerCount !=0){
                     game.batch.draw(buttonPLAYClicked, 0, 0, 1920, 1080);
-                    if(menuButtonFunc(buttonPLAY,buttonPLAYClicked,buttonPLAYHovered, Gdx.graphics.getDeltaTime(), buttonPLAYHoveredSprite, !startPressed)){
+                    if(menuButtonFunc(buttonPLAY,buttonPLAYClicked,buttonPLAYHovered, buttonPLAYHoveredSprite, !startPressed)){
                         klik3.play(0.4f);
-                        if(music.isPlaying()){
-                            music.setLooping(false);
-                            music.stop();
-                            music.dispose();
-                        }
+                        music.stop();
                         playPressed = true;
                     }
                 }
-                if (menuButtonFunc(buttonMD, buttonMDClicked, buttonMDHovered, Gdx.graphics.getDeltaTime(), buttonMDHoveredSprite, !startPressed)) {
+                if (menuButtonFunc(buttonMD, buttonMDClicked, buttonMDHovered, buttonMDHoveredSprite, !startPressed)) {
                     mapNo = 1;
                 }
-                if (menuButtonFunc(buttonMN, buttonMNClicked, buttonMNHovered, Gdx.graphics.getDeltaTime(), buttonMNHoveredSprite, !startPressed)) {
+                if (menuButtonFunc(buttonMN, buttonMNClicked, buttonMNHovered, buttonMNHoveredSprite, !startPressed)) {
                     mapNo = 2;
                 }
-                if (menuButtonFunc(buttonP2, buttonP2Clicked, buttonP2Hovered, Gdx.graphics.getDeltaTime(), buttonP2HoveredSprite, !startPressed)) {
+                if (menuButtonFunc(buttonP2, buttonP2Clicked, buttonP2Hovered, buttonP2HoveredSprite, !startPressed)) {
                     playerCount = 2;
                 }
-                if (menuButtonFunc(buttonP3, buttonP3Clicked, buttonP3Hovered, Gdx.graphics.getDeltaTime(), buttonP3HoveredSprite, !startPressed)) {
+                if (menuButtonFunc(buttonP3, buttonP3Clicked, buttonP3Hovered, buttonP3HoveredSprite, !startPressed)) {
                     playerCount = 3;
                 }
-                if (menuButtonFunc(buttonP4, buttonP4Clicked, buttonP4Hovered, Gdx.graphics.getDeltaTime(), buttonP4HoveredSprite, !startPressed)) {
+                if (menuButtonFunc(buttonP4, buttonP4Clicked, buttonP4Hovered, buttonP4HoveredSprite, !startPressed)) {
                     playerCount = 4;
                 }
             }
@@ -284,7 +277,7 @@ public class MainMenu implements Screen{
         cursorPosition = new Vector2(cursorPosition3.x, cursorPosition3.y);
     }
 
-    private boolean menuButtonFunc(GameObject buttonObject,Texture clicked, Texture hovered, float delta, Sprite sprite, boolean started){
+    private boolean menuButtonFunc(GameObject buttonObject,Texture clicked, Texture hovered, Sprite sprite, boolean started){
         getMousePosition();
         if(buttonObject.contains(cursorPosition) && !started){
             if(!buttonObject.soundPlayed){
@@ -298,14 +291,14 @@ public class MainMenu implements Screen{
                 return true;
             }
             else{
-                if(buttonObject.alpha<0.85f) sprite.setAlpha(buttonObject.alpha+=9f*delta);
+                if(buttonObject.alpha<0.85f) sprite.setAlpha(buttonObject.alpha+=9f*Gdx.graphics.getDeltaTime());
                 else sprite.setAlpha(1);
                 sprite.setTexture(hovered);
                 sprite.draw(game.batch);
             }
         }
         else if(buttonObject.alpha>0){
-            if(buttonObject.alpha>0.15f) sprite.setAlpha(buttonObject.alpha-=9f*delta);
+            if(buttonObject.alpha>0.15f) sprite.setAlpha(buttonObject.alpha-=9f*Gdx.graphics.getDeltaTime());
             else sprite.setAlpha(buttonObject.alpha=0);
             sprite.draw(game.batch);
             buttonObject.soundPlayed=false;
@@ -340,6 +333,8 @@ public class MainMenu implements Screen{
         buttonPLAYHovered.dispose();
         klik1.dispose();
         klik2.dispose();
+        klik3.dispose();
+        music.dispose();
     }
 
     @Override

@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import screens.MainMenu;
+import screens.dayParkMap;
 
 public class MyTheChinczyk extends Game {
 
@@ -43,13 +44,16 @@ public class MyTheChinczyk extends Game {
 
 		if(gameScreen == 1){
 			gameScreen = 0;
-			this.setScreen(new MainMenu(this));
+			this.setScreen(new dayParkMap(this));
 		}
 		else if(gameScreen == 2){
 			gameScreen = 0;
 			this.setScreen(new MainMenu(this));
 		}
-
+		else if(gameScreen == 3){
+			gameScreen = 0;
+			this.setScreen(new MainMenu(this));
+		}
 
 	}
 	
