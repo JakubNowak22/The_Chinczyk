@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
 
-public class dayParkMap implements Screen {
+public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
 
@@ -21,7 +21,7 @@ public class dayParkMap implements Screen {
     private Animation<TextureRegion> iceCreamAnim;
     private float iceCreamElapsedTime;
 
-    public dayParkMap(MyTheChinczyk game){
+    public DayParkMap(MyTheChinczyk game){
         this.game = game;
     }
 

@@ -1,19 +1,12 @@
 package com.thechinczyk.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import screens.MainMenu;
-import screens.dayParkMap;
+import screens.DayParkMap;
 
 public class MyTheChinczyk extends Game {
 
@@ -44,7 +37,7 @@ public class MyTheChinczyk extends Game {
 
 		if(gameScreen == 1){
 			gameScreen = 0;
-			this.setScreen(new dayParkMap(this));
+			this.setScreen(new DayParkMap(this));
 		}
 		else if(gameScreen == 2){
 			gameScreen = 0;
