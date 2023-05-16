@@ -112,11 +112,11 @@ public class ChooseGameSettings implements Screen {
         getMousePosition();
         if (buttonObject.contains(cursorPosition) && !started) {
             if (!buttonObject.soundPlayed) {
-                // game.klik1.play(0.25f);
+                game.klik1.play(0.25f);
                 buttonObject.soundPlayed = true;
             }
             if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                //game.klik2.play(0.4f);
+                game.klik2.play(0.4f);
                 sprite.setTexture(clicked);
                 sprite.draw(game.batch);
                 return true;
