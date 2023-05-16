@@ -50,7 +50,7 @@ public class MainMenu implements Screen {
         mainMenuBackground = new Texture("Menu/TC_Menu_MainBackground1.png");
         mainMenuBackgroundBlured = new Texture("Menu/TC_Menu_MainBackground1Blured.png");
         mainMenuBackgroundBluredSprite = spriteInit(mainMenuBackgroundBlured, 0, 0, 1920, 1080);
-        mainMenuBackgroundBluredSpriteAlpha = 0;
+
 
         menuTransitionAtlas = new TextureAtlas("Menu/Menu_Transition_Sheet/my_Menu_Transition_Sheet.atlas");
         menuTransitionAnim = new Animation<TextureRegion>(1f / 30f, menuTransitionAtlas.getRegions());
@@ -70,6 +70,7 @@ public class MainMenu implements Screen {
     @Override
     public void show() {
         elapsedTime = 0f;
+        mainMenuBackgroundBluredSpriteAlpha = 0;
         clickStartButton = false;
     }
 
