@@ -1,0 +1,1885 @@
+
+YellowBusAnimSheet.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image000
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image001
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image002
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image003
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet5.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image004
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet6.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image005
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet7.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image006
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet8.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image007
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet9.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image008
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet10.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image009
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet11.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image010
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet12.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image011
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet13.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image012
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet14.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image013
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet15.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image014
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet16.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image015
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet17.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image016
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet18.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image017
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet19.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image018
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet20.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image019
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet21.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image020
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet22.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image021
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet23.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image022
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet24.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image023
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet25.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image024
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet26.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image025
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet27.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image026
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet28.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image027
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet29.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image028
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet30.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image029
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet31.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image030
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet32.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image031
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet33.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image032
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet34.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image033
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet35.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image034
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet36.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image035
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet37.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image036
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet38.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image037
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet39.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image038
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet40.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image039
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet41.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image040
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet42.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image041
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet43.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image042
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet44.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image043
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet45.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image044
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet46.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image045
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet47.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image046
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet48.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image047
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet49.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image048
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet50.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image049
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet51.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image050
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet52.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image051
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet53.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image052
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet54.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image053
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet55.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image054
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet56.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image055
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet57.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image056
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet58.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image057
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet59.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image058
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet60.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image059
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet61.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image060
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet62.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image061
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet63.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image062
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet64.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image063
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet65.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image064
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet66.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image065
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet67.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image066
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet68.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image067
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet69.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image068
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet70.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image069
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet71.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image070
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet72.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image071
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet73.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image072
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet74.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image073
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet75.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image074
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet76.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image075
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet77.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image076
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet78.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image077
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet79.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image078
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet80.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image079
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet81.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image080
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet82.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image081
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet83.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image082
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet84.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image083
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet85.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image084
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet86.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image085
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet87.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image086
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet88.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image087
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet89.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image088
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet90.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image089
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet91.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image090
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet92.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image091
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet93.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image092
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet94.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image093
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet95.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image094
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet96.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image095
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet97.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image096
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet98.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image097
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet99.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image098
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet100.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image099
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet101.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image100
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet102.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image101
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet103.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image102
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet104.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image103
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet105.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image104
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet106.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image105
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet107.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image106
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet108.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image107
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet109.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image108
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet110.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image109
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet111.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image110
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet112.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image111
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet113.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image112
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet114.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image113
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet115.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image114
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet116.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image115
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet117.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image116
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet118.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image117
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet119.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image118
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet120.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image119
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet121.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image120
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet122.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image121
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet123.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image122
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet124.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image123
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet125.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image124
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet126.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image125
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet127.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image126
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet128.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image127
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet129.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image128
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet130.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image129
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet131.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image130
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet132.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image131
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet133.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image132
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet134.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image133
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet135.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image134
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet136.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image135
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet137.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image136
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet138.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image137
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet139.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image138
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet140.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image139
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet141.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image140
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet142.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image141
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet143.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image142
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet144.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image143
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1
+
+YellowBusAnimSheet145.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image144
+  rotate: false
+  xy: 2, 2
+  size: 850, 1015
+  orig: 850, 1015
+  offset: 0, 0
+  index: -1

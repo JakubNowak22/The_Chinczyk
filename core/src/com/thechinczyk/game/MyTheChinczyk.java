@@ -26,7 +26,7 @@ public class MyTheChinczyk extends Game {
 		viewport = new FitViewport(camera.viewportWidth, camera.viewportHeight, camera);
 		batch = new SpriteBatch();
 		gameScreen = 0;
-		this.setScreen(new MainMenu(this));
+		this.setScreen(new DayParkMap(this));
 	}
 
 	@Override

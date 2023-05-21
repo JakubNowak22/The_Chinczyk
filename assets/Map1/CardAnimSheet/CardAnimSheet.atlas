@@ -1,0 +1,605 @@
+
+CardAnimSheet.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image000
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+image001
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image002
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image003
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image004
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet5.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image005
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet6.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image006
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet7.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image007
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet8.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image008
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet9.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image009
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet10.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image010
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet11.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image011
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet12.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image012
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet13.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image013
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet14.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image014
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet15.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image015
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet16.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image016
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet17.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image017
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet18.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image018
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet19.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image019
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet20.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image020
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet21.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image021
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet22.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image022
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet23.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image023
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet24.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image024
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet25.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image025
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet26.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image026
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet27.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image027
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet28.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image028
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet29.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image029
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet30.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image030
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet31.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image031
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet32.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image032
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet33.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image033
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet34.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image034
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet35.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image035
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet36.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image036
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet37.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image037
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet38.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image038
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet39.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image039
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet40.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image040
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet41.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image041
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet42.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image042
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet43.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image043
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet44.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image044
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet45.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image045
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
+
+CardAnimSheet46.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image046
+  rotate: false
+  xy: 2, 2
+  size: 1015, 750
+  orig: 1015, 750
+  offset: 0, 0
+  index: -1
