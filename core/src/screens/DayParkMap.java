@@ -5,10 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.GameObject;
 import com.thechinczyk.game.MyTheChinczyk;
@@ -16,6 +13,7 @@ import com.thechinczyk.game.MyTheChinczyk;
 public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
+    BitmapFont font;
 
     private Texture dayParkBackground;
     private Texture dayParkTopground;
@@ -37,12 +35,16 @@ public class DayParkMap implements Screen {
     private Animation<TextureRegion> cardAnim;
     private float cardElapsedTime;
     private boolean cardAnimStarted;
-    private Texture cardMessage1;
 
     private TextureAtlas yellowBusAtlas;
     private Animation<TextureRegion> yellowBusAnim;
     private float yellowBusElapsedTime;
     private boolean yellowBusAnimStarted;
+
+    private TextureAtlas diceAtlas;
+    private Animation<TextureRegion> diceAnim;
+    private float diceElapsedTime;
+    private boolean diceAnimStarted;
 
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
@@ -70,12 +72,19 @@ public class DayParkMap implements Screen {
         cardAnim = new Animation<TextureRegion>(1f/30f, cardAtlas.getRegions());
         cardElapsedTime = 0f;
         cardAnimStarted = false;
-        cardMessage1 = new Texture("Map1/TC_Map1_Message1.png");
 
         yellowBusAtlas = new TextureAtlas("Map1/YellowBusAnimSheet/YellowBusAnimSheet.atlas");
         yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
         yellowBusElapsedTime = 0f;
         yellowBusAnimStarted = false;
+
+        diceAtlas = new TextureAtlas("Map1/DiceAnimSheet/DiceAnimSheet.atlas");
+        diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
+        diceElapsedTime = 0f;
+        diceAnimStarted = false;
+
+        font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
+        font.getData().setScale(.3f,.3f);
     }
 
     @Override
@@ -148,12 +157,27 @@ public class DayParkMap implements Screen {
             game.batch.draw(cardAnim.getKeyFrame(cardElapsedTime, false), 304, 71, 1270, 938);
             if(cardElapsedTime>1.5f){
                 //Pojawienie się tekstu w momencie gdy karta się obraca
-                game.batch.draw(cardMessage1, 0, 0, 1920, 1080);
+                font.draw(game.batch, "Hello World!\nSample text, sample tex", 750, 600);
             }
         }
 
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(dayParkTopground, 0, 0, 1920, 1080);
+
+        //Przykładowa obsługa kostki
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !diceAnimStarted){
+            diceAnimStarted = true;
+        }
+        if(diceAnimStarted){
+            if(!diceAnim.isAnimationFinished(diceElapsedTime)){
+                diceElapsedTime += Gdx.graphics.getDeltaTime();
+                game.batch.draw(diceAnim.getKeyFrame(diceElapsedTime, false), 300, 0, 1000, 850);
+            }
+            else{
+                diceAnimStarted = false;
+                diceElapsedTime = 0;
+            }
+        }
 
         game.batch.end();
     }
@@ -185,9 +209,10 @@ public class DayParkMap implements Screen {
         cardAtlas.dispose();
         yellowBusAtlas.dispose();
         yellowPlayer1Atlas.dispose();
+        diceAtlas.dispose();
+        font.dispose();
 
         dayParkBackground.dispose();
         dayParkTopground.dispose();
-        cardMessage1.dispose();
     }
 }

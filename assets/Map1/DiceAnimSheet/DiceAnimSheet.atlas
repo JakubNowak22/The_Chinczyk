@@ -1,0 +1,1131 @@
+
+DiceAnimSheet.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image001
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image002
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image003
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image004
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet5.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image005
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet6.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image006
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet7.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image007
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet8.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image008
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet9.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image009
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet10.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image010
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet11.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image011
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet12.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image012
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet13.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image013
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet14.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image014
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet15.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image015
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet16.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image016
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet17.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image017
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet18.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image018
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet19.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image019
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet20.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image020
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet21.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image021
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet22.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image022
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet23.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image023
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet24.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image024
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet25.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image025
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet26.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image026
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet27.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image027
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet28.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image028
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet29.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image029
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet30.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image030
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet31.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image031
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet32.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image032
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet33.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image033
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet34.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image034
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet35.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image035
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet36.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image036
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet37.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image037
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet38.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image038
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet39.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image039
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet40.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image040
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet41.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image041
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet42.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image042
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet43.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image043
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet44.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image044
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet45.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image045
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet46.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image046
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet47.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image047
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet48.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image048
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet49.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image049
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet50.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image050
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet51.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image051
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet52.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image052
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet53.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image053
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet54.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image054
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet55.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image055
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet56.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image056
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet57.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image057
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet58.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image058
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet59.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image059
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet60.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image060
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet61.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image061
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet62.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image062
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet63.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image063
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet64.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image064
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet65.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image065
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet66.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image066
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet67.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image067
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet68.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image068
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet69.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image069
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet70.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image070
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet71.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image071
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet72.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image072
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet73.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image073
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet74.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image074
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet75.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image075
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet76.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image076
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet77.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image077
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet78.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image078
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet79.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image079
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet80.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image080
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet81.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image081
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet82.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image082
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet83.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image083
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet84.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image084
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet85.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image085
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet86.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image086
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
+
+DiceAnimSheet87.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image087
+  rotate: false
+  xy: 2, 2
+  size: 1000, 850
+  orig: 1000, 850
+  offset: 0, 0
+  index: -1
