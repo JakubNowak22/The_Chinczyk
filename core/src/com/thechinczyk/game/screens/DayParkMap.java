@@ -95,37 +95,40 @@ public class DayParkMap implements Screen {
     }
 
     public boolean flag = true;
+    public int pawToChange = -1;
+    public boolean pawnChoose = false;
 
     public void managePlayer(int playerNumberTurn) {
         Player player = Players.get(playerNumberTurn);
-        if (player.activePawn == 1 && !throwDice) {
-            drawPawn(player,0);
+        if (player.activePawn >= 1 && !throwDice) {
+            drawPlayerPawns(player);
         }
         if (!throwDice) {
             drawDiceAnim();
         } else if (player.activePawn == 0 && randNumber == 6) {
             drawPawn(player, 0);
             player.activePawn = 1;
-            player.pawns[0].active = true;
+            player.pawns[player.activePawn - 1].active = true;
             //setPlayerNumberTurn();
             throwDice = false;
-        } else if (player.activePawn == 1) {
-           /* if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.activePawn == 1) {
-
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.activePawn == 2) {
-
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.activePawn == 3) {
-
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.activePawn == 4) {
-
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) &&
-                    randNumber == 6 && player.activePawn <= 4) {
-                player.pawns[player.activePawn].active = true;
-                player.activePawn ++;
-            }else{*/
-                changeAnimationPawn(player,0);
-                drawPawn(player, 0);
-            //}
+        }else if (player.activePawn >= 1 && player.activePawn <= 4) {
+            if(player.activePawn != 1) {
+                manageParticularPawn(player);
+                if(pawnChoose){
+                    changeAnimationPawn(player, pawToChange);
+                    drawPawn(player, pawToChange);
+                }
+                drawPlayerPawns(player);
+            }else if (randNumber == 6 && player.pawns[0].position != 0) {
+                player.activePawn++;
+                player.pawns[player.activePawn - 1].active = true;
+                throwDice = false;
+                drawPlayerPawns(player);
+            }else {
+                pawToChange = 0;
+                changeAnimationPawn(player, pawToChange);
+                drawPawn(player, pawToChange);
+            }
         } else if (player.activePawn == 0) {
             //setPlayerNumberTurn();
             throwDice = false;
@@ -134,8 +137,29 @@ public class DayParkMap implements Screen {
         }*/
     }
 
+    private void manageParticularPawn(Player player) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[0].active) {
+            pawToChange = 0;
+            pawnChoose = true;
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[1].active) {
+            pawToChange = 1;
+            pawnChoose = true;
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[2].active) {
+            pawnChoose = true;
+            pawToChange = 2;
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[3].active) {
+            pawToChange = 3;
+            pawnChoose = true;
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) &&
+                randNumber == 6 && player.activePawn <= 4) {
+            player.activePawn++;
+            player.pawns[player.activePawn - 1].active = true;
+            throwDice = false;
+        }
+    }
+
     private void changeAnimationPawn(Player player, int pawNumber) {
-        if (randNumber >= 1) {
+        if (randNumber >= 1 && pawNumber != -1) {
             if (flag) {
                 //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
@@ -146,23 +170,32 @@ public class DayParkMap implements Screen {
                 player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
                 //System.out.println(player.pawns[pawNumber].playerElapsedTime);
+                player.pawns[pawNumber].position ++;
                 randNumber--;
                 flag = true;
             }
         } else {
             //setPlayerNumberTurn();
+            pawToChange = -1;
             throwDice = false;
+            pawnChoose = false;
             randNumber = 0;
         }
     }
-
+    void drawPlayerPawns(Player player){
+        for (int i = 0; i < player.activePawn ;i++){
+            drawPawn(player, i);
+        }
+    }
     private void drawPawn(Player player, int pawnNumber) {
-        if ( player.pawns[pawnNumber].playerElapsedTime < 8.03f ||  player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
-                    0, 0, 1080, 1080);
-        } else {
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
-                    840, 0, 1080, 1080);
+        if(pawnNumber != -1) {
+            if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
+                game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                        0, 0, 1080, 1080);
+            } else {
+                game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                        840, 0, 1080, 1080);
+            }
         }
     }
 
@@ -265,7 +298,7 @@ public class DayParkMap implements Screen {
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             } else {
                 Random rand = new Random();
-                randNumber = rand.nextInt(6) + 1;
+                randNumber = 6;//rand.nextInt(6) + 1;
                 System.out.println(randNumber);
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
