@@ -14,6 +14,13 @@ public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
     int randNumber = 0;
+
+    //elapsedtime player1 yellow 0
+    //elapsedtime player2 green 2.3362615
+    //elapsedtime player3 blue 8.000907
+    //elapsedtime player4 pink 9.67303
+    float []startPlayerElapsedTime = {0f,2.3362615f,8.000907f,9.67303f};
+
     int turnSignKeyFrame;
     boolean throwDice = false;
     int playerNumberTurn;
@@ -31,7 +38,7 @@ public class DayParkMap implements Screen {
     @Override
     public void show() {
         for (int i = 0; i < game.playerCount; i++){
-            Player player = new Player(i);
+            Player player = new Player(i, startPlayerElapsedTime[i]);
             Players.add(player);
         }
         //System.out.println(game.playerCount);
@@ -54,6 +61,7 @@ public class DayParkMap implements Screen {
         drawIceCreamAndSwingAnim();
 
         managePlayer(playerNumberTurn);
+        drawInactivePlayers(playerNumberTurn);
         //Przykładowa obsługa animacji busa z zółtym pionkiem
 
         //Przykład poruszania się pionkiem
@@ -71,22 +79,36 @@ public class DayParkMap implements Screen {
         game.batch.end();
     }
 
+
+    void drawInactivePlayers(int playerNumberTurn){
+        for (int i = 0; i < game.playerCount; i++){
+            if(i == playerNumberTurn){
+                continue;
+            }
+            Player player = Players.get(i);
+            if (player.activePawn == 1){
+                drawPawn(player);
+            }
+        }
+    }
     public boolean flag = true;
     public void managePlayer(int playerNumberTurn){
         Player player = Players.get(playerNumberTurn);
         if(player.activePawn == 1 && !throwDice){
-            drawStaticPawn(player);
+            drawPawn(player);
         }
         if(!throwDice){
             drawDiceAnim();
         }else if(player.activePawn == 0 && randNumber == 6){
-            drawStaticPawn(player);
+            drawPawn(player);
             player.activePawn = 1;
+            setPlayerNumberTurn();
             throwDice = false;
         } else if (player.activePawn == 1) {
             changeAnimationPawn(player);
-            drawStaticPawn(player);
-        }else {
+            drawPawn(player);
+        }else if(player.activePawn == 0){
+            setPlayerNumberTurn();
             throwDice = false;
         }
     }
@@ -102,17 +124,18 @@ public class DayParkMap implements Screen {
                 //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
                 player.playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
+                System.out.println(player.playerElapsedTime);
                 randNumber--;
                 flag = true;
             }
         }else {
-            //setPlayerNumberTurn();
+            setPlayerNumberTurn();
             throwDice = false;
             randNumber = 0;
         }
     }
 
-    private void drawStaticPawn(Player player) {
+    private void drawPawn(Player player) {
         if (player.playerElapsedTime < 8.03f || player.playerElapsedTime > 16.35f) {
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
                     0, 0, 1080, 1080);
@@ -276,9 +299,11 @@ class Player{
     float playerElapsedTime = 0f;
     int playerNumber;
     int activePawn;
+    int position; // 49 yellow start = 0
 
     int numbersOfWinPawns;
-    public Player(int playerNumber){
+    public Player(int playerNumber, float playerElapsedTime){
+        this.playerElapsedTime = playerElapsedTime;
         this.playerNumber = playerNumber;
         activePawn = 0;
         numbersOfWinPawns = 0;
