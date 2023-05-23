@@ -4,11 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
-import com.thechinczyk.game.screens.GameTextures;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,8 +15,9 @@ public class DayParkMap implements Screen {
     MyTheChinczyk game;
     int randNumber;
     int turnSignKeyFrame;
-
+    boolean throwDice = false;
     int playerNumberTurn;
+    int jumpAnimation = 0;
     public ArrayList<Player> Players = new ArrayList<>();
     /*public Player Player0 = new Player(0);
     public Player Player1 = new Player(0);
@@ -36,7 +34,7 @@ public class DayParkMap implements Screen {
             Player player = new Player(i);
             Players.add(player);
         }
-        System.out.println(game.playerCount);
+        //System.out.println(game.playerCount);
         gameTextures = new GameTextures();
         playerNumberTurn = 0;
     }
@@ -55,45 +53,11 @@ public class DayParkMap implements Screen {
         //Animacja rożka z lodem i huśtawki na planszy
         drawIceCreamAndSwingAnim();
 
-
-        //Powrót do menu głównego
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            game.gameScreen = 3;
-            game.setScreen(game.MenuLoadingScreen);
-        }
-        //
+        managePlayer(playerNumberTurn);
         //Przykładowa obsługa animacji busa z zółtym pionkiem
 
         //Przykład poruszania się pionkiem
-        /*if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
-            gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
-            gameTextures.yellowPlayer2ElapsedTime += 3*Gdx.graphics.getDeltaTime();
-        }
-        if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
-            //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
-            gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-            gameTextures.yellowPlayer2ElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
-            //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
-            //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false),
-                    0, 0, 1080, 1080);
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer2ElapsedTime, false),
-                    0, 0, 1080, 1080);
-            //System.out.println(gameTextures.yellowPlayer1ElapsedTime);
-        }
-        else{
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false),
-                    840, 0, 1080, 1080);
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer2ElapsedTime, false),
-                    840, 0, 1080, 1080);
-        }*/
 
-
-        //Przykładowa obsługa animacji karty
-        drawCardAnim("Hello World!\nSample text, sample tex");
 
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
@@ -104,12 +68,47 @@ public class DayParkMap implements Screen {
         //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
         //drawWhichPlayersTurnUI();
 
-        //Przykładowa obsługa kostki
-        drawDiceAnim();
-
         game.batch.end();
     }
 
+    public boolean flag = true;
+    public void managePlayer(int playerNumberTurn){
+        Player player = Players.get(playerNumberTurn);
+        if(!throwDice){
+            drawDiceAnim();
+        }else{
+            if(randNumber >= 1) {
+                if (flag) {
+                    //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
+                    player.playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+                    flag = false;
+                }
+                if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(player.playerElapsedTime) % 10 != 0) {
+                    //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
+                    player.playerElapsedTime += Gdx.graphics.getDeltaTime();
+                } else {
+                    randNumber--;
+                    flag = true;
+                }
+                if (player.playerElapsedTime < 8.03f || player.playerElapsedTime > 16.35f) {
+                    //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
+                    //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
+                    game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+                            0, 0, 1080, 1080);
+                } else {
+                    game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+                            840, 0, 1080, 1080);
+                }
+            }else {
+                setPlayerNumberTurn();
+                throwDice = false;
+                randNumber = 0;
+            }
+        } /*else if (player.activePawn == 0 && randNumber != 6) {
+            setPlayerNumberTurn();
+            throwDice = false;
+        }*/
+    }
     public void drawCardAnim(String message){
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
             //Wysunięcie karty
@@ -130,11 +129,12 @@ public class DayParkMap implements Screen {
         }
     }
     void setPlayerNumberTurn(){
-        if(playerNumberTurn < 4){
+        if(playerNumberTurn < game.playerCount - 1){
             playerNumberTurn ++;
         } else {
             playerNumberTurn = 0;
         }
+        //System.out.println(playerNumberTurn);
     }
     public void drawWhichPlayersTurnUI(){
         if(gameTextures.turnSignWhichPlayer == 1){
@@ -210,9 +210,10 @@ public class DayParkMap implements Screen {
             }
             else{
                 Random rand = new Random();
-                randNumber = rand.nextInt(6) + 1;
+                randNumber = 6;//rand.nextInt(6) + 1;
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
+                throwDice = true;
             }
         }
     }
@@ -258,6 +259,7 @@ public class DayParkMap implements Screen {
 }
 class Player{
 
+    float playerElapsedTime = 0f;
     int playerNumber;
     int activePawn;
 
