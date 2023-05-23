@@ -1,18 +1,12 @@
-package com.thechinczyk.game;
+package com.thechinczyk.game.screens;
 
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import jdk.tools.jmod.Main;
-import screens.DayParkMap;
-import screens.MainMenu;
+import com.thechinczyk.game.MyTheChinczyk;
+import com.thechinczyk.game.screens.DayParkMap;
+import com.thechinczyk.game.screens.MainMenu;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 public class MenuLoadingScreen implements Screen {
     /**
@@ -21,8 +15,8 @@ public class MenuLoadingScreen implements Screen {
      * oraz zwolnimy zasoby które zostały zalokowane przy poprzednich ekranach ładujących(MainMenu oraz ChooseGameSettings)
      */
     MyTheChinczyk game;
-    Thread thread;
-    private int chooseMapNumber;
+    //Thread thread;
+
     private int playerCount;
     private Texture loadingBackground;
     private Sprite loadingBackgroundSprite;
@@ -36,11 +30,7 @@ public class MenuLoadingScreen implements Screen {
         this.playerCount = playerCount;
     }
 
-    void setChooseMapNumber(int chooseMapNumber) {
-        this.chooseMapNumber = chooseMapNumber;
-    }
-
-    MenuLoadingScreen(MyTheChinczyk game) {
+    public MenuLoadingScreen(MyTheChinczyk game) {
         this.game = game;
         loadingBackground = new Texture("TC_Loading_Screen.png");
         loadingBackgroundSprite = spriteInit(loadingBackground, 0, 0, 1920, 1080);
@@ -67,11 +57,37 @@ public class MenuLoadingScreen implements Screen {
             loadingBackgroundSprite.setAlpha(loadingBackgroundSpriteAlpha += 7f * Gdx.graphics.getDeltaTime());
             loadingBackgroundSprite.draw(game.batch);
         } else {
-            loadingBackgroundSprite.setAlpha(1);
+            loadingBackgroundSprite.setAlpha(loadingBackgroundSpriteAlpha = 1);
             loadingBackgroundSprite.draw(game.batch);
-            game.dayParkMap = new DayParkMap(game);
-            game.setScreen(game.dayParkMap);
         }
+
+        if(loadingBackgroundSpriteAlpha == 1){
+            loadingBackgroundSpriteAlpha = 0;
+            if(game.gameScreen == 1){
+                game.MainMenu.dispose();
+                game.ChooseGameSettings.dispose();
+                game.ChooseGameSettings = null;
+                game.MainMenu = null;
+                game.dayParkMap = new DayParkMap(game);
+                game.setScreen(game.dayParkMap);
+            }
+            else if(game.gameScreen == 2){
+                game.MainMenu.dispose();
+                game.ChooseGameSettings.dispose();
+                game.ChooseGameSettings = null;
+                game.MainMenu = null;
+                game.dayParkMap = new DayParkMap(game);
+                game.setScreen(game.dayParkMap);
+            }
+            else if(game.gameScreen == 3){
+                game.dayParkMap.dispose();
+                game.dayParkMap = null;
+                game.ChooseGameSettings = new ChooseGameSettings(game);
+                game.MainMenu = new MainMenu(game);
+                game.setScreen(game.MainMenu);
+            }
+        }
+
 
         /*if (animationEnd) {
             game.batch.draw(dayParkBackground, 0, 0, 1920, 1080);
@@ -84,11 +100,11 @@ public class MenuLoadingScreen implements Screen {
             loadingBackgroundSprite.draw(game.batch);
         }*/ //może kiedyś
 
-        if (!disposeFlag) {
+/*        if (!disposeFlag) {
             game.ChooseGameSettings.dispose();
             game.MainMenu.dispose();
             disposeFlag = true;
-        }
+        }*/
         game.batch.end();
     }
 
@@ -114,11 +130,11 @@ public class MenuLoadingScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        loadingBackground.dispose();
     }
 }
 
-class AllocateTextureForTheGame implements Runnable {
+/*class AllocateTextureForTheGame implements Runnable {
 
     MyTheChinczyk game;
 
@@ -128,9 +144,6 @@ class AllocateTextureForTheGame implements Runnable {
 
     @Override
     public void run() {
-        /***
-         *alokacja do game.game odpowiednich zasobów
-         * WAŻNE!!!!!!!
-         */
+
     }
-}
+}*/

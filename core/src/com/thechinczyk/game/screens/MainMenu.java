@@ -1,4 +1,4 @@
-package screens;
+package com.thechinczyk.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -86,6 +86,13 @@ public class MainMenu implements Screen {
         }
         if (menuButtonFunc(buttonExit, buttonExitClicked, buttonExitHovered,
                 buttonExitHoveredSprite, clickStartButton)) {
+            game.MenuLoadingScreen.dispose();
+            game.ChooseGameSettings.dispose();
+            game.MainMenu.dispose();
+            game.MenuLoadingScreen = null;
+            game.dayParkMap = null;
+            game.ChooseGameSettings = null;
+            game.MainMenu = null;
             Gdx.app.exit();
         }
 

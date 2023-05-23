@@ -1,4 +1,4 @@
-package screens;
+package com.thechinczyk.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.thechinczyk.game.GameObject;
 import com.thechinczyk.game.MyTheChinczyk;
 
 import java.util.Random;
@@ -16,6 +15,7 @@ public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
     int randNumber;
+    int turnSignKeyFrame;
 
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
@@ -42,9 +42,10 @@ public class DayParkMap implements Screen {
 
 
         //Powrót do menu głównego
-//        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-//            game.gameScreen = 3;
-//        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            game.gameScreen = 3;
+            game.setScreen(game.MenuLoadingScreen);
+        }
 
         //Przykładowa obsługa animacji busa z zółtym pionkiem
         drawYellowBusAnim();
@@ -74,6 +75,12 @@ public class DayParkMap implements Screen {
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
+        //Obsługa animacji tabliczek oznaczających nową turę
+        changeWhichPlayersTurn();
+
+        //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
+        drawWhichPlayersTurnUI();
+
         //Przykładowa obsługa kostki
         drawDiceAnim();
 
@@ -97,6 +104,47 @@ public class DayParkMap implements Screen {
                 gameTextures.font.draw(game.batch, message, 750, 600);
             }
         }
+    }
+
+    public void drawWhichPlayersTurnUI(){
+        if(gameTextures.turnSignWhichPlayer == 1){
+            game.batch.draw(gameTextures.turnSignYellowBackground, 1190, 980, 300, 100);
+        }
+        else if(gameTextures.turnSignWhichPlayer == 2){
+            game.batch.draw(gameTextures.turnSignGreenBackground, 1190, 980, 300, 100);
+        }
+        else if(gameTextures.turnSignWhichPlayer == 3){
+            game.batch.draw(gameTextures.turnSignBlueBackground, 1190, 980, 300, 100);
+        }
+        else{
+            game.batch.draw(gameTextures.turnSignPinkBackground, 1190, 980, 300, 100);
+        }
+    }
+
+    public void drawWhichPlayersTurnAnim(){
+        if((turnSignKeyFrame > 0 && turnSignKeyFrame <40) || (turnSignKeyFrame > 40 && turnSignKeyFrame <73) || (turnSignKeyFrame > 73 && turnSignKeyFrame <106) || (turnSignKeyFrame > 106 && turnSignKeyFrame <139)){
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        if(turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139){
+            game.batch.draw(gameTextures.turnSignAnim.getKeyFrame(gameTextures.turnSignElapsedTime, false), 753, 469, 420, 140);
+        }
+    }
+
+    public void changeWhichPlayersTurn(){
+        turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
+        if(Gdx.input.isKeyJustPressed(Input.Keys.T)){
+            if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
+                gameTextures.turnSignWhichPlayer++;
+            }
+            else if(turnSignKeyFrame == 139){
+                gameTextures.turnSignWhichPlayer = 1;
+                gameTextures.turnSignElapsedTime = 0;
+            }
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        drawWhichPlayersTurnAnim();
     }
 
     public void drawBackGround(){
@@ -168,6 +216,12 @@ public class DayParkMap implements Screen {
         gameTextures.yellowPlayer1Atlas.dispose();
         gameTextures.diceAtlas.dispose();
         gameTextures.font.dispose();
+        gameTextures.turnSignAtlas.dispose();
+
+        gameTextures.turnSignBlueBackground.dispose();
+        gameTextures.turnSignPinkBackground.dispose();
+        gameTextures.turnSignGreenBackground.dispose();
+        gameTextures.turnSignYellowBackground.dispose();
 
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
@@ -205,6 +259,16 @@ class GameTextures{
     public Animation<TextureRegion> diceAnim;
     public float diceElapsedTime;
     public boolean diceAnimStarted;
+
+    public TextureAtlas turnSignAtlas;
+    public Animation<TextureRegion> turnSignAnim;
+    public float turnSignElapsedTime;
+    public short turnSignWhichPlayer;
+    public Texture turnSignYellowBackground;
+    public Texture turnSignGreenBackground;
+    public Texture turnSignBlueBackground;
+    public Texture turnSignPinkBackground;
+
     GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
@@ -236,6 +300,15 @@ class GameTextures{
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
         diceElapsedTime = 0f;
         diceAnimStarted = false;
+
+        turnSignAtlas = new TextureAtlas("Map1/TurnSignAnimSheet/TurnSignAnimSheet.atlas");
+        turnSignAnim = new Animation<TextureRegion>(1f/30f, turnSignAtlas.getRegions());
+        turnSignElapsedTime = 0;
+        turnSignWhichPlayer = 1;
+        turnSignYellowBackground = new Texture("Map1/TurnSign/yellow.png");
+        turnSignGreenBackground = new Texture("Map1/TurnSign/green.png");
+        turnSignBlueBackground = new Texture("Map1/TurnSign/blue.png");
+        turnSignPinkBackground = new Texture("Map1/TurnSign/pink.png");
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);

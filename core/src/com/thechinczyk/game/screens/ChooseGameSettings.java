@@ -1,4 +1,4 @@
-package com.thechinczyk.game;
+package com.thechinczyk.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.thechinczyk.game.GameObject;
+import com.thechinczyk.game.MyTheChinczyk;
 
 public class ChooseGameSettings implements Screen {
     MyTheChinczyk game;
@@ -181,7 +183,7 @@ public class ChooseGameSettings implements Screen {
                     game.music.stop();
                     game.music.dispose();
                 }
-                game.MenuLoadingScreen.setChooseMapNumber(chooseMapNumber);
+                game.gameScreen = chooseMapNumber;
                 game.MenuLoadingScreen.setPlayerCount(playerCount);
                 game.setScreen(game.MenuLoadingScreen);
             }

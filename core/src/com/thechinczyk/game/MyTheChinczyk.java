@@ -5,13 +5,14 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import screens.MainMenu;
-import screens.DayParkMap;
+import com.thechinczyk.game.screens.ChooseGameSettings;
+import com.thechinczyk.game.screens.MainMenu;
+import com.thechinczyk.game.screens.DayParkMap;
+import com.thechinczyk.game.screens.MenuLoadingScreen;
 
 public class MyTheChinczyk extends Game {
 
@@ -29,11 +30,11 @@ public class MyTheChinczyk extends Game {
 	public Sound klik3;
 
 
-	public ChooseGameSettings ChooseGameSettings;
+	public com.thechinczyk.game.screens.ChooseGameSettings ChooseGameSettings;
 	public MainMenu MainMenu;
 
 	public DayParkMap dayParkMap;
-	public MenuLoadingScreen MenuLoadingScreen;
+	public com.thechinczyk.game.screens.MenuLoadingScreen MenuLoadingScreen;
 	// public Game game alokacja w Loading Menu żeby nie marnować zasobów
 
 
@@ -54,8 +55,10 @@ public class MyTheChinczyk extends Game {
 		ChooseGameSettings = new ChooseGameSettings(this);
 		MainMenu = new MainMenu(this);
 		MenuLoadingScreen = new MenuLoadingScreen(this);
-
+		dayParkMap = new DayParkMap(this);
 		this.setScreen(MainMenu);
+
+		//this.setScreen(new DayParkMap(this));
 	}
 
 	@Override
@@ -63,19 +66,6 @@ public class MyTheChinczyk extends Game {
 		super.render();
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-
-		if(gameScreen == 1){
-			gameScreen = 0;
-			this.setScreen(new DayParkMap(this));
-		}
-		else if(gameScreen == 2){
-			gameScreen = 0;
-			this.setScreen(new MainMenu(this));
-		}
-		else if(gameScreen == 3){
-			gameScreen = 0;
-			this.setScreen(new MainMenu(this));
-		}
 
 	}
 
