@@ -13,7 +13,7 @@ import java.util.Random;
 public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
-    int randNumber;
+    int randNumber = 0;
     int turnSignKeyFrame;
     boolean throwDice = false;
     int playerNumberTurn;
@@ -74,41 +74,54 @@ public class DayParkMap implements Screen {
     public boolean flag = true;
     public void managePlayer(int playerNumberTurn){
         Player player = Players.get(playerNumberTurn);
+        if(player.activePawn == 1 && !throwDice){
+            drawStaticPawn(player);
+        }
         if(!throwDice){
             drawDiceAnim();
-        }else{
-            if(randNumber >= 1) {
-                if (flag) {
-                    //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
-                    player.playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
-                    flag = false;
-                }
-                if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(player.playerElapsedTime) % 10 != 0) {
-                    //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
-                    player.playerElapsedTime += Gdx.graphics.getDeltaTime();
-                } else {
-                    randNumber--;
-                    flag = true;
-                }
-                if (player.playerElapsedTime < 8.03f || player.playerElapsedTime > 16.35f) {
-                    //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
-                    //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
-                    game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
-                            0, 0, 1080, 1080);
-                } else {
-                    game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
-                            840, 0, 1080, 1080);
-                }
-            }else {
-                setPlayerNumberTurn();
-                throwDice = false;
-                randNumber = 0;
-            }
-        } /*else if (player.activePawn == 0 && randNumber != 6) {
-            setPlayerNumberTurn();
+        }else if(player.activePawn == 0 && randNumber == 6){
+            drawStaticPawn(player);
+            player.activePawn = 1;
             throwDice = false;
-        }*/
+        } else if (player.activePawn == 1) {
+            changeAnimationPawn(player);
+            drawStaticPawn(player);
+        }else {
+            throwDice = false;
+        }
     }
+
+    private void changeAnimationPawn(Player player) {
+        if(randNumber >= 1) {
+            if (flag) {
+                //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
+                player.playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+                flag = false;
+            }
+            if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(player.playerElapsedTime) % 10 != 0) {
+                //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
+                player.playerElapsedTime += Gdx.graphics.getDeltaTime();
+            } else {
+                randNumber--;
+                flag = true;
+            }
+        }else {
+            //setPlayerNumberTurn();
+            throwDice = false;
+            randNumber = 0;
+        }
+    }
+
+    private void drawStaticPawn(Player player) {
+        if (player.playerElapsedTime < 8.03f || player.playerElapsedTime > 16.35f) {
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+                    0, 0, 1080, 1080);
+        } else {
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+                    840, 0, 1080, 1080);
+        }
+    }
+
     public void drawCardAnim(String message){
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
             //Wysunięcie karty
@@ -210,7 +223,8 @@ public class DayParkMap implements Screen {
             }
             else{
                 Random rand = new Random();
-                randNumber = 6;//rand.nextInt(6) + 1;
+                randNumber = rand.nextInt(6) + 1;
+                System.out.println(randNumber);
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
                 throwDice = true;
