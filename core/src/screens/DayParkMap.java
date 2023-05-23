@@ -10,48 +10,202 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.GameObject;
 import com.thechinczyk.game.MyTheChinczyk;
 
+import java.util.Random;
+
 public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
-    BitmapFont font;
-
-    private Texture dayParkBackground;
-    private Texture dayParkTopground;
-
-
-    private TextureAtlas yellowPlayer1Atlas;
-    private Animation<TextureRegion> yellowPlayer1Anim;
-    private float yellowPlayer1ElapsedTime;
-    private int yellowPlayer1AnimStarted;
-
-
-    private TextureAtlas iceCreamAtlas;
-    private Animation<TextureRegion> iceCreamAnim;
-    private float loopElapsedTime;
-    private TextureAtlas swingAtlas;
-    private Animation<TextureRegion> swingAnim;
-
-    private TextureAtlas cardAtlas;
-    private Animation<TextureRegion> cardAnim;
-    private float cardElapsedTime;
-    private boolean cardAnimStarted;
-
-    private TextureAtlas yellowBusAtlas;
-    private Animation<TextureRegion> yellowBusAnim;
-    private float yellowBusElapsedTime;
-    private boolean yellowBusAnimStarted;
-
-    private TextureAtlas diceAtlas;
-    private Animation<TextureRegion> diceAnim;
-    private float diceElapsedTime;
-    private boolean diceAnimStarted;
+    int randNumber;
 
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
     }
-
+    GameTextures gameTextures;
     @Override
     public void show() {
+        gameTextures = new GameTextures();
+    }
+
+
+    @Override
+    public void render(float delta) {
+        ScreenUtils.clear(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        game.batch.begin();
+
+        //Wyświetlenie głównego tła planszy
+        drawBackGround();
+        //Animacja rożka z lodem i huśtawki na planszy
+        drawIceCreamAndSwingAnim();
+
+
+        //Powrót do menu głównego
+//        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+//            game.gameScreen = 3;
+//        }
+
+        //Przykładowa obsługa animacji busa z zółtym pionkiem
+        drawYellowBusAnim();
+
+        //Przykład poruszania się pionkiem
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+            //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
+            gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+        }
+        if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
+            //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
+            gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
+            //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
+            //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+        }
+        else{
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+        }
+
+
+        //Przykładowa obsługa animacji karty
+        drawCardAnim("Hello World!\nSample text, sample tex");
+
+        //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
+        game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
+
+        //Przykładowa obsługa kostki
+        drawDiceAnim();
+
+        game.batch.end();
+    }
+    public void drawCardAnim(String message){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
+            //Wysunięcie karty
+            gameTextures.cardAnimStarted = true;
+        }
+        else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
+            //Zamknięcie karty
+            gameTextures.cardAnimStarted = false;
+            gameTextures.cardElapsedTime = 0;
+        }
+        if(gameTextures.cardAnimStarted) {
+            gameTextures.cardElapsedTime += Gdx.graphics.getDeltaTime();
+            game.batch.draw(gameTextures.cardAnim.getKeyFrame(gameTextures.cardElapsedTime, false), 304, 71, 1270, 938);
+            if(gameTextures.cardElapsedTime>1.5f){
+                //Pojawienie się tekstu w momencie gdy karta się obraca
+                gameTextures.font.draw(game.batch, message, 750, 600);
+            }
+        }
+    }
+
+    public void drawBackGround(){
+        game.batch.draw(gameTextures.dayParkBackground, 0, 0, 1920, 1080);
+    }
+    public void drawIceCreamAndSwingAnim(){
+        gameTextures.loopElapsedTime += Gdx.graphics.getDeltaTime();
+        game.batch.draw(gameTextures.iceCreamAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
+                0, 888, 179, 192);
+        game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
+                1009, 137, 199, 95);
+    }
+    public void drawYellowBusAnim(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted){
+            gameTextures.yellowBusAnimStarted = true;
+        }
+        else if(gameTextures.yellowBusAnim.isAnimationFinished(gameTextures.yellowBusElapsedTime) && gameTextures.yellowBusAnimStarted){
+            gameTextures.yellowBusAnimStarted = false;
+            gameTextures.yellowBusElapsedTime = 0;
+        }
+        if(gameTextures.yellowBusAnimStarted) {
+            gameTextures.yellowBusElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        game.batch.draw(gameTextures.yellowBusAnim.getKeyFrame(gameTextures.yellowBusElapsedTime, false), 1015, 0, 905, 1080);
+    }
+    public void drawDiceAnim(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted){
+            gameTextures.diceAnimStarted = true;
+        }
+        if(gameTextures.diceAnimStarted){
+            if(!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)){
+                gameTextures.diceElapsedTime += Gdx.graphics.getDeltaTime();
+                game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
+            }
+            else{
+                Random rand = new Random();
+                randNumber = rand.nextInt();
+                gameTextures.diceAnimStarted = false;
+                gameTextures.diceElapsedTime = 0;
+            }
+        }
+    }
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        gameTextures.iceCreamAtlas.dispose();
+        gameTextures.swingAtlas.dispose();
+        gameTextures.cardAtlas.dispose();
+        gameTextures.yellowBusAtlas.dispose();
+        gameTextures.yellowPlayer1Atlas.dispose();
+        gameTextures.diceAtlas.dispose();
+        gameTextures.font.dispose();
+
+        gameTextures.dayParkBackground.dispose();
+        gameTextures.dayParkTopground.dispose();
+    }
+}
+class GameTextures{
+    BitmapFont font;
+    public Texture dayParkBackground;
+    public Texture dayParkTopground;
+
+
+    public TextureAtlas yellowPlayer1Atlas;
+    public Animation<TextureRegion> yellowPlayer1Anim;
+    public float yellowPlayer1ElapsedTime;
+    public int yellowPlayer1AnimStarted;
+
+
+    public TextureAtlas iceCreamAtlas;
+    public Animation<TextureRegion> iceCreamAnim;
+    public float loopElapsedTime;
+    public TextureAtlas swingAtlas;
+    public Animation<TextureRegion> swingAnim;
+
+    public TextureAtlas cardAtlas;
+    public Animation<TextureRegion> cardAnim;
+    public float cardElapsedTime;
+    public boolean cardAnimStarted;
+
+    public TextureAtlas yellowBusAtlas;
+    public Animation<TextureRegion> yellowBusAnim;
+    public float yellowBusElapsedTime;
+    public boolean yellowBusAnimStarted;
+
+    public TextureAtlas diceAtlas;
+    public Animation<TextureRegion> diceAnim;
+    public float diceElapsedTime;
+    public boolean diceAnimStarted;
+    GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
 
@@ -87,132 +241,4 @@ public class DayParkMap implements Screen {
         font.getData().setScale(.3f,.3f);
     }
 
-    @Override
-    public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0, 1);
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        game.batch.begin();
-
-        //Wyświetlenie głównego tła planszy
-        game.batch.draw(dayParkBackground, 0, 0, 1920, 1080);
-        //Animacja rożka z lodem i huśtawki na planszy
-        loopElapsedTime += Gdx.graphics.getDeltaTime();
-        game.batch.draw(iceCreamAnim.getKeyFrame(loopElapsedTime, true), 0, 888, 179, 192);
-        game.batch.draw(swingAnim.getKeyFrame(loopElapsedTime, true), 1009, 137, 199, 95);
-
-        //Powrót do menu głównego
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
-            game.gameScreen = 3;
-        }
-
-        //Przykładowa obsługa animacji busa z zółtym pionkiem
-        if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !yellowBusAnimStarted){
-            yellowBusAnimStarted = true;
-        }
-        else if(yellowBusAnim.isAnimationFinished(yellowBusElapsedTime) && yellowBusAnimStarted){
-            yellowBusAnimStarted = false;
-            yellowBusElapsedTime = 0;
-        }
-        if(yellowBusAnimStarted) {
-            yellowBusElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        game.batch.draw(yellowBusAnim.getKeyFrame(yellowBusElapsedTime, false), 1015, 0, 905, 1080);
-
-
-        //Przykład poruszania się pionkiem
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
-            yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-            yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-            yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        if(yellowPlayer1Anim.getKeyFrameIndex(yellowPlayer1ElapsedTime)%10!=0){
-            //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
-            yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        if(yellowPlayer1ElapsedTime < 8.03f || yellowPlayer1ElapsedTime > 16.35f){
-            //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
-            //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
-            game.batch.draw(yellowPlayer1Anim.getKeyFrame(yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
-        }
-        else{
-            game.batch.draw(yellowPlayer1Anim.getKeyFrame(yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
-        }
-
-
-        //Przykładowa obsługa animacji karty
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !cardAnimStarted){
-            //Wysunięcie karty
-            cardAnimStarted = true;
-        }
-        else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && cardAnim.isAnimationFinished(cardElapsedTime)){
-            //Zamknięcie karty
-            cardAnimStarted = false;
-            cardElapsedTime = 0;
-        }
-        if(cardAnimStarted) {
-            cardElapsedTime += Gdx.graphics.getDeltaTime();
-            game.batch.draw(cardAnim.getKeyFrame(cardElapsedTime, false), 304, 71, 1270, 938);
-            if(cardElapsedTime>1.5f){
-                //Pojawienie się tekstu w momencie gdy karta się obraca
-                font.draw(game.batch, "Hello World!\nSample text, sample tex", 750, 600);
-            }
-        }
-
-        //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
-        game.batch.draw(dayParkTopground, 0, 0, 1920, 1080);
-
-        //Przykładowa obsługa kostki
-        if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !diceAnimStarted){
-            diceAnimStarted = true;
-        }
-        if(diceAnimStarted){
-            if(!diceAnim.isAnimationFinished(diceElapsedTime)){
-                diceElapsedTime += Gdx.graphics.getDeltaTime();
-                game.batch.draw(diceAnim.getKeyFrame(diceElapsedTime, false), 300, 0, 1000, 850);
-            }
-            else{
-                diceAnimStarted = false;
-                diceElapsedTime = 0;
-            }
-        }
-
-        game.batch.end();
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-
-    }
-
-    @Override
-    public void dispose() {
-        iceCreamAtlas.dispose();
-        swingAtlas.dispose();
-        cardAtlas.dispose();
-        yellowBusAtlas.dispose();
-        yellowPlayer1Atlas.dispose();
-        diceAtlas.dispose();
-        font.dispose();
-
-        dayParkBackground.dispose();
-        dayParkTopground.dispose();
-    }
 }
