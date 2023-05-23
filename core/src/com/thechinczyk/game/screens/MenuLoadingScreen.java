@@ -100,11 +100,6 @@ public class MenuLoadingScreen implements Screen {
             loadingBackgroundSprite.draw(game.batch);
         }*/ //może kiedyś
 
-/*        if (!disposeFlag) {
-            game.ChooseGameSettings.dispose();
-            game.MainMenu.dispose();
-            disposeFlag = true;
-        }*/
         game.batch.end();
     }
 

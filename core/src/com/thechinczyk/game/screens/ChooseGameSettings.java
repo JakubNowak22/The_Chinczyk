@@ -184,10 +184,34 @@ public class ChooseGameSettings implements Screen {
                     game.music.dispose();
                 }
                 game.gameScreen = chooseMapNumber;
+                game.playerCount = playerCount;
                 game.MenuLoadingScreen.setPlayerCount(playerCount);
                 game.setScreen(game.MenuLoadingScreen);
             }
         }
+        selectSettings();
+        drawSelectedSettings();
+
+        game.batch.end();
+    }
+
+    private void drawSelectedSettings() {
+        if (chooseMapNumber == 1) {
+            game.batch.draw(buttonMDClicked, 0, 0, 1920, 1080);
+        } else if (chooseMapNumber == 2) {
+            game.batch.draw(buttonMNClicked, 0, 0, 1920, 1080);
+        }
+
+        if (playerCount == 2) {
+            game.batch.draw(buttonP2Clicked, 0, 0, 1920, 1080);
+        } else if (playerCount == 3) {
+            game.batch.draw(buttonP3Clicked, 0, 0, 1920, 1080);
+        } else if (playerCount == 4) {
+            game.batch.draw(buttonP4Clicked, 0, 0, 1920, 1080);
+        }
+    }
+
+    private void selectSettings() {
         if (menuButtonFunc(buttonMD, buttonMDClicked, buttonMDHovered,
                 buttonMDHoveredSprite, false)) {
             chooseMapNumber = 1;
@@ -208,21 +232,6 @@ public class ChooseGameSettings implements Screen {
                 buttonP4HoveredSprite, false)) {
             playerCount = 4;
         }
-        if (chooseMapNumber == 1) {
-            game.batch.draw(buttonMDClicked, 0, 0, 1920, 1080);
-        } else if (chooseMapNumber == 2) {
-            game.batch.draw(buttonMNClicked, 0, 0, 1920, 1080);
-        }
-
-        if (playerCount == 2) {
-            game.batch.draw(buttonP2Clicked, 0, 0, 1920, 1080);
-        } else if (playerCount == 3) {
-            game.batch.draw(buttonP3Clicked, 0, 0, 1920, 1080);
-        } else if (playerCount == 4) {
-            game.batch.draw(buttonP4Clicked, 0, 0, 1920, 1080);
-        }
-
-        game.batch.end();
     }
 
     @Override

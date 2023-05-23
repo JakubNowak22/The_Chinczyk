@@ -171,11 +171,11 @@ public class MainMenu implements Screen {
     public void dispose() {
         mainMenuBackgroundBlured.dispose();
         mainMenuBackground.dispose();
+        menuTransitionAtlas.dispose();
         buttonStartHovered.dispose();
         buttonExitHovered.dispose();
         buttonStartClicked.dispose();
         buttonExitClicked.dispose();
-        menuTransitionAtlas.dispose();
         mainMenuBackground2.dispose();
     }
 
@@ -198,6 +198,7 @@ public class MainMenu implements Screen {
     public void hide() {
     }
 }
+
 
 
 

@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
+import com.thechinczyk.game.screens.GameTextures;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class DayParkMap implements Screen {
@@ -17,13 +19,26 @@ public class DayParkMap implements Screen {
     int randNumber;
     int turnSignKeyFrame;
 
+    int playerNumberTurn;
+    public ArrayList<Player> Players = new ArrayList<>();
+    /*public Player Player0 = new Player(0);
+    public Player Player1 = new Player(0);
+    public Player Player2 = new Player(0);
+    public Player Player3 = new Player(0);*/
+
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
     }
     GameTextures gameTextures;
     @Override
     public void show() {
+        for (int i = 0; i < game.playerCount; i++){
+            Player player = new Player(i);
+            Players.add(player);
+        }
+        System.out.println(game.playerCount);
         gameTextures = new GameTextures();
+        playerNumberTurn = 0;
     }
 
 
@@ -46,27 +61,35 @@ public class DayParkMap implements Screen {
             game.gameScreen = 3;
             game.setScreen(game.MenuLoadingScreen);
         }
-
+        //
         //Przykładowa obsługa animacji busa z zółtym pionkiem
-        drawYellowBusAnim();
 
         //Przykład poruszania się pionkiem
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+        /*if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
             gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            gameTextures.yellowPlayer2ElapsedTime += 3*Gdx.graphics.getDeltaTime();
         }
         if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
             //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
             gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.yellowPlayer2ElapsedTime += Gdx.graphics.getDeltaTime();
         }
         if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
             //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
             //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false),
+                    0, 0, 1080, 1080);
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer2ElapsedTime, false),
+                    0, 0, 1080, 1080);
+            //System.out.println(gameTextures.yellowPlayer1ElapsedTime);
         }
         else{
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
-        }
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false),
+                    840, 0, 1080, 1080);
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer2ElapsedTime, false),
+                    840, 0, 1080, 1080);
+        }*/
 
 
         //Przykładowa obsługa animacji karty
@@ -76,16 +99,17 @@ public class DayParkMap implements Screen {
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
         //Obsługa animacji tabliczek oznaczających nową turę
-        changeWhichPlayersTurn();
+        //changeWhichPlayersTurn();
 
         //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
-        drawWhichPlayersTurnUI();
+        //drawWhichPlayersTurnUI();
 
         //Przykładowa obsługa kostki
         drawDiceAnim();
 
         game.batch.end();
     }
+
     public void drawCardAnim(String message){
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
             //Wysunięcie karty
@@ -105,7 +129,13 @@ public class DayParkMap implements Screen {
             }
         }
     }
-
+    void setPlayerNumberTurn(){
+        if(playerNumberTurn < 4){
+            playerNumberTurn ++;
+        } else {
+            playerNumberTurn = 0;
+        }
+    }
     public void drawWhichPlayersTurnUI(){
         if(gameTextures.turnSignWhichPlayer == 1){
             game.batch.draw(gameTextures.turnSignYellowBackground, 1190, 980, 300, 100);
@@ -120,16 +150,6 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.turnSignPinkBackground, 1190, 980, 300, 100);
         }
     }
-
-    public void drawWhichPlayersTurnAnim(){
-        if((turnSignKeyFrame > 0 && turnSignKeyFrame <40) || (turnSignKeyFrame > 40 && turnSignKeyFrame <73) || (turnSignKeyFrame > 73 && turnSignKeyFrame <106) || (turnSignKeyFrame > 106 && turnSignKeyFrame <139)){
-            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        if(turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139){
-            game.batch.draw(gameTextures.turnSignAnim.getKeyFrame(gameTextures.turnSignElapsedTime, false), 753, 469, 420, 140);
-        }
-    }
-
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
         if(Gdx.input.isKeyJustPressed(Input.Keys.T)){
@@ -140,12 +160,21 @@ public class DayParkMap implements Screen {
                 gameTextures.turnSignWhichPlayer = 1;
                 gameTextures.turnSignElapsedTime = 0;
             }
-            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += 3*Gdx.graphics.getDeltaTime();
         }
         drawWhichPlayersTurnAnim();
     }
+
+    public void drawWhichPlayersTurnAnim(){
+        if((turnSignKeyFrame > 0 && turnSignKeyFrame <40) || (turnSignKeyFrame > 40 && turnSignKeyFrame <73) || (turnSignKeyFrame > 73 && turnSignKeyFrame <106) || (turnSignKeyFrame > 106 && turnSignKeyFrame <139)){
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        if(turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139){
+            game.batch.draw(gameTextures.turnSignAnim.getKeyFrame(gameTextures.turnSignElapsedTime, false), 753, 469, 420, 140);
+        }
+    }
+
+
 
     public void drawBackGround(){
         game.batch.draw(gameTextures.dayParkBackground, 0, 0, 1920, 1080);
@@ -181,7 +210,7 @@ public class DayParkMap implements Screen {
             }
             else{
                 Random rand = new Random();
-                randNumber = rand.nextInt();
+                randNumber = rand.nextInt(6) + 1;
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
             }
@@ -227,91 +256,16 @@ public class DayParkMap implements Screen {
         gameTextures.dayParkTopground.dispose();
     }
 }
-class GameTextures{
-    BitmapFont font;
-    public Texture dayParkBackground;
-    public Texture dayParkTopground;
+class Player{
 
+    int playerNumber;
+    int activePawn;
 
-    public TextureAtlas yellowPlayer1Atlas;
-    public Animation<TextureRegion> yellowPlayer1Anim;
-    public float yellowPlayer1ElapsedTime;
-    public int yellowPlayer1AnimStarted;
-
-
-    public TextureAtlas iceCreamAtlas;
-    public Animation<TextureRegion> iceCreamAnim;
-    public float loopElapsedTime;
-    public TextureAtlas swingAtlas;
-    public Animation<TextureRegion> swingAnim;
-
-    public TextureAtlas cardAtlas;
-    public Animation<TextureRegion> cardAnim;
-    public float cardElapsedTime;
-    public boolean cardAnimStarted;
-
-    public TextureAtlas yellowBusAtlas;
-    public Animation<TextureRegion> yellowBusAnim;
-    public float yellowBusElapsedTime;
-    public boolean yellowBusAnimStarted;
-
-    public TextureAtlas diceAtlas;
-    public Animation<TextureRegion> diceAnim;
-    public float diceElapsedTime;
-    public boolean diceAnimStarted;
-
-    public TextureAtlas turnSignAtlas;
-    public Animation<TextureRegion> turnSignAnim;
-    public float turnSignElapsedTime;
-    public short turnSignWhichPlayer;
-    public Texture turnSignYellowBackground;
-    public Texture turnSignGreenBackground;
-    public Texture turnSignBlueBackground;
-    public Texture turnSignPinkBackground;
-
-    GameTextures(){
-        dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
-        dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
-
-
-        yellowPlayer1Atlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
-        yellowPlayer1Anim = new Animation<TextureRegion>(1f/30f, yellowPlayer1Atlas.getRegions());
-        yellowPlayer1ElapsedTime = 0f;
-        yellowPlayer1AnimStarted = 0;
-
-
-        iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
-        iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());
-        loopElapsedTime = 0f;
-        swingAtlas = new TextureAtlas("Map1/SwingAnimSheet/SwingAnimSheet.atlas");
-        swingAnim = new Animation<TextureRegion>(1f/30f, swingAtlas.getRegions());
-
-        cardAtlas = new TextureAtlas("Map1/CardAnimSheet/CardAnimSheet.atlas");
-        cardAnim = new Animation<TextureRegion>(1f/30f, cardAtlas.getRegions());
-        cardElapsedTime = 0f;
-        cardAnimStarted = false;
-
-        yellowBusAtlas = new TextureAtlas("Map1/YellowBusAnimSheet/YellowBusAnimSheet.atlas");
-        yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
-        yellowBusElapsedTime = 0f;
-        yellowBusAnimStarted = false;
-
-        diceAtlas = new TextureAtlas("Map1/DiceAnimSheet/DiceAnimSheet.atlas");
-        diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
-        diceElapsedTime = 0f;
-        diceAnimStarted = false;
-
-        turnSignAtlas = new TextureAtlas("Map1/TurnSignAnimSheet/TurnSignAnimSheet.atlas");
-        turnSignAnim = new Animation<TextureRegion>(1f/30f, turnSignAtlas.getRegions());
-        turnSignElapsedTime = 0;
-        turnSignWhichPlayer = 1;
-        turnSignYellowBackground = new Texture("Map1/TurnSign/yellow.png");
-        turnSignGreenBackground = new Texture("Map1/TurnSign/green.png");
-        turnSignBlueBackground = new Texture("Map1/TurnSign/blue.png");
-        turnSignPinkBackground = new Texture("Map1/TurnSign/pink.png");
-
-        font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
-        font.getData().setScale(.3f,.3f);
+    int numbersOfWinPawns;
+    public Player(int playerNumber){
+        this.playerNumber = playerNumber;
+        activePawn = 0;
+        numbersOfWinPawns = 0;
     }
-
 }
+
