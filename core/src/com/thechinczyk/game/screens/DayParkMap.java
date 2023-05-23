@@ -19,7 +19,7 @@ public class DayParkMap implements Screen {
     //elapsedtime player2 green 2.3362615
     //elapsedtime player3 blue 8.000907
     //elapsedtime player4 pink 9.67303
-    float []startPlayerElapsedTime = {0f,2.3362615f,8.000907f,9.67303f};
+    float[] startPlayerElapsedTime = {0f, 2.3362615f, 8.000907f, 9.67303f};
 
     int turnSignKeyFrame;
     boolean throwDice = false;
@@ -31,13 +31,15 @@ public class DayParkMap implements Screen {
     public Player Player2 = new Player(0);
     public Player Player3 = new Player(0);*/
 
-    public DayParkMap(MyTheChinczyk game){
+    public DayParkMap(MyTheChinczyk game) {
         this.game = game;
     }
+
     GameTextures gameTextures;
+
     @Override
     public void show() {
-        for (int i = 0; i < game.playerCount; i++){
+        for (int i = 0; i < game.playerCount; i++) {
             Player player = new Player(i, startPlayerElapsedTime[i]);
             Players.add(player);
         }
@@ -61,7 +63,7 @@ public class DayParkMap implements Screen {
         drawIceCreamAndSwingAnim();
 
         managePlayer(playerNumberTurn);
-        drawInactivePlayers(playerNumberTurn);
+        //drawInactivePlayers(playerNumberTurn);
         //Przykładowa obsługa animacji busa z zółtym pionkiem
 
         //Przykład poruszania się pionkiem
@@ -80,171 +82,188 @@ public class DayParkMap implements Screen {
     }
 
 
-    void drawInactivePlayers(int playerNumberTurn){
-        for (int i = 0; i < game.playerCount; i++){
-            if(i == playerNumberTurn){
+    void drawInactivePlayers(int playerNumberTurn) {
+        for (int i = 0; i < game.playerCount; i++) {
+            if (i == playerNumberTurn) {
                 continue;
             }
             Player player = Players.get(i);
-            if (player.activePawn == 1){
-                drawPawn(player);
+            if (player.activePawn == 1) {
+                drawPawn(player,0);
             }
-        }
-    }
-    public boolean flag = true;
-    public void managePlayer(int playerNumberTurn){
-        Player player = Players.get(playerNumberTurn);
-        if(player.activePawn == 1 && !throwDice){
-            drawPawn(player);
-        }
-        if(!throwDice){
-            drawDiceAnim();
-        }else if(player.activePawn == 0 && randNumber == 6){
-            drawPawn(player);
-            player.activePawn = 1;
-            setPlayerNumberTurn();
-            throwDice = false;
-        } else if (player.activePawn == 1) {
-            changeAnimationPawn(player);
-            drawPawn(player);
-        }else if(player.activePawn == 0){
-            setPlayerNumberTurn();
-            throwDice = false;
         }
     }
 
-    private void changeAnimationPawn(Player player) {
-        if(randNumber >= 1) {
+    public boolean flag = true;
+
+    public void managePlayer(int playerNumberTurn) {
+        Player player = Players.get(playerNumberTurn);
+        if (player.activePawn == 1 && !throwDice) {
+            drawPawn(player,0);
+        }
+        if (!throwDice) {
+            drawDiceAnim();
+        } else if (player.activePawn == 0 && randNumber == 6) {
+            drawPawn(player, 0);
+            player.activePawn = 1;
+            player.pawns[0].active = true;
+            //setPlayerNumberTurn();
+            throwDice = false;
+        } else if (player.activePawn == 1) {
+           /* if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.activePawn == 1) {
+
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.activePawn == 2) {
+
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.activePawn == 3) {
+
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.activePawn == 4) {
+
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) &&
+                    randNumber == 6 && player.activePawn <= 4) {
+                player.pawns[player.activePawn].active = true;
+                player.activePawn ++;
+            }else{*/
+                changeAnimationPawn(player,0);
+                drawPawn(player, 0);
+            //}
+        } else if (player.activePawn == 0) {
+            //setPlayerNumberTurn();
+            throwDice = false;
+        }/*else if(){
+
+        }*/
+    }
+
+    private void changeAnimationPawn(Player player, int pawNumber) {
+        if (randNumber >= 1) {
             if (flag) {
                 //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
-                player.playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+                player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
                 flag = false;
             }
-            if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(player.playerElapsedTime) % 10 != 0) {
+            if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
                 //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
-                player.playerElapsedTime += Gdx.graphics.getDeltaTime();
+                player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
-                System.out.println(player.playerElapsedTime);
+                //System.out.println(player.pawns[pawNumber].playerElapsedTime);
                 randNumber--;
                 flag = true;
             }
-        }else {
-            setPlayerNumberTurn();
+        } else {
+            //setPlayerNumberTurn();
             throwDice = false;
             randNumber = 0;
         }
     }
 
-    private void drawPawn(Player player) {
-        if (player.playerElapsedTime < 8.03f || player.playerElapsedTime > 16.35f) {
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+    private void drawPawn(Player player, int pawnNumber) {
+        if ( player.pawns[pawnNumber].playerElapsedTime < 8.03f ||  player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                     0, 0, 1080, 1080);
         } else {
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.playerElapsedTime, false),
+            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                     840, 0, 1080, 1080);
         }
     }
 
-    public void drawCardAnim(String message){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
+    public void drawCardAnim(String message) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) {
             //Wysunięcie karty
             gameTextures.cardAnimStarted = true;
-        }
-        else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
+        } else if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)) {
             //Zamknięcie karty
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
-        if(gameTextures.cardAnimStarted) {
+        if (gameTextures.cardAnimStarted) {
             gameTextures.cardElapsedTime += Gdx.graphics.getDeltaTime();
             game.batch.draw(gameTextures.cardAnim.getKeyFrame(gameTextures.cardElapsedTime, false), 304, 71, 1270, 938);
-            if(gameTextures.cardElapsedTime>1.5f){
+            if (gameTextures.cardElapsedTime > 1.5f) {
                 //Pojawienie się tekstu w momencie gdy karta się obraca
                 gameTextures.font.draw(game.batch, message, 750, 600);
             }
         }
     }
-    void setPlayerNumberTurn(){
-        if(playerNumberTurn < game.playerCount - 1){
-            playerNumberTurn ++;
+
+    void setPlayerNumberTurn() {
+        if (playerNumberTurn < game.playerCount - 1) {
+            playerNumberTurn++;
         } else {
             playerNumberTurn = 0;
         }
         //System.out.println(playerNumberTurn);
     }
-    public void drawWhichPlayersTurnUI(){
-        if(gameTextures.turnSignWhichPlayer == 1){
+
+    public void drawWhichPlayersTurnUI() {
+        if (gameTextures.turnSignWhichPlayer == 1) {
             game.batch.draw(gameTextures.turnSignYellowBackground, 1190, 980, 300, 100);
-        }
-        else if(gameTextures.turnSignWhichPlayer == 2){
+        } else if (gameTextures.turnSignWhichPlayer == 2) {
             game.batch.draw(gameTextures.turnSignGreenBackground, 1190, 980, 300, 100);
-        }
-        else if(gameTextures.turnSignWhichPlayer == 3){
+        } else if (gameTextures.turnSignWhichPlayer == 3) {
             game.batch.draw(gameTextures.turnSignBlueBackground, 1190, 980, 300, 100);
-        }
-        else{
+        } else {
             game.batch.draw(gameTextures.turnSignPinkBackground, 1190, 980, 300, 100);
         }
     }
-    public void changeWhichPlayersTurn(){
+
+    public void changeWhichPlayersTurn() {
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
-        if(Gdx.input.isKeyJustPressed(Input.Keys.T)){
-            if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            if (turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106) {
                 gameTextures.turnSignWhichPlayer++;
-            }
-            else if(turnSignKeyFrame == 139){
+            } else if (turnSignKeyFrame == 139) {
                 gameTextures.turnSignWhichPlayer = 1;
                 gameTextures.turnSignElapsedTime = 0;
             }
-            gameTextures.turnSignElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += 3 * Gdx.graphics.getDeltaTime();
         }
         drawWhichPlayersTurnAnim();
     }
 
-    public void drawWhichPlayersTurnAnim(){
-        if((turnSignKeyFrame > 0 && turnSignKeyFrame <40) || (turnSignKeyFrame > 40 && turnSignKeyFrame <73) || (turnSignKeyFrame > 73 && turnSignKeyFrame <106) || (turnSignKeyFrame > 106 && turnSignKeyFrame <139)){
+    public void drawWhichPlayersTurnAnim() {
+        if ((turnSignKeyFrame > 0 && turnSignKeyFrame < 40) || (turnSignKeyFrame > 40 && turnSignKeyFrame < 73) || (turnSignKeyFrame > 73 && turnSignKeyFrame < 106) || (turnSignKeyFrame > 106 && turnSignKeyFrame < 139)) {
             gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
         }
-        if(turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139){
+        if (turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139) {
             game.batch.draw(gameTextures.turnSignAnim.getKeyFrame(gameTextures.turnSignElapsedTime, false), 753, 469, 420, 140);
         }
     }
 
 
-
-    public void drawBackGround(){
+    public void drawBackGround() {
         game.batch.draw(gameTextures.dayParkBackground, 0, 0, 1920, 1080);
     }
-    public void drawIceCreamAndSwingAnim(){
+
+    public void drawIceCreamAndSwingAnim() {
         gameTextures.loopElapsedTime += Gdx.graphics.getDeltaTime();
         game.batch.draw(gameTextures.iceCreamAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 0, 888, 179, 192);
         game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 1009, 137, 199, 95);
     }
-    public void drawYellowBusAnim(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted){
+
+    public void drawYellowBusAnim() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted) {
             gameTextures.yellowBusAnimStarted = true;
-        }
-        else if(gameTextures.yellowBusAnim.isAnimationFinished(gameTextures.yellowBusElapsedTime) && gameTextures.yellowBusAnimStarted){
+        } else if (gameTextures.yellowBusAnim.isAnimationFinished(gameTextures.yellowBusElapsedTime) && gameTextures.yellowBusAnimStarted) {
             gameTextures.yellowBusAnimStarted = false;
             gameTextures.yellowBusElapsedTime = 0;
         }
-        if(gameTextures.yellowBusAnimStarted) {
+        if (gameTextures.yellowBusAnimStarted) {
             gameTextures.yellowBusElapsedTime += Gdx.graphics.getDeltaTime();
         }
         game.batch.draw(gameTextures.yellowBusAnim.getKeyFrame(gameTextures.yellowBusElapsedTime, false), 1015, 0, 905, 1080);
     }
-    public void drawDiceAnim(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted){
+
+    public void drawDiceAnim() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted) {
             gameTextures.diceAnimStarted = true;
         }
-        if(gameTextures.diceAnimStarted){
-            if(!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)){
+        if (gameTextures.diceAnimStarted) {
+            if (!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)) {
                 gameTextures.diceElapsedTime += Gdx.graphics.getDeltaTime();
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
-            }
-            else{
+            } else {
                 Random rand = new Random();
                 randNumber = rand.nextInt(6) + 1;
                 System.out.println(randNumber);
@@ -254,6 +273,7 @@ public class DayParkMap implements Screen {
             }
         }
     }
+
     @Override
     public void resize(int width, int height) {
 
@@ -294,19 +314,35 @@ public class DayParkMap implements Screen {
         gameTextures.dayParkTopground.dispose();
     }
 }
-class Player{
+
+class Player {
 
     float playerElapsedTime = 0f;
     int playerNumber;
     int activePawn;
-    int position; // 49 yellow start = 0
 
+    Pawn[] pawns = {new Pawn(0),
+            new Pawn(0),
+            new Pawn(0),
+            new Pawn(0)};
     int numbersOfWinPawns;
-    public Player(int playerNumber, float playerElapsedTime){
+
+    public Player(int playerNumber, float playerElapsedTime) {
         this.playerElapsedTime = playerElapsedTime;
         this.playerNumber = playerNumber;
         activePawn = 0;
         numbersOfWinPawns = 0;
+    }
+}
+
+class Pawn {
+    public float playerElapsedTime;
+    int position; // 49 yellow start = 0
+    boolean active = false;
+
+    public Pawn(int position) {
+        playerElapsedTime = 0f;
+        this.position = position;
     }
 }
 
