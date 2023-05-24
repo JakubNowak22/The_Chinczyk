@@ -20,6 +20,10 @@ class GameTextures{
 
     public int yellowPlayer1AnimStarted;
 
+    public TextureAtlas bluePlayer1Atlas;
+    public Animation<TextureRegion> bluePlayer1Anim;
+    public float bluePlayer1ElapsedTime;
+    public int bluePlayer1AnimStarted;
 
     public TextureAtlas iceCreamAtlas;
     public Animation<TextureRegion> iceCreamAnim;
@@ -62,6 +66,10 @@ class GameTextures{
         yellowPlayer2ElapsedTime = 0.3420079f;
         yellowPlayer1AnimStarted = 0;
 
+        bluePlayer1Atlas = new TextureAtlas("Map1/BluePlayerAnimSheet/BluePlayerAnimSheet.atlas");
+        bluePlayer1Anim = new Animation<TextureRegion>(1f/30f, bluePlayer1Atlas.getRegions());
+        bluePlayer1ElapsedTime = 0f;
+        bluePlayer1AnimStarted = 0;
 
         iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
         iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());
