@@ -55,7 +55,6 @@ public class MyTheChinczyk extends Game {
 		ChooseGameSettings = new ChooseGameSettings(this);
 		MainMenu = new MainMenu(this);
 		MenuLoadingScreen = new MenuLoadingScreen(this);
-		dayParkMap = new DayParkMap(this);
 		this.setScreen(MainMenu);
 
 		//this.setScreen(new DayParkMap(this));

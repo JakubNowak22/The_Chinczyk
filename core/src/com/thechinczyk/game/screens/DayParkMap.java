@@ -54,14 +54,24 @@ public class DayParkMap implements Screen {
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
             gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            gameTextures.bluePlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
         }
         if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
             //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
             gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.bluePlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
         }
-        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
+        //Niebieski
+        if(gameTextures.bluePlayer1ElapsedTime < 8.03f){
             //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
-            //w zależności gdzie jest pionek, jego animacja musi być albo po lewo (ten if) albo po prawo (następny if)
+            //w zależności gdzie jest pionek, jego animacja musi być albo po prawo (ten if) albo po lewo (następny if)
+            game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+        }
+        else{
+            game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+        }
+        //Żółty
+        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
         }
         else{
@@ -238,6 +248,11 @@ class GameTextures{
     public float yellowPlayer1ElapsedTime;
     public int yellowPlayer1AnimStarted;
 
+    public TextureAtlas bluePlayer1Atlas;
+    public Animation<TextureRegion> bluePlayer1Anim;
+    public float bluePlayer1ElapsedTime;
+    public int bluePlayer1AnimStarted;
+
 
     public TextureAtlas iceCreamAtlas;
     public Animation<TextureRegion> iceCreamAnim;
@@ -278,6 +293,11 @@ class GameTextures{
         yellowPlayer1Anim = new Animation<TextureRegion>(1f/30f, yellowPlayer1Atlas.getRegions());
         yellowPlayer1ElapsedTime = 0f;
         yellowPlayer1AnimStarted = 0;
+
+        bluePlayer1Atlas = new TextureAtlas("Map1/BluePlayerAnimSheet/BluePlayerAnimSheet.atlas");
+        bluePlayer1Anim = new Animation<TextureRegion>(1f/30f, bluePlayer1Atlas.getRegions());
+        bluePlayer1ElapsedTime = 0f;
+        bluePlayer1AnimStarted = 0;
 
 
         iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
