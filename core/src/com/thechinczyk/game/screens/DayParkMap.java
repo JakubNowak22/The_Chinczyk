@@ -146,9 +146,7 @@ public class DayParkMap implements Screen {
             pawnChoose = true;
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) &&
                 randNumber == 6 && player.activePawn <= 4) {
-            player.activePawn++;
-            player.pawns[player.activePawn - 1].active = true;
-            throwDice = false;
+            addPawn(player);
         }
     }
 
