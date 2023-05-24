@@ -18,6 +18,11 @@ public class DayParkMap implements Screen {
     Random rand;
     double diceRoll;
 
+    int yellowPawnsInBase;
+    int bluePawnsInBase;
+    int greenPawnsInBase;
+    int pinkPawnsInBase;
+
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
     }
@@ -27,6 +32,11 @@ public class DayParkMap implements Screen {
         gameTextures = new GameTextures();
         rand = new Random();
         diceRoll = 6;
+
+        yellowPawnsInBase=4;
+        bluePawnsInBase = 4;
+        greenPawnsInBase = 4;
+        pinkPawnsInBase = 4;
     }
 
 
@@ -42,6 +52,21 @@ public class DayParkMap implements Screen {
         drawBackGround();
         //Animacja rożka z lodem i huśtawki na planszy
         drawIceCreamAndSwingAnim();
+
+        //Przykładowa obsługa zmiany ilości pionków w bazie
+        if(Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase>0){
+            yellowPawnsInBase--;
+            bluePawnsInBase--;
+            greenPawnsInBase--;
+            pinkPawnsInBase--;
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.EQUALS) && yellowPawnsInBase<4){
+            yellowPawnsInBase++;
+            bluePawnsInBase++;
+            greenPawnsInBase++;
+            pinkPawnsInBase++;
+        }
+        drawBase();
 
         //Wyświetlenie liczby oczek
         drawDice();
@@ -83,7 +108,6 @@ public class DayParkMap implements Screen {
         else{
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
         }
-        System.out.println(gameTextures.bluePlayer1ElapsedTime);
 
 
         //Przykładowa obsługa animacji karty
@@ -103,6 +127,61 @@ public class DayParkMap implements Screen {
 
         game.batch.end();
     }
+
+    public void drawBase(){
+        if(yellowPawnsInBase == 3){
+            game.batch.draw(gameTextures.yellowBase3, 810, 365, 300, 350);
+        }
+        else if(yellowPawnsInBase == 2){
+            game.batch.draw(gameTextures.yellowBase2, 810, 365, 300, 350);
+        }
+        else if(yellowPawnsInBase == 1){
+            game.batch.draw(gameTextures.yellowBase1, 810, 365, 300, 350);
+        }
+        else if(yellowPawnsInBase != 4){
+            game.batch.draw(gameTextures.yellowBase0, 810, 365, 300, 350);
+        }
+
+        if(greenPawnsInBase == 3){
+            game.batch.draw(gameTextures.greenBase3, 810, 365, 300, 350);
+        }
+        else if(greenPawnsInBase == 2){
+            game.batch.draw(gameTextures.greenBase2, 810, 365, 300, 350);
+        }
+        else if(greenPawnsInBase == 1){
+            game.batch.draw(gameTextures.greenBase1, 810, 365, 300, 350);
+        }
+        else if(greenPawnsInBase != 4){
+            game.batch.draw(gameTextures.greenBase0, 810, 365, 300, 350);
+        }
+
+        if(bluePawnsInBase == 3){
+            game.batch.draw(gameTextures.blueBase3, 810, 365, 300, 350);
+        }
+        else if(bluePawnsInBase == 2){
+            game.batch.draw(gameTextures.blueBase2, 810, 365, 300, 350);
+        }
+        else if(bluePawnsInBase == 1){
+            game.batch.draw(gameTextures.blueBase1, 810, 365, 300, 350);
+        }
+        else if(bluePawnsInBase != 4){
+            game.batch.draw(gameTextures.blueBase0, 810, 365, 300, 350);
+        }
+
+        if(pinkPawnsInBase == 3){
+            game.batch.draw(gameTextures.pinkBase3, 810, 365, 300, 350);
+        }
+        else if(pinkPawnsInBase == 2){
+            game.batch.draw(gameTextures.pinkBase2, 810, 365, 300, 350);
+        }
+        else if(pinkPawnsInBase == 1){
+            game.batch.draw(gameTextures.pinkBase1, 810, 365, 300, 350);
+        }
+        else if(pinkPawnsInBase != 4){
+            game.batch.draw(gameTextures.pinkBase0, 810, 365, 300, 350);
+        }
+    }
+
     public void drawCardAnim(String message){
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
             //Wysunięcie karty
@@ -264,6 +343,23 @@ public class DayParkMap implements Screen {
         gameTextures.dice2.dispose();
         gameTextures.dice1.dispose();
 
+        gameTextures.yellowBase3.dispose();
+        gameTextures.yellowBase2.dispose();
+        gameTextures.yellowBase1.dispose();
+        gameTextures.yellowBase0.dispose();
+        gameTextures.greenBase3.dispose();
+        gameTextures.greenBase2.dispose();
+        gameTextures.greenBase1.dispose();
+        gameTextures.greenBase0.dispose();
+        gameTextures.blueBase3.dispose();
+        gameTextures.blueBase2.dispose();
+        gameTextures.blueBase1.dispose();
+        gameTextures.blueBase0.dispose();
+        gameTextures.pinkBase3.dispose();
+        gameTextures.pinkBase2.dispose();
+        gameTextures.pinkBase1.dispose();
+        gameTextures.pinkBase0.dispose();
+
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
     }
@@ -283,6 +379,24 @@ class GameTextures{
     public Animation<TextureRegion> bluePlayer1Anim;
     public float bluePlayer1ElapsedTime;
     public int bluePlayer1AnimStarted;
+
+
+    public Texture yellowBase3;
+    public Texture yellowBase2;
+    public Texture yellowBase1;
+    public Texture yellowBase0;
+    public Texture greenBase3;
+    public Texture greenBase2;
+    public Texture greenBase1;
+    public Texture greenBase0;
+    public Texture blueBase3;
+    public Texture blueBase2;
+    public Texture blueBase1;
+    public Texture blueBase0;
+    public Texture pinkBase3;
+    public Texture pinkBase2;
+    public Texture pinkBase1;
+    public Texture pinkBase0;
 
 
     public TextureAtlas iceCreamAtlas;
@@ -334,6 +448,24 @@ class GameTextures{
         bluePlayer1Anim = new Animation<TextureRegion>(1f/30f, bluePlayer1Atlas.getRegions());
         bluePlayer1ElapsedTime = 0f;
         bluePlayer1AnimStarted = 0;
+
+
+        yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
+        yellowBase2= new Texture("Map1/Base/Base_Yellow2.png");
+        yellowBase1= new Texture("Map1/Base/Base_Yellow1.png");
+        yellowBase0= new Texture("Map1/Base/Base_Yellow0.png");
+        greenBase3= new Texture("Map1/Base/Base_Green3.png");
+        greenBase2= new Texture("Map1/Base/Base_Green2.png");
+        greenBase1= new Texture("Map1/Base/Base_Green1.png");
+        greenBase0= new Texture("Map1/Base/Base_Green0.png");
+        blueBase3= new Texture("Map1/Base/Base_Blue3.png");
+        blueBase2= new Texture("Map1/Base/Base_Blue2.png");
+        blueBase1= new Texture("Map1/Base/Base_Blue1.png");
+        blueBase0= new Texture("Map1/Base/Base_Blue0.png");
+        pinkBase3= new Texture("Map1/Base/Base_Pink3.png");
+        pinkBase2= new Texture("Map1/Base/Base_Pink2.png");
+        pinkBase1= new Texture("Map1/Base/Base_Pink1.png");
+        pinkBase0= new Texture("Map1/Base/Base_Pink0.png");
 
 
         iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
