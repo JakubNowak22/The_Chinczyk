@@ -42,12 +42,12 @@ public class DayParkMap implements Screen {
     public void show() {
         gameTextures = new GameTextures();
         for (int i = 0; i < game.playerCount; i++) {
-            Player player = new Player(i, startPlayerElapsedTime[i]);
+            Player player = new Player(i, 0);
             Players.add(player);
             if(i==0){
-                player.playerAnimation = gameTextures.yellowPlayerAnim;
+                player.moveAnimation = gameTextures.yellowPlayerAnim;
             }else{
-                player.playerAnimation = gameTextures.bluePlayerAnim;
+                player.moveAnimation = gameTextures.bluePlayerAnim;
             }
         }
         //System.out.println(game.playerCount);
@@ -162,7 +162,7 @@ public class DayParkMap implements Screen {
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
                 flag = false;
             }
-            if (gameTextures.yellowPlayerAnim.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
+            if (player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
                 player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
                 player.pawns[pawNumber].position ++;
@@ -185,10 +185,10 @@ public class DayParkMap implements Screen {
     private void drawPawn(Player player, int pawnNumber) {
         if(pawnNumber != -1) {
             if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
-                game.batch.draw(gameTextures.yellowPlayerAnim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                         0, 0, 1080, 1080);
             } else {
-                game.batch.draw(gameTextures.yellowPlayerAnim.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                         840, 0, 1080, 1080);
             }
         }
@@ -348,7 +348,7 @@ class Player {
     float playerElapsedTime;
     int playerNumber;
     int activePawn;
-    Animation<TextureRegion> playerAnimation;
+    Animation<TextureRegion> moveAnimation;
 
     Pawn[] pawns = {new Pawn(0),
             new Pawn(0),
