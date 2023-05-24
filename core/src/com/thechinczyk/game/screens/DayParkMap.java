@@ -14,8 +14,9 @@ import java.util.Random;
 public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
-    int randNumber;
     int turnSignKeyFrame;
+    Random rand;
+    double diceRoll;
 
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
@@ -24,6 +25,8 @@ public class DayParkMap implements Screen {
     @Override
     public void show() {
         gameTextures = new GameTextures();
+        rand = new Random();
+        diceRoll = 6;
     }
 
 
@@ -40,6 +43,8 @@ public class DayParkMap implements Screen {
         //Animacja rożka z lodem i huśtawki na planszy
         drawIceCreamAndSwingAnim();
 
+        //Wyświetlenie liczby oczek
+        drawDice();
 
         //Powrót do menu głównego
         if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
@@ -49,6 +54,7 @@ public class DayParkMap implements Screen {
 
         //Przykładowa obsługa animacji busa z zółtym pionkiem
         drawYellowBusAnim();
+
 
         //Przykład poruszania się pionkiem
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
@@ -62,7 +68,7 @@ public class DayParkMap implements Screen {
             gameTextures.bluePlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
         }
         //Niebieski
-        if(gameTextures.bluePlayer1ElapsedTime < 8.03f){
+        if(gameTextures.bluePlayer1ElapsedTime < 8.35f){
             //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
             //w zależności gdzie jest pionek, jego animacja musi być albo po prawo (ten if) albo po lewo (następny if)
             game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 840, 0, 1080, 1080);
@@ -77,6 +83,7 @@ public class DayParkMap implements Screen {
         else{
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
         }
+        System.out.println(gameTextures.bluePlayer1ElapsedTime);
 
 
         //Przykładowa obsługa animacji karty
@@ -190,13 +197,32 @@ public class DayParkMap implements Screen {
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             }
             else{
-                Random rand = new Random();
-                randNumber = rand.nextInt();
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
             }
         }
+        if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 40){
+            diceRoll = rand.nextInt(6) + 1;
+        }
     }
+    public void drawDice(){
+        if(diceRoll==5){
+            game.batch.draw(gameTextures.dice5, 925, 505, 70, 70);
+        }
+        else if(diceRoll==4){
+            game.batch.draw(gameTextures.dice4, 925, 505, 70, 70);
+        }
+        else if(diceRoll==3){
+            game.batch.draw(gameTextures.dice3, 925, 505, 70, 70);
+        }
+        else if(diceRoll==2){
+            game.batch.draw(gameTextures.dice2, 925, 505, 70, 70);
+        }
+        else if(diceRoll==1){
+            game.batch.draw(gameTextures.dice1, 925, 505, 70, 70);
+        }
+    }
+
     @Override
     public void resize(int width, int height) {
 
@@ -232,6 +258,11 @@ public class DayParkMap implements Screen {
         gameTextures.turnSignPinkBackground.dispose();
         gameTextures.turnSignGreenBackground.dispose();
         gameTextures.turnSignYellowBackground.dispose();
+        gameTextures.dice5.dispose();
+        gameTextures.dice4.dispose();
+        gameTextures.dice3.dispose();
+        gameTextures.dice2.dispose();
+        gameTextures.dice1.dispose();
 
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
@@ -274,6 +305,11 @@ class GameTextures{
     public Animation<TextureRegion> diceAnim;
     public float diceElapsedTime;
     public boolean diceAnimStarted;
+    public Texture dice5;
+    public Texture dice4;
+    public Texture dice3;
+    public Texture dice2;
+    public Texture dice1;
 
     public TextureAtlas turnSignAtlas;
     public Animation<TextureRegion> turnSignAnim;
@@ -320,6 +356,11 @@ class GameTextures{
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
         diceElapsedTime = 0f;
         diceAnimStarted = false;
+        dice5 = new Texture("Map1/DiceSides/DiceSides5.png");
+        dice4 = new Texture("Map1/DiceSides/DiceSides4.png");
+        dice3 = new Texture("Map1/DiceSides/DiceSides3.png");
+        dice2 = new Texture("Map1/DiceSides/DiceSides2.png");
+        dice1 = new Texture("Map1/DiceSides/DiceSides1.png");
 
         turnSignAtlas = new TextureAtlas("Map1/TurnSignAnimSheet/TurnSignAnimSheet.atlas");
         turnSignAnim = new Animation<TextureRegion>(1f/30f, turnSignAtlas.getRegions());
