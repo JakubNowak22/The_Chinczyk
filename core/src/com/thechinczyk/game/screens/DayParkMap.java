@@ -184,12 +184,22 @@ public class DayParkMap implements Screen {
     }
     private void drawPawn(Player player, int pawnNumber) {
         if(pawnNumber != -1) {
-            if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
-                game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
-                        0, 0, 1080, 1080);
-            } else {
-                game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
-                        840, 0, 1080, 1080);
+            if(player.moveAnimation==gameTextures.bluePlayerAnim){
+                if(player.pawns[pawnNumber].playerElapsedTime < 8.35f){
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 840, 0, 1080, 1080);
+                }
+                else{
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 0, 0, 1080, 1080);
+                }
+            }
+            else {
+                if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            0, 0, 1080, 1080);
+                } else {
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            840, 0, 1080, 1080);
+                }
             }
         }
     }
