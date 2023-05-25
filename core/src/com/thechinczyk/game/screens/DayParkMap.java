@@ -44,10 +44,10 @@ public class DayParkMap implements Screen {
         for (int i = 0; i < game.playerCount; i++) {
             Player player = new Player(i, 0);
             Players.add(player);
-            if(i==0){
-                player.moveAnimation = gameTextures.yellowPlayerAnim;
-            }else{
+            if(i==2){
                 player.moveAnimation = gameTextures.bluePlayerAnim;
+            }else{
+                player.moveAnimation = gameTextures.yellowPlayerAnim;
             }
         }
         //System.out.println(game.playerCount);
