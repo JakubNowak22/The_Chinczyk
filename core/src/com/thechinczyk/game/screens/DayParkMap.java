@@ -86,11 +86,15 @@ public class DayParkMap implements Screen {
             //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
             gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
             gameTextures.bluePlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            gameTextures.greenPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            gameTextures.pinkPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
         }
         if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
             //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
             gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
             gameTextures.bluePlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.greenPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.pinkPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
         }
         //Niebieski
         if(gameTextures.bluePlayer1ElapsedTime < 8.35f){
@@ -102,12 +106,27 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 0, 0, 1080, 1080);
         }
         //Żółty
-        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
+        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.36f){
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
         }
         else{
             game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
         }
+        //Zielony
+        if(gameTextures.greenPlayer1ElapsedTime < 5.68f || gameTextures.greenPlayer1ElapsedTime > 14.01f){
+            game.batch.draw(gameTextures.greenPlayer1Anim.getKeyFrame(gameTextures.greenPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+        }
+        else{
+            game.batch.draw(gameTextures.greenPlayer1Anim.getKeyFrame(gameTextures.greenPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+        }
+        //Różowy
+        if(gameTextures.pinkPlayer1ElapsedTime < 6.68f || gameTextures.pinkPlayer1ElapsedTime > 14.69f){
+            game.batch.draw(gameTextures.pinkPlayer1Anim.getKeyFrame(gameTextures.pinkPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+        }
+        else{
+            game.batch.draw(gameTextures.pinkPlayer1Anim.getKeyFrame(gameTextures.pinkPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+        }
+        System.out.println(gameTextures.pinkPlayer1ElapsedTime);
 
 
         //Przykładowa obsługa animacji karty
@@ -329,6 +348,9 @@ public class DayParkMap implements Screen {
         gameTextures.cardAtlas.dispose();
         gameTextures.yellowBusAtlas.dispose();
         gameTextures.yellowPlayer1Atlas.dispose();
+        gameTextures.pinkPlayer1Atlas.dispose();
+        gameTextures.bluePlayer1Atlas.dispose();
+        gameTextures.greenPlayer1Atlas.dispose();
         gameTextures.diceAtlas.dispose();
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
@@ -373,13 +395,18 @@ class GameTextures{
     public TextureAtlas yellowPlayer1Atlas;
     public Animation<TextureRegion> yellowPlayer1Anim;
     public float yellowPlayer1ElapsedTime;
-    public int yellowPlayer1AnimStarted;
 
     public TextureAtlas bluePlayer1Atlas;
     public Animation<TextureRegion> bluePlayer1Anim;
     public float bluePlayer1ElapsedTime;
-    public int bluePlayer1AnimStarted;
 
+    public TextureAtlas greenPlayer1Atlas;
+    public Animation<TextureRegion> greenPlayer1Anim;
+    public float greenPlayer1ElapsedTime;
+
+    public TextureAtlas pinkPlayer1Atlas;
+    public Animation<TextureRegion> pinkPlayer1Anim;
+    public float pinkPlayer1ElapsedTime;
 
     public Texture yellowBase3;
     public Texture yellowBase2;
@@ -442,12 +469,18 @@ class GameTextures{
         yellowPlayer1Atlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
         yellowPlayer1Anim = new Animation<TextureRegion>(1f/30f, yellowPlayer1Atlas.getRegions());
         yellowPlayer1ElapsedTime = 0f;
-        yellowPlayer1AnimStarted = 0;
+
+        greenPlayer1Atlas = new TextureAtlas("Map1/GreenPlayerAnimSheet/GreenPlayerAnimSheet.atlas");
+        greenPlayer1Anim = new Animation<TextureRegion>(1f/30f, greenPlayer1Atlas.getRegions());
+        greenPlayer1ElapsedTime = 0f;
 
         bluePlayer1Atlas = new TextureAtlas("Map1/BluePlayerAnimSheet/BluePlayerAnimSheet.atlas");
         bluePlayer1Anim = new Animation<TextureRegion>(1f/30f, bluePlayer1Atlas.getRegions());
         bluePlayer1ElapsedTime = 0f;
-        bluePlayer1AnimStarted = 0;
+
+        pinkPlayer1Atlas = new TextureAtlas("Map1/PinkPlayerAnimSheet/PinkPlayerAnimSheet.atlas");
+        pinkPlayer1Anim = new Animation<TextureRegion>(1f/30f, pinkPlayer1Atlas.getRegions());
+        pinkPlayer1ElapsedTime = 0f;
 
 
         yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
