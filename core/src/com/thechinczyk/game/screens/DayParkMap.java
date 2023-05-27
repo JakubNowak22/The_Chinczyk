@@ -398,6 +398,7 @@ public class DayParkMap implements Screen {
 
     public void drawPawnCaptureAnim(int playerCaptured, int playerCapturing){
         if(gameTextures.pawnCapture1ElapsedTime!=0){
+            //Odtwarzanie animacji zbijającego aż się nie skończy dla danego koloru
             if(playerCapturing == 1 && gameTextures.pawnCapture1ElapsedTime < 0.65f){
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
@@ -411,6 +412,7 @@ public class DayParkMap implements Screen {
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
 
+            //Sprawdzanie czy już czas na odtawarzanie animacji zbijanego pionka
             if(((playerCapturing == 1 && gameTextures.pawnCapture1ElapsedTime > 0.34f) ||
                     (playerCapturing == 2 && gameTextures.pawnCapture1ElapsedTime > 1.008f) ||
                     (playerCapturing == 3 && gameTextures.pawnCapture1ElapsedTime > 1.6754f) ||
@@ -419,29 +421,28 @@ public class DayParkMap implements Screen {
                 gameTextures.pawnCapture2ElapsedTime += Gdx.graphics.getDeltaTime();
             }
 
+            //Liczy czas ogólny dla całej animacji
             gameTextures.pawnCaptureMainElapsedTime += Gdx.graphics.getDeltaTime();
 
-            /*if(Gdx.input.isKeyJustPressed(Input.Keys.X)){
-                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
-                gameTextures.pawnCapture2ElapsedTime += Gdx.graphics.getDeltaTime();
-            }
-            System.out.println(gameTextures.pawnCapture2ElapsedTime);*/
-
+            //Wyświetlanie obydwu animacji i tła
             game.batch.draw(gameTextures.pawnCaptureBackground, 0, 0, 1920, 1080);
             if(!((playerCaptured == 1 && gameTextures.pawnCapture2ElapsedTime > 0.48f) ||
                     (playerCaptured == 2 && gameTextures.pawnCapture2ElapsedTime > 1.04f) ||
                     (playerCaptured == 3 && gameTextures.pawnCapture2ElapsedTime > 1.47f) ||
                     (playerCaptured == 4 && gameTextures.pawnCapture2ElapsedTime > 1.92f))){
+                //Tutaj sprawdzam jeszcze czy animacja zbijanego się nie skończyła i jeśli tak to go nie wyświetlam już
                 game.batch.draw(gameTextures.pawnCapture2Anim.getKeyFrame(gameTextures.pawnCapture2ElapsedTime, false), 640, 415, 350, 250);
             }
             game.batch.draw(gameTextures.pawnCapture1Anim.getKeyFrame(gameTextures.pawnCapture1ElapsedTime, false), 850, 365, 400, 350);
 
+            //Sprawdzam czy ogólny czas animacji dobiegł do końca.
             if(gameTextures.pawnCaptureMainElapsedTime > 1.2f){
                 gameTextures.pawnCapture1ElapsedTime = 0;
                 gameTextures.pawnCaptureMainElapsedTime = 0;
             }
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.P) && gameTextures.pawnCapture1ElapsedTime==0){
+            //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijającego pionka
             if(playerCapturing == 1){
                 gameTextures.pawnCapture1ElapsedTime = 0.01f;
             }
@@ -455,6 +456,7 @@ public class DayParkMap implements Screen {
                 gameTextures.pawnCapture1ElapsedTime = 2.01f;
             }
 
+            //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijanego pionka
             if(playerCaptured == 1){
                 gameTextures.pawnCapture2ElapsedTime = 0.01f;
             }
