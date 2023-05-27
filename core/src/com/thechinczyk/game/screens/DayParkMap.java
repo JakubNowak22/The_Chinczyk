@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
+import org.lwjgl.Sys;
 
 import java.util.Random;
 
@@ -77,8 +78,8 @@ public class DayParkMap implements Screen {
             game.setScreen(game.MenuLoadingScreen);
         }
 
-        //Przykładowa obsługa animacji busa z zółtym pionkiem
-        drawYellowBusAnim();
+        //Przykładowa obsługa animacji busa
+        drawBusAnim();
 
 
         //Przykład poruszania się pionkiem
@@ -126,7 +127,6 @@ public class DayParkMap implements Screen {
         else{
             game.batch.draw(gameTextures.pinkPlayer1Anim.getKeyFrame(gameTextures.pinkPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
         }
-        System.out.println(gameTextures.pinkPlayer1ElapsedTime);
 
 
         //Przykładowa obsługa animacji karty
@@ -272,18 +272,88 @@ public class DayParkMap implements Screen {
         game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 1009, 137, 199, 95);
     }
-    public void drawYellowBusAnim(){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted){
-            gameTextures.yellowBusAnimStarted = true;
+    public void drawBusAnim(){
+        //WYBÓR KOLORU PIONKA WSIADAJĄCEGO DO AUTOBUSU
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && gameTextures.BusAnimStarted == 0){
+            //Żółty autobus
+            gameTextures.BusAnimStarted = 1;
         }
-        else if(gameTextures.yellowBusAnim.isAnimationFinished(gameTextures.yellowBusElapsedTime) && gameTextures.yellowBusAnimStarted){
-            gameTextures.yellowBusAnimStarted = false;
-            gameTextures.yellowBusElapsedTime = 0;
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && gameTextures.BusAnimStarted == 0){
+            //Zielony autobus
+            gameTextures.BusAnimStarted = 2;
+            gameTextures.BusElapsedTime = 0.5805f;
         }
-        if(gameTextures.yellowBusAnimStarted) {
-            gameTextures.yellowBusElapsedTime += Gdx.graphics.getDeltaTime();
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && gameTextures.BusAnimStarted == 0){
+            //Niebieski autobus
+            gameTextures.BusAnimStarted = 3;
+            gameTextures.BusElapsedTime = 1.1444f;
         }
-        game.batch.draw(gameTextures.yellowBusAnim.getKeyFrame(gameTextures.yellowBusElapsedTime, false), 1015, 0, 905, 1080);
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && gameTextures.BusAnimStarted == 0){
+            //Różowy autobus
+            gameTextures.BusAnimStarted = 4;
+            gameTextures.BusElapsedTime = 1.7144f;
+        }
+        else if(gameTextures.BusAnim.isAnimationFinished(gameTextures.BusElapsedTime) && gameTextures.BusAnimStarted != 0){
+            //Stan spoczynku animacji
+            gameTextures.BusAnimStarted = 0;
+            gameTextures.BusElapsedTime = 0;
+        }
+
+        //DZIELENIE ANIMACJI ZE WZGLĘDU NA KOLORY
+        if(gameTextures.BusAnimStarted==1){
+            //Żółty autobus
+            if(gameTextures.BusElapsedTime > 0.54 && gameTextures.BusElapsedTime < 0.6){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 6.51f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==2){
+            //Zielony autobus
+            if(gameTextures.BusElapsedTime > 1.11 && gameTextures.BusElapsedTime < 1.15){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 6.5477f;
+            }
+            else if(gameTextures.BusElapsedTime > 8.92f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==3){
+            //Niebieski autobus
+            if(gameTextures.BusElapsedTime > 1.68 && gameTextures.BusElapsedTime < 1.7){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 8.9455f;
+            }
+            else if(gameTextures.BusElapsedTime > 11.30f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==4){
+            //Różowy autobus
+            if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 11.3432f;
+            }
+        }
+
+        //Wyświetlenie animacji autobusu
+        if(gameTextures.BusAnimStarted != 0) {
+            gameTextures.BusElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        game.batch.draw(gameTextures.BusAnim.getKeyFrame(gameTextures.BusElapsedTime, false), 1526, 0, 394, 1080);
     }
     public void drawDiceAnim(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted){
@@ -346,7 +416,7 @@ public class DayParkMap implements Screen {
         gameTextures.iceCreamAtlas.dispose();
         gameTextures.swingAtlas.dispose();
         gameTextures.cardAtlas.dispose();
-        gameTextures.yellowBusAtlas.dispose();
+        gameTextures.BusAtlas.dispose();
         gameTextures.yellowPlayer1Atlas.dispose();
         gameTextures.pinkPlayer1Atlas.dispose();
         gameTextures.bluePlayer1Atlas.dispose();
@@ -437,10 +507,10 @@ class GameTextures{
     public float cardElapsedTime;
     public boolean cardAnimStarted;
 
-    public TextureAtlas yellowBusAtlas;
-    public Animation<TextureRegion> yellowBusAnim;
-    public float yellowBusElapsedTime;
-    public boolean yellowBusAnimStarted;
+    public TextureAtlas BusAtlas;
+    public Animation<TextureRegion> BusAnim;
+    public float BusElapsedTime;
+    public int BusAnimStarted;
 
     public TextureAtlas diceAtlas;
     public Animation<TextureRegion> diceAnim;
@@ -512,10 +582,10 @@ class GameTextures{
         cardElapsedTime = 0f;
         cardAnimStarted = false;
 
-        yellowBusAtlas = new TextureAtlas("Map1/YellowBusAnimSheet/YellowBusAnimSheet.atlas");
-        yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
-        yellowBusElapsedTime = 0f;
-        yellowBusAnimStarted = false;
+        BusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
+        BusAnim = new Animation<TextureRegion>(1f/30f, BusAtlas.getRegions());
+        BusElapsedTime = 0f;
+        BusAnimStarted = 0;
 
         diceAtlas = new TextureAtlas("Map1/DiceAnimSheet/DiceAnimSheet.atlas");
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
