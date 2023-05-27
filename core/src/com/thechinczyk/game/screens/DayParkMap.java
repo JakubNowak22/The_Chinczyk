@@ -144,6 +144,9 @@ public class DayParkMap implements Screen {
         //Przykładowa obsługa kostki
         drawDiceAnim();
 
+        //Obsługa animacji zbijania pionków
+        drawPawnCaptureAnim(4,2);
+
         game.batch.end();
     }
 
@@ -272,6 +275,7 @@ public class DayParkMap implements Screen {
         game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 1009, 137, 199, 95);
     }
+
     public void drawBusAnim(){
         //WYBÓR KOLORU PIONKA WSIADAJĄCEGO DO AUTOBUSU
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && gameTextures.BusAnimStarted == 0){
@@ -355,6 +359,7 @@ public class DayParkMap implements Screen {
         }
         game.batch.draw(gameTextures.BusAnim.getKeyFrame(gameTextures.BusElapsedTime, false), 1526, 0, 394, 1080);
     }
+
     public void drawDiceAnim(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted){
             gameTextures.diceAnimStarted = true;
@@ -391,6 +396,81 @@ public class DayParkMap implements Screen {
         }
     }
 
+    public void drawPawnCaptureAnim(int playerCaptured, int playerCapturing){
+        if(gameTextures.pawnCapture1ElapsedTime!=0){
+            if(playerCapturing == 1 && gameTextures.pawnCapture1ElapsedTime < 0.65f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerCapturing == 2 && gameTextures.pawnCapture1ElapsedTime < 1.3241f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerCapturing == 3 && gameTextures.pawnCapture1ElapsedTime < 1.98f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerCapturing == 4 && gameTextures.pawnCapture1ElapsedTime < 2.64f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+
+            if(((playerCapturing == 1 && gameTextures.pawnCapture1ElapsedTime > 0.34f) ||
+                    (playerCapturing == 2 && gameTextures.pawnCapture1ElapsedTime > 1.008f) ||
+                    (playerCapturing == 3 && gameTextures.pawnCapture1ElapsedTime > 1.6754f) ||
+                    (playerCapturing == 4 && gameTextures.pawnCapture1ElapsedTime > 2.34f))
+            ){
+                gameTextures.pawnCapture2ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+
+            gameTextures.pawnCaptureMainElapsedTime += Gdx.graphics.getDeltaTime();
+
+            /*if(Gdx.input.isKeyJustPressed(Input.Keys.X)){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+                gameTextures.pawnCapture2ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            System.out.println(gameTextures.pawnCapture2ElapsedTime);*/
+
+            game.batch.draw(gameTextures.pawnCaptureBackground, 0, 0, 1920, 1080);
+            if(!((playerCaptured == 1 && gameTextures.pawnCapture2ElapsedTime > 0.48f) ||
+                    (playerCaptured == 2 && gameTextures.pawnCapture2ElapsedTime > 1.04f) ||
+                    (playerCaptured == 3 && gameTextures.pawnCapture2ElapsedTime > 1.47f) ||
+                    (playerCaptured == 4 && gameTextures.pawnCapture2ElapsedTime > 1.92f))){
+                game.batch.draw(gameTextures.pawnCapture2Anim.getKeyFrame(gameTextures.pawnCapture2ElapsedTime, false), 640, 415, 350, 250);
+            }
+            game.batch.draw(gameTextures.pawnCapture1Anim.getKeyFrame(gameTextures.pawnCapture1ElapsedTime, false), 850, 365, 400, 350);
+
+            if(gameTextures.pawnCaptureMainElapsedTime > 1.2f){
+                gameTextures.pawnCapture1ElapsedTime = 0;
+                gameTextures.pawnCaptureMainElapsedTime = 0;
+            }
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.P) && gameTextures.pawnCapture1ElapsedTime==0){
+            if(playerCapturing == 1){
+                gameTextures.pawnCapture1ElapsedTime = 0.01f;
+            }
+            else if(playerCapturing == 2){
+                gameTextures.pawnCapture1ElapsedTime = 0.6767f;
+            }
+            else if(playerCapturing == 3){
+                gameTextures.pawnCapture1ElapsedTime = 1.3408f;
+            }
+            else if(playerCapturing == 4){
+                gameTextures.pawnCapture1ElapsedTime = 2.01f;
+            }
+
+            if(playerCaptured == 1){
+                gameTextures.pawnCapture2ElapsedTime = 0.01f;
+            }
+            else if(playerCaptured == 2){
+                gameTextures.pawnCapture2ElapsedTime = 0.6364f;
+            }
+            else if(playerCaptured == 3){
+                gameTextures.pawnCapture2ElapsedTime = 1.07f;
+            }
+            else if(playerCaptured == 4){
+                gameTextures.pawnCapture2ElapsedTime = 1.505f;
+            }
+        }
+    }
+
+
     @Override
     public void resize(int width, int height) {
 
@@ -410,6 +490,7 @@ public class DayParkMap implements Screen {
     public void hide() {
 
     }
+
 
     @Override
     public void dispose() {
@@ -454,8 +535,14 @@ public class DayParkMap implements Screen {
 
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
+
+        gameTextures.pawnCaptureBackground.dispose();
+        gameTextures.pawnCapture1Atlas.dispose();
+        gameTextures.pawnCapture2Atlas.dispose();
     }
 }
+
+
 class GameTextures{
     BitmapFont font;
     public Texture dayParkBackground;
@@ -531,6 +618,15 @@ class GameTextures{
     public Texture turnSignBlueBackground;
     public Texture turnSignPinkBackground;
 
+    public Texture pawnCaptureBackground;
+    public TextureAtlas pawnCapture1Atlas;
+    public Animation<TextureRegion> pawnCapture1Anim;
+    public float pawnCapture1ElapsedTime;
+    public TextureAtlas pawnCapture2Atlas;
+    public Animation<TextureRegion> pawnCapture2Anim;
+    public float pawnCapture2ElapsedTime;
+    public float pawnCaptureMainElapsedTime;
+
     GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
@@ -605,6 +701,15 @@ class GameTextures{
         turnSignGreenBackground = new Texture("Map1/TurnSign/green.png");
         turnSignBlueBackground = new Texture("Map1/TurnSign/blue.png");
         turnSignPinkBackground = new Texture("Map1/TurnSign/pink.png");
+
+        pawnCaptureBackground = new Texture("Map1/TC_Map1_PawnCaptured_Background.png");
+        pawnCapture1Atlas = new TextureAtlas("Map1/PawnCapturedAnim1Sheet/PawnCapturedAnim1Sheet.atlas");
+        pawnCapture1Anim = new Animation<TextureRegion>(1f/30f, pawnCapture1Atlas.getRegions());
+        pawnCapture1ElapsedTime = 0;
+        pawnCapture2Atlas = new TextureAtlas("Map1/PawnCapturedAnim2Sheet/PawnCapturedAnim2Sheet.atlas");
+        pawnCapture2Anim = new Animation<TextureRegion>(1f/30f, pawnCapture2Atlas.getRegions());
+        pawnCapture2ElapsedTime = 0;
+        pawnCaptureMainElapsedTime = 0;
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);
