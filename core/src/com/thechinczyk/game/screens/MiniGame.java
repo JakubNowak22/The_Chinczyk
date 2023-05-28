@@ -1,4 +1,5 @@
 package com.thechinczyk.game.screens;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.thechinczyk.game.GameObject;
 
@@ -178,26 +179,108 @@ public class MiniGame {
             }
         }
 
+        static class Enemy {
+            private Vector2 position;
+            public Sprite spriteEnemy;
+            private SpriteBatch spriteBatch;
+            private final float SCALE = ((float) 1920 / Gdx.graphics.getWidth());
+            private final int ENEMY_SIZE = 60;
+            private final float ENEMY_POSITION_OFFSET = 10*SCALE;
+            public final float MIN_Y_POS = Gdx.graphics.getHeight()/2f - ENEMY_SIZE + ENEMY_POSITION_OFFSET;
+            private boolean toDraw;
+            private static boolean leftDir, dirToChange;
+            private final float MIN_X_POS = Gdx.graphics.getWidth()/4f + 2.1f*ENEMY_SIZE;
+            private final float ENEMY_MOVEMENT_SPEED = SCALE * 100;
+
+            public Enemy(SpriteBatch batch, int rowNumber, int columnNumber, boolean toDraw) {
+                this.spriteBatch = batch;
+                this.spriteEnemy = new Sprite(new Texture("SpaceInvadersMiniGame/Enemy.png"));
+                this.spriteEnemy.setSize((487/321f)*ENEMY_SIZE,ENEMY_SIZE);
+                this.spriteEnemy.setScale(SCALE);
+                this.position = new Vector2(MIN_X_POS + ((487/321f)*ENEMY_SIZE*SCALE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
+                this.toDraw = toDraw;
+                spriteEnemy.setPosition(this.position.x, this.position.y);
+            }
+
+            public void Update (float deltatime) {
+                if (Enemy.leftDir)
+                    this.position.x -= deltatime * ENEMY_MOVEMENT_SPEED;
+                else
+                    this.position.x += deltatime * ENEMY_MOVEMENT_SPEED;
+
+                spriteEnemy.setPosition(this.position.x, this.position.y);
+
+                if (this.position.x >= 3*Gdx.graphics.getWidth()/4f - (487/321f)*ENEMY_SIZE || this.position.x <= Gdx.graphics.getWidth()/4f)
+                    Enemy.dirToChange = true;
+            }
+
+            public void Draw () {
+                if (this.toDraw) {
+                    Update(Gdx.graphics.getDeltaTime());
+                    spriteEnemy.draw(this.spriteBatch);
+                }
+            }
+        }
+
         static Random random = new Random();
         SpriteBatch spriteBatch;
         Texture gameTexture;
         Player rocket;
         SpaceInvadersMenu menuSI;
+        int timeSeconds;
+        float timer;
+        BitmapFont font;
+        Enemy[][] enemiesArray;
 
         SpaceInvaders(SpriteBatch spriteBatch, SpaceInvadersMenu menuSI) {
+            this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
+            this.font.getData().setScale(.5f,.5f);
+            this.font.setColor(Color.WHITE);
             this.spriteBatch = spriteBatch;
             this.rocket = new Player(this.spriteBatch);
             this.gameTexture = new Texture("SpaceInvadersMiniGame/Background.jpg");
             this.menuSI = menuSI;
+            this.timer = 0;
+            this.timeSeconds = 1;
+            this.enemiesArray = new Enemy[4][7];
+            int enemiesLeft = 14, fieldsLeft = 28;
+            for (int i = 0; i<4; i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (random.nextInt(fieldsLeft) < enemiesLeft) {
+                        enemiesArray[i][j] = new Enemy(this.spriteBatch, i, j, true);
+                        enemiesLeft--;
+                    } else
+                        enemiesArray[i][j] = new Enemy(this.spriteBatch, i, j, false);
+
+                    fieldsLeft--;
+                }
+            }
         }
 
         public void Draw() {
             spriteBatch.draw(this.gameTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            this.Update();
+            this.Update(Gdx.graphics.getDeltaTime());
+            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3*Gdx.graphics.getWidth()/4f - 40, 3*Gdx.graphics.getHeight()/4f - 20);
         }
 
-        public void Update() {
+        public void Update(float deltatime) {
             this.rocket.Draw();
+
+            for (int i = 0; i<4; i++) {
+                for (int j = 0; j<7; j++) {
+                    this.enemiesArray[i][j].Draw();
+                }
+            }
+
+            if(random.nextInt(50) == 0 || Enemy.dirToChange) {
+                Enemy.leftDir = !Enemy.leftDir;
+                Enemy.dirToChange = false;
+            }
+            timer += deltatime;
+            if(timer > 1){
+                timer-=1;
+                timeSeconds ++;
+            }
 
             if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
                 menuSI.resetAfterQuit();
