@@ -18,13 +18,18 @@ public class DayParkMap implements Screen {
     Random rand;
     double diceRoll;
 
+    boolean miniGamePlaying;
+
     int yellowPawnsInBase;
     int bluePawnsInBase;
     int greenPawnsInBase;
     int pinkPawnsInBase;
 
+    MiniGame miniGame;
+
     public DayParkMap(MyTheChinczyk game){
         this.game = game;
+        this.miniGame = new MiniGame(game.batch, this);
     }
     GameTextures gameTextures;
     @Override
@@ -48,82 +53,84 @@ public class DayParkMap implements Screen {
 
         game.batch.begin();
 
-        //Wyświetlenie głównego tła planszy
-        drawBackGround();
-        //Animacja rożka z lodem i huśtawki na planszy
-        drawIceCreamAndSwingAnim();
-
-        //Przykładowa obsługa zmiany ilości pionków w bazie
-        if(Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase>0){
-            yellowPawnsInBase--;
-            bluePawnsInBase--;
-            greenPawnsInBase--;
-            pinkPawnsInBase--;
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.EQUALS) && yellowPawnsInBase<4){
-            yellowPawnsInBase++;
-            bluePawnsInBase++;
-            greenPawnsInBase++;
-            pinkPawnsInBase++;
-        }
-        drawBase();
-
-        //Wyświetlenie liczby oczek
-        drawDice();
+            //Wyświetlenie głównego tła planszy
+            drawBackGround();
+            //Animacja rożka z lodem i huśtawki na planszy
+            drawIceCreamAndSwingAnim();
 
         //Powrót do menu głównego
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.gameScreen = 3;
             game.setScreen(game.MenuLoadingScreen);
         }
 
-        //Przykładowa obsługa animacji busa z zółtym pionkiem
-        drawYellowBusAnim();
+        //Wylosowanie mini-gry Space Invaders
+        drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
+
+        if (!this.miniGamePlaying) {
+            //Przykładowa obsługa zmiany ilości pionków w bazie
+            if (Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase > 0) {
+                yellowPawnsInBase--;
+                bluePawnsInBase--;
+                greenPawnsInBase--;
+                pinkPawnsInBase--;
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.EQUALS) && yellowPawnsInBase < 4) {
+                yellowPawnsInBase++;
+                bluePawnsInBase++;
+                greenPawnsInBase++;
+                pinkPawnsInBase++;
+            }
+            drawBase();
+
+            //Wyświetlenie liczby oczek
+            drawDice();
+
+            //Przykładowa obsługa animacji busa z zółtym pionkiem
+            drawYellowBusAnim();
 
 
-        //Przykład poruszania się pionkiem
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
-            //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
-            gameTextures.yellowPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
-            gameTextures.bluePlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            //Przykład poruszania się pionkiem
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                //Tutaj dodaje żeby wymusić wykonanie pierwszej klatki
+                gameTextures.yellowPlayer1ElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+                gameTextures.bluePlayer1ElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+            }
+            if (gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime) % 10 != 0) {
+                //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
+                gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+                gameTextures.bluePlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            //Niebieski
+            if (gameTextures.bluePlayer1ElapsedTime < 8.35f) {
+                //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
+                //w zależności gdzie jest pionek, jego animacja musi być albo po prawo (ten if) albo po lewo (następny if)
+                game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+            } else {
+                game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+            }
+            //Żółty
+            if (gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f) {
+                game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
+            } else {
+                game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
+            }
+
+            //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
+            game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
+
+            //Przykładowa obsługa animacji karty
+            drawCardAnim("Hello World!\nSample text, sample tex");
+
+            //Obsługa animacji tabliczek oznaczających nową turę
+            changeWhichPlayersTurn();
+
+            //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
+            drawWhichPlayersTurnUI();
+
+            //Przykładowa obsługa kostki
+            drawDiceAnim();
         }
-        if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
-            //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
-            gameTextures.yellowPlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-            gameTextures.bluePlayer1ElapsedTime += Gdx.graphics.getDeltaTime();
-        }
-        //Niebieski
-        if(gameTextures.bluePlayer1ElapsedTime < 8.35f){
-            //Animacje w tym muszą mieć małą rozdzielczość więc podzieliłem ekran na dwa i
-            //w zależności gdzie jest pionek, jego animacja musi być albo po prawo (ten if) albo po lewo (następny if)
-            game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 840, 0, 1080, 1080);
-        }
-        else{
-            game.batch.draw(gameTextures.bluePlayer1Anim.getKeyFrame(gameTextures.bluePlayer1ElapsedTime, false), 0, 0, 1080, 1080);
-        }
-        //Żółty
-        if(gameTextures.yellowPlayer1ElapsedTime < 8.03f || gameTextures.yellowPlayer1ElapsedTime > 16.35f){
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
-        }
-        else{
-            game.batch.draw(gameTextures.yellowPlayer1Anim.getKeyFrame(gameTextures.yellowPlayer1ElapsedTime, false), 840, 0, 1080, 1080);
-        }
-
-
-        //Przykładowa obsługa animacji karty
-        drawCardAnim("Hello World!\nSample text, sample tex");
-
-        //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
-        game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
-
-        //Obsługa animacji tabliczek oznaczających nową turę
-        changeWhichPlayersTurn();
-
-        //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
-        drawWhichPlayersTurnUI();
-
-        //Przykładowa obsługa kostki
-        drawDiceAnim();
 
         game.batch.end();
     }
@@ -183,7 +190,7 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted)){
             //Wysunięcie karty
             gameTextures.cardAnimStarted = true;
         }
@@ -200,6 +207,23 @@ public class DayParkMap implements Screen {
                 gameTextures.font.draw(game.batch, message, 750, 600);
             }
         }
+    }
+
+    public void drawSpaceInvadersMiniGameMenu(String message) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || gameTextures.cardAnimStarted) {
+            drawCardAnim(message);
+            this.miniGamePlaying = true;
+        }
+        if (this.miniGamePlaying && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded) {
+                this.miniGame.menuSpaceInvaders.loadTextures();
+                this.miniGame.isLoaded = true;
+            }
+          //  this.miniGamePlaying = true;
+            this.miniGame.menuSpaceInvaders.Draw();
+        }
+
+
     }
 
     public void drawWhichPlayersTurnUI(){
@@ -362,6 +386,10 @@ public class DayParkMap implements Screen {
 
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
+    }
+
+    public void unlockMap() {
+        this.miniGamePlaying = false;
     }
 }
 class GameTextures{
