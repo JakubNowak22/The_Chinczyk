@@ -198,7 +198,7 @@ public class DayParkMap implements Screen {
             System.out.println("test2");
             gameTextures.cardAnimStarted = true;
         }
-        else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
             System.out.println("test");
             this.miniGameOutput = false;
@@ -230,7 +230,7 @@ public class DayParkMap implements Screen {
             this.miniGame.menuSpaceInvaders.Draw();
         }
 
-        if (this.miniGameOutput && !this.miniGamePlaying && !gameTextures.cardAnimStarted) {
+        if (this.miniGameOutput && !this.miniGamePlaying) {
             drawCardAnim("Text with reward/punishment\nthat player will receive");
         }
 
