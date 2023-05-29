@@ -266,10 +266,12 @@ public class MiniGame {
         float timer;
         BitmapFont font;
         Enemy[][] enemiesArray;
+        private int eliminatedEnemies;
 
         SpaceInvaders(SpriteBatch spriteBatch, SpaceInvadersMenu menuSI) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
             this.font.getData().setScale(.5f,.5f);
+            //zmiana koloru nie działa
             this.font.setColor(Color.WHITE);
             this.spriteBatch = spriteBatch;
             this.rocket = new Player(this.spriteBatch);
@@ -277,6 +279,7 @@ public class MiniGame {
             this.menuSI = menuSI;
             this.timer = 0;
             this.timeSeconds = 1;
+            this.eliminatedEnemies = 0;
             this.enemiesArray = new Enemy[4][7];
             int enemiesLeft = 14, fieldsLeft = 28;
             for (int i = 0; i<4; i++) {
@@ -295,6 +298,7 @@ public class MiniGame {
         public void Draw() {
             spriteBatch.draw(this.gameTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
             this.Update(Gdx.graphics.getDeltaTime());
+            this.font.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), Gdx.graphics.getWidth()/4f + 20, 3*Gdx.graphics.getHeight()/4f - 20);
             this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3*Gdx.graphics.getWidth()/4f - 40, 3*Gdx.graphics.getHeight()/4f - 20);
         }
 
@@ -303,6 +307,13 @@ public class MiniGame {
 
             for (int i = 0; i<4; i++) {
                 for (int j = 0; j<7; j++) {
+                    for (int k = 0; k<3; k++) {
+                        if ((this.rocket.spriteBullet[k].getBoundingRectangle().overlaps(this.enemiesArray[i][j].spriteEnemy.getBoundingRectangle()) && this.enemiesArray[i][j].toDraw && this.rocket.showBullet[k])) {
+                            this.enemiesArray[i][j].toDraw = false;
+                            this.rocket.showBullet[k] = false;
+                            this.eliminatedEnemies++;
+                        }
+                    }
                     this.enemiesArray[i][j].Draw();
                 }
             }
