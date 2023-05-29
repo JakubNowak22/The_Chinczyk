@@ -141,6 +141,12 @@ public class MiniGame {
             private final float PLAYER_MOVEMENT_OFFSET = SCALE * 300;
             private final float MAX_X_POS = 3 * Gdx.graphics.getWidth() / 4f - ROCKET_SIZE * SCALE;
             private final float MIN_X_POS = Gdx.graphics.getWidth() / 4f;
+            private boolean[] showBullet;
+            private float[] positionWhenShoot;
+            private int nextBullet;
+            private int lastShoot;
+            private final float BULLET_MOVEMENT_OFFSET = SCALE * 500;
+            private final float MAX_Y_POS = 3*Gdx.graphics.getHeight()/4f;
 
             public Player(SpriteBatch batch) {
                 this.spriteBatch = batch;
@@ -149,14 +155,18 @@ public class MiniGame {
                 this.spritePlayer.setScale(SCALE);
                 this.spriteBullet = new Sprite[MAX_BULLETS];
                 this.bulletPosition = new float[MAX_BULLETS];
+                this.showBullet = new boolean[MAX_BULLETS];
+                this.positionWhenShoot = new float[MAX_BULLETS];
                 for (int i = 0; i < MAX_BULLETS; i++) {
                     this.spriteBullet[i] = new Sprite(new Texture("SpaceInvadersMiniGame/Bullet.png"));
                     this.spriteBullet[i].setSize(BULLET_SIZE.x, BULLET_SIZE.y);
                     this.spriteBullet[i].rotate90(true);
                     this.spriteBullet[i].setScale(SCALE);
                     this.bulletPosition[i] = Y_POS;
+                    this.showBullet[i] = false;
                 }
                 this.position = Gdx.graphics.getWidth() / 2f - SCALE * 50;
+                this.nextBullet = 0;
             }
 
             public void Update(float deltatime) {
@@ -165,10 +175,30 @@ public class MiniGame {
                 else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
                     this.position += deltatime * PLAYER_MOVEMENT_OFFSET;
 
+                if (Gdx.input.isKeyPressed(Input.Keys.UP) && this.nextBullet < 3) {
+                    this.positionWhenShoot[this.nextBullet] = this.position + ROCKET_SIZE*SCALE/2 - BULLET_SIZE.x*SCALE/2;
+                    this.bulletPosition[this.nextBullet] = Y_POS;
+                    this.showBullet[this.nextBullet] = true;
+                    this.lastShoot = this.nextBullet;
+                    this.nextBullet = 3;
+                }
+
                 if (this.position > MAX_X_POS)
                     this.position = MAX_X_POS;
                 else if (this.position < MIN_X_POS)
                     this.position = MIN_X_POS;
+
+                for (int i = 0; i<3; i++) {
+                    if (this.showBullet[i]) {
+                        this.bulletPosition[i] += deltatime * BULLET_MOVEMENT_OFFSET;
+                        if (this.nextBullet == 3 && this.lastShoot == i && this.bulletPosition[i] >= 3*Gdx.graphics.getHeight()/7f)
+                            this.nextBullet = i==2 ? 0 : (i+1);
+
+
+                        if (this.bulletPosition[i] >= MAX_Y_POS)
+                            this.showBullet[i] = false;
+                    }
+                }
 
             }
 
@@ -176,6 +206,11 @@ public class MiniGame {
                 Update(Gdx.graphics.getDeltaTime());
                 spritePlayer.setPosition(this.position, Y_POS);
                 spritePlayer.draw(this.spriteBatch);
+                for (int i = 0; i<3; i++) {
+                    spriteBullet[i].setPosition(this.positionWhenShoot[i], this.bulletPosition[i]);
+                    if (this.showBullet[i])
+                        spriteBullet[i].draw(this.spriteBatch);
+                }
             }
         }
 
