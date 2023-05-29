@@ -116,7 +116,7 @@ public class DayParkMap implements Screen {
             addPawn(player);
         } else if (player.activePawn >= 1 && player.activePawn <= 4) {
             if (!pawnChoose) {
-                manageParticularPawn(player);
+                managePawns(player);
             } else {
                 changeAnimationPawn(player, pawToChange);
             }
@@ -137,29 +137,59 @@ public class DayParkMap implements Screen {
             }
             setPlayerNumberTurn();
             throwDice = false;
+            System.out.println("number of players " + player.activePawn);
         }
     }
 
-    private void manageParticularPawn(Player player) {
+    private void managePawns(Player player) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[0].active) {
-            player.pawns[0].position += randNumber;
-            pawToChange = 0;
-            pawnChoose = true;
+            if (canIMovePawn(player, 0)) {
+                manageParticularPawn(player, 0);
+            }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[1].active) {
-            player.pawns[1].position += randNumber;
-            pawToChange = 1;
-            pawnChoose = true;
+            if (canIMovePawn(player, 1)) {
+                manageParticularPawn(player, 1);
+            }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[2].active) {
-            player.pawns[2].position += randNumber;
-            pawnChoose = true;
-            pawToChange = 2;
+            if (canIMovePawn(player, 2)) {
+                manageParticularPawn(player, 2);
+            }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[3].active) {
-            player.pawns[3].position += randNumber;
-            pawToChange = 3;
-            pawnChoose = true;
+            if (canIMovePawn(player, 3)) {
+                manageParticularPawn(player, 3);
+            }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 1) {
-            addPawn(player);
+            if (canIAddPawn(player)) {
+                addPawn(player);
+            }
         }
+    }
+
+    private boolean canIAddPawn(Player player) {
+        for (Pawn pawn : player.pawns) {
+            if (pawn.position == player.playerBase) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    private boolean canIMovePawn(Player player, int x) {
+        for (Pawn pawn : player.pawns) {
+            if (pawn != player.pawns[x] && pawn.active) {
+                if (pawn.position == player.pawns[x].position + randNumber) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void manageParticularPawn(Player player, int x) {
+        player.pawns[x].position += randNumber;
+        pawToChange = x;
+        pawnChoose = true;
     }
 
     private void changeAnimationPawn(Player player, int pawNumber) {
@@ -404,7 +434,7 @@ class Pawn {
     boolean active;
 
     public Pawn(int position) {
-        this.position = position;
+        this.position = -1;
         this.active = false;
     }
 
@@ -419,6 +449,7 @@ class Pawn {
     }
 
     public void dead() {
+        this.position = -1;
         this.active = false;
         playerElapsedTime = ELAPSED_TIME;//będzie 0 przypisywane gdy dostanę każdą animację
     }
