@@ -409,7 +409,7 @@ public class DayParkMap implements Screen {
             if(playerCapturing == Players.Yellow && gameTextures.pawnCapture1ElapsedTime < 0.65f){
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
-            else if(playerCapturing == Players.Green && gameTextures.pawnCapture1ElapsedTime < 1.3241f){
+            else if(playerCapturing == Players.Green && gameTextures.pawnCapture1ElapsedTime < 1.30f){
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
             else if(playerCapturing == Players.Blue && gameTextures.pawnCapture1ElapsedTime < 1.98f){
