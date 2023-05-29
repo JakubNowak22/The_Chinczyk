@@ -13,13 +13,24 @@ class GameTextures{
     public Texture dayParkTopground;
 
 
-    public TextureAtlas yellowPlayer1Atlas;
-    public Animation<TextureRegion> yellowPlayer1Anim;
-    public float yellowPlayer1ElapsedTime;
-    public float yellowPlayer2ElapsedTime;
+    public TextureAtlas yellowPlayerAtlas;
+    public Animation<TextureRegion> yellowPlayerAnim;
+    //public float yellowPlayerElapsedTime;
 
-    public int yellowPlayer1AnimStarted;
+    //public int yellowPlayerAnimStarted;
 
+    public TextureAtlas bluePlayerAtlas;
+    public Animation<TextureRegion> bluePlayerAnim;
+    //public float bluePlayerElapsedTime;
+    //public int bluePlayerAnimStarted;
+
+    public TextureAtlas greenPlayerAtlas;
+    public Animation<TextureRegion> greenPlayerAnim;
+    //public float greenPlayerElapsedTime;
+
+    public TextureAtlas pinkPlayerAtlas;
+    public Animation<TextureRegion> pinkPlayerAnim;
+    //public float pinkPlayerElapsedTime;
 
     public TextureAtlas iceCreamAtlas;
     public Animation<TextureRegion> iceCreamAnim;
@@ -56,12 +67,23 @@ class GameTextures{
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
 
 
-        yellowPlayer1Atlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
-        yellowPlayer1Anim = new Animation<TextureRegion>(1f/30f, yellowPlayer1Atlas.getRegions());
-        yellowPlayer1ElapsedTime = 0f;
-        yellowPlayer2ElapsedTime = 0.3420079f;
-        yellowPlayer1AnimStarted = 0;
+        yellowPlayerAtlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
+        yellowPlayerAnim = new Animation<TextureRegion>(1f/30f, yellowPlayerAtlas.getRegions());
+        //yellowPlayerElapsedTime = 0f;
+        //yellowPlayerAnimStarted = 0;
 
+        bluePlayerAtlas = new TextureAtlas("Map1/BluePlayerAnimSheet/BluePlayerAnimSheet.atlas");
+        bluePlayerAnim = new Animation<TextureRegion>(1f/30f, bluePlayerAtlas.getRegions());
+        //bluePlayerElapsedTime = 0f;
+        //bluePlayerAnimStarted = 0;
+
+        greenPlayerAtlas = new TextureAtlas("Map1/GreenPlayerAnimSheet/GreenPlayerAnimSheet.atlas");
+        greenPlayerAnim = new Animation<TextureRegion>(1f/30f, greenPlayerAtlas.getRegions());
+        //greenPlayer1ElapsedTime = 0f;
+
+        pinkPlayerAtlas = new TextureAtlas("Map1/PinkPlayerAnimSheet/PinkPlayerAnimSheet.atlas");
+        pinkPlayerAnim = new Animation<TextureRegion>(1f/30f, pinkPlayerAtlas.getRegions());
+        //pinkPlayer1ElapsedTime = 0f;
 
         iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
         iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());
