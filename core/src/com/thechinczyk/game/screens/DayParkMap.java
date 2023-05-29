@@ -3,6 +3,8 @@ package com.thechinczyk.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -26,6 +28,19 @@ public class DayParkMap implements Screen {
     int greenPawnsInBase;
     int pinkPawnsInBase;
 
+    public Music ambient;
+    public Music music;
+
+    public Sound pawnSound;
+    public Sound diceSound;
+    public Sound cardSound;
+    public Sound endGameSound;
+    public Sound turnChangeSound;
+    public Sound outOfBaseSound;
+    public Sound captureSound;
+    public Sound busSound;
+
+
     enum Players {None,Yellow, Green, Blue, Pink}
 
     public DayParkMap(MyTheChinczyk game){
@@ -42,6 +57,24 @@ public class DayParkMap implements Screen {
         bluePawnsInBase = 4;
         greenPawnsInBase = 4;
         pinkPawnsInBase = 4;
+
+        pawnSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/pawnSound.mp3"));
+        diceSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/diceSound.mp3"));
+        cardSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/cardSound.mp3"));
+        endGameSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/endGameSound.mp3"));
+        turnChangeSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/turnChangeSound.mp3"));
+        outOfBaseSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/outOfBaseSound.mp3"));
+        captureSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/captureSound.mp3"));
+        busSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/busSound.mp3"));
+
+        ambient = Gdx.audio.newMusic(Gdx.files.internal("Map1/Sound/ambient.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Map1/Sound/Podington Bear - Blue Highway.mp3"));
+        ambient.setLooping(true);
+        ambient.setVolume(0.4f);
+        music.setLooping(true);
+        music.setVolume(0.07f);
+        ambient.play();
+        music.play();
     }
 
 
@@ -60,6 +93,7 @@ public class DayParkMap implements Screen {
 
         //Przykładowa obsługa zmiany ilości pionków w bazie
         if(Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase>0){
+            outOfBaseSound.play(0.5f);
             yellowPawnsInBase--;
             bluePawnsInBase--;
             greenPawnsInBase--;
@@ -93,6 +127,7 @@ public class DayParkMap implements Screen {
             gameTextures.bluePlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
             gameTextures.greenPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
             gameTextures.pinkPlayer1ElapsedTime += 3*Gdx.graphics.getDeltaTime();
+            pawnSound.play(0.6f);
         }
         if(gameTextures.yellowPlayer1Anim.getKeyFrameIndex(gameTextures.yellowPlayer1ElapsedTime)%10!=0){
             //To się wykonuje aż nie zrobi się 10 klatek, tyle trwa przesunięcie o jedno pole
@@ -215,6 +250,7 @@ public class DayParkMap implements Screen {
         if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
             //Wysunięcie karty
             gameTextures.cardAnimStarted = true;
+            cardSound.play(0.9f);
         }
         else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
@@ -258,6 +294,7 @@ public class DayParkMap implements Screen {
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
         if(Gdx.input.isKeyJustPressed(Input.Keys.T)){
+            turnChangeSound.play(0.4f);
             if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
                 gameTextures.turnSignWhichPlayer++;
             }
@@ -287,20 +324,24 @@ public class DayParkMap implements Screen {
         //WYBÓR KOLORU PIONKA WSIADAJĄCEGO DO AUTOBUSU
         if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && gameTextures.BusAnimStarted == 0){
             //Żółty autobus
+            busSound.play(0.3f);
             gameTextures.BusAnimStarted = 1;
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && gameTextures.BusAnimStarted == 0){
             //Zielony autobus
+            busSound.play(0.3f);
             gameTextures.BusAnimStarted = 2;
             gameTextures.BusElapsedTime = 0.5805f;
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && gameTextures.BusAnimStarted == 0){
             //Niebieski autobus
+            busSound.play(0.3f);
             gameTextures.BusAnimStarted = 3;
             gameTextures.BusElapsedTime = 1.1444f;
         }
         else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && gameTextures.BusAnimStarted == 0){
             //Różowy autobus
+            busSound.play(0.3f);
             gameTextures.BusAnimStarted = 4;
             gameTextures.BusElapsedTime = 1.7144f;
         }
@@ -370,6 +411,7 @@ public class DayParkMap implements Screen {
     public void drawDiceAnim(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted){
             gameTextures.diceAnimStarted = true;
+            diceSound.play(0.5f);
         }
         if(gameTextures.diceAnimStarted){
             if(!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)){
@@ -409,7 +451,7 @@ public class DayParkMap implements Screen {
             if(playerCapturing == Players.Yellow && gameTextures.pawnCapture1ElapsedTime < 0.65f){
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
-            else if(playerCapturing == Players.Green && gameTextures.pawnCapture1ElapsedTime < 1.3241f){
+            else if(playerCapturing == Players.Green && gameTextures.pawnCapture1ElapsedTime < 1.30f){
                 gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
             }
             else if(playerCapturing == Players.Blue && gameTextures.pawnCapture1ElapsedTime < 1.98f){
@@ -476,6 +518,8 @@ public class DayParkMap implements Screen {
             else if(playerCaptured == Players.Pink){
                 gameTextures.pawnCapture2ElapsedTime = 1.505f;
             }
+
+            captureSound.play(0.5f);
         }
     }
 
@@ -483,6 +527,7 @@ public class DayParkMap implements Screen {
         if(!gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.S)){
             //Włączenie tablicy
             gameTextures.scoreBoardFlag = true;
+            endGameSound.play(0.5f);
         }
         else if(gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.S)){
             //Wyłączenie tablicy. Tu mozna podmienić to żeby zamiast chowania tablicy był powrót do menu głównego
