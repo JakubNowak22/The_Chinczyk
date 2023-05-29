@@ -56,10 +56,14 @@ public class DayParkMap implements Screen {
         for (int i = 0; i < game.playerCount; i++) {
             Player player = new Player(i, 0, startPlayerBase[i]);
             Players.add(player);
-            if(i==2){
-                player.moveAnimation = gameTextures.bluePlayerAnim;
-            }else{
+            if(i==0){
                 player.moveAnimation = gameTextures.yellowPlayerAnim;
+            } else if (i==1) {
+                player.moveAnimation = gameTextures.greenPlayerAnim;
+            } else if(i==2){
+                player.moveAnimation = gameTextures.bluePlayerAnim;
+            } else {
+                player.moveAnimation = gameTextures.pinkPlayerAnim;
             }
         }
         //System.out.println(game.playerCount);
@@ -206,7 +210,6 @@ public class DayParkMap implements Screen {
             }
             if (player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
                 player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
-                System.out.println("Elapsed - " + player.pawns[pawNumber].playerElapsedTime);
             } else {
                 player.pawns[pawNumber].position ++;
                 randNumber--;
@@ -248,16 +251,30 @@ public class DayParkMap implements Screen {
     }
     private void drawPawn(Player player, int pawnNumber) {
         if(pawnNumber != -1) {
-            if(player.moveAnimation==gameTextures.bluePlayerAnim){
+            if(player.moveAnimation==gameTextures.yellowPlayerAnim){
+                if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            0, 0, 1080, 1080);
+                } else {
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            840, 0, 1080, 1080);
+                }
+            } else if (player.moveAnimation==gameTextures.greenPlayerAnim) {
+                if(player.pawns[pawnNumber].playerElapsedTime < 5.68f || player.pawns[pawnNumber].playerElapsedTime > 14.01f){
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 0, 0, 1080, 1080);
+                }
+                else{
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 840, 0, 1080, 1080);
+                }
+            }else if(player.moveAnimation==gameTextures.bluePlayerAnim){
                 if(player.pawns[pawnNumber].playerElapsedTime < 8.35f){
                     game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 840, 0, 1080, 1080);
                 }
                 else{
                     game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 0, 0, 1080, 1080);
                 }
-            }
-            else {
-                if (player.pawns[pawnNumber].playerElapsedTime < 8.03f || player.pawns[pawnNumber].playerElapsedTime > 16.35f) {
+            } else {
+                if (player.pawns[pawnNumber].playerElapsedTime < 6.68f || player.pawns[pawnNumber].playerElapsedTime > 14.69f) {
                     game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                             0, 0, 1080, 1080);
                 } else {
