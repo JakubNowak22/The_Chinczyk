@@ -62,7 +62,7 @@ public class DayParkMap implements Screen {
                 player.moveAnimation = gameTextures.greenPlayerAnim;
             } else if(i==2){
                 player.moveAnimation = gameTextures.bluePlayerAnim;
-            } else {
+            } else if(i==3){
                 player.moveAnimation = gameTextures.pinkPlayerAnim;
             }
         }
@@ -261,19 +261,23 @@ public class DayParkMap implements Screen {
                 }
             } else if (player.moveAnimation==gameTextures.greenPlayerAnim) {
                 if(player.pawns[pawnNumber].playerElapsedTime < 5.68f || player.pawns[pawnNumber].playerElapsedTime > 14.01f){
-                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 0, 0, 1080, 1080);
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            0, 0, 1080, 1080);
                 }
                 else{
-                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 840, 0, 1080, 1080);
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            840, 0, 1080, 1080);
                 }
-            }else if(player.moveAnimation==gameTextures.bluePlayerAnim){
+            }else if(player.moveAnimation==gameTextures.bluePlayerAnim || player.moveAnimation==gameTextures.pinkPlayerAnim){
                 if(player.pawns[pawnNumber].playerElapsedTime < 8.35f){
-                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 840, 0, 1080, 1080);
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            840, 0, 1080, 1080);
                 }
                 else{
-                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false), 0, 0, 1080, 1080);
+                    game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
+                            0, 0, 1080, 1080);
                 }
-            } else {
+            } /*else if(player.moveAnimation==gameTextures.pinkPlayerAnim) {
                 if (player.pawns[pawnNumber].playerElapsedTime < 6.68f || player.pawns[pawnNumber].playerElapsedTime > 14.69f) {
                     game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                             0, 0, 1080, 1080);
@@ -281,7 +285,7 @@ public class DayParkMap implements Screen {
                     game.batch.draw(player.moveAnimation.getKeyFrame(player.pawns[pawnNumber].playerElapsedTime, false),
                             840, 0, 1080, 1080);
                 }
-            }
+            }*/
         }
     }
 
@@ -463,7 +467,7 @@ class Player {
 
 class Pawn {
     public float playerElapsedTime;
-    public float ELAPSED_TIME;//gdy będzie każda animacja tego nie będzie
+    //public float ELAPSED_TIME;//gdy będzie każda animacja tego nie będzie
     int position; // 49 yellow start = 0
     boolean active = false;
 
