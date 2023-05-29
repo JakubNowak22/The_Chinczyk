@@ -19,6 +19,7 @@ public class DayParkMap implements Screen {
     double diceRoll;
 
     boolean miniGamePlaying;
+    boolean miniGameOutput;
 
     int yellowPawnsInBase;
     int bluePawnsInBase;
@@ -64,8 +65,6 @@ public class DayParkMap implements Screen {
             game.setScreen(game.MenuLoadingScreen);
         }
 
-        //Wylosowanie mini-gry Space Invaders
-        drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
 
         if (!this.miniGamePlaying) {
             //Przykładowa obsługa zmiany ilości pionków w bazie
@@ -120,7 +119,8 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
             //Przykładowa obsługa animacji karty
-            drawCardAnim("Hello World!\nSample text, sample tex");
+            if (!this.miniGameOutput)
+                drawCardAnim("Hello World!\nSample text, sample tex");
 
             //Obsługa animacji tabliczek oznaczających nową turę
             changeWhichPlayersTurn();
@@ -130,7 +130,10 @@ public class DayParkMap implements Screen {
 
             //Przykładowa obsługa kostki
             drawDiceAnim();
+
         }
+        //Wylosowanie mini-gry Space Invaders
+        drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
 
         game.batch.end();
     }
@@ -190,12 +193,15 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted)){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput) || (message.equals("Text with reward/punishment\nthat player will receive") && this.miniGameOutput)){
             //Wysunięcie karty
+            System.out.println("test2");
             gameTextures.cardAnimStarted = true;
         }
         else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
+            System.out.println("test");
+            this.miniGameOutput = false;
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
@@ -210,7 +216,8 @@ public class DayParkMap implements Screen {
     }
 
     public void drawSpaceInvadersMiniGameMenu(String message) {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.Z) || gameTextures.cardAnimStarted) {
+        if((Gdx.input.isKeyJustPressed(Input.Keys.Z) || gameTextures.cardAnimStarted) && !this.miniGameOutput) {
+            //System.out.println("???");
             drawCardAnim(message);
             this.miniGamePlaying = true;
         }
@@ -222,6 +229,13 @@ public class DayParkMap implements Screen {
           //  this.miniGamePlaying = true;
             this.miniGame.menuSpaceInvaders.Draw();
         }
+
+        if (this.miniGameOutput && !this.miniGamePlaying && !gameTextures.cardAnimStarted) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
 
 
     }
@@ -390,6 +404,7 @@ public class DayParkMap implements Screen {
 
     public void unlockMap() {
         this.miniGamePlaying = false;
+        this.miniGameOutput = true;
     }
 }
 class GameTextures{

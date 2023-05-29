@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 import java.util.Random;
 
@@ -25,10 +24,20 @@ public class MiniGame {
         this.menuSpaceInvaders = new SpaceInvadersMenu(this.spriteBatch, map);
     }
 
+
+    //wykorzystać metodę z innej klasy
+    public static Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
+        Sprite sprite = new Sprite(texture);
+        sprite.setPosition(x, y);
+        sprite.setSize(width, height);
+        return sprite;
+    }
+
     static class SpaceInvadersMenu {
         SpriteBatch spriteBatch;
         DayParkMap map;
         SpaceInvaders game;
+        SpaceInvadersEndMenu endMenu;
 
         private Texture menuTexture;
         private Texture backTexture;
@@ -45,6 +54,7 @@ public class MiniGame {
 
         private boolean isStarted;
         private boolean isLoaded;
+        private boolean isEnding;
 
         SpaceInvadersMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -52,6 +62,7 @@ public class MiniGame {
             this.isButtonHTPHovered = false;
             this.isStarted = false;
             this.isLoaded = false;
+            this.isEnding = false;
             this.map = map;
         }
 
@@ -66,14 +77,6 @@ public class MiniGame {
             buttonHTPHovered = new Texture("SpaceInvadersMiniGame/ButtonHTPon.png");
             buttonHTP = new GameObject(buttonHTPHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (850 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
             buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (30 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-        }
-
-        //wykorzystać metodę z innej klasy
-        public Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
-            Sprite sprite = new Sprite(texture);
-            sprite.setPosition(x, y);
-            sprite.setSize(width, height);
-            return sprite;
         }
 
         public void Update() {
@@ -114,13 +117,76 @@ public class MiniGame {
         public void resetAfterQuit() {
             this.isButtonStartHovered = false;
             this.isButtonHTPHovered = false;
+            this.isEnding = false;
             this.map.unlockMap();
             this.isStarted = false;
         }
 
         public void Draw() {
+            if (!isEnding) {
+                spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 75, Gdx.graphics.getHeight() / 4f - 75, Gdx.graphics.getWidth() / 2f + 150, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 150);
+                spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+                Update();
+            }
+            else
+                this.endMenu.Draw();
+        }
+    }
+
+    static class SpaceInvadersEndMenu {
+        SpriteBatch spriteBatch;
+        int result;
+        SpaceInvaders game;
+        SpaceInvadersMenu menuSI;
+
+        private Texture menuTexture, backTexture;
+
+        private GameObject buttonEnd;
+        private Texture buttonEndHovered;
+        private Sprite buttonEndHoveredSprite;
+        private boolean isButtonEndHovered;
+
+        SpaceInvadersEndMenu (SpriteBatch batch, int result, SpaceInvadersMenu SImenu, SpaceInvaders game) {
+            this.spriteBatch = batch;
+            this.result = result;
+            this.menuSI = SImenu;
+            this.game = game;
+            this.loadTextures();
+        }
+
+        public void loadTextures() {
+            this.backTexture = new Texture("SpaceInvadersMiniGame/MiniGame_Edge.png");
+            this.menuTexture = new Texture("SpaceInvadersMiniGame/EndMenuBackground.png");
+
+            buttonEndHovered = new Texture("SpaceInvadersMiniGame/ButtonEXIT_on.png");
+            buttonEnd = new GameObject(buttonEndHovered, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f + (850 / (1920/(Gdx.graphics.getWidth()/2f))), 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, Gdx.graphics.getWidth()/4f + (760 / (1920/(Gdx.graphics.getWidth()/2f))), Gdx.graphics.getHeight()/4f + (30 / (1920/(Gdx.graphics.getWidth()/2f))) , 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+        }
+
+        public void Update() {
+            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f, Gdx.graphics.getWidth()/2f, 1080 / (1920/(Gdx.graphics.getWidth()/2f)));
+            if (this.result < 10)
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*20, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
+            else
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*30, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
+                this.isButtonEndHovered = true;
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+                this.isButtonEndHovered = false;
+            }
+
+            if (this.isButtonEndHovered) {
+                buttonEndHoveredSprite.draw(spriteBatch);
+                if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                    this.menuSI.map.miniGameOutput = true;
+                    menuSI.resetAfterQuit();
+                }
+            }
+        }
+
+        public void Draw() {
             spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 75, Gdx.graphics.getHeight() / 4f - 75, Gdx.graphics.getWidth() / 2f + 150, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 150);
-            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
             Update();
         }
     }
@@ -268,6 +334,7 @@ public class MiniGame {
         Enemy[][] enemiesArray;
         private int eliminatedEnemies;
 
+
         SpaceInvaders(SpriteBatch spriteBatch, SpaceInvadersMenu menuSI) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
             this.font.getData().setScale(.5f,.5f);
@@ -326,6 +393,13 @@ public class MiniGame {
             if(timer > 1){
                 timer-=1;
                 timeSeconds ++;
+            }
+
+            if (this.eliminatedEnemies == 14 || this.timeSeconds == 11) {
+                //reset wszystkiego w grze, menu glownym i na planszy
+                this.menuSI.isStarted = false;
+                this.menuSI.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menuSI, this);
+                this.menuSI.isEnding = true;
             }
 
             if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
