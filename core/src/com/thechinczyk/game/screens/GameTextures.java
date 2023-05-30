@@ -52,6 +52,11 @@ class GameTextures{
     public Animation<TextureRegion> diceAnim;
     public float diceElapsedTime;
     public boolean diceAnimStarted;
+    public Texture dice5;
+    public Texture dice4;
+    public Texture dice3;
+    public Texture dice2;
+    public Texture dice1;
 
     public TextureAtlas turnSignAtlas;
     public Animation<TextureRegion> turnSignAnim;
@@ -105,6 +110,11 @@ class GameTextures{
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
         diceElapsedTime = 0f;
         diceAnimStarted = false;
+        dice5 = new Texture("Map1/DiceSides/DiceSides5.png");
+        dice4 = new Texture("Map1/DiceSides/DiceSides4.png");
+        dice3 = new Texture("Map1/DiceSides/DiceSides3.png");
+        dice2 = new Texture("Map1/DiceSides/DiceSides2.png");
+        dice1 = new Texture("Map1/DiceSides/DiceSides1.png");
 
         turnSignAtlas = new TextureAtlas("Map1/TurnSignAnimSheet/TurnSignAnimSheet.atlas");
         turnSignAnim = new Animation<TextureRegion>(1f/30f, turnSignAtlas.getRegions());

@@ -16,6 +16,7 @@ public class DayParkMap implements Screen {
 
     MyTheChinczyk game;
     int randNumber = 0;
+    int diceRoll = 0;
 
     /**
      * pola specjalne :
@@ -77,6 +78,8 @@ public class DayParkMap implements Screen {
         drawBackGround();
         //Animacja rożka z lodem i huśtawki na planszy
         drawIceCreamAndSwingAnim();
+
+        drawDice();
 
         drawPlayers(playerNumberTurn);
         managePlayer(playerNumberTurn);
@@ -371,17 +374,37 @@ public class DayParkMap implements Screen {
             gameTextures.diceAnimStarted = true;
         }
         if (gameTextures.diceAnimStarted) {
+            drawDice();
             if (!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)) {
                 gameTextures.diceElapsedTime += Gdx.graphics.getDeltaTime();
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             } else {
                 Random rand = new Random();
-                randNumber = 6;//rand.nextInt(6) + 1;
+                randNumber = rand.nextInt(6) + 1;
+                diceRoll = randNumber;
                 System.out.println(randNumber);
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
                 throwDice = true;
             }
+        }
+    }
+
+    public void drawDice(){
+        if(diceRoll==5){
+            game.batch.draw(gameTextures.dice5, 925, 505, 70, 70);
+        }
+        else if(diceRoll==4){
+            game.batch.draw(gameTextures.dice4, 925, 505, 70, 70);
+        }
+        else if(diceRoll==3){
+            game.batch.draw(gameTextures.dice3, 925, 505, 70, 70);
+        }
+        else if(diceRoll==2){
+            game.batch.draw(gameTextures.dice2, 925, 505, 70, 70);
+        }
+        else if(diceRoll==1){
+            game.batch.draw(gameTextures.dice1, 925, 505, 70, 70);
         }
     }
 
@@ -415,7 +438,14 @@ public class DayParkMap implements Screen {
         gameTextures.pinkPlayerAtlas.dispose();
         gameTextures.bluePlayerAtlas.dispose();
         gameTextures.greenPlayerAtlas.dispose();
+
         gameTextures.diceAtlas.dispose();
+        gameTextures.dice5.dispose();
+        gameTextures.dice4.dispose();
+        gameTextures.dice3.dispose();
+        gameTextures.dice2.dispose();
+        gameTextures.dice1.dispose();
+
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
 
