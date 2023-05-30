@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
+import java.util.Scanner;
 
 enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH};
 
@@ -488,15 +489,15 @@ public class MiniGame {
                 } else if (this.isButtonStartHovered) {
                     buttonStartHoveredSprite.draw(spriteBatch);
                     if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
-                        //this.game = new MathMiniGame(spriteBatch, this);
+                        this.game = new MathMiniGame(spriteBatch, this);
                         isStarted = true;
                     }
                 }
             }
 
-           /* if (this.isStarted) {
+            if (this.isStarted) {
                 game.Draw();
-            } */
+            }
 
         }
 
@@ -513,16 +514,274 @@ public class MiniGame {
                 spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
                 Update();
             }
-          //  else
-            //    this.endMenu.Draw();
+            else
+               this.endMenu.Draw();
         }
     }
 
     static class MathMiniGame {
 
+        static Random random = new Random();
+        SpriteBatch spriteBatch;
+        Texture gameTexture;
+        MathMiniGameMenu menuMMG;
+        int timeSeconds;
+        float timer;
+        BitmapFont font;
+        boolean gameOutput;
+        int number1, number2, operation;
+        int[] number1Array, number2Array;
+        int expectedResult, playerResult;
+        int numberCounter;
+
+        private Texture addSign, subSign, mulSign, divSign, eqSign;
+        private Texture[] numbers;
+        private Sprite signSprite, eqSignSprite;
+        private Sprite[] number1Sprite, number2Sprite, resultSprite;
+        private final int SIZE = 200, NUMBER_SIZE = 100;
+
+
+        MathMiniGame(SpriteBatch spriteBatch, MathMiniGameMenu menuMMG) {
+            this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
+            this.font.getData().setScale(.5f,.5f);
+            //zmiana koloru nie działa
+            this.font.setColor(Color.WHITE);
+            this.spriteBatch = spriteBatch;
+            this.menuMMG = menuMMG;
+            this.timer = 0;
+            this.timeSeconds = 1;
+            this.numberCounter = 0;
+            this.operation = random.nextInt(3);
+            this.number1 = 100 + random.nextInt(1000);
+            if (this.operation == 0) {
+                this.number2 = 100 + random.nextInt(1000);
+                this.expectedResult = this.number1 + this.number2;
+            }
+            else if (this.operation == 1) {
+                this.number2 = random.nextInt(this.number1);
+                this.expectedResult = this.number1 - this.number2;
+            }
+            else if (this.operation == 2) {
+                this.number2 = 2 + random.nextInt(20);
+                this.expectedResult = this.number1 * this.number2;
+            }
+            else {
+                this.number2 = 2 + random.nextInt(20);
+                this.expectedResult = this.number1 / this.number2;
+            }
+
+            this.number1Array = this.intToArray(this.number1);
+            this.number2Array = this.intToArray(this.number2);
+            this.number1Sprite = new Sprite[4];
+            this.number2Sprite = new Sprite[4];
+            this.resultSprite = new Sprite[5];
+            this.numbers = new Texture[10];
+            this.loadTextures();
+        }
+
+        public void loadTextures() {
+            this.gameTexture = new Texture("MathMiniGame/Background.png");
+            this.eqSign = new Texture("MathMiniGame/EqualSign.png");
+            this.addSign = new Texture("MathMiniGame/AddSign.png");
+            this.subSign = new Texture("MathMiniGame/SubtractSign.png");
+            this.mulSign = new Texture("MathMiniGame/MultiplySign.png");
+            this.divSign = new Texture("MathMiniGame/DivideSign.png");
+            this.numbers[0] = new Texture("MathMiniGame/Zero.png");
+            this.numbers[1] = new Texture("MathMiniGame/One.png");
+            this.numbers[2] = new Texture("MathMiniGame/Two.png");
+            this.numbers[3] = new Texture("MathMiniGame/Three.png");
+            this.numbers[4] = new Texture("MathMiniGame/Four.png");
+            this.numbers[5] = new Texture("MathMiniGame/Five.png");
+            this.numbers[6] = new Texture("MathMiniGame/Six.png");
+            this.numbers[7] = new Texture("MathMiniGame/Seven.png");
+            this.numbers[8] = new Texture("MathMiniGame/Eight.png");
+            this.numbers[9] = new Texture("MathMiniGame/Nine.png");
+            this.texturesToSprites();
+        }
+
+        public void texturesToSprites() {
+            if (this.operation == 0)
+                this.signSprite = spriteInit(this.addSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+            else if (this.operation == 1)
+                this.signSprite = spriteInit(this.subSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+            else if (this.operation == 2)
+                this.signSprite = spriteInit(this.mulSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+            else
+                this.signSprite = spriteInit(this.divSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+
+            this.eqSignSprite = spriteInit(this.eqSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f - SIZE / 2f, SIZE, SIZE);
+
+            for (int i = 0; i < 4; i++) {
+                this.number1Sprite[i] = spriteInit(this.numbers[number1Array[i]], Gdx.graphics.getWidth() / 2f - (4 - i) * (NUMBER_SIZE / 2f + 10) - 50, Gdx.graphics.getHeight() / 2f - SIZE / 2f + 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
+                this.number2Sprite[i] = spriteInit(this.numbers[number2Array[i]], Gdx.graphics.getWidth() / 2f + i * (NUMBER_SIZE / 2f + 10) + 50, Gdx.graphics.getHeight() / 2f - SIZE / 2f + 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
+            }
+        }
+
+        public void refreshResultSprites() {
+            for (int i = 0; i<this.numberCounter; i++) {
+                this.resultSprite[i] = spriteInit(this.numbers[(this.playerResult/(i==0 ? 1 : (int)Math.pow(10,i)))%10], Gdx.graphics.getWidth() / 2f + (2 - i) * (NUMBER_SIZE / 2f + 10) - NUMBER_SIZE/4f, Gdx.graphics.getHeight() / 2f - 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
+            }
+        }
+
+        public int[] intToArray(int number) {
+            int[] array = new int[4];
+            array[3] = number%10;
+            array[2] = (number/10)%10;
+            array[1] = (number/100)%10;
+            array[0] = number/1000;
+            return array;
+        }
+
+        public void Draw() {
+            spriteBatch.draw(this.gameTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            this.Update(Gdx.graphics.getDeltaTime());
+            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3*Gdx.graphics.getWidth()/4f - 40, 3*Gdx.graphics.getHeight()/4f - 20);
+            this.eqSignSprite.draw(this.spriteBatch);
+            this.signSprite.draw(this.spriteBatch);
+            for (int i = 0; i<4; i++) {
+                this.number1Sprite[i].draw(this.spriteBatch);
+                this.number2Sprite[i].draw(this.spriteBatch);
+            }
+            for (int i = 0; i<this.numberCounter; i++)
+                this.resultSprite[i].draw(this.spriteBatch);
+        }
+
+        public void Update(float deltatime) {
+            timer += deltatime;
+            if(timer > 1){
+                timer-=1;
+                timeSeconds ++;
+            }
+
+            System.out.println(this.playerResult);
+            if (numberCounter < 5) {
+                if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 1;
+                    this.numberCounter++;
+                } else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_2))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 2;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_3))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 3;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_4))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 4;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_5))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 5;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_6)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_6))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 6;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_7)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_7))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 7;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_8))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 8;
+                    this.numberCounter++;
+                }
+                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_9))) {
+                    this.playerResult *= 10;
+                    this.playerResult += 9;
+                    this.numberCounter++;
+                }
+                else if (((Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))) && this.numberCounter >0) {
+                    this.numberCounter++;
+                    this.playerResult *= 10;
+                }
+            }
+            if ((Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) && numberCounter != 0) {
+                    this.playerResult /= 10;
+                    this.numberCounter--;
+            }
+            refreshResultSprites();
+
+            if (/*this.timeSeconds == 11 */ (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
+                //reset wszystkiego w grze, menu glownym i na planszy
+                this.menuMMG.isStarted = false;
+                this.menuMMG.endMenu = new MathMiniGameEndMenu(this.spriteBatch, this.expectedResult == this.playerResult, this.timeSeconds,  this.menuMMG ,this);
+                this.menuMMG.isEnding = true;
+            }
+
+            if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
+                menuMMG.resetAfterQuit();
+            }
+
+        }
     }
 
-    static class MathMiniGameEndMenu{
+    static class MathMiniGameEndMenu {
+        SpriteBatch spriteBatch;
+        boolean result;
+        int timer;
+        MathMiniGame game;
+        MathMiniGameMenu menuMMG;
 
+        private Texture menuTexture;
+
+        private GameObject buttonEnd;
+        private Texture buttonEndHovered;
+        private Sprite buttonEndHoveredSprite;
+        private boolean isButtonEndHovered;
+
+        MathMiniGameEndMenu (SpriteBatch batch, boolean result, int timer, MathMiniGameMenu menuMMG, MathMiniGame game) {
+            this.spriteBatch = batch;
+            this.result = result;
+            this.timer = timer;
+            this.menuMMG = menuMMG;
+            this.game = game;
+            this.loadTextures();
+        }
+
+        public void loadTextures() {
+            if (this.result)
+                this.menuTexture = new Texture("MathMiniGame/BackgroundEndGameRight.png");
+            else
+                this.menuTexture = new Texture("MathMiniGame/BackgroundEndGameWrong.png");
+
+            buttonEndHovered = new Texture("MathMiniGame/ButtonEXIT_on.png");
+            buttonEnd = new GameObject(buttonEndHovered, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f + (850 / (1920/(Gdx.graphics.getWidth()/2f))), 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, Gdx.graphics.getWidth()/4f + (760 / (1920/(Gdx.graphics.getWidth()/2f))), Gdx.graphics.getHeight()/4f + (30 / (1920/(Gdx.graphics.getWidth()/2f))) , 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+        }
+
+        public void Update() {
+            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f, Gdx.graphics.getWidth()/2f, 1080 / (1920/(Gdx.graphics.getWidth()/2f)));
+            /*if (this.result < 10)
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*20, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
+            else
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*30, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180); */
+
+            if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
+                this.isButtonEndHovered = true;
+            } else if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+                this.isButtonEndHovered = false;
+            }
+
+            if (this.isButtonEndHovered) {
+                buttonEndHoveredSprite.draw(spriteBatch);
+                if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                    this.menuMMG.map.miniGameOutput[1] = true;
+                    menuMMG.resetAfterQuit();
+                }
+            }
+        }
+
+        public void Draw() {
+            Update();
+        }
     }
 }
