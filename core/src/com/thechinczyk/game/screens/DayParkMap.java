@@ -115,7 +115,7 @@ public class DayParkMap implements Screen {
         Player player = Players.get(playerNumberTurn);
         if (!throwDice) {
             drawDiceAnim();
-        } else if (player.activePawn == 0 && randNumber == 1) {
+        } else if (player.activePawn == 0 && randNumber == 6) {
             addPawn(player);
         } else if (player.activePawn >= 1 && player.activePawn <= 4) {
             if (!pawnChoose) {
@@ -376,7 +376,7 @@ public class DayParkMap implements Screen {
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             } else {
                 Random rand = new Random();
-                randNumber = 1;//rand.nextInt(6) + 1;
+                randNumber = 6;//rand.nextInt(6) + 1;
                 System.out.println(randNumber);
                 gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
