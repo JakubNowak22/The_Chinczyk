@@ -1,0 +1,6903 @@
+
+PinkPlayerAnimSheet.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image000
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image001
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image002
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image003
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet5.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image004
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet6.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image005
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet7.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image006
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet8.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image007
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet9.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image008
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet10.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image009
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet11.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image010
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet12.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image011
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet13.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image012
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet14.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image013
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet15.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image014
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet16.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image015
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet17.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image016
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet18.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image017
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet19.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image018
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet20.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image019
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet21.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image020
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet22.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image021
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet23.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image022
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet24.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image023
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet25.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image024
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet26.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image025
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet27.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image026
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet28.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image027
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet29.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image028
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet30.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image029
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet31.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image030
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet32.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image031
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet33.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image032
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet34.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image033
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet35.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image034
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet36.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image035
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet37.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image036
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet38.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image037
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet39.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image038
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet40.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image039
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet41.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image040
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet42.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image041
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet43.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image042
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet44.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image043
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet45.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image044
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet46.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image045
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet47.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image046
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet48.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image047
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet49.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image048
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet50.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image049
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet51.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image050
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet52.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image051
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet53.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image052
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet54.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image053
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet55.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image054
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet56.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image055
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet57.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image056
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet58.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image057
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet59.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image058
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet60.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image059
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet61.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image060
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet62.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image061
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet63.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image062
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet64.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image063
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet65.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image064
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet66.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image065
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet67.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image066
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet68.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image067
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet69.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image068
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet70.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image069
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet71.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image070
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet72.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image071
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet73.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image072
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet74.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image073
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet75.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image074
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet76.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image075
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet77.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image076
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet78.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image077
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet79.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image078
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet80.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image079
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet81.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image080
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet82.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image081
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet83.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image082
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet84.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image083
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet85.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image084
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet86.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image085
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet87.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image086
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet88.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image087
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet89.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image088
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet90.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image089
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet91.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image090
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet92.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image091
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet93.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image092
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet94.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image093
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet95.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image094
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet96.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image095
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet97.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image096
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet98.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image097
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet99.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image098
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet100.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image099
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet101.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image100
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet102.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image101
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet103.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image102
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet104.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image103
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet105.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image104
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet106.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image105
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet107.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image106
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet108.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image107
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet109.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image108
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet110.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image109
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet111.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image110
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet112.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image111
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet113.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image112
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet114.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image113
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet115.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image114
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet116.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image115
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet117.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image116
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet118.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image117
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet119.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image118
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet120.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image119
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet121.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image120
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet122.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image121
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet123.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image122
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet124.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image123
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet125.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image124
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet126.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image125
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet127.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image126
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet128.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image127
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet129.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image128
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet130.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image129
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet131.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image130
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet132.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image131
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet133.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image132
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet134.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image133
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet135.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image134
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet136.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image135
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet137.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image136
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet138.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image137
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet139.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image138
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet140.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image139
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet141.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image140
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet142.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image141
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet143.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image142
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet144.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image143
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet145.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image144
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet146.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image145
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet147.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image146
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet148.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image147
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet149.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image148
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet150.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image149
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet151.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image150
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet152.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image151
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet153.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image152
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet154.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image153
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet155.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image154
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet156.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image155
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet157.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image156
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet158.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image157
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet159.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image158
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet160.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image159
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet161.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image160
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet162.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image161
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet163.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image162
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet164.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image163
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet165.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image164
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet166.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image165
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet167.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image166
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet168.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image167
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet169.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image168
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet170.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image169
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet171.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image170
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet172.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image171
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet173.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image172
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet174.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image173
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet175.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image174
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet176.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image175
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet177.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image176
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet178.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image177
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet179.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image178
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet180.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image179
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet181.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image180
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet182.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image181
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet183.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image182
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet184.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image183
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet185.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image184
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet186.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image185
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet187.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image186
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet188.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image187
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet189.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image188
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet190.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image189
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet191.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image190
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet192.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image191
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet193.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image192
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet194.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image193
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet195.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image194
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet196.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image195
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet197.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image196
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet198.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image197
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet199.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image198
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet200.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image199
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet201.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image200
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet202.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image201
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet203.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image202
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet204.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image203
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet205.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image204
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet206.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image205
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet207.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image206
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet208.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image207
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet209.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image208
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet210.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image209
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet211.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image210
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet212.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image211
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet213.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image212
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet214.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image213
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet215.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image214
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet216.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image215
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet217.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image216
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet218.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image217
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet219.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image218
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet220.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image219
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet221.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image220
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet222.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image221
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet223.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image222
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet224.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image223
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet225.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image224
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet226.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image225
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet227.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image226
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet228.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image227
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet229.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image228
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet230.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image229
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet231.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image230
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet232.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image231
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet233.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image232
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet234.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image233
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet235.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image234
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet236.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image235
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet237.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image236
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet238.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image237
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet239.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image238
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet240.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image239
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet241.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image240
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet242.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image241
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet243.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image242
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet244.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image243
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet245.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image244
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet246.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image245
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet247.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image246
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet248.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image247
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet249.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image248
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet250.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image249
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet251.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image250
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet252.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image251
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet253.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image252
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet254.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image253
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet255.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image254
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet256.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image255
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet257.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image256
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet258.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image257
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet259.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image258
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet260.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image259
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet261.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image260
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet262.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image261
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet263.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image262
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet264.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image263
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet265.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image264
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet266.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image265
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet267.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image266
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet268.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image267
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet269.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image268
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet270.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image269
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet271.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image270
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet272.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image271
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet273.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image272
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet274.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image273
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet275.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image274
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet276.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image275
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet277.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image276
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet278.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image277
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet279.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image278
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet280.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image279
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet281.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image280
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet282.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image281
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet283.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image282
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet284.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image283
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet285.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image284
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet286.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image285
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet287.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image286
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet288.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image287
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet289.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image288
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet290.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image289
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet291.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image290
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet292.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image291
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet293.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image292
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet294.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image293
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet295.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image294
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet296.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image295
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet297.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image296
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet298.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image297
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet299.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image298
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet300.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image299
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet301.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image300
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet302.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image301
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet303.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image302
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet304.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image303
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet305.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image304
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet306.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image305
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet307.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image306
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet308.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image307
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet309.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image308
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet310.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image309
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet311.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image310
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet312.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image311
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet313.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image312
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet314.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image313
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet315.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image314
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet316.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image315
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet317.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image316
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet318.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image317
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet319.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image318
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet320.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image319
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet321.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image320
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet322.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image321
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet323.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image322
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet324.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image323
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet325.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image324
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet326.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image325
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet327.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image326
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet328.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image327
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet329.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image328
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet330.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image329
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet331.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image330
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet332.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image331
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet333.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image332
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet334.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image333
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet335.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image334
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet336.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image335
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet337.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image336
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet338.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image337
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet339.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image338
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet340.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image339
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet341.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image340
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet342.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image341
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet343.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image342
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet344.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image343
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet345.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image344
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet346.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image345
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet347.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image346
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet348.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image347
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet349.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image348
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet350.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image349
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet351.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image350
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet352.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image351
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet353.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image352
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet354.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image353
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet355.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image354
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet356.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image355
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet357.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image356
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet358.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image357
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet359.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image358
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet360.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image359
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet361.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image360
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet362.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image361
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet363.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image362
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet364.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image363
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet365.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image364
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet366.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image365
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet367.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image366
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet368.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image367
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet369.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image368
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet370.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image369
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet371.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image370
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet372.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image371
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet373.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image372
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet374.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image373
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet375.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image374
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet376.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image375
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet377.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image376
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet378.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image377
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet379.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image378
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet380.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image379
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet381.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image380
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet382.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image381
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet383.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image382
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet384.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image383
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet385.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image384
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet386.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image385
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet387.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image386
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet388.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image387
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet389.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image388
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet390.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image389
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet391.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image390
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet392.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image391
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet393.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image392
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet394.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image393
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet395.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image394
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet396.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image395
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet397.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image396
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet398.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image397
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet399.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image398
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet400.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image399
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet401.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image400
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet402.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image401
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet403.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image402
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet404.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image403
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet405.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image404
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet406.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image405
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet407.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image406
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet408.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image407
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet409.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image408
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet410.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image409
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet411.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image410
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet412.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image411
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet413.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image412
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet414.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image413
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet415.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image414
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet416.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image415
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet417.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image416
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet418.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image417
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet419.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image418
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet420.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image419
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet421.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image420
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet422.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image421
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet423.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image422
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet424.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image423
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet425.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image424
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet426.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image425
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet427.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image426
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet428.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image427
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet429.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image428
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet430.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image429
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet431.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image430
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet432.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image431
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet433.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image432
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet434.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image433
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet435.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image434
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet436.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image435
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet437.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image436
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet438.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image437
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet439.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image438
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet440.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image439
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet441.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image440
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet442.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image441
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet443.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image442
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet444.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image443
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet445.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image444
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet446.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image445
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet447.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image446
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet448.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image447
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet449.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image448
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet450.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image449
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet451.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image450
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet452.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image451
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet453.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image452
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet454.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image453
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet455.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image454
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet456.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image455
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet457.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image456
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet458.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image457
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet459.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image458
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet460.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image459
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet461.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image460
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet462.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image461
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet463.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image462
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet464.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image463
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet465.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image464
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet466.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image465
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet467.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image466
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet468.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image467
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet469.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image468
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet470.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image469
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet471.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image470
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet472.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image471
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet473.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image472
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet474.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image473
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet475.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image474
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet476.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image475
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet477.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image476
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet478.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image477
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet479.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image478
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet480.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image479
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet481.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image480
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet482.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image481
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet483.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image482
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet484.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image483
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet485.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image484
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet486.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image485
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet487.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image486
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet488.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image487
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet489.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image488
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet490.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image489
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet491.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image490
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet492.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image491
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet493.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image492
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet494.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image493
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet495.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image494
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet496.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image495
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet497.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image496
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet498.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image497
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet499.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image498
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet500.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image499
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet501.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image500
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet502.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image501
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet503.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image502
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet504.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image503
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet505.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image504
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet506.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image505
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet507.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image506
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet508.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image507
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet509.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image508
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet510.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image509
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet511.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image510
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet512.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image511
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet513.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image512
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet514.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image513
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet515.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image514
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet516.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image515
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet517.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image516
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet518.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image517
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet519.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image518
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet520.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image519
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet521.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image520
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet522.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image521
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet523.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image522
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet524.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image523
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet525.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image524
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet526.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image525
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet527.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image526
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet528.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image527
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet529.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image528
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet530.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image529
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
+
+PinkPlayerAnimSheet531.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image530
+  rotate: false
+  xy: 2, 2
+  size: 1020, 1020
+  orig: 1020, 1020
+  offset: 0, 0
+  index: -1
