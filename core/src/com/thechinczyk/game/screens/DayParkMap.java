@@ -18,8 +18,9 @@ public class DayParkMap implements Screen {
     Random rand;
     double diceRoll;
 
-    boolean miniGamePlaying;
-    boolean miniGameOutput;
+    boolean[] miniGamePlaying;
+    boolean[] miniGameOutput;
+    MiniGamesTypes miniGameType;
 
     int yellowPawnsInBase;
     int bluePawnsInBase;
@@ -29,6 +30,9 @@ public class DayParkMap implements Screen {
     MiniGame miniGame;
 
     public DayParkMap(MyTheChinczyk game){
+        this.miniGamePlaying = new boolean[3];
+        this.miniGameOutput = new boolean[3];
+        this.miniGameType = MiniGamesTypes.NONE;
         this.game = game;
         this.miniGame = new MiniGame(game.batch, this);
     }
@@ -66,7 +70,7 @@ public class DayParkMap implements Screen {
         }
 
 
-        if (!this.miniGamePlaying) {
+        if (!this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
             //Przykładowa obsługa zmiany ilości pionków w bazie
             if (Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase > 0) {
                 yellowPawnsInBase--;
@@ -119,7 +123,7 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
             //Przykładowa obsługa animacji karty
-            if (!this.miniGameOutput)
+            if (!this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2])
                 drawCardAnim("Hello World!\nSample text, sample tex");
 
             //Obsługa animacji tabliczek oznaczających nową turę
@@ -130,8 +134,12 @@ public class DayParkMap implements Screen {
 
             //Przykładowa obsługa kostki
             drawDiceAnim();
-
         }
+        getInputForMiniGame();
+
+        //Wylosowanie mini-gry Space Invaders
+        drawMathMiniGameMenu("Mini-Game!\nYour game will be...\nMATH MINI GAME");
+
         //Wylosowanie mini-gry Space Invaders
         drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
 
@@ -193,15 +201,17 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput) || (message.equals("Text with reward/punishment\nthat player will receive") && this.miniGameOutput)){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1])){
             //Wysunięcie karty
-            System.out.println("test2");
+           // System.out.println("test2");
             gameTextures.cardAnimStarted = true;
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
-            System.out.println("test");
-            this.miniGameOutput = false;
+            //System.out.println("test");
+            this.miniGameOutput[0] = false;
+            this.miniGameOutput[1] = false;
+            this.miniGameOutput[2] = false;
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
@@ -216,28 +226,49 @@ public class DayParkMap implements Screen {
     }
 
     public void drawSpaceInvadersMiniGameMenu(String message) {
-        if((Gdx.input.isKeyJustPressed(Input.Keys.Z) || gameTextures.cardAnimStarted) && !this.miniGameOutput) {
-            //System.out.println("???");
+        if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
+            System.out.println("???");
             drawCardAnim(message);
-            this.miniGamePlaying = true;
+           // this.miniGamePlaying[0] = true;
         }
-        if (this.miniGamePlaying && !this.gameTextures.cardAnimStarted) {
-            if (!this.miniGame.isLoaded) {
-                this.miniGame.menuSpaceInvaders.loadTextures();
-                this.miniGame.isLoaded = true;
+        if (this.miniGamePlaying[0] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[0]) {
+                this.miniGame.loadTextures(MiniGamesTypes.SPACE_INVADERS);
+                this.miniGame.isLoaded[0] = true;
             }
           //  this.miniGamePlaying = true;
             this.miniGame.menuSpaceInvaders.Draw();
         }
 
-        if (this.miniGameOutput && !this.miniGamePlaying) {
-            drawCardAnim("Text with reward/punishment\nthat player will receive");
+        if (this.miniGameOutput[0] && !this.miniGamePlaying[0]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive1");
         }
 
         /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
             this.miniGameOutput = false; */
+    }
 
+    public void drawMathMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MATH || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[2]) {
+            drawCardAnim(message);
+           // System.out.println("yes");
+           // this.miniGamePlaying[1] = true;
+        }
+        if (this.miniGamePlaying[1] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[1]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MATH);
+                this.miniGame.isLoaded[1] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMath.Draw();
+        }
 
+        if (this.miniGameOutput[1] && !this.miniGamePlaying[1]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive2");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
     }
 
     public void drawWhichPlayersTurnUI(){
@@ -402,10 +433,33 @@ public class DayParkMap implements Screen {
         gameTextures.dayParkTopground.dispose();
     }
 
-    public void unlockMap() {
-        this.miniGamePlaying = false;
-        this.miniGameOutput = true;
+    public void unlockMap(MiniGamesTypes type) {
+        if (type == MiniGamesTypes.SPACE_INVADERS) {
+            this.miniGamePlaying[0] = false;
+            this.miniGameOutput[0] = true;
+        }
+        else if (type == MiniGamesTypes.MATH){
+            this.miniGamePlaying[1] = false;
+            this.miniGameOutput[1] = true;
+        }
+        /*nie NONE else if {
+            this.miniGamePlaying[2] = false;
+            this.miniGameOutput[2] = true;
+        } */
+
     }
+
+    public void getInputForMiniGame() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+            this.miniGamePlaying[0] = true;
+            this.miniGameType = MiniGamesTypes.SPACE_INVADERS;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            this.miniGamePlaying[1] = true;
+            this.miniGameType = MiniGamesTypes.MATH;
+        }
+    }
+
 }
 class GameTextures{
     BitmapFont font;

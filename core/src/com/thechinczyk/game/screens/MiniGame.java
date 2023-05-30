@@ -12,16 +12,28 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
+enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH};
 
 public class MiniGame {
-    public boolean isLoaded;
+    public boolean[] isLoaded;
     public SpaceInvadersMenu menuSpaceInvaders;
+    public MathMiniGameMenu menuMath;
     SpriteBatch spriteBatch;
+    MiniGamesTypes type;
 
     public MiniGame(SpriteBatch spriteBatch, DayParkMap map) {
-        this.isLoaded = false;
+        this.isLoaded = new boolean[3];
         this.spriteBatch = spriteBatch;
         this.menuSpaceInvaders = new SpaceInvadersMenu(this.spriteBatch, map);
+        this.menuMath = new MathMiniGameMenu(this.spriteBatch, map);
+    }
+
+    public void loadTextures(MiniGamesTypes type) {
+        this.type = type;
+        if (type == MiniGamesTypes.SPACE_INVADERS)
+            menuSpaceInvaders.loadTextures();
+        else if (type == MiniGamesTypes.MATH)
+            menuMath.loadTextures();
     }
 
 
@@ -90,7 +102,7 @@ public class MiniGame {
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
                     this.isButtonHTPHovered = false;
                 } else if (Gdx.input.isKeyPressed(Input.Keys.X)) {
-                    this.map.unlockMap();
+                    this.map.unlockMap(MiniGamesTypes.SPACE_INVADERS);
                     this.resetAfterQuit();
                 }
 
@@ -118,13 +130,13 @@ public class MiniGame {
             this.isButtonStartHovered = false;
             this.isButtonHTPHovered = false;
             this.isEnding = false;
-            this.map.unlockMap();
+            this.map.unlockMap(MiniGamesTypes.SPACE_INVADERS);
             this.isStarted = false;
         }
 
         public void Draw() {
             if (!isEnding) {
-                spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 75, Gdx.graphics.getHeight() / 4f - 75, Gdx.graphics.getWidth() / 2f + 150, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 150);
+                spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 50, Gdx.graphics.getHeight() / 4f - 50, Gdx.graphics.getWidth() / 2f + 100, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 100);
                 spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
                 Update();
             }
@@ -179,14 +191,14 @@ public class MiniGame {
             if (this.isButtonEndHovered) {
                 buttonEndHoveredSprite.draw(spriteBatch);
                 if (Gdx.input.isKeyPressed(Input.Keys.G)) {
-                    this.menuSI.map.miniGameOutput = true;
+                    this.menuSI.map.miniGameOutput[0] = true;
                     menuSI.resetAfterQuit();
                 }
             }
         }
 
         public void Draw() {
-            spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 75, Gdx.graphics.getHeight() / 4f - 75, Gdx.graphics.getWidth() / 2f + 150, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 150);
+            spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 50, Gdx.graphics.getHeight() / 4f - 50, Gdx.graphics.getWidth() / 2f + 100, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 100);
             Update();
         }
     }
@@ -407,5 +419,110 @@ public class MiniGame {
             }
 
         }
+    }
+
+    static class MathMiniGameMenu {
+        SpriteBatch spriteBatch;
+        DayParkMap map;
+        MathMiniGame game;
+        MathMiniGameEndMenu endMenu;
+
+        private Texture menuTexture;
+
+        private GameObject buttonStart;
+        private Texture buttonStartHovered;
+        private Sprite buttonStartHoveredSprite;
+        private boolean isButtonStartHovered;
+
+        private GameObject buttonHTP;
+        private Texture buttonHTPHovered;
+        private Sprite buttonHTPHoveredSprite;
+        private boolean isButtonHTPHovered;
+
+        private boolean isStarted;
+        private boolean isLoaded;
+        private boolean isEnding;
+
+        MathMiniGameMenu(SpriteBatch batch, DayParkMap map) {
+            this.spriteBatch = batch;
+            this.isButtonStartHovered = false;
+            this.isButtonHTPHovered = false;
+            this.isStarted = false;
+            this.isLoaded = false;
+            this.isEnding = false;
+            this.map = map;
+        }
+
+        public void loadTextures() {
+            this.menuTexture = new Texture("MathMiniGame/MainMenuBackground.png");
+
+            buttonStartHovered = new Texture("MathMiniGame/ButtonSTARTon.png");
+            buttonStart = new GameObject(buttonStartHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (600 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + +(289 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+
+            buttonHTPHovered = new Texture("MathMiniGame/ButtonHTPon.png");
+            buttonHTP = new GameObject(buttonHTPHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (800 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (75 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+        }
+
+        public void Update() {
+            if (!this.isStarted) {
+                if (Gdx.input.isKeyJustPressed(Input.Keys.S) && !this.isButtonStartHovered) {
+                    this.isButtonStartHovered = true;
+                } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+                    this.isButtonStartHovered = false;
+                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H) && !this.isButtonHTPHovered) {
+                    this.isButtonHTPHovered = true;
+                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
+                    this.isButtonHTPHovered = false;
+                } else if (Gdx.input.isKeyPressed(Input.Keys.X)) {
+                    this.map.unlockMap(MiniGamesTypes.MATH);
+                    this.resetAfterQuit();
+                }
+
+                if (this.isButtonHTPHovered) {
+                    buttonHTPHoveredSprite.draw(spriteBatch);
+                    //if (Gdx.input.isKeyJustPressed(Input.Keys.G))
+                    //Wprowadzenie Instrukcji do gry
+
+                } else if (this.isButtonStartHovered) {
+                    buttonStartHoveredSprite.draw(spriteBatch);
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
+                        //this.game = new MathMiniGame(spriteBatch, this);
+                        isStarted = true;
+                    }
+                }
+            }
+
+           /* if (this.isStarted) {
+                game.Draw();
+            } */
+
+        }
+
+        public void resetAfterQuit() {
+            this.isButtonStartHovered = false;
+            this.isButtonHTPHovered = false;
+            this.isEnding = false;
+            this.map.unlockMap(MiniGamesTypes.MATH);
+            this.isStarted = false;
+        }
+
+        public void Draw() {
+            if (!isEnding) {
+                spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+                Update();
+            }
+          //  else
+            //    this.endMenu.Draw();
+        }
+    }
+
+    static class MathMiniGame {
+
+    }
+
+    static class MathMiniGameEndMenu{
+
     }
 }

@@ -51,12 +51,12 @@ public class MyTheChinczyk extends Game {
 		music.setVolume(0.1f);
 
 
-		ChooseGameSettings = new ChooseGameSettings(this);
+		/*ChooseGameSettings = new ChooseGameSettings(this);
 		MainMenu = new MainMenu(this);
 		MenuLoadingScreen = new MenuLoadingScreen(this);
-		this.setScreen(MainMenu);
+		this.setScreen(MainMenu); */
 
-		//this.setScreen(new DayParkMap(this));
+		this.setScreen(new DayParkMap(this));
 	}
 
 	@Override
