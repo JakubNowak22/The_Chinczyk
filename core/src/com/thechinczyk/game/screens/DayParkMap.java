@@ -49,7 +49,7 @@ public class DayParkMap implements Screen {
     public void show() {
         gameTextures = new GameTextures();
         for (int i = 0; i < game.playerCount; i++) {
-            Player player = new Player(i, 0, startPlayerBase[i]);
+            Player player = new Player(i, startPlayerBase[i]);
             Players.add(player);
             if(i==0){
                 player.moveAnimation = gameTextures.yellowPlayerAnim;
@@ -119,6 +119,7 @@ public class DayParkMap implements Screen {
             addPawn(player);
         } else if (player.activePawn >= 1 && player.activePawn <= 4) {
             if (!pawnChoose) {
+                canAnyoneMove(player);
                 managePawns(player);
             } else {
                 changeAnimationPawn(player, pawToChange);
@@ -132,18 +133,30 @@ public class DayParkMap implements Screen {
     private void managePawns(Player player) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[0].active) {
             if (canIMovePawn(player, 0)) {
+                if(player.pawns[0].position + randNumber >= 50){
+                    player.win();
+                }
                 manageParticularPawn(player, 0);
             }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[1].active) {
             if (canIMovePawn(player, 1)) {
+                if(player.pawns[1].position + randNumber >= 50){
+                    player.win();
+                }
                 manageParticularPawn(player, 1);
             }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[2].active) {
             if (canIMovePawn(player, 2)) {
+                if(player.pawns[2].position + randNumber >= 50){
+                    player.win();
+                }
                 manageParticularPawn(player, 2);
             }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[3].active) {
             if (canIMovePawn(player, 3)) {
+                if(player.pawns[3].position + randNumber >= 50){
+                    player.win();
+                }
                 manageParticularPawn(player, 3);
             }
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 6) {
@@ -153,6 +166,22 @@ public class DayParkMap implements Screen {
         }
     }
 
+    private void canAnyoneMove(Player player){
+        int numberOfFalse = 0;
+        for (int i = 0; i < 4;i++){
+            if(!canIMovePawn(player, i) && player.pawns[i].active){
+                numberOfFalse ++;
+            }
+        }
+        if(numberOfFalse == player.activePawn){
+            if(canIAddPawn(player.playerBase)){
+                addPawn(player);
+            }else{
+                setPlayerNumberTurn();
+            }
+            resetFlags();
+        }
+    }
     private boolean canIAddPawn(int playerBase) {
         for (Player player : Players) {
             for (Pawn pawn : player.pawns) {
@@ -164,11 +193,13 @@ public class DayParkMap implements Screen {
         return true;
     }
 
-
     private boolean canIMovePawn(Player player, int x) {
+        if(player.pawns[x].position + randNumber > 53 - player.numbersOfWinPawns){
+            return false;
+        }
         for (Pawn pawn : player.pawns) {
             if (pawn != player.pawns[x] && pawn.active) {
-                if (pawn.positionAtMap == player.pawns[x].positionAtMap + randNumber) {
+                if (pawn.position == player.pawns[x].position + randNumber) {
                     return false;
                 }
             }
@@ -177,7 +208,7 @@ public class DayParkMap implements Screen {
     }
 
     private void manageParticularPawn(Player player, int x) {
-        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber) % 53;
+        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber) % 49;
         player.pawns[x].position += randNumber;
         pawToChange = x;
         pawnChoose = true;
@@ -202,7 +233,7 @@ public class DayParkMap implements Screen {
             if (playerToKill != player) {
                 for (Pawn pawn : playerToKill.pawns) {
                     if (pawn.positionAtMap == player.pawns[pawNumber].positionAtMap &&
-                            player.pawns[pawNumber].positionAtMap < 50) {
+                            player.pawns[pawNumber].position < 50 && pawn.positionAtMap < 50) {
                         pawn.dead();
                         playerToKill.activePawn--;
                     }
@@ -239,7 +270,7 @@ public class DayParkMap implements Screen {
 
     void drawPlayerPawns(Player player) {
         for (int i = 0; i < 4; i++) {
-            if (player.pawns[i].active) {
+            if (player.pawns[i].active || player.pawns[i].win) {
                 drawPawn(player, i);
             }
         }
@@ -296,13 +327,12 @@ public class DayParkMap implements Screen {
         }
     }
 
-    void setPlayerNumberTurn() {
+    public void setPlayerNumberTurn() {
         if (playerNumberTurn < game.playerCount - 1) {
             playerNumberTurn++;
         } else {
             playerNumberTurn = 0;
         }
-        //System.out.println(playerNumberTurn);
     }
 
     public void drawWhichPlayersTurnUI() {
@@ -332,7 +362,10 @@ public class DayParkMap implements Screen {
     }
 
     public void drawWhichPlayersTurnAnim() {
-        if ((turnSignKeyFrame > 0 && turnSignKeyFrame < 40) || (turnSignKeyFrame > 40 && turnSignKeyFrame < 73) || (turnSignKeyFrame > 73 && turnSignKeyFrame < 106) || (turnSignKeyFrame > 106 && turnSignKeyFrame < 139)) {
+        if ((turnSignKeyFrame > 0 && turnSignKeyFrame < 40) ||
+                (turnSignKeyFrame > 40 && turnSignKeyFrame < 73) ||
+                (turnSignKeyFrame > 73 && turnSignKeyFrame < 106) ||
+                (turnSignKeyFrame > 106 && turnSignKeyFrame < 139)) {
             gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
         }
         if (turnSignKeyFrame != 40 && turnSignKeyFrame != 73 && turnSignKeyFrame != 106 && turnSignKeyFrame != 139) {
@@ -366,7 +399,7 @@ public class DayParkMap implements Screen {
         game.batch.draw(gameTextures.yellowBusAnim.getKeyFrame(gameTextures.yellowBusElapsedTime, false), 1015, 0, 905, 1080);
     }
 
-    public void drawDiceAnim() {
+    public void drawDiceAnim() { // losuje liczbe oraz wyświetla animację losowania
         if (Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted) {
             gameTextures.diceAnimStarted = true;
         }
@@ -431,29 +464,46 @@ public class DayParkMap implements Screen {
 
 class Player {
 
-    float playerElapsedTime;
-    int playerNumber;
-    int activePawn;
-    Animation<TextureRegion> moveAnimation;
-    int playerBase;
-
-    Pawn[] pawns = {new Pawn(playerBase),
+    public int [] winsPosition = {0, 0, 0, 0};
+    public int playerNumber;
+    public int activePawn;
+    public Animation<TextureRegion> moveAnimation;
+    public int playerBase;
+    public int numbersOfWinPawns;
+    public Pawn[] pawns = {new Pawn(playerBase),
             new Pawn(playerBase),
             new Pawn(playerBase),
             new Pawn(playerBase)};
-    int numbersOfWinPawns;
 
-    public Player(int playerNumber, float playerElapsedTime, int playerBase) {
-        this.playerElapsedTime = playerElapsedTime;
+    public Player(int playerNumber, int playerBase) {
         this.playerNumber = playerNumber;
         this.playerBase = playerBase;
-        pawns[0].setPlayerElapsedTime(playerElapsedTime);
-        pawns[1].setPlayerElapsedTime(playerElapsedTime);
-        pawns[2].setPlayerElapsedTime(playerElapsedTime);
-        pawns[3].setPlayerElapsedTime(playerElapsedTime);
         activePawn = 0;
         numbersOfWinPawns = 0;
     }
+
+    public void win(){
+        for (int i = 0; i < 4; i++){
+            if(pawns[i].position == 53 && !pawns[i].win){
+                numbersOfWinPawns ++;
+                winsPosition[i] = 1;
+            }
+            if(pawns[i].position == 52 && !pawns[i].win){
+                numbersOfWinPawns ++;
+                winsPosition[i] = 1;
+            }
+            if(pawns[i].position == 51 && !pawns[i].win){
+                numbersOfWinPawns ++;
+                winsPosition[i] = 1;
+            }
+            if(pawns[i].position == 50 && !pawns[i].win){
+                numbersOfWinPawns ++;
+                winsPosition[i] = 1;
+            }
+        }
+        System.out.println("wins " + numbersOfWinPawns);
+    }
+
 }
 
 class Pawn {
@@ -461,15 +511,14 @@ class Pawn {
     public int positionAtMap; // zaczyna się od bazy czyli np zielony ma 7
     public int position;
     boolean active;
+    boolean win;
 
     public Pawn(int position) {
+        this.win = false;
         this.positionAtMap = -1;
         this.position = -1;
         this.active = false;
-    }
-
-    public void setPlayerElapsedTime(float i) {
-        this.playerElapsedTime = i;
+        this.playerElapsedTime = 0;
     }
 
     public void alive(int positionAtMap) {
@@ -482,7 +531,7 @@ class Pawn {
         this.positionAtMap = -1;
         this.position = -1;
         this.active = false;
-        playerElapsedTime = 0;//będzie 0 przypisywane gdy dostanę każdą animację
+        this.playerElapsedTime = 0;//będzie 0 przypisywane gdy dostanę każdą animację
     }
 }
 
