@@ -412,6 +412,9 @@ public class DayParkMap implements Screen {
         gameTextures.cardAtlas.dispose();
         gameTextures.yellowBusAtlas.dispose();
         gameTextures.yellowPlayerAtlas.dispose();
+        gameTextures.pinkPlayerAtlas.dispose();
+        gameTextures.bluePlayerAtlas.dispose();
+        gameTextures.greenPlayerAtlas.dispose();
         gameTextures.diceAtlas.dispose();
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
