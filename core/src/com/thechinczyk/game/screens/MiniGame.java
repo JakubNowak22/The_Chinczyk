@@ -45,9 +45,9 @@ public class MiniGame {
         cardSprite = spriteInit(cardTexture, 435, -115, 1024,1024);
     }
 
-    public static void displayInstructionHTP(String instruction, DayParkMap map) {
+    public static void displayInstructionHTP(String instruction, DayParkMap map, float scale) {
         cardSprite.draw(spriteBatch);
-        map.gameTextures.font.getData().setScale(0.25f, 0.25f);
+        map.gameTextures.font.getData().setScale(scale, scale);
         map.gameTextures.font.draw(spriteBatch, instruction, 660, 710, 600, Align.center, true);
         map.gameTextures.font.getData().setScale(0.3f, 0.3f);
     }
@@ -129,7 +129,7 @@ public class MiniGame {
                         MiniGame.displayInstructionHTP("In this mini-game, you control rocket. You move horizontal with " +
                                 "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
                                 "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
-                                "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map);
+                                "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map, 0.25f);
                         this.instructionDisplay = true;
                         if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
                             this.instructionDisplay = false;
@@ -457,6 +457,7 @@ public class MiniGame {
         private boolean isStarted;
         private boolean isLoaded;
         private boolean isEnding;
+        private boolean instructionDisplay;
 
         MathMiniGameMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -472,12 +473,12 @@ public class MiniGame {
             this.menuTexture = new Texture("MathMiniGame/MainMenuBackground.png");
 
             buttonStartHovered = new Texture("MathMiniGame/ButtonSTARTon.png");
-            buttonStart = new GameObject(buttonStartHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (600 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + +(289 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonStart = new GameObject(buttonStartHovered, 860, 412, 200, 100);
+            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, 860, 414, 200, 100);
 
             buttonHTPHovered = new Texture("MathMiniGame/ButtonHTPon.png");
-            buttonHTP = new GameObject(buttonHTPHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (800 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (75 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonHTP = new GameObject(buttonHTPHovered, 860, 307, 200, 100);
+            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, 860, 307, 200, 100);
         }
 
         public void Update() {
@@ -497,8 +498,19 @@ public class MiniGame {
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    //if (Gdx.input.isKeyJustPressed(Input.Keys.G))
-                    //Wprowadzenie Instrukcji do gry
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
+                        MiniGame.displayInstructionHTP("In this mini-game, you get random mathematical operation. You " +
+                                "have to type exact result, unless you get division - " +
+                                "it is integer division (e.g 5/2 = 2). " +
+                                "You have 15 seconds to solve it, but if you finish earlier, " +
+                                "you can use ENTER to end mini-game. If the answer is correct and " +
+                                "you finished under 10 seconds, your reward will be better.", this.map, 0.25f);
+                        this.instructionDisplay = true;
+                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
+                            this.instructionDisplay = false;
+                            this.isButtonHTPHovered = false;
+                        }
+                    }
 
                 } else if (this.isButtonStartHovered) {
                     buttonStartHoveredSprite.draw(spriteBatch);
@@ -525,7 +537,7 @@ public class MiniGame {
 
         public void Draw() {
             if (!isEnding) {
-                spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+                spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
                 Update();
             }
             else
@@ -565,14 +577,14 @@ public class MiniGame {
             this.timer = 0;
             this.timeSeconds = 1;
             this.numberCounter = 0;
-            this.operation = random.nextInt(3);
+            this.operation = random.nextInt(4);
             this.number1 = 100 + random.nextInt(1000);
             if (this.operation == 0) {
                 this.number2 = 100 + random.nextInt(1000);
                 this.expectedResult = this.number1 + this.number2;
             }
             else if (this.operation == 1) {
-                this.number2 = random.nextInt(this.number1);
+                this.number2 = 1 + random.nextInt(this.number1-2);
                 this.expectedResult = this.number1 - this.number2;
             }
             else if (this.operation == 2) {
@@ -615,25 +627,25 @@ public class MiniGame {
 
         public void texturesToSprites() {
             if (this.operation == 0)
-                this.signSprite = spriteInit(this.addSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+                this.signSprite = spriteInit(this.addSign, 960 - SIZE / 2f, 640 - SIZE / 2f, SIZE, SIZE);
             else if (this.operation == 1)
-                this.signSprite = spriteInit(this.subSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+                this.signSprite = spriteInit(this.subSign, 960 - SIZE / 2f, 640 - SIZE / 2f, SIZE, SIZE);
             else if (this.operation == 2)
-                this.signSprite = spriteInit(this.mulSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+                this.signSprite = spriteInit(this.mulSign, 960 - SIZE / 2f, 640 - SIZE / 2f, SIZE, SIZE);
             else
-                this.signSprite = spriteInit(this.divSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f + 100 - SIZE / 2f, SIZE, SIZE);
+                this.signSprite = spriteInit(this.divSign, 960 - SIZE / 2f, 640 - SIZE / 2f, SIZE, SIZE);
 
-            this.eqSignSprite = spriteInit(this.eqSign, Gdx.graphics.getWidth() / 2f - SIZE / 2f, Gdx.graphics.getHeight() / 2f - SIZE / 2f, SIZE, SIZE);
+            this.eqSignSprite = spriteInit(this.eqSign, 960 - SIZE / 2f, 540 - SIZE / 2f, SIZE, SIZE);
 
             for (int i = 0; i < 4; i++) {
-                this.number1Sprite[i] = spriteInit(this.numbers[number1Array[i]], Gdx.graphics.getWidth() / 2f - (4 - i) * (NUMBER_SIZE / 2f + 10) - 50, Gdx.graphics.getHeight() / 2f - SIZE / 2f + 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
-                this.number2Sprite[i] = spriteInit(this.numbers[number2Array[i]], Gdx.graphics.getWidth() / 2f + i * (NUMBER_SIZE / 2f + 10) + 50, Gdx.graphics.getHeight() / 2f - SIZE / 2f + 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
+                this.number1Sprite[i] = spriteInit(this.numbers[number1Array[i]], 960 - (4 - i) * (NUMBER_SIZE / 2f + 10) - 50, 700 - SIZE / 2f, NUMBER_SIZE / 2f, NUMBER_SIZE);
+                this.number2Sprite[i] = spriteInit(this.numbers[number2Array[i]], 960 + i * (NUMBER_SIZE / 2f + 10) + 50, 700 - SIZE / 2f, NUMBER_SIZE / 2f, NUMBER_SIZE);
             }
         }
 
         public void refreshResultSprites() {
             for (int i = 0; i<this.numberCounter; i++) {
-                this.resultSprite[i] = spriteInit(this.numbers[(this.playerResult/(i==0 ? 1 : (int)Math.pow(10,i)))%10], Gdx.graphics.getWidth() / 2f + (2 - i) * (NUMBER_SIZE / 2f + 10) - NUMBER_SIZE/4f, Gdx.graphics.getHeight() / 2f - 160, NUMBER_SIZE / 2f, NUMBER_SIZE);
+                this.resultSprite[i] = spriteInit(this.numbers[(this.playerResult/(i==0 ? 1 : (int)Math.pow(10,i)))%10], 960 + (2 - i) * (NUMBER_SIZE / 2f + 10) - NUMBER_SIZE/4f, 380, NUMBER_SIZE / 2f, NUMBER_SIZE);
             }
         }
 
@@ -647,14 +659,16 @@ public class MiniGame {
         }
 
         public void Draw() {
-            spriteBatch.draw(this.gameTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
-            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3*Gdx.graphics.getWidth()/4f - 40, 3*Gdx.graphics.getHeight()/4f - 20);
+            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1400, 790);
             this.eqSignSprite.draw(this.spriteBatch);
             this.signSprite.draw(this.spriteBatch);
             for (int i = 0; i<4; i++) {
-                this.number1Sprite[i].draw(this.spriteBatch);
-                this.number2Sprite[i].draw(this.spriteBatch);
+                if (this.number1/Math.pow(10, 3-i) >= 1)
+                    this.number1Sprite[i].draw(this.spriteBatch);
+                if (this.number2/Math.pow(10, 3-i) >= 1)
+                    this.number2Sprite[i].draw(this.spriteBatch);
             }
             for (int i = 0; i<this.numberCounter; i++)
                 this.resultSprite[i].draw(this.spriteBatch);
@@ -667,7 +681,7 @@ public class MiniGame {
                 timeSeconds ++;
             }
 
-            System.out.println(this.playerResult);
+            System.out.println(this.expectedResult + " " + this.playerResult + " " + this.number2/Math.pow(10, 3));
             if (numberCounter < 5) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
                     this.playerResult *= 10;
@@ -724,8 +738,7 @@ public class MiniGame {
             }
             refreshResultSprites();
 
-            if (/*this.timeSeconds == 11 */ (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
-                //reset wszystkiego w grze, menu glownym i na planszy
+            if (this.timeSeconds == 16  || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 this.menuMMG.isStarted = false;
                 this.menuMMG.endMenu = new MathMiniGameEndMenu(this.spriteBatch, this.expectedResult == this.playerResult, this.timeSeconds,  this.menuMMG ,this);
                 this.menuMMG.isEnding = true;
@@ -734,7 +747,6 @@ public class MiniGame {
             if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
                 menuMMG.resetAfterQuit();
             }
-
         }
     }
 
@@ -768,16 +780,12 @@ public class MiniGame {
                 this.menuTexture = new Texture("MathMiniGame/BackgroundEndGameWrong.png");
 
             buttonEndHovered = new Texture("MathMiniGame/ButtonEXIT_on.png");
-            buttonEnd = new GameObject(buttonEndHovered, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f + (850 / (1920/(Gdx.graphics.getWidth()/2f))), 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
-            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, Gdx.graphics.getWidth()/4f + (760 / (1920/(Gdx.graphics.getWidth()/2f))), Gdx.graphics.getHeight()/4f + (30 / (1920/(Gdx.graphics.getWidth()/2f))) , 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+            buttonEnd = new GameObject(buttonEndHovered, 860, 308, 200, 100);
+            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, 860, 308 , 200, 100);
         }
 
         public void Update() {
-            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f, Gdx.graphics.getWidth()/2f, 1080 / (1920/(Gdx.graphics.getWidth()/2f)));
-            /*if (this.result < 10)
-                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*20, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
-            else
-                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*30, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180); */
+            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
                 this.isButtonEndHovered = true;
@@ -820,6 +828,7 @@ public class MiniGame {
         private boolean isStarted;
         private boolean isLoaded;
         private boolean isEnding;
+        private boolean instructionDisplay;
 
         MemoryMiniGameMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -835,12 +844,12 @@ public class MiniGame {
             this.menuTexture = new Texture("MemoryMiniGame/MainMenuBackground.png");
 
             buttonStartHovered = new Texture("MemoryMiniGame/ButtonSTARTon.png");
-            buttonStart = new GameObject(buttonStartHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (600 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (257 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonStart = new GameObject(buttonStartHovered, 860, 398, 200, 100);
+            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, 860, 398, 200, 100);
 
             buttonHTPHovered = new Texture("MemoryMiniGame/ButtonHTPon.png");
-            buttonHTP = new GameObject(buttonHTPHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (800 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (40 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonHTP = new GameObject(buttonHTPHovered, 860, 290, 200, 100);
+            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, 860, 290, 200, 100);
         }
 
         public void Update() {
@@ -860,8 +869,18 @@ public class MiniGame {
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    //if (Gdx.input.isKeyJustPressed(Input.Keys.G))
-                    //Wprowadzenie Instrukcji do gry
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
+                        MiniGame.displayInstructionHTP("In this mini-game, you will be shown path of four colors. You have " +
+                                "seconds to remember it, and then, you have 10 seconds to repeat " +
+                                "this path by using NUMBER KEYS and BACKSPACE. If the answer is " +
+                                "correct and you finished in under 7 seconds, " +
+                                "your reward will be better.", this.map, 0.25f);
+                        this.instructionDisplay = true;
+                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
+                            this.instructionDisplay = false;
+                            this.isButtonHTPHovered = false;
+                        }
+                    }
 
                 } else if (this.isButtonStartHovered) {
                     buttonStartHoveredSprite.draw(spriteBatch);
@@ -888,7 +907,7 @@ public class MiniGame {
 
         public void Draw() {
             if (!isEnding) {
-                spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+                spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
                 Update();
             }
             else
@@ -911,7 +930,7 @@ public class MiniGame {
 
         private GameObject[][] colorsBoxGameObjects;
         private Sprite[][] colorsBoxSprites;
-        private Texture[] colors;
+        private Texture[] colors, colorsWithNumbers;
         private Texture emptyColor;
         private Sprite signSprite, eqSignSprite;
         private Sprite[] chooseColor, gameColors;
@@ -957,12 +976,12 @@ public class MiniGame {
 
         public void texturesToSprites() {
             for (int i = 0; i < 4; i++) {
-                this.gameColors[i] = spriteInit(this.colors[this.generatedNumbers[i]], Gdx.graphics.getWidth() / 2f - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, Gdx.graphics.getHeight() / 2f - 3*SIZE/2f, SIZE, SIZE);
+                this.gameColors[i] = spriteInit(this.colors[this.generatedNumbers[i]], 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
             }
             for (int w = 0; w<3; w++) {
                 for (int k = 0; k<3; k++) {
-                    this.colorsBoxSprites[w][k] = spriteInit(this.colors[w*3 + k], Gdx.graphics.getWidth() / 2f - (1-k) * BOX_SIZE - BOX_SIZE/2f,3*(Gdx.graphics.getHeight() / 4f) - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
-                    this.colorsBoxGameObjects[w][k] = new GameObject(this.colors[w*3 + k], Gdx.graphics.getWidth() / 2f - (1-k) * BOX_SIZE - BOX_SIZE/2f,3*(Gdx.graphics.getHeight() / 4f) - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
+                    this.colorsBoxSprites[w][k] = spriteInit(this.colors[w*3 + k], 960 - (1-k) * BOX_SIZE - BOX_SIZE/2f,810 - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
+                    this.colorsBoxGameObjects[w][k] = new GameObject(this.colors[w*3 + k], 960 - (1-k) * BOX_SIZE - BOX_SIZE/2f,810 - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
                 }
             }
         }
@@ -970,31 +989,22 @@ public class MiniGame {
 
          public void refreshResultSprite(int color) {
             if (color == -1)
-                this.gameColors[this.numberCounter] = spriteInit(this.emptyColor, Gdx.graphics.getWidth() / 2f - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, Gdx.graphics.getHeight() / 2f - 3*SIZE/2f, SIZE, SIZE);
+                this.gameColors[this.numberCounter] = spriteInit(this.emptyColor, 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
             else
-                this.gameColors[this.numberCounter] = spriteInit(this.colors[color], Gdx.graphics.getWidth() / 2f - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, Gdx.graphics.getHeight() / 2f - 3*SIZE/2f, SIZE, SIZE);
+                this.gameColors[this.numberCounter] = spriteInit(this.colors[color], 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
 
              this.playerNumbers[this.numberCounter] = color;
         }
 
-        public void displayColorBox() {
-            for (int w = 0; w<3; w++) {
-                for (int k = 0; k<3; k++) {
-                    this.colorsBoxSprites[w][k].draw(this.spriteBatch);
-                }
-            }
-        }
-
         public void Draw() {
             if (timeSeconds < 5)
-                spriteBatch.draw(this.gameTexture1, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            else {
-                spriteBatch.draw(this.gameTexture2, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-                displayColorBox();
-            }
+                spriteBatch.draw(this.gameTexture1, 480, 270, 960, 540);
+            else
+                spriteBatch.draw(this.gameTexture2, 480, 270, 960, 540);
+
 
             this.Update(Gdx.graphics.getDeltaTime());
-            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3 * Gdx.graphics.getWidth() / 4f - 40, 3 * Gdx.graphics.getHeight() / 4f - 20);
+            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1400, 790);
             for (int i = 0; i < 4; i++) {
                 this.gameColors[i].draw(this.spriteBatch);
             }
@@ -1007,11 +1017,9 @@ public class MiniGame {
                 timeSeconds ++;
                 if (timeSeconds == 5) {
                     for (int i = 0; i<4; i++)
-                        this.gameColors[i] = spriteInit(this.emptyColor, Gdx.graphics.getWidth() / 2f - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, Gdx.graphics.getHeight() / 2f - 3*SIZE/2f, SIZE, SIZE);
+                        this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
                 }
             }
-
-            System.out.println(this.numberCounter);
 
             if (numberCounter < 4 && timeSeconds >= 5) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
@@ -1055,8 +1063,7 @@ public class MiniGame {
                 refreshResultSprite(-1);
             }
 
-            if (/*this.timeSeconds == 11 */ (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
-                //reset wszystkiego w grze, menu glownym i na planszy
+            if (this.timeSeconds == 16 || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 boolean check = true;
                 for (int i = 0; i<4; i++) {
                     if (this.playerNumbers[i]!=this.generatedNumbers[i]) {
@@ -1068,11 +1075,6 @@ public class MiniGame {
                 this.menuMemory.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check,  this.menuMemory,this);
                 this.menuMemory.isEnding = true;
             }
-
-            if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
-                menuMemory.resetAfterQuit();
-            }
-
         }
     }
 
@@ -1104,12 +1106,12 @@ public class MiniGame {
                 this.menuTexture = new Texture("MemoryMiniGame/BackgroundEndGameWrong.png");
 
             buttonEndHovered = new Texture("MemoryMiniGame/ButtonEXITon.png");
-            buttonEnd = new GameObject(buttonEndHovered, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f + (850 / (1920/(Gdx.graphics.getWidth()/2f))), 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
-            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, Gdx.graphics.getWidth()/4f + (760 / (1920/(Gdx.graphics.getWidth()/2f))), Gdx.graphics.getHeight()/4f + (38 / (1920/(Gdx.graphics.getWidth()/2f))) , 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+            buttonEnd = new GameObject(buttonEndHovered, 860, 289, 200, 100);
+            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, 860, 289 , 200, 100);
         }
 
         public void Update() {
-            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f, Gdx.graphics.getWidth()/2f, 1080 / (1920/(Gdx.graphics.getWidth()/2f)));
+            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
                 this.isButtonEndHovered = true;
