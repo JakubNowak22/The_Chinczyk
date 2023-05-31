@@ -272,6 +272,9 @@ public class DayParkMap implements Screen {
         pawToChange = x;
         pawnChoose = true;
     }
+    public void bus(){}
+
+
 
     private void addPawn(Player player) {
         if (player.activePawn <= 4) {
