@@ -243,7 +243,7 @@ public class DayParkMap implements Screen {
     }
 
     private void manageParticularPawn(Player player, int x) {
-        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber) % 50;
+        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber) % 49;
         player.pawns[x].position += randNumber;
         pawToChange = x;
         pawnChoose = true;
@@ -255,6 +255,7 @@ public class DayParkMap implements Screen {
                 if (!player.pawns[i].active) {
                     player.activePawn++;
                     player.pawns[i].alive(player.playerBase);
+                    killSomebody(player, i);
                     player.pawnsInBase--;
                     break;
                 }
@@ -268,6 +269,7 @@ public class DayParkMap implements Screen {
         for (Player playerToKill : Players) {
             if (playerToKill != player) {
                 for (Pawn pawn : playerToKill.pawns) {
+                    System.out.println("pos: " + pawn.positionAtMap + " " + player.pawns[pawNumber].positionAtMap);
                     if (pawn.positionAtMap == player.pawns[pawNumber].positionAtMap &&
                             player.pawns[pawNumber].position < 50 && pawn.position < 50) {
                         pawn.dead();
@@ -447,7 +449,7 @@ public class DayParkMap implements Screen {
                 throwDice = true;
             }
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){*/
-                randNumber = 6;//rand.nextInt(6) + 1;
+                randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
                 System.out.println(randNumber);
             gameTextures.diceAnimStarted = false;
