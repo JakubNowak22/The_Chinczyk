@@ -92,21 +92,15 @@ class GameTextures{
 
         yellowPlayerAtlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
         yellowPlayerAnim = new Animation<TextureRegion>(1f/30f, yellowPlayerAtlas.getRegions());
-        //yellowPlayerElapsedTime = 0f;
-        //yellowPlayerAnimStarted = 0;
 
         bluePlayerAtlas = new TextureAtlas("Map1/BluePlayerAnimSheet/BluePlayerAnimSheet.atlas");
         bluePlayerAnim = new Animation<TextureRegion>(1f/30f, bluePlayerAtlas.getRegions());
-        //bluePlayerElapsedTime = 0f;
-        //bluePlayerAnimStarted = 0;
 
         greenPlayerAtlas = new TextureAtlas("Map1/GreenPlayerAnimSheet/GreenPlayerAnimSheet.atlas");
         greenPlayerAnim = new Animation<TextureRegion>(1f/30f, greenPlayerAtlas.getRegions());
-        //greenPlayer1ElapsedTime = 0f;
 
         pinkPlayerAtlas = new TextureAtlas("Map1/PinkPlayerAnimSheet/PinkPlayerAnimSheet.atlas");
         pinkPlayerAnim = new Animation<TextureRegion>(1f/30f, pinkPlayerAtlas.getRegions());
-        //pinkPlayer1ElapsedTime = 0f;
 
         yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
         yellowBase2= new Texture("Map1/Base/Base_Yellow2.png");
