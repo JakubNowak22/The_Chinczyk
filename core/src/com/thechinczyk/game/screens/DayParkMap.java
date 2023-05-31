@@ -3,9 +3,11 @@ package com.thechinczyk.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
 
@@ -223,9 +225,9 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.cardAnim.getKeyFrame(gameTextures.cardElapsedTime, false), 304, 71, 1270, 938);
             if(gameTextures.cardElapsedTime>1.5f){
                 //Pojawienie się tekstu w momencie gdy karta się obraca
-                gameTextures.font.draw(game.batch, message, 750, 600);
+                gameTextures.font.draw(game.batch, message, 660, 740, 600, Align.center, true);
+                }
             }
-        }
     }
 
     public void drawSpaceInvadersMiniGameMenu(String message) {

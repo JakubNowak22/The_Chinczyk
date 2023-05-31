@@ -1,6 +1,7 @@
 package com.thechinczyk.game.screens;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.utils.Align;
 import com.thechinczyk.game.GameObject;
 
 import com.badlogic.gdx.Gdx;
@@ -19,15 +20,17 @@ public class MiniGame {
     public SpaceInvadersMenu menuSpaceInvaders;
     public MathMiniGameMenu menuMath;
     public MemoryMiniGameMenu menuMemory;
-    SpriteBatch spriteBatch;
+    private static Texture cardTexture;
+    private static Sprite cardSprite;
+    static SpriteBatch spriteBatch;
     MiniGamesTypes type;
 
-    public MiniGame(SpriteBatch spriteBatch, DayParkMap map) {
+    public MiniGame(SpriteBatch spriteBatchp, DayParkMap map) {
         this.isLoaded = new boolean[3];
-        this.spriteBatch = spriteBatch;
-        this.menuSpaceInvaders = new SpaceInvadersMenu(this.spriteBatch, map);
-        this.menuMath = new MathMiniGameMenu(this.spriteBatch, map);
-        this.menuMemory = new MemoryMiniGameMenu(this.spriteBatch, map);
+        spriteBatch = spriteBatchp;
+        this.menuSpaceInvaders = new SpaceInvadersMenu(spriteBatch, map);
+        this.menuMath = new MathMiniGameMenu(spriteBatch, map);
+        this.menuMemory = new MemoryMiniGameMenu(spriteBatch, map);
     }
 
     public void loadTextures(MiniGamesTypes type) {
@@ -38,8 +41,16 @@ public class MiniGame {
             menuMath.loadTextures();
         else if (type == MiniGamesTypes.MEMORY)
             menuMemory.loadTextures();
+        cardTexture = new Texture("Map1/CardAnimSheet/CardAnimSheet46.png");
+        cardSprite = spriteInit(cardTexture, 435, -115, 1024,1024);
     }
 
+    public static void displayInstructionHTP(String instruction, DayParkMap map) {
+        cardSprite.draw(spriteBatch);
+        map.gameTextures.font.getData().setScale(0.25f, 0.25f);
+        map.gameTextures.font.draw(spriteBatch, instruction, 660, 710, 600, Align.center, true);
+        map.gameTextures.font.getData().setScale(0.3f, 0.3f);
+    }
 
     //wykorzystać metodę z innej klasy
     public static Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
@@ -68,9 +79,11 @@ public class MiniGame {
         private Sprite buttonHTPHoveredSprite;
         private boolean isButtonHTPHovered;
 
+
         private boolean isStarted;
         private boolean isLoaded;
         private boolean isEnding;
+        private boolean instructionDisplay;
 
         SpaceInvadersMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -87,12 +100,12 @@ public class MiniGame {
             this.backTexture = new Texture("SpaceInvadersMiniGame/MiniGame_Edge.png");
 
             buttonStartHovered = new Texture("SpaceInvadersMiniGame/ButtonSTARTon.png");
-            buttonStart = new GameObject(buttonStartHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (642 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + +(256 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonStart = new GameObject(buttonStartHovered, 860, 270, 200, 100);
+            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, 860, 270 + 128, 200, 100);
 
             buttonHTPHovered = new Texture("SpaceInvadersMiniGame/ButtonHTPon.png");
-            buttonHTP = new GameObject(buttonHTPHovered, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f + (850 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
-            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, Gdx.graphics.getWidth() / 4f + (760 / (1920 / (Gdx.graphics.getWidth() / 2f))), Gdx.graphics.getHeight() / 4f + (30 / (1920 / (Gdx.graphics.getWidth() / 2f))), 400 / (1920 / (Gdx.graphics.getWidth() / 2f)), 200 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            buttonHTP = new GameObject(buttonHTPHovered, 860, 285, 200, 100);
+            buttonHTPHoveredSprite = spriteInit(this.buttonHTPHovered, 860, 285, 200, 100);
         }
 
         public void Update() {
@@ -112,8 +125,17 @@ public class MiniGame {
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    //if (Gdx.input.isKeyJustPressed(Input.Keys.G))
-                    //Wprowadzenie Instrukcji do gry
+                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
+                        MiniGame.displayInstructionHTP("In this mini-game, you control rocket. You move horizontal with " +
+                                "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
+                                "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
+                                "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map);
+                        this.instructionDisplay = true;
+                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
+                            this.instructionDisplay = false;
+                            this.isButtonHTPHovered = false;
+                        }
+                    }
 
                 } else if (this.isButtonStartHovered) {
                     buttonStartHoveredSprite.draw(spriteBatch);
@@ -140,8 +162,8 @@ public class MiniGame {
 
         public void Draw() {
             if (!isEnding) {
-                spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 50, Gdx.graphics.getHeight() / 4f - 50, Gdx.graphics.getWidth() / 2f + 100, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 100);
-                spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+                spriteBatch.draw(this.backTexture, 430, 220, 1060, 640);
+                spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
                 Update();
             }
             else
@@ -175,16 +197,16 @@ public class MiniGame {
             this.menuTexture = new Texture("SpaceInvadersMiniGame/EndMenuBackground.png");
 
             buttonEndHovered = new Texture("SpaceInvadersMiniGame/ButtonEXIT_on.png");
-            buttonEnd = new GameObject(buttonEndHovered, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f + (850 / (1920/(Gdx.graphics.getWidth()/2f))), 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
-            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, Gdx.graphics.getWidth()/4f + (760 / (1920/(Gdx.graphics.getWidth()/2f))), Gdx.graphics.getHeight()/4f + (30 / (1920/(Gdx.graphics.getWidth()/2f))) , 400 / (1920/(Gdx.graphics.getWidth()/2f)), 200 / (1920/(Gdx.graphics.getWidth()/2f)));
+            buttonEnd = new GameObject(buttonEndHovered, 860, 285, 200, 100);
+            buttonEndHoveredSprite = spriteInit(this.buttonEndHovered, 860, 285 , 200, 100);
         }
 
         public void Update() {
-            spriteBatch.draw(this.menuTexture, Gdx.graphics.getWidth()/4f, Gdx.graphics.getHeight()/4f, Gdx.graphics.getWidth()/2f, 1080 / (1920/(Gdx.graphics.getWidth()/2f)));
+            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
             if (this.result < 10)
-                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*20, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), 940, 450);
             else
-                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), Gdx.graphics.getWidth()/2f - this.game.rocket.SCALE*30, Gdx.graphics.getHeight()/4f + this.game.rocket.SCALE*180);
+                this.game.font.draw(this.spriteBatch, Integer.toString(this.result), 930, 450);
 
             if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
                 this.isButtonEndHovered = true;
@@ -202,7 +224,7 @@ public class MiniGame {
         }
 
         public void Draw() {
-            spriteBatch.draw(this.backTexture, Gdx.graphics.getWidth() / 4f - 50, Gdx.graphics.getHeight() / 4f - 50, Gdx.graphics.getWidth() / 2f + 100, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)) + 100);
+            spriteBatch.draw(this.backTexture, 430, 220, 1060, 640);
             Update();
         }
     }
@@ -216,25 +238,23 @@ public class MiniGame {
             public Sprite spritePlayer;
             public Sprite[] spriteBullet;
             private SpriteBatch spriteBatch;
-            public final float Y_POS = Gdx.graphics.getHeight() / 4f;
+            public final float Y_POS = 270;
             private final Vector2 BULLET_SIZE = new Vector2(10, 20);
             private final int ROCKET_SIZE = 100;
-            private final float SCALE = ((float) 1920 / Gdx.graphics.getWidth());
-            private final float PLAYER_MOVEMENT_OFFSET = SCALE * 300;
-            private final float MAX_X_POS = 3 * Gdx.graphics.getWidth() / 4f - ROCKET_SIZE * SCALE;
-            private final float MIN_X_POS = Gdx.graphics.getWidth() / 4f;
+            private final float PLAYER_MOVEMENT_OFFSET = 300;
+            private final float MAX_X_POS = 1340;
+            private final float MIN_X_POS = 480;
             private boolean[] showBullet;
             private float[] positionWhenShoot;
             private int nextBullet;
             private int lastShoot;
-            private final float BULLET_MOVEMENT_OFFSET = SCALE * 500;
-            private final float MAX_Y_POS = 3*Gdx.graphics.getHeight()/4f;
+            private final float BULLET_MOVEMENT_OFFSET = 500;
+            private final float MAX_Y_POS = 810;
 
             public Player(SpriteBatch batch) {
                 this.spriteBatch = batch;
                 this.spritePlayer = new Sprite(new Texture("SpaceInvadersMiniGame/PlayerRocket.png"));
                 this.spritePlayer.setSize(ROCKET_SIZE, ROCKET_SIZE);
-                this.spritePlayer.setScale(SCALE);
                 this.spriteBullet = new Sprite[MAX_BULLETS];
                 this.bulletPosition = new float[MAX_BULLETS];
                 this.showBullet = new boolean[MAX_BULLETS];
@@ -243,11 +263,10 @@ public class MiniGame {
                     this.spriteBullet[i] = new Sprite(new Texture("SpaceInvadersMiniGame/Bullet.png"));
                     this.spriteBullet[i].setSize(BULLET_SIZE.x, BULLET_SIZE.y);
                     this.spriteBullet[i].rotate90(true);
-                    this.spriteBullet[i].setScale(SCALE);
                     this.bulletPosition[i] = Y_POS;
                     this.showBullet[i] = false;
                 }
-                this.position = Gdx.graphics.getWidth() / 2f - SCALE * 50;
+                this.position = 910;
                 this.nextBullet = 0;
             }
 
@@ -258,7 +277,7 @@ public class MiniGame {
                     this.position += deltatime * PLAYER_MOVEMENT_OFFSET;
 
                 if (Gdx.input.isKeyPressed(Input.Keys.UP) && this.nextBullet < 3) {
-                    this.positionWhenShoot[this.nextBullet] = this.position + ROCKET_SIZE*SCALE/2 - BULLET_SIZE.x*SCALE/2;
+                    this.positionWhenShoot[this.nextBullet] = this.position + ROCKET_SIZE/2f - BULLET_SIZE.x/2f;
                     this.bulletPosition[this.nextBullet] = Y_POS;
                     this.showBullet[this.nextBullet] = true;
                     this.lastShoot = this.nextBullet;
@@ -273,7 +292,7 @@ public class MiniGame {
                 for (int i = 0; i<3; i++) {
                     if (this.showBullet[i]) {
                         this.bulletPosition[i] += deltatime * BULLET_MOVEMENT_OFFSET;
-                        if (this.nextBullet == 3 && this.lastShoot == i && this.bulletPosition[i] >= 3*Gdx.graphics.getHeight()/7f)
+                        if (this.nextBullet == 3 && this.lastShoot == i && this.bulletPosition[i] >= 462)
                             this.nextBullet = i==2 ? 0 : (i+1);
 
 
@@ -300,21 +319,19 @@ public class MiniGame {
             private Vector2 position;
             public Sprite spriteEnemy;
             private SpriteBatch spriteBatch;
-            private final float SCALE = ((float) 1920 / Gdx.graphics.getWidth());
             private final int ENEMY_SIZE = 60;
-            private final float ENEMY_POSITION_OFFSET = 10*SCALE;
-            public final float MIN_Y_POS = Gdx.graphics.getHeight()/2f - ENEMY_SIZE + ENEMY_POSITION_OFFSET;
+            private final float ENEMY_POSITION_OFFSET = 10;
+            public final float MIN_Y_POS = 540 - ENEMY_SIZE + ENEMY_POSITION_OFFSET;
             private boolean toDraw;
             private static boolean leftDir, dirToChange;
-            private final float MIN_X_POS = Gdx.graphics.getWidth()/4f + 2.1f*ENEMY_SIZE;
-            private final float ENEMY_MOVEMENT_SPEED = SCALE * 100;
+            private final float MIN_X_POS = 480 + 2.1f*ENEMY_SIZE;
+            private final float ENEMY_MOVEMENT_SPEED = 100;
 
             public Enemy(SpriteBatch batch, int rowNumber, int columnNumber, boolean toDraw) {
                 this.spriteBatch = batch;
                 this.spriteEnemy = new Sprite(new Texture("SpaceInvadersMiniGame/Enemy.png"));
                 this.spriteEnemy.setSize((487/321f)*ENEMY_SIZE,ENEMY_SIZE);
-                this.spriteEnemy.setScale(SCALE);
-                this.position = new Vector2(MIN_X_POS + ((487/321f)*ENEMY_SIZE*SCALE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
+                this.position = new Vector2(MIN_X_POS + ((487/321f)*ENEMY_SIZE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
                 this.toDraw = toDraw;
                 spriteEnemy.setPosition(this.position.x, this.position.y);
             }
@@ -327,7 +344,7 @@ public class MiniGame {
 
                 spriteEnemy.setPosition(this.position.x, this.position.y);
 
-                if (this.position.x >= 3*Gdx.graphics.getWidth()/4f - (487/321f)*ENEMY_SIZE || this.position.x <= Gdx.graphics.getWidth()/4f)
+                if (this.position.x >= 1440 - (487/321f)*ENEMY_SIZE || this.position.x <= 480)
                     Enemy.dirToChange = true;
             }
 
@@ -379,10 +396,10 @@ public class MiniGame {
         }
 
         public void Draw() {
-            spriteBatch.draw(this.gameTexture, Gdx.graphics.getWidth() / 4f, Gdx.graphics.getHeight() / 4f, Gdx.graphics.getWidth() / 2f, 1080 / (1920 / (Gdx.graphics.getWidth() / 2f)));
+            spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
-            this.font.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), Gdx.graphics.getWidth()/4f + 20, 3*Gdx.graphics.getHeight()/4f - 20);
-            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 3*Gdx.graphics.getWidth()/4f - 40, 3*Gdx.graphics.getHeight()/4f - 20);
+            this.font.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), 500, 790);
+            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1400, 790);
         }
 
         public void Update(float deltatime) {
@@ -411,17 +428,11 @@ public class MiniGame {
                 timeSeconds ++;
             }
 
-            if (this.eliminatedEnemies == 14 || this.timeSeconds == 11) {
-                //reset wszystkiego w grze, menu glownym i na planszy
+            if (this.eliminatedEnemies == 14 /*|| this.timeSeconds == 11 */) {
                 this.menuSI.isStarted = false;
                 this.menuSI.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menuSI, this);
                 this.menuSI.isEnding = true;
             }
-
-            if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
-                menuSI.resetAfterQuit();
-            }
-
         }
     }
 
