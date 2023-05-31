@@ -1,5 +1,6 @@
 package com.thechinczyk.game.screens;
 
+import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -11,6 +12,7 @@ import com.thechinczyk.game.MyTheChinczyk;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.TreeMap;
 
 public class DayParkMap implements Screen {
 
@@ -131,30 +133,61 @@ public class DayParkMap implements Screen {
     }
 
     private void managePawns(Player player) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[0].active) {
-            if (canIMovePawn(player, 0)) {
-                manageParticularPawn(player, 0);
-                if(player.pawns[0].position >= 50){
+        Map<Integer, Integer> map = new TreeMap<>();
+        map.put(player.pawns[0].position, 0);
+        map.put(player.pawns[1].position, 1);
+        map.put(player.pawns[2].position, 2);
+        map.put(player.pawns[3].position, 3);
+        Integer []a = map.values().toArray(new Integer[0]);
+        int first = 0;
+        int second = 0;
+        int third = 0;
+        int fourth = 0;
+        int i = 0;
+        for(int j = a.length - 1; j>=0 ;j--){
+            if(i == 0){
+                first = a[j];
+                i++;
+            }else if(i == 1){
+                second = a[j];
+                i++;
+            }else if(i == 2){
+                third = a[j];
+                i++;
+            }else if(i == 3){
+                fourth = a[j];
+                i++;
+            }
+        }
+
+
+
+
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[first].active) {
+            if (canIMovePawn(player, first)) {
+                manageParticularPawn(player, first);
+                if(player.pawns[first].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[1].active) {
-            if (canIMovePawn(player, 1)) {
-                manageParticularPawn(player, 1);
-                if(player.pawns[1].position >= 50){
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[second].active) {
+            if (canIMovePawn(player, second)) {
+                manageParticularPawn(player, second);
+                if(player.pawns[second].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[2].active) {
-            if (canIMovePawn(player, 2)) {
-                manageParticularPawn(player, 2);
-                if(player.pawns[2].position >= 50){
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[third].active) {
+            if (canIMovePawn(player, third)) {
+                manageParticularPawn(player, third);
+                if(player.pawns[third].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[3].active) {
-            if (canIMovePawn(player, 3)) {
-                manageParticularPawn(player, 3);
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[fourth].active) {
+            if (canIMovePawn(player, fourth)) {
+                manageParticularPawn(player, fourth);
                 if(player.pawns[3].position  >= 50){
                     player.win();
                 }
@@ -233,7 +266,8 @@ public class DayParkMap implements Screen {
             if (playerToKill != player) {
                 for (Pawn pawn : playerToKill.pawns) {
                     if (pawn.positionAtMap == player.pawns[pawNumber].positionAtMap &&
-                            player.pawns[pawNumber].position < 50 && pawn.position < 50) {
+                            player.pawns[pawNumber].position < 50 && pawn.position < 50 &&
+                            player.pawns[pawNumber].position >= 0 && pawn.position >= 0) {
                         pawn.dead();
                         playerToKill.activePawn--;
                     }
@@ -489,21 +523,25 @@ class Player {
                 numbersOfWinPawns ++;
                 winsPosition[i] = 1;
                 pawns[i].win = true;
+                pawns[i].position = -2;
             }
             if(pawns[i].position == 52 && !pawns[i].win && winsPosition[0] == 1){
                 numbersOfWinPawns ++;
                 winsPosition[i] = 1;
                 pawns[i].win = true;
+                pawns[i].position = -2;
             }
             if(pawns[i].position == 51 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1){
                 numbersOfWinPawns ++;
                 winsPosition[i] = 1;
                 pawns[i].win = true;
+                pawns[i].position = -2;
             }
             if(pawns[i].position == 50 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1 && winsPosition[2] == 1){
                 numbersOfWinPawns ++;
                 winsPosition[i] = 1;
                 pawns[i].win = true;
+                pawns[i].position = -2;
             }
         }
         System.out.println("wins " + numbersOfWinPawns);
@@ -513,8 +551,8 @@ class Player {
 
 class Pawn {
     public float playerElapsedTime;
-    public int positionAtMap; // zaczyna się od bazy czyli np zielony ma 7
-    public int position;
+    public int positionAtMap; // zaczyna się od bazy czyli np zielony ma 7 max 49
+    public int position; // uzywane do okreslania czy gracz dotarl do bazy max 53
     boolean active;
     boolean win;
 
