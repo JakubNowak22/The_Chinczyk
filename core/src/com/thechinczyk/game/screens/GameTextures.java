@@ -32,6 +32,23 @@ class GameTextures{
     public Animation<TextureRegion> pinkPlayerAnim;
     //public float pinkPlayerElapsedTime;
 
+    public Texture yellowBase3;
+    public Texture yellowBase2;
+    public Texture yellowBase1;
+    public Texture yellowBase0;
+    public Texture greenBase3;
+    public Texture greenBase2;
+    public Texture greenBase1;
+    public Texture greenBase0;
+    public Texture blueBase3;
+    public Texture blueBase2;
+    public Texture blueBase1;
+    public Texture blueBase0;
+    public Texture pinkBase3;
+    public Texture pinkBase2;
+    public Texture pinkBase1;
+    public Texture pinkBase0;
+
     public TextureAtlas iceCreamAtlas;
     public Animation<TextureRegion> iceCreamAnim;
     public float loopElapsedTime;
@@ -89,6 +106,23 @@ class GameTextures{
         pinkPlayerAtlas = new TextureAtlas("Map1/PinkPlayerAnimSheet/PinkPlayerAnimSheet.atlas");
         pinkPlayerAnim = new Animation<TextureRegion>(1f/30f, pinkPlayerAtlas.getRegions());
         //pinkPlayer1ElapsedTime = 0f;
+
+        yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
+        yellowBase2= new Texture("Map1/Base/Base_Yellow2.png");
+        yellowBase1= new Texture("Map1/Base/Base_Yellow1.png");
+        yellowBase0= new Texture("Map1/Base/Base_Yellow0.png");
+        greenBase3= new Texture("Map1/Base/Base_Green3.png");
+        greenBase2= new Texture("Map1/Base/Base_Green2.png");
+        greenBase1= new Texture("Map1/Base/Base_Green1.png");
+        greenBase0= new Texture("Map1/Base/Base_Green0.png");
+        blueBase3= new Texture("Map1/Base/Base_Blue3.png");
+        blueBase2= new Texture("Map1/Base/Base_Blue2.png");
+        blueBase1= new Texture("Map1/Base/Base_Blue1.png");
+        blueBase0= new Texture("Map1/Base/Base_Blue0.png");
+        pinkBase3= new Texture("Map1/Base/Base_Pink3.png");
+        pinkBase2= new Texture("Map1/Base/Base_Pink2.png");
+        pinkBase1= new Texture("Map1/Base/Base_Pink1.png");
+        pinkBase0= new Texture("Map1/Base/Base_Pink0.png");
 
         iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
         iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());

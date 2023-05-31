@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -55,12 +56,28 @@ public class DayParkMap implements Screen {
             Players.add(player);
             if(i==0){
                 player.moveAnimation = gameTextures.yellowPlayerAnim;
+                player.baseOfPlayer.add(gameTextures.yellowBase0);
+                player.baseOfPlayer.add(gameTextures.yellowBase1);
+                player.baseOfPlayer.add(gameTextures.yellowBase2);
+                player.baseOfPlayer.add(gameTextures.yellowBase3);
             } else if (i==1) {
                 player.moveAnimation = gameTextures.greenPlayerAnim;
+                player.baseOfPlayer.add(gameTextures.greenBase0);
+                player.baseOfPlayer.add(gameTextures.greenBase1);
+                player.baseOfPlayer.add(gameTextures.greenBase2);
+                player.baseOfPlayer.add(gameTextures.greenBase3);
             } else if(i==2){
                 player.moveAnimation = gameTextures.bluePlayerAnim;
+                player.baseOfPlayer.add(gameTextures.blueBase0);
+                player.baseOfPlayer.add(gameTextures.blueBase1);
+                player.baseOfPlayer.add(gameTextures.blueBase2);
+                player.baseOfPlayer.add(gameTextures.blueBase3);
             } else if(i==3){
                 player.moveAnimation = gameTextures.pinkPlayerAnim;
+                player.baseOfPlayer.add(gameTextures.pinkBase0);
+                player.baseOfPlayer.add(gameTextures.pinkBase1);
+                player.baseOfPlayer.add(gameTextures.pinkBase2);
+                player.baseOfPlayer.add(gameTextures.pinkBase3);
             }
         }
         playerNumberTurn = 0;
@@ -82,6 +99,8 @@ public class DayParkMap implements Screen {
 
         drawDice();
 
+        drawBases();
+
         drawPlayers(playerNumberTurn);
         managePlayer(playerNumberTurn);
         //Przykładowa obsługa animacji busa z zółtym pionkiem
@@ -101,6 +120,20 @@ public class DayParkMap implements Screen {
         game.batch.end();
     }
 
+    public void drawBases(){
+        for (int i = 0; i < game.playerCount; i++) {
+            Player player = Players.get(i);
+            drawPlayerBase(player);
+        }
+    }
+
+    public void drawPlayerBase(Player player){
+        for (int i=0;i<4;i++) {
+            if (player.pawnsInBase == i) {
+                game.batch.draw(player.baseOfPlayer.get(i), 810, 365, 300, 350);
+            }
+        }
+    }
 
     void drawPlayers(int playerNumberTurn) {
         for (int i = 0; i < game.playerCount; i++) {
@@ -225,6 +258,7 @@ public class DayParkMap implements Screen {
                 if (!player.pawns[i].active) {
                     player.activePawn++;
                     player.pawns[i].alive(player.playerBase);
+                    player.pawnsInBase--;
                     break;
                 }
             }
@@ -241,6 +275,7 @@ public class DayParkMap implements Screen {
                             player.pawns[pawNumber].position < 50 && pawn.position < 50) {
                         pawn.dead();
                         playerToKill.activePawn--;
+                        playerToKill.pawnsInBase++;
                     }
                 }
             }
@@ -418,7 +453,7 @@ public class DayParkMap implements Screen {
                 throwDice = true;
             }
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){
-                randNumber = rand.nextInt(6) + 1;
+                randNumber = 6;//rand.nextInt(6) + 1;
                 diceRoll = randNumber;
                 System.out.println(randNumber);
             }
@@ -481,6 +516,23 @@ public class DayParkMap implements Screen {
         gameTextures.dice2.dispose();
         gameTextures.dice1.dispose();
 
+        gameTextures.yellowBase3.dispose();
+        gameTextures.yellowBase2.dispose();
+        gameTextures.yellowBase1.dispose();
+        gameTextures.yellowBase0.dispose();
+        gameTextures.greenBase3.dispose();
+        gameTextures.greenBase2.dispose();
+        gameTextures.greenBase1.dispose();
+        gameTextures.greenBase0.dispose();
+        gameTextures.blueBase3.dispose();
+        gameTextures.blueBase2.dispose();
+        gameTextures.blueBase1.dispose();
+        gameTextures.blueBase0.dispose();
+        gameTextures.pinkBase3.dispose();
+        gameTextures.pinkBase2.dispose();
+        gameTextures.pinkBase1.dispose();
+        gameTextures.pinkBase0.dispose();
+
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
 
@@ -501,6 +553,8 @@ class Player {
     public Animation<TextureRegion> moveAnimation;
     public int playerBase;
     public int numbersOfWinPawns;
+    public int pawnsInBase;
+    public ArrayList<Texture> baseOfPlayer = new ArrayList<>();
     public Pawn[] pawns = {new Pawn(playerBase),
             new Pawn(playerBase),
             new Pawn(playerBase),
@@ -511,6 +565,7 @@ class Player {
         this.playerBase = playerBase;
         activePawn = 0;
         numbersOfWinPawns = 0;
+        pawnsInBase = 4;
     }
 
     public void win(){
