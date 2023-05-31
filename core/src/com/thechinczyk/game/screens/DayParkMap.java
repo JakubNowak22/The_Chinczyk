@@ -38,6 +38,10 @@ public class DayParkMap implements Screen {
     //float[] startPlayerElapsedTime = {0f, 2.3362615f, 8.000907f, 9.67303f};
     int[] startPlayerBase = {0, 7, 24, 29};
 
+    int[] winsPlayer = {-1, -1, -1, -1};
+    int winPlayerPosition = 0;
+    boolean endGame = false;
+
     enum ColorOfAllPlayers {None,Yellow, Green, Blue, Pink}
     ColorOfAllPlayers playerToKillRightNow;
     ColorOfAllPlayers playerKiller;
@@ -124,6 +128,10 @@ public class DayParkMap implements Screen {
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
+        if(endGame){
+            System.out.println("koniec gry!!!!!!");
+        }
+
         game.batch.end();
     }
 
@@ -157,6 +165,9 @@ public class DayParkMap implements Screen {
 
     public void managePlayer(int playerNumberTurn) {
         Player player = Players.get(playerNumberTurn);
+        if (player.win) {
+            setPlayerNumberTurn();
+        }
         if (!throwDice) {
             drawDiceAnim();
         } else if (player.activePawn == 0 && randNumber == 6) {
@@ -347,6 +358,14 @@ public class DayParkMap implements Screen {
             killSomebody(player, pawNumber);
             setPlayerNumberTurn();
             resetFlags();
+            if(player.numbersOfWinPawns==4){
+                player.win = true;
+                winsPlayer[winPlayerPosition] = player.playerNumber;
+                winPlayerPosition ++;
+                if(winPlayerPosition == game.playerCount - 1){
+                    endGame = true;
+                }
+            }
         }
     }
 
@@ -684,6 +703,7 @@ class Player {
     public int playerBase;
     public DayParkMap.ColorOfAllPlayers playerColor;
     public int numbersOfWinPawns;
+    public boolean win;
     public int pawnsInBase;
     public ArrayList<Texture> baseOfPlayer = new ArrayList<>();
     public Pawn[] pawns = {new Pawn(playerBase),
@@ -692,6 +712,7 @@ class Player {
             new Pawn(playerBase)};
 
     public Player(int playerNumber, int playerBase) {
+        this.win = false;
         this.playerNumber = playerNumber;
         this.playerBase = playerBase;
         activePawn = 0;
