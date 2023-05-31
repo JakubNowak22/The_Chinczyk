@@ -36,6 +36,11 @@ public class DayParkMap implements Screen {
     //elapsedtime player4 pink 9.67303
     //float[] startPlayerElapsedTime = {0f, 2.3362615f, 8.000907f, 9.67303f};
     int[] startPlayerBase = {0, 7, 24, 29};
+
+    enum ColorOfAllPlayers {None,Yellow, Green, Blue, Pink}
+    ColorOfAllPlayers playerToKillRightNow;
+    ColorOfAllPlayers playerKiller;
+    boolean startCaptureAnim;
     int turnSignKeyFrame;
     boolean throwDice = false;
     int playerNumberTurn;
@@ -60,24 +65,28 @@ public class DayParkMap implements Screen {
                 player.baseOfPlayer.add(gameTextures.yellowBase1);
                 player.baseOfPlayer.add(gameTextures.yellowBase2);
                 player.baseOfPlayer.add(gameTextures.yellowBase3);
+                player.playerColor = ColorOfAllPlayers.Yellow;
             } else if (i==1) {
                 player.moveAnimation = gameTextures.greenPlayerAnim;
                 player.baseOfPlayer.add(gameTextures.greenBase0);
                 player.baseOfPlayer.add(gameTextures.greenBase1);
                 player.baseOfPlayer.add(gameTextures.greenBase2);
                 player.baseOfPlayer.add(gameTextures.greenBase3);
+                player.playerColor = ColorOfAllPlayers.Green;
             } else if(i==2){
                 player.moveAnimation = gameTextures.bluePlayerAnim;
                 player.baseOfPlayer.add(gameTextures.blueBase0);
                 player.baseOfPlayer.add(gameTextures.blueBase1);
                 player.baseOfPlayer.add(gameTextures.blueBase2);
                 player.baseOfPlayer.add(gameTextures.blueBase3);
+                player.playerColor = ColorOfAllPlayers.Blue;
             } else if(i==3){
                 player.moveAnimation = gameTextures.pinkPlayerAnim;
                 player.baseOfPlayer.add(gameTextures.pinkBase0);
                 player.baseOfPlayer.add(gameTextures.pinkBase1);
                 player.baseOfPlayer.add(gameTextures.pinkBase2);
                 player.baseOfPlayer.add(gameTextures.pinkBase3);
+                player.playerColor= ColorOfAllPlayers.Pink;
             }
         }
         playerNumberTurn = 0;
@@ -110,6 +119,8 @@ public class DayParkMap implements Screen {
 
         //Przykład poruszania się pionkiem
 
+        //Obsługa animacji zbijania pionków
+        drawPawnCaptureAnim(playerToKillRightNow, playerKiller);
 
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
@@ -162,6 +173,7 @@ public class DayParkMap implements Screen {
             setPlayerNumberTurn();
             throwDice = false;
         }
+        //drawPawnCaptureAnim(playerToKillRightNow, playerKiller, startCaptureAnim);
     }
 
     private void managePawns(Player player) {
@@ -269,13 +281,19 @@ public class DayParkMap implements Screen {
         for (Player playerToKill : Players) {
             if (playerToKill != player) {
                 for (Pawn pawn : playerToKill.pawns) {
-                    System.out.println("pos: " + pawn.positionAtMap + " " + player.pawns[pawNumber].positionAtMap);
+                    //System.out.println("pos: " + pawn.positionAtMap + " " + player.pawns[pawNumber].positionAtMap);
                     if (pawn.positionAtMap == player.pawns[pawNumber].positionAtMap &&
                             player.pawns[pawNumber].position < 50 && pawn.position < 50) {
+                        startCaptureAnim = true;
+                        playerToKillRightNow = playerToKill.playerColor;
+                        playerKiller = player.playerColor;
                         pawn.dead();
                         playerToKill.activePawn--;
                         playerToKill.pawnsInBase++;
+                        //break;
                     }
+                    /*else
+                        startCaptureAnim = false;*/
                 }
             }
         }
@@ -451,7 +469,7 @@ public class DayParkMap implements Screen {
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){*/
                 randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
-                System.out.println(randNumber);
+                //System.out.println(randNumber);
             gameTextures.diceAnimStarted = false;
             gameTextures.diceElapsedTime = 0;
             throwDice = true;
@@ -474,6 +492,83 @@ public class DayParkMap implements Screen {
         }
         else if(diceRoll==1){
             game.batch.draw(gameTextures.dice1, 925, 505, 70, 70);
+        }
+    }
+
+    public void drawPawnCaptureAnim(ColorOfAllPlayers playerToKill, ColorOfAllPlayers playerKiller){
+        if(gameTextures.pawnCapture1ElapsedTime!=0){
+            //Odtwarzanie animacji zbijającego aż się nie skończy dla danego koloru
+            if(playerKiller == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture1ElapsedTime < 0.65f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerKiller == ColorOfAllPlayers.Green && gameTextures.pawnCapture1ElapsedTime < 1.30f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerKiller == ColorOfAllPlayers.Blue && gameTextures.pawnCapture1ElapsedTime < 1.98f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+            else if(playerKiller == ColorOfAllPlayers.Pink && gameTextures.pawnCapture1ElapsedTime < 2.64f){
+                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+
+            //Sprawdzanie czy już czas na odtawarzanie animacji zbijanego pionka
+            if(((playerKiller == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture1ElapsedTime > 0.34f) ||
+                    (playerKiller == ColorOfAllPlayers.Green && gameTextures.pawnCapture1ElapsedTime > 1.008f) ||
+                    (playerKiller == ColorOfAllPlayers.Blue && gameTextures.pawnCapture1ElapsedTime > 1.6754f) ||
+                    (playerKiller == ColorOfAllPlayers.Pink && gameTextures.pawnCapture1ElapsedTime > 2.34f))
+            ){
+                gameTextures.pawnCapture2ElapsedTime += Gdx.graphics.getDeltaTime();
+            }
+
+            //Liczy czas ogólny dla całej animacji
+            gameTextures.pawnCaptureMainElapsedTime += Gdx.graphics.getDeltaTime();
+
+            //Wyświetlanie obydwu animacji i tła
+            game.batch.draw(gameTextures.pawnCaptureBackground, 0, 0, 1920, 1080);
+            if(!((playerToKill == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture2ElapsedTime > 0.48f) ||
+                    (playerToKill == ColorOfAllPlayers.Green && gameTextures.pawnCapture2ElapsedTime > 1.04f) ||
+                    (playerToKill == ColorOfAllPlayers.Blue && gameTextures.pawnCapture2ElapsedTime > 1.47f) ||
+                    (playerToKill == ColorOfAllPlayers.Pink && gameTextures.pawnCapture2ElapsedTime > 1.92f))){
+                //Tutaj sprawdzam jeszcze czy animacja zbijanego się nie skończyła i jeśli tak to go nie wyświetlam już
+                startCaptureAnim = false;
+                game.batch.draw(gameTextures.pawnCapture2Anim.getKeyFrame(gameTextures.pawnCapture2ElapsedTime, false), 640, 415, 350, 250);
+            }
+            game.batch.draw(gameTextures.pawnCapture1Anim.getKeyFrame(gameTextures.pawnCapture1ElapsedTime, false), 850, 365, 400, 350);
+
+            //Sprawdzam czy ogólny czas animacji dobiegł do końca.
+            if(gameTextures.pawnCaptureMainElapsedTime > 1.2f){
+                gameTextures.pawnCapture1ElapsedTime = 0;
+                gameTextures.pawnCaptureMainElapsedTime = 0;
+            }
+        }
+        else if(startCaptureAnim && gameTextures.pawnCapture1ElapsedTime==0){
+            //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijającego pionka
+            if(playerKiller == ColorOfAllPlayers.Yellow){
+                gameTextures.pawnCapture1ElapsedTime = 0.01f;
+            }
+            else if(playerKiller == ColorOfAllPlayers.Green){
+                gameTextures.pawnCapture1ElapsedTime = 0.6767f;
+            }
+            else if(playerKiller == ColorOfAllPlayers.Blue){
+                gameTextures.pawnCapture1ElapsedTime = 1.3408f;
+            }
+            else if(playerKiller == ColorOfAllPlayers.Pink){
+                gameTextures.pawnCapture1ElapsedTime = 2.01f;
+            }
+
+            //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijanego pionka
+            if(playerToKill == ColorOfAllPlayers.Yellow){
+                gameTextures.pawnCapture2ElapsedTime = 0.01f;
+            }
+            else if(playerToKill == ColorOfAllPlayers.Green){
+                gameTextures.pawnCapture2ElapsedTime = 0.6364f;
+            }
+            else if(playerToKill == ColorOfAllPlayers.Blue){
+                gameTextures.pawnCapture2ElapsedTime = 1.07f;
+            }
+            else if(playerToKill == ColorOfAllPlayers.Pink){
+                gameTextures.pawnCapture2ElapsedTime = 1.505f;
+            }
         }
     }
 
@@ -542,6 +637,10 @@ public class DayParkMap implements Screen {
 
         gameTextures.dayParkBackground.dispose();
         gameTextures.dayParkTopground.dispose();
+
+        gameTextures.pawnCaptureBackground.dispose();
+        gameTextures.pawnCapture1Atlas.dispose();
+        gameTextures.pawnCapture2Atlas.dispose();
     }
 }
 
@@ -551,6 +650,7 @@ class Player {
     public int activePawn;
     public Animation<TextureRegion> moveAnimation;
     public int playerBase;
+    public DayParkMap.ColorOfAllPlayers playerColor;
     public int numbersOfWinPawns;
     public int pawnsInBase;
     public ArrayList<Texture> baseOfPlayer = new ArrayList<>();

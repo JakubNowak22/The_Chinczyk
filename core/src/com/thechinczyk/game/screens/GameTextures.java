@@ -76,6 +76,15 @@ class GameTextures{
     public Texture turnSignBlueBackground;
     public Texture turnSignPinkBackground;
 
+    public Texture pawnCaptureBackground;
+    public TextureAtlas pawnCapture1Atlas;
+    public Animation<TextureRegion> pawnCapture1Anim;
+    public float pawnCapture1ElapsedTime;
+    public TextureAtlas pawnCapture2Atlas;
+    public Animation<TextureRegion> pawnCapture2Anim;
+    public float pawnCapture2ElapsedTime;
+    public float pawnCaptureMainElapsedTime;
+
     GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
@@ -149,6 +158,15 @@ class GameTextures{
         turnSignGreenBackground = new Texture("Map1/TurnSign/green.png");
         turnSignBlueBackground = new Texture("Map1/TurnSign/blue.png");
         turnSignPinkBackground = new Texture("Map1/TurnSign/pink.png");
+
+        pawnCaptureBackground = new Texture("Map1/TC_Map1_PawnCaptured_Background.png");
+        pawnCapture1Atlas = new TextureAtlas("Map1/PawnCapturedAnim1Sheet/PawnCapturedAnim1Sheet.atlas");
+        pawnCapture1Anim = new Animation<TextureRegion>(1f/30f, pawnCapture1Atlas.getRegions());
+        pawnCapture1ElapsedTime = 0;
+        pawnCapture2Atlas = new TextureAtlas("Map1/PawnCapturedAnim2Sheet/PawnCapturedAnim2Sheet.atlas");
+        pawnCapture2Anim = new Animation<TextureRegion>(1f/30f, pawnCapture2Atlas.getRegions());
+        pawnCapture2ElapsedTime = 0;
+        pawnCaptureMainElapsedTime = 0;
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);
