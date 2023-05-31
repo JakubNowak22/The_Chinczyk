@@ -129,14 +129,16 @@ public class DayParkMap implements Screen {
         }
         if (!throwDice) {
             drawDiceAnim();
-        } else if (player.activePawn == 0 && randNumber == 6) {
+        } else if (player.activePawn == 0 && randNumber == 1) {
             addPawn(player);
         } else if (player.activePawn >= 1 && player.activePawn <= 4) {
             if (!pawnChoose) {
                 canAnyoneMove(player);
                 managePawns(player);
-            } else {
+            } else if(!player.pawns[pawToChange].onTheBus){
                 changeAnimationPawn(player, pawToChange);
+            }else {
+                changeAnimationBus(player, pawToChange);
             }
         } else if (player.activePawn == 0) {
             setPlayerNumberTurn();
@@ -189,7 +191,7 @@ public class DayParkMap implements Screen {
                 player.pawns[fourth].active && a.length == 4) {
             System.out.println("czwarty");
             enforcedPlayer(player, fourth);
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 6) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 1) {
             if (canIAddPawn(player.playerBase)) {
                 addPawn(player);
             }
@@ -229,7 +231,7 @@ public class DayParkMap implements Screen {
             }
         }
         if (numberOfFalse == player.activePawn) {
-            if (canIAddPawn(player.playerBase) && randNumber == 6) {
+            if (canIAddPawn(player.playerBase) && randNumber == 1) {
                 addPawn(player);
             } else {
                 setPlayerNumberTurn();
@@ -272,7 +274,16 @@ public class DayParkMap implements Screen {
         pawToChange = x;
         pawnChoose = true;
     }
-    public void bus(){}
+
+    public boolean isPlayerOnTheBus(Player player, int x){
+        return player.pawns[x].positionAtMap == 32;
+    }
+    public void bus(Pawn pawn){
+        pawn.onTheBus = true;
+        pawn.positionAtMap += 5;
+        pawn.position += 5;
+        randNumber = 5;
+    }
 
 
 
@@ -318,6 +329,29 @@ public class DayParkMap implements Screen {
                 flag = true;
             }
         } else {
+            if(isPlayerOnTheBus(player, pawNumber)){
+                bus(player.pawns[pawNumber]);
+            }else {
+                killSomebody(player, pawNumber);
+                setPlayerNumberTurn();
+                resetFlags();
+            }
+        }
+    }
+    private void changeAnimationBus(Player player, int pawNumber){
+        if (randNumber >= 1 && pawNumber != -1) {
+            if (flag) {
+                player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
+                flag = false;
+            }
+            if (player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
+                player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
+            } else {
+                randNumber--;
+                flag = true;
+            }
+        } else {
+            player.pawns[pawNumber].onTheBus = false;
             killSomebody(player, pawNumber);
             setPlayerNumberTurn();
             resetFlags();
@@ -333,7 +367,7 @@ public class DayParkMap implements Screen {
 
     void drawPlayerPawns(Player player) {
         for (int i = 0; i < 4; i++) {
-            if (player.pawns[i].active || player.pawns[i].win) {
+            if ((player.pawns[i].active || player.pawns[i].win) && !player.pawns[i].onTheBus) {
                 drawPawn(player, i);
             }
         }
@@ -470,7 +504,7 @@ public class DayParkMap implements Screen {
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             } else {*/
             Random rand = new Random();
-            randNumber = rand.nextInt(6) + 1;
+            randNumber = 1;//rand.nextInt(6) + 1;
             System.out.println(randNumber);
             gameTextures.diceAnimStarted = false;
             gameTextures.diceElapsedTime = 0;
@@ -583,7 +617,10 @@ class Pawn {
     boolean active;
     boolean win;
 
+    boolean onTheBus;
+
     public Pawn(int position) {
+        this.onTheBus = false;
         this.win = false;
         this.positionAtMap = -1;
         this.position = -1;
