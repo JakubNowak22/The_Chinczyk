@@ -137,11 +137,14 @@ public class DayParkMap implements Screen {
         }
         getInputForMiniGame();
 
-        //Wylosowanie mini-gry Space Invaders
+        //Wylosowanie mini-gry Math
         drawMathMiniGameMenu("Mini-Game!\nYour game will be...\nMATH MINI GAME");
 
         //Wylosowanie mini-gry Space Invaders
         drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
+
+        //Wylosowanie mini-gry Memory
+        drawMemoryMiniGameMenu("Mini-Game!\nYour game will be...\nMEMORY");
 
         game.batch.end();
     }
@@ -201,7 +204,7 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1])){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1]) || (Gdx.input.isKeyJustPressed(Input.Keys.N) && !gameTextures.cardAnimStarted && !this.miniGameOutput[2])){
             //Wysunięcie karty
            // System.out.println("test2");
             gameTextures.cardAnimStarted = true;
@@ -227,7 +230,6 @@ public class DayParkMap implements Screen {
 
     public void drawSpaceInvadersMiniGameMenu(String message) {
         if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
-            System.out.println("???");
             drawCardAnim(message);
            // this.miniGamePlaying[0] = true;
         }
@@ -265,6 +267,27 @@ public class DayParkMap implements Screen {
 
         if (this.miniGameOutput[1] && !this.miniGamePlaying[1]) {
             drawCardAnim("Text with reward/punishment\nthat player will receive2");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMemoryMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MEMORY || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[1]) {
+            drawCardAnim(message);
+        }
+        if (this.miniGamePlaying[2] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[2]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MEMORY);
+                this.miniGame.isLoaded[2] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMemory.Draw();
+        }
+
+        if (this.miniGameOutput[2] && !this.miniGamePlaying[2]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive3");
         }
 
         /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
@@ -442,10 +465,10 @@ public class DayParkMap implements Screen {
             this.miniGamePlaying[1] = false;
             this.miniGameOutput[1] = true;
         }
-        /*nie NONE else if {
+        else if (type == MiniGamesTypes.MEMORY) {
             this.miniGamePlaying[2] = false;
             this.miniGameOutput[2] = true;
-        } */
+        }
 
     }
 
@@ -457,6 +480,10 @@ public class DayParkMap implements Screen {
         else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
             this.miniGamePlaying[1] = true;
             this.miniGameType = MiniGamesTypes.MATH;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            this.miniGamePlaying[2] = true;
+            this.miniGameType = MiniGamesTypes.MEMORY;
         }
     }
 
