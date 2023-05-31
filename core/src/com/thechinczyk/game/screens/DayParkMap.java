@@ -101,6 +101,9 @@ public class DayParkMap implements Screen {
 
         drawBases();
 
+        //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
+        drawWhichPlayersTurnUI();
+
         drawPlayers(playerNumberTurn);
         managePlayer(playerNumberTurn);
         //Przykładowa obsługa animacji busa z zółtym pionkiem
@@ -110,12 +113,6 @@ public class DayParkMap implements Screen {
 
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
-
-        //Obsługa animacji tabliczek oznaczających nową turę
-        //changeWhichPlayersTurn();
-
-        //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
-        //drawWhichPlayersTurnUI();
 
         game.batch.end();
     }
@@ -382,32 +379,19 @@ public class DayParkMap implements Screen {
         } else {
             playerNumberTurn = 0;
         }
+        drawWhichPlayersTurnAnim();
     }
 
     public void drawWhichPlayersTurnUI() {
-        if (gameTextures.turnSignWhichPlayer == 1) {
+        if (playerNumberTurn == 0) {
             game.batch.draw(gameTextures.turnSignYellowBackground, 1190, 980, 300, 100);
-        } else if (gameTextures.turnSignWhichPlayer == 2) {
+        } else if (playerNumberTurn == 1) {
             game.batch.draw(gameTextures.turnSignGreenBackground, 1190, 980, 300, 100);
-        } else if (gameTextures.turnSignWhichPlayer == 3) {
+        } else if (playerNumberTurn == 2) {
             game.batch.draw(gameTextures.turnSignBlueBackground, 1190, 980, 300, 100);
         } else {
             game.batch.draw(gameTextures.turnSignPinkBackground, 1190, 980, 300, 100);
         }
-    }
-
-    public void changeWhichPlayersTurn() {
-        turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
-        if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
-            if (turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106) {
-                gameTextures.turnSignWhichPlayer++;
-            } else if (turnSignKeyFrame == 139) {
-                gameTextures.turnSignWhichPlayer = 1;
-                gameTextures.turnSignElapsedTime = 0;
-            }
-            gameTextures.turnSignElapsedTime += 3 * Gdx.graphics.getDeltaTime();
-        }
-        drawWhichPlayersTurnAnim();
     }
 
     public void drawWhichPlayersTurnAnim() {

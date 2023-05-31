@@ -15,22 +15,15 @@ class GameTextures{
 
     public TextureAtlas yellowPlayerAtlas;
     public Animation<TextureRegion> yellowPlayerAnim;
-    //public float yellowPlayerElapsedTime;
-
-    //public int yellowPlayerAnimStarted;
 
     public TextureAtlas bluePlayerAtlas;
     public Animation<TextureRegion> bluePlayerAnim;
-    //public float bluePlayerElapsedTime;
-    //public int bluePlayerAnimStarted;
 
     public TextureAtlas greenPlayerAtlas;
     public Animation<TextureRegion> greenPlayerAnim;
-    //public float greenPlayerElapsedTime;
 
     public TextureAtlas pinkPlayerAtlas;
     public Animation<TextureRegion> pinkPlayerAnim;
-    //public float pinkPlayerElapsedTime;
 
     public Texture yellowBase3;
     public Texture yellowBase2;
@@ -78,7 +71,6 @@ class GameTextures{
     public TextureAtlas turnSignAtlas;
     public Animation<TextureRegion> turnSignAnim;
     public float turnSignElapsedTime;
-    public short turnSignWhichPlayer;
     public Texture turnSignYellowBackground;
     public Texture turnSignGreenBackground;
     public Texture turnSignBlueBackground;
@@ -153,7 +145,6 @@ class GameTextures{
         turnSignAtlas = new TextureAtlas("Map1/TurnSignAnimSheet/TurnSignAnimSheet.atlas");
         turnSignAnim = new Animation<TextureRegion>(1f/30f, turnSignAtlas.getRegions());
         turnSignElapsedTime = 0;
-        turnSignWhichPlayer = 1;
         turnSignYellowBackground = new Texture("Map1/TurnSign/yellow.png");
         turnSignGreenBackground = new Texture("Map1/TurnSign/green.png");
         turnSignBlueBackground = new Texture("Map1/TurnSign/blue.png");
