@@ -160,32 +160,36 @@ public class DayParkMap implements Screen {
             }
         }
 
-
-
-
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && player.pawns[first].active) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) &&
+                player.pawns[first].active &&
+                player.pawns[first].position >= 0) {
             if (canIMovePawn(player, first)) {
                 manageParticularPawn(player, first);
                 if(player.pawns[first].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && player.pawns[second].active) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) &&
+                player.pawns[second].active &&
+                player.pawns[second].position >= 0) {
             if (canIMovePawn(player, second)) {
                 manageParticularPawn(player, second);
                 if(player.pawns[second].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && player.pawns[third].active) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) &&
+                player.pawns[third].active &&
+                player.pawns[third].position >= 0 ) {
             if (canIMovePawn(player, third)) {
                 manageParticularPawn(player, third);
                 if(player.pawns[third].position >= 50){
                     player.win();
                 }
             }
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && player.pawns[fourth].active) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) &&
+                player.pawns[fourth].active &&
+                player.pawns[fourth].position >= 0) {
             if (canIMovePawn(player, fourth)) {
                 manageParticularPawn(player, fourth);
                 if(player.pawns[3].position  >= 50){
@@ -520,31 +524,26 @@ class Player {
         for (int i = 0; i < 4; i++){
             System.out.println(i + " " + pawns[i].position);
             if(pawns[i].position == 53 && !pawns[i].win && winsPosition[0] == 0){
-                numbersOfWinPawns ++;
-                winsPosition[i] = 1;
-                pawns[i].win = true;
-                pawns[i].position = -2;
+                enforceWin(i);
             }
             if(pawns[i].position == 52 && !pawns[i].win && winsPosition[0] == 1){
-                numbersOfWinPawns ++;
-                winsPosition[i] = 1;
-                pawns[i].win = true;
-                pawns[i].position = -2;
+                enforceWin(i);
             }
             if(pawns[i].position == 51 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1){
-                numbersOfWinPawns ++;
-                winsPosition[i] = 1;
-                pawns[i].win = true;
-                pawns[i].position = -2;
+                enforceWin(i);
             }
             if(pawns[i].position == 50 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1 && winsPosition[2] == 1){
-                numbersOfWinPawns ++;
-                winsPosition[i] = 1;
-                pawns[i].win = true;
-                pawns[i].position = -2;
+                enforceWin(i);
             }
         }
         System.out.println("wins " + numbersOfWinPawns);
+    }
+
+    private void enforceWin(int i) {
+        numbersOfWinPawns ++;
+        winsPosition[i] = 1;
+        pawns[i].win = true;
+        pawns[i].position = -2;
     }
 
 }
