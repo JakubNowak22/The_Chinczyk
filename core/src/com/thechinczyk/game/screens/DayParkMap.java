@@ -37,7 +37,6 @@ public class DayParkMap implements Screen {
     //elapsedtime player4 pink 9.67303
     //float[] startPlayerElapsedTime = {0f, 2.3362615f, 8.000907f, 9.67303f};
     int[] startPlayerBase = {0, 7, 24, 29};
-
     int[] winsPlayer = {-1, -1, -1, -1};
     int winPlayerPosition = 0;
     boolean endGame = false;
@@ -48,6 +47,9 @@ public class DayParkMap implements Screen {
     int turnSignKeyFrame;
     boolean throwDice = false;
     int playerNumberTurn;
+    boolean changeTurn = true;
+    boolean skipFirstAnimation = true;
+    int count = 0;
     int jumpAnimation = 0;
     public ArrayList<Player> Players = new ArrayList<>();
 
@@ -114,6 +116,9 @@ public class DayParkMap implements Screen {
         drawDice();
 
         drawBases();
+
+        //Obsługa animacji tabliczek oznaczających nową turę
+        changeWhichPlayersTurn();
 
         //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
         drawWhichPlayersTurnUI();
@@ -447,8 +452,7 @@ public class DayParkMap implements Screen {
         } else {
             playerNumberTurn = 0;
         }
-        //włączenie animacji zmiany tury graczy
-        drawWhichPlayersTurnAnim();
+        changeTurn = true;
     }
 
     public void drawWhichPlayersTurnUI() {
@@ -475,6 +479,35 @@ public class DayParkMap implements Screen {
         }
     }
 
+    public void changeWhichPlayersTurn(){
+        turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
+        if(changeTurn){
+            if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
+                skipFirstAnimation = false;
+            }
+            else if(turnSignKeyFrame == 139){
+                gameTextures.turnSignElapsedTime = 0;
+            }
+            if(!skipFirstAnimation) {
+                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            } else{
+                gameTextures.turnSignElapsedTime = 1.3338771F;
+            }
+            if(game.playerCount==2){
+                if(gameTextures.turnSignElapsedTime>2.3){
+                    gameTextures.turnSignElapsedTime = 0.2F;
+                }
+            } else if (game.playerCount==3) {
+                if(gameTextures.turnSignElapsedTime>3.4){
+                    gameTextures.turnSignElapsedTime = 0.2F;
+                }
+            }
+            changeTurn=false;
+        }
+        drawWhichPlayersTurnAnim();
+    }
 
     public void drawBackGround() {
         game.batch.draw(gameTextures.dayParkBackground, 0, 0, 1920, 1080);
@@ -515,12 +548,12 @@ public class DayParkMap implements Screen {
                 throwDice = true;
             }
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){*/
-            randNumber = rand.nextInt(6) + 1;
-            diceRoll = randNumber;
-            //System.out.println(randNumber);
-            gameTextures.diceAnimStarted = false;
-            gameTextures.diceElapsedTime = 0;
-            throwDice = true;
+                randNumber = rand.nextInt(6) + 1;
+                diceRoll = randNumber;
+                //System.out.println(randNumber);
+                gameTextures.diceAnimStarted = false;
+                gameTextures.diceElapsedTime = 0;
+                throwDice = true;
             //}
         }
     }
