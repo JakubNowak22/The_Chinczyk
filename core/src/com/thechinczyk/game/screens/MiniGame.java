@@ -1,5 +1,4 @@
 package com.thechinczyk.game.screens;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.Align;
 import com.thechinczyk.game.GameObject;
@@ -21,7 +20,7 @@ public class MiniGame {
     static SpriteBatch spriteBatch;
     MiniGamesTypes type;
 
-    public TextureAtlas timerAtlas;
+    public static TextureAtlas timerAtlas;
     public static Animation<TextureRegion> timerAnim;
     public float timerElapsedTime;
     public boolean timerAnimStarted;
@@ -33,18 +32,11 @@ public class MiniGame {
         this.menuSpaceInvaders = new SpaceInvadersMenu(spriteBatch, map);
         this.menuMath = new MathMiniGameMenu(spriteBatch, map);
         this.menuMemory = new MemoryMiniGameMenu(spriteBatch, map);
-        this.timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
-        timerAnim = new Animation<TextureRegion>(1f/26f, this.timerAtlas.getRegions());
+        timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
+        timerAnim = new Animation<TextureRegion>(1f/30f, timerAtlas.getRegions());
         loopElapsedTime = 0f;
         this.timerElapsedTime = 0f;
         this.timerAnimStarted = false;
-        this.timerAtlas.dispose();
-    }
-
-    public static void drawTimer(float deltatime) {
-        loopElapsedTime += deltatime;
-        spriteBatch.draw(timerAnim.getKeyFrame(loopElapsedTime, true),
-                        1000, 500, 200, 200);
     }
 
     public void loadTextures(MiniGamesTypes type) {
@@ -373,14 +365,15 @@ public class MiniGame {
             this.fontGreen = new BitmapFont(Gdx.files.internal("Fonts/GreenBerlinSans.fnt"),false);
             this.fontGreen.getData().setScale(.75f,.75f);
             this.fontYellow = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.fontYellow.getData().setScale(.75f,.75f);
+            this.fontYellow.getData().setScale(.66f,.66f);
             this.spriteBatch = spriteBatch;
             this.rocket = new Player(this.spriteBatch);
             this.gameTexture = new Texture("SpaceInvadersMiniGame/Background.jpg");
             this.menuSI = menuSI;
             this.timer = 0;
-            this.timeSeconds = 1;
+            this.timeSeconds = 10;
             this.eliminatedEnemies = 0;
+            this.menuSI.map.gameTextures.timerElapsedTime = 0f;
             this.enemiesArray = new Enemy[4][7];
             int enemiesLeft = 14, fieldsLeft = 28;
             for (int i = 0; i<4; i++) {
@@ -400,7 +393,11 @@ public class MiniGame {
             spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
             this.fontGreen.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), 500, 780);
-            this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1360, 780);
+            if (this.timeSeconds > 9)
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
+            else
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
+            this.menuSI.map.drawMiniGameTimer(1320, 690);
         }
 
         public void Update(float deltatime) {
@@ -426,11 +423,10 @@ public class MiniGame {
             timer += deltatime;
             if(timer > 1){
                 timer-=1;
-                timeSeconds ++;
+                timeSeconds --;
             }
-            MiniGame.drawTimer(deltatime);
 
-            if (this.eliminatedEnemies == 14 || this.timeSeconds == 11) {
+            if (this.eliminatedEnemies == 14 || this.timeSeconds == 0) {
                 this.menuSI.isStarted = false;
                 this.menuSI.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menuSI, this);
                 this.menuSI.isEnding = true;
@@ -565,11 +561,11 @@ public class MiniGame {
 
         MathMiniGame(SpriteBatch spriteBatch, MathMiniGameMenu menuMMG) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.font.getData().setScale(.75f,.75f);
+            this.font.getData().setScale(.66f,.66f);
             this.spriteBatch = spriteBatch;
             this.menuMMG = menuMMG;
             this.timer = 0;
-            this.timeSeconds = 1;
+            this.timeSeconds = 15;
             this.numberCounter = 0;
             this.operation = random.nextInt(4);
             this.number1 = 100 + random.nextInt(1000);
@@ -656,7 +652,11 @@ public class MiniGame {
         public void Draw() {
             spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
-            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1360, 780);
+            if (this.timeSeconds > 9)
+                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1314, 737);
+            else
+                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1324, 737);
+            this.menuMMG.map.drawMiniGameTimer(1290, 660);
             this.eqSignSprite.draw(this.spriteBatch);
             this.signSprite.draw(this.spriteBatch);
             for (int i = 0; i<4; i++) {
@@ -673,7 +673,7 @@ public class MiniGame {
             timer += deltatime;
             if(timer > 1){
                 timer-=1;
-                timeSeconds ++;
+                timeSeconds --;
             }
 
             if (numberCounter < 5) {
@@ -732,7 +732,7 @@ public class MiniGame {
             }
             refreshResultSprites();
 
-            if (this.timeSeconds == 16  || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
+            if (this.timeSeconds == 0  || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 this.menuMMG.isStarted = false;
                 this.menuMMG.endMenu = new MathMiniGameEndMenu(this.spriteBatch, this.expectedResult == this.playerResult, this.timeSeconds,  this.menuMMG ,this);
                 this.menuMMG.isEnding = true;
@@ -921,11 +921,11 @@ public class MiniGame {
 
         MemoryMiniGame(SpriteBatch spriteBatch, MemoryMiniGameMenu menuMemory) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.font.getData().setScale(.75f,.75f);
+            this.font.getData().setScale(.66f,.66f);
             this.spriteBatch = spriteBatch;
             this.menuMemory = menuMemory;
             this.timer = 0;
-            this.timeSeconds = 1;
+            this.timeSeconds = 15;
             this.numberCounter = 0;
             this.generatedNumbers = new int[4];
             this.playerNumbers = new int[4];
@@ -970,14 +970,18 @@ public class MiniGame {
         }
 
         public void Draw() {
-            if (timeSeconds < 5)
+            if (timeSeconds > 10)
                 spriteBatch.draw(this.gameTexture1, 480, 270, 960, 540);
             else
                 spriteBatch.draw(this.gameTexture2, 480, 270, 960, 540);
 
 
             this.Update(Gdx.graphics.getDeltaTime());
-            this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1360, 780);
+            if (this.timeSeconds > 9)
+                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
+            else
+                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
+            this.menuMemory.map.drawMiniGameTimer(1320, 690);
             for (int i = 0; i < 4; i++) {
                 this.gameColors[i].draw(this.spriteBatch);
             }
@@ -987,14 +991,14 @@ public class MiniGame {
             timer += deltatime;
             if(timer > 1){
                 timer-=1;
-                timeSeconds ++;
-                if (timeSeconds == 5) {
+                timeSeconds --;
+                if (timeSeconds == 10) {
                     for (int i = 0; i<4; i++)
                         this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
                 }
             }
 
-            if (numberCounter < 4 && timeSeconds >= 5) {
+            if (numberCounter < 4 && timeSeconds <= 10) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
                     refreshResultSprite(0);
                     this.numberCounter++;
@@ -1036,7 +1040,7 @@ public class MiniGame {
                 refreshResultSprite(-1);
             }
 
-            if (this.timeSeconds == 16 || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
+            if (this.timeSeconds == 0 || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 boolean check = true;
                 for (int i = 0; i<4; i++) {
                     if (this.playerNumbers[i]!=this.generatedNumbers[i]) {

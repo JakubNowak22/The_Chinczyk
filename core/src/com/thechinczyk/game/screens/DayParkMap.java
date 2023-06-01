@@ -3,7 +3,6 @@ package com.thechinczyk.game.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -346,6 +345,13 @@ public class DayParkMap implements Screen {
                 0, 888, 179, 192);
         game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 1009, 137, 199, 95);
+
+    }
+
+    public void drawMiniGameTimer(int x, int y) {
+        gameTextures.timerElapsedTime += Gdx.graphics.getDeltaTime();
+        game.batch.draw(gameTextures.timerAnim.getKeyFrame(gameTextures.timerElapsedTime, true),
+                x, y, 100, 100);
     }
     public void drawYellowBusAnim(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted){
@@ -426,6 +432,7 @@ public class DayParkMap implements Screen {
         gameTextures.diceAtlas.dispose();
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
+        //gameTextures.timerAtlas.dispose();
 
         gameTextures.turnSignBlueBackground.dispose();
         gameTextures.turnSignPinkBackground.dispose();
@@ -531,6 +538,10 @@ class GameTextures{
     public TextureAtlas swingAtlas;
     public Animation<TextureRegion> swingAnim;
 
+    public TextureAtlas timerAtlas;
+    public Animation<TextureRegion> timerAnim;
+    public float timerElapsedTime;
+
     public TextureAtlas cardAtlas;
     public Animation<TextureRegion> cardAnim;
     public float cardElapsedTime;
@@ -599,6 +610,10 @@ class GameTextures{
         loopElapsedTime = 0f;
         swingAtlas = new TextureAtlas("Map1/SwingAnimSheet/SwingAnimSheet.atlas");
         swingAnim = new Animation<TextureRegion>(1f/30f, swingAtlas.getRegions());
+
+        timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
+        timerAnim = new Animation<TextureRegion>(1f/26f, timerAtlas.getRegions());
+        timerElapsedTime = 0f;
 
         cardAtlas = new TextureAtlas("Map1/CardAnimSheet/CardAnimSheet.atlas");
         cardAnim = new Animation<TextureRegion>(1f/30f, cardAtlas.getRegions());
