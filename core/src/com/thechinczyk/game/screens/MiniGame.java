@@ -3,7 +3,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.Align;
 import com.thechinczyk.game.GameObject;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +12,8 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
+import static com.thechinczyk.game.screens.MainMenu.spriteInit;
+
 enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH, MEMORY};
 
 public class MiniGame {
@@ -20,14 +21,13 @@ public class MiniGame {
     public SpaceInvadersMenu menuSpaceInvaders;
     public MathMiniGameMenu menuMath;
     public MemoryMiniGameMenu menuMemory;
-    private static Texture cardTexture;
     private static Sprite cardSprite;
     static SpriteBatch spriteBatch;
     MiniGamesTypes type;
 
-    public MiniGame(SpriteBatch spriteBatchp, DayParkMap map) {
+    public MiniGame(SpriteBatch spriteBatchParam, DayParkMap map) {
         this.isLoaded = new boolean[3];
-        spriteBatch = spriteBatchp;
+        spriteBatch = spriteBatchParam;
         this.menuSpaceInvaders = new SpaceInvadersMenu(spriteBatch, map);
         this.menuMath = new MathMiniGameMenu(spriteBatch, map);
         this.menuMemory = new MemoryMiniGameMenu(spriteBatch, map);
@@ -41,7 +41,7 @@ public class MiniGame {
             menuMath.loadTextures();
         else if (type == MiniGamesTypes.MEMORY)
             menuMemory.loadTextures();
-        cardTexture = new Texture("Map1/CardAnimSheet/CardAnimSheet46.png");
+        Texture cardTexture = new Texture("Map1/CardAnimSheet/CardAnimSheet46.png");
         cardSprite = spriteInit(cardTexture, 435, -115, 1024,1024);
     }
 
@@ -50,14 +50,6 @@ public class MiniGame {
         map.gameTextures.font.getData().setScale(scale, scale);
         map.gameTextures.font.draw(spriteBatch, instruction, 660, 710, 600, Align.center, true);
         map.gameTextures.font.getData().setScale(0.3f, 0.3f);
-    }
-
-    //wykorzystać metodę z innej klasy
-    public static Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
-        Sprite sprite = new Sprite(texture);
-        sprite.setPosition(x, y);
-        sprite.setSize(width, height);
-        return sprite;
     }
 
     static class SpaceInvadersMenu {
@@ -81,7 +73,6 @@ public class MiniGame {
 
 
         private boolean isStarted;
-        private boolean isLoaded;
         private boolean isEnding;
         private boolean instructionDisplay;
 
@@ -90,7 +81,6 @@ public class MiniGame {
             this.isButtonStartHovered = false;
             this.isButtonHTPHovered = false;
             this.isStarted = false;
-            this.isLoaded = false;
             this.isEnding = false;
             this.map = map;
         }
@@ -118,9 +108,6 @@ public class MiniGame {
                     this.isButtonHTPHovered = true;
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
                     this.isButtonHTPHovered = false;
-                } else if (Gdx.input.isKeyPressed(Input.Keys.X)) {
-                    this.map.unlockMap(MiniGamesTypes.SPACE_INVADERS);
-                    this.resetAfterQuit();
                 }
 
                 if (this.isButtonHTPHovered) {
@@ -234,22 +221,17 @@ public class MiniGame {
         static class Player {
             public static final int MAX_BULLETS = 3;
             private float position;
-            private float[] bulletPosition;
+            private final float[] bulletPosition;
             public Sprite spritePlayer;
             public Sprite[] spriteBullet;
-            private SpriteBatch spriteBatch;
+            private final SpriteBatch spriteBatch;
             public final float Y_POS = 270;
             private final Vector2 BULLET_SIZE = new Vector2(10, 20);
             private final int ROCKET_SIZE = 100;
-            private final float PLAYER_MOVEMENT_OFFSET = 300;
-            private final float MAX_X_POS = 1340;
-            private final float MIN_X_POS = 480;
-            private boolean[] showBullet;
-            private float[] positionWhenShoot;
+            private final boolean[] showBullet;
+            private final float[] positionWhenShoot;
             private int nextBullet;
             private int lastShoot;
-            private final float BULLET_MOVEMENT_OFFSET = 500;
-            private final float MAX_Y_POS = 810;
 
             public Player(SpriteBatch batch) {
                 this.spriteBatch = batch;
@@ -271,6 +253,7 @@ public class MiniGame {
             }
 
             public void Update(float deltatime) {
+                float PLAYER_MOVEMENT_OFFSET = 300;
                 if (Gdx.input.isKeyPressed(Input.Keys.LEFT))
                     this.position -= deltatime * PLAYER_MOVEMENT_OFFSET;
                 else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
@@ -284,6 +267,8 @@ public class MiniGame {
                     this.nextBullet = 3;
                 }
 
+                float MAX_X_POS = 1340;
+                float MIN_X_POS = 480;
                 if (this.position > MAX_X_POS)
                     this.position = MAX_X_POS;
                 else if (this.position < MIN_X_POS)
@@ -291,11 +276,13 @@ public class MiniGame {
 
                 for (int i = 0; i<3; i++) {
                     if (this.showBullet[i]) {
+                        float BULLET_MOVEMENT_OFFSET = 500;
                         this.bulletPosition[i] += deltatime * BULLET_MOVEMENT_OFFSET;
                         if (this.nextBullet == 3 && this.lastShoot == i && this.bulletPosition[i] >= 462)
                             this.nextBullet = i==2 ? 0 : (i+1);
 
 
+                        float MAX_Y_POS = 810;
                         if (this.bulletPosition[i] >= MAX_Y_POS)
                             this.showBullet[i] = false;
                     }
@@ -316,27 +303,27 @@ public class MiniGame {
         }
 
         static class Enemy {
-            private Vector2 position;
+            private final Vector2 position;
             public Sprite spriteEnemy;
-            private SpriteBatch spriteBatch;
+            private final SpriteBatch spriteBatch;
             private final int ENEMY_SIZE = 60;
             private final float ENEMY_POSITION_OFFSET = 10;
             public final float MIN_Y_POS = 540 - ENEMY_SIZE + ENEMY_POSITION_OFFSET;
             private boolean toDraw;
             private static boolean leftDir, dirToChange;
-            private final float MIN_X_POS = 480 + 2.1f*ENEMY_SIZE;
-            private final float ENEMY_MOVEMENT_SPEED = 100;
 
             public Enemy(SpriteBatch batch, int rowNumber, int columnNumber, boolean toDraw) {
                 this.spriteBatch = batch;
                 this.spriteEnemy = new Sprite(new Texture("SpaceInvadersMiniGame/Enemy.png"));
                 this.spriteEnemy.setSize((487/321f)*ENEMY_SIZE,ENEMY_SIZE);
+                float MIN_X_POS = 480 + 2.1f * ENEMY_SIZE;
                 this.position = new Vector2(MIN_X_POS + ((487/321f)*ENEMY_SIZE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
                 this.toDraw = toDraw;
                 spriteEnemy.setPosition(this.position.x, this.position.y);
             }
 
             public void Update (float deltatime) {
+                float ENEMY_MOVEMENT_SPEED = 100;
                 if (Enemy.leftDir)
                     this.position.x -= deltatime * ENEMY_MOVEMENT_SPEED;
                 else
@@ -371,8 +358,6 @@ public class MiniGame {
         SpaceInvaders(SpriteBatch spriteBatch, SpaceInvadersMenu menuSI) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
             this.font.getData().setScale(.5f,.5f);
-            //zmiana koloru nie działa
-            this.font.setColor(Color.WHITE);
             this.spriteBatch = spriteBatch;
             this.rocket = new Player(this.spriteBatch);
             this.gameTexture = new Texture("SpaceInvadersMiniGame/Background.jpg");
@@ -428,7 +413,7 @@ public class MiniGame {
                 timeSeconds ++;
             }
 
-            if (this.eliminatedEnemies == 14 /*|| this.timeSeconds == 11 */) {
+            if (this.eliminatedEnemies == 14 || this.timeSeconds == 11) {
                 this.menuSI.isStarted = false;
                 this.menuSI.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menuSI, this);
                 this.menuSI.isEnding = true;
@@ -455,7 +440,6 @@ public class MiniGame {
         private boolean isButtonHTPHovered;
 
         private boolean isStarted;
-        private boolean isLoaded;
         private boolean isEnding;
         private boolean instructionDisplay;
 
@@ -464,7 +448,6 @@ public class MiniGame {
             this.isButtonStartHovered = false;
             this.isButtonHTPHovered = false;
             this.isStarted = false;
-            this.isLoaded = false;
             this.isEnding = false;
             this.map = map;
         }
@@ -491,9 +474,6 @@ public class MiniGame {
                     this.isButtonHTPHovered = true;
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
                     this.isButtonHTPHovered = false;
-                } else if (Gdx.input.isKeyPressed(Input.Keys.X)) {
-                    this.map.unlockMap(MiniGamesTypes.MATH);
-                    this.resetAfterQuit();
                 }
 
                 if (this.isButtonHTPHovered) {
@@ -554,24 +534,21 @@ public class MiniGame {
         int timeSeconds;
         float timer;
         BitmapFont font;
-        boolean gameOutput;
         int number1, number2, operation;
         int[] number1Array, number2Array;
         int expectedResult, playerResult;
         int numberCounter;
 
         private Texture addSign, subSign, mulSign, divSign, eqSign;
-        private Texture[] numbers;
+        private final Texture[] numbers;
         private Sprite signSprite, eqSignSprite;
-        private Sprite[] number1Sprite, number2Sprite, resultSprite;
-        private final int SIZE = 200, NUMBER_SIZE = 100;
+        private final Sprite[] number1Sprite, number2Sprite, resultSprite;
+        private final int NUMBER_SIZE = 100;
 
 
         MathMiniGame(SpriteBatch spriteBatch, MathMiniGameMenu menuMMG) {
             this.font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
             this.font.getData().setScale(.5f,.5f);
-            //zmiana koloru nie działa
-            this.font.setColor(Color.WHITE);
             this.spriteBatch = spriteBatch;
             this.menuMMG = menuMMG;
             this.timer = 0;
@@ -626,6 +603,7 @@ public class MiniGame {
         }
 
         public void texturesToSprites() {
+            int SIZE = 200;
             if (this.operation == 0)
                 this.signSprite = spriteInit(this.addSign, 960 - SIZE / 2f, 640 - SIZE / 2f, SIZE, SIZE);
             else if (this.operation == 1)
@@ -744,9 +722,6 @@ public class MiniGame {
                 this.menuMMG.isEnding = true;
             }
 
-            if ((Gdx.input.isKeyJustPressed(Input.Keys.X))) {
-                menuMMG.resetAfterQuit();
-            }
         }
     }
 
@@ -826,7 +801,6 @@ public class MiniGame {
         private boolean isButtonHTPHovered;
 
         private boolean isStarted;
-        private boolean isLoaded;
         private boolean isEnding;
         private boolean instructionDisplay;
 
@@ -835,7 +809,6 @@ public class MiniGame {
             this.isButtonStartHovered = false;
             this.isButtonHTPHovered = false;
             this.isStarted = false;
-            this.isLoaded = false;
             this.isEnding = false;
             this.map = map;
         }
@@ -862,9 +835,6 @@ public class MiniGame {
                     this.isButtonHTPHovered = true;
                 } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
                     this.isButtonHTPHovered = false;
-                } else if (Gdx.input.isKeyPressed(Input.Keys.X)) {
-                    this.map.unlockMap(MiniGamesTypes.MEMORY);
-                    this.resetAfterQuit();
                 }
 
                 if (this.isButtonHTPHovered) {
@@ -894,7 +864,6 @@ public class MiniGame {
             if (this.isStarted) {
                 game.Draw();
             }
-
         }
 
         public void resetAfterQuit() {
@@ -924,17 +893,14 @@ public class MiniGame {
         int timeSeconds;
         float timer;
         BitmapFont font;
-        boolean gameOutput;
         int[] generatedNumbers, playerNumbers;
         int numberCounter;
 
-        private GameObject[][] colorsBoxGameObjects;
-        private Sprite[][] colorsBoxSprites;
-        private Texture[] colors, colorsWithNumbers;
+        private final Texture[] colors;
         private Texture emptyColor;
-        private Sprite signSprite, eqSignSprite;
-        private Sprite[] chooseColor, gameColors;
-        private final int SIZE = 150, OFFSET = 30, BOX_SIZE = 100;
+        private final Sprite[] gameColors;
+        private final int SIZE = 150;
+        private final int OFFSET = 30;
 
 
         MemoryMiniGame(SpriteBatch spriteBatch, MemoryMiniGameMenu menuMemory) {
@@ -951,9 +917,6 @@ public class MiniGame {
                 this.generatedNumbers[i] = random.nextInt(8);
 
             this.gameColors = new Sprite[4];
-            this.chooseColor = new Sprite[9];
-            this.colorsBoxGameObjects = new GameObject[3][3];
-            this.colorsBoxSprites = new Sprite[3][3];
             this.colors = new Texture[9];
             this.loadTextures();
         }
@@ -977,12 +940,6 @@ public class MiniGame {
         public void texturesToSprites() {
             for (int i = 0; i < 4; i++) {
                 this.gameColors[i] = spriteInit(this.colors[this.generatedNumbers[i]], 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
-            }
-            for (int w = 0; w<3; w++) {
-                for (int k = 0; k<3; k++) {
-                    this.colorsBoxSprites[w][k] = spriteInit(this.colors[w*3 + k], 960 - (1-k) * BOX_SIZE - BOX_SIZE/2f,810 - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
-                    this.colorsBoxGameObjects[w][k] = new GameObject(this.colors[w*3 + k], 960 - (1-k) * BOX_SIZE - BOX_SIZE/2f,810 - w * BOX_SIZE - 60, BOX_SIZE, BOX_SIZE);
-                }
             }
         }
 
