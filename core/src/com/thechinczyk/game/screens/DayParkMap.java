@@ -13,6 +13,7 @@ import com.thechinczyk.game.MyTheChinczyk;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.TreeMap;
+import com.badlogic.gdx.utils.Align;
 
 public class DayParkMap implements Screen {
 
@@ -53,8 +54,17 @@ public class DayParkMap implements Screen {
     int jumpAnimation = 0;
     public ArrayList<Player> Players = new ArrayList<>();
 
+    boolean[] miniGamePlaying;
+    boolean[] miniGameOutput;
+    MiniGamesTypes miniGameType;
+    MiniGame miniGame;
+
     public DayParkMap(MyTheChinczyk game) {
+        this.miniGamePlaying = new boolean[3];
+        this.miniGameOutput = new boolean[3];
+        this.miniGameType = MiniGamesTypes.NONE;
         this.game = game;
+        this.miniGame = new MiniGame(game.batch, this);
     }
 
     GameTextures gameTextures;
@@ -427,22 +437,131 @@ public class DayParkMap implements Screen {
         }
     }
 
-    public void drawCardAnim(String message) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) {
+    public void drawCardAnim(String message){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1]) || (Gdx.input.isKeyJustPressed(Input.Keys.N) && !gameTextures.cardAnimStarted && !this.miniGameOutput[2])){
             //Wysunięcie karty
+            // System.out.println("test2");
             gameTextures.cardAnimStarted = true;
-        } else if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)) {
+        }
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
+            //System.out.println("test");
+            this.miniGameOutput[0] = false;
+            this.miniGameOutput[1] = false;
+            this.miniGameOutput[2] = false;
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
-        if (gameTextures.cardAnimStarted) {
+        if(gameTextures.cardAnimStarted) {
             gameTextures.cardElapsedTime += Gdx.graphics.getDeltaTime();
             game.batch.draw(gameTextures.cardAnim.getKeyFrame(gameTextures.cardElapsedTime, false), 304, 71, 1270, 938);
-            if (gameTextures.cardElapsedTime > 1.5f) {
+            if(gameTextures.cardElapsedTime>1.5f){
                 //Pojawienie się tekstu w momencie gdy karta się obraca
-                gameTextures.font.draw(game.batch, message, 750, 600);
+                gameTextures.font.draw(game.batch, message, 660, 740, 600, Align.center, true);
             }
+        }
+    }
+
+    public void drawSpaceInvadersMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
+            drawCardAnim(message);
+            // this.miniGamePlaying[0] = true;
+        }
+        if (this.miniGamePlaying[0] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[0]) {
+                this.miniGame.loadTextures(MiniGamesTypes.SPACE_INVADERS);
+                this.miniGame.isLoaded[0] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuSpaceInvaders.Draw();
+        }
+
+        if (this.miniGameOutput[0] && !this.miniGamePlaying[0]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive1");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMathMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MATH || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[2]) {
+            drawCardAnim(message);
+            // System.out.println("yes");
+            // this.miniGamePlaying[1] = true;
+        }
+        if (this.miniGamePlaying[1] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[1]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MATH);
+                this.miniGame.isLoaded[1] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMath.Draw();
+        }
+
+        if (this.miniGameOutput[1] && !this.miniGamePlaying[1]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive2");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMemoryMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MEMORY || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[1]) {
+            drawCardAnim(message);
+        }
+        if (this.miniGamePlaying[2] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[2]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MEMORY);
+                this.miniGame.isLoaded[2] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMemory.Draw();
+        }
+
+        if (this.miniGameOutput[2] && !this.miniGamePlaying[2]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive3");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMiniGameTimer(int x, int y) {
+        gameTextures.timerElapsedTime += Gdx.graphics.getDeltaTime();
+        game.batch.draw(gameTextures.timerAnim.getKeyFrame(gameTextures.timerElapsedTime, true),
+                x, y, 100, 100);
+    }
+
+    public void unlockMap(MiniGamesTypes type) {
+        if (type == MiniGamesTypes.SPACE_INVADERS) {
+            this.miniGamePlaying[0] = false;
+            this.miniGameOutput[0] = true;
+        }
+        else if (type == MiniGamesTypes.MATH){
+            this.miniGamePlaying[1] = false;
+            this.miniGameOutput[1] = true;
+        }
+        else if (type == MiniGamesTypes.MEMORY) {
+            this.miniGamePlaying[2] = false;
+            this.miniGameOutput[2] = true;
+        }
+
+    }
+
+    public void getInputForMiniGame() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+            this.miniGamePlaying[0] = true;
+            this.miniGameType = MiniGamesTypes.SPACE_INVADERS;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            this.miniGamePlaying[1] = true;
+            this.miniGameType = MiniGamesTypes.MATH;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            this.miniGamePlaying[2] = true;
+            this.miniGameType = MiniGamesTypes.MEMORY;
         }
     }
 
@@ -523,6 +642,91 @@ public class DayParkMap implements Screen {
                 1009, 137, 199, 95);
     }
 
+
+    //z galezi dayParkMap
+    /*public void drawBusAnim(){
+        //WYBÓR KOLORU PIONKA WSIADAJĄCEGO DO AUTOBUSU
+        if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) && gameTextures.BusAnimStarted == 0){
+            //Żółty autobus
+            gameTextures.BusAnimStarted = 1;
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) && gameTextures.BusAnimStarted == 0){
+            //Zielony autobus
+            gameTextures.BusAnimStarted = 2;
+            gameTextures.BusElapsedTime = 0.5805f;
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) && gameTextures.BusAnimStarted == 0){
+            //Niebieski autobus
+            gameTextures.BusAnimStarted = 3;
+            gameTextures.BusElapsedTime = 1.1444f;
+        }
+        else if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) && gameTextures.BusAnimStarted == 0){
+            //Różowy autobus
+            gameTextures.BusAnimStarted = 4;
+            gameTextures.BusElapsedTime = 1.7144f;
+        }
+        else if(gameTextures.BusAnim.isAnimationFinished(gameTextures.BusElapsedTime) && gameTextures.BusAnimStarted != 0){
+            //Stan spoczynku animacji
+            gameTextures.BusAnimStarted = 0;
+            gameTextures.BusElapsedTime = 0;
+        }
+
+        //DZIELENIE ANIMACJI ZE WZGLĘDU NA KOLORY
+        if(gameTextures.BusAnimStarted==1){
+            //Żółty autobus
+            if(gameTextures.BusElapsedTime > 0.54 && gameTextures.BusElapsedTime < 0.6){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 6.51f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==2){
+            //Zielony autobus
+            if(gameTextures.BusElapsedTime > 1.11 && gameTextures.BusElapsedTime < 1.15){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 6.5477f;
+            }
+            else if(gameTextures.BusElapsedTime > 8.92f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==3){
+            //Niebieski autobus
+            if(gameTextures.BusElapsedTime > 1.68 && gameTextures.BusElapsedTime < 1.7){
+                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+                gameTextures.BusElapsedTime = 2.3f;
+            }
+            else if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 8.9455f;
+            }
+            else if(gameTextures.BusElapsedTime > 11.30f){
+                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+                gameTextures.BusElapsedTime = 100f;
+            }
+        }
+        else if(gameTextures.BusAnimStarted==4){
+            //Różowy autobus
+            if(gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f){
+                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+                gameTextures.BusElapsedTime = 11.3432f;
+            }
+        }
+
+        //Wyświetlenie animacji autobusu
+        if(gameTextures.BusAnimStarted != 0) {
+            gameTextures.BusElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        game.batch.draw(gameTextures.BusAnim.getKeyFrame(gameTextures.BusElapsedTime, false), 1526, 0, 394, 1080);
+    } */
     public void drawYellowBusAnim() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.B) && !gameTextures.yellowBusAnimStarted) {
             gameTextures.yellowBusAnimStarted = true;
@@ -654,6 +858,36 @@ public class DayParkMap implements Screen {
             }
         }
     }
+
+    //dayParkMap
+    /*public void scoreBoard(Players first, Players second, Players third, Players fourth){
+        if(!gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.S)){
+            //Włączenie tablicy
+            gameTextures.scoreBoardFlag = true;
+        }
+        else if(gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.S)){
+            //Wyłączenie tablicy. Tu mozna podmienić to żeby zamiast chowania tablicy był powrót do menu głównego
+            gameTextures.scoreBoardFlag = false;
+        }
+        else if(gameTextures.scoreBoardFlag){
+            //Rysowanie tła
+            game.batch.draw(gameTextures.scoreBoardBackground, 0, 0, 1920, 1080);
+
+            //Wyświetlanie odpowiednich graczy na poszczególnych miejscach
+            if(first.ordinal() >0){
+                game.batch.draw(gameTextures.scoreBoard.get(first.ordinal()-1), 900, 585, 450, 150);
+            }
+            if(second.ordinal()>0){
+                game.batch.draw(gameTextures.scoreBoard.get(second.ordinal()-1), 689, 480, 300, 100);
+            }
+            if(third.ordinal()>0){
+                game.batch.draw(gameTextures.scoreBoard.get(third.ordinal()-1), 1040, 383, 300, 100);
+            }
+            if(fourth.ordinal()>0){
+                game.batch.draw(gameTextures.scoreBoard.get(fourth.ordinal()-1), 759, 283, 300, 100);
+            }
+        }
+    } */
 
     @Override
     public void resize(int width, int height) {
@@ -807,4 +1041,3 @@ class Pawn {
         this.playerElapsedTime = 0;
     }
 }
-

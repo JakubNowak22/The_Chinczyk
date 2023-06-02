@@ -86,6 +86,10 @@ class GameTextures{
     public float pawnCapture2ElapsedTime;
     public float pawnCaptureMainElapsedTime;
 
+    public TextureAtlas timerAtlas;
+    public Animation<TextureRegion> timerAnim;
+    public float timerElapsedTime;
+
     GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
@@ -131,7 +135,7 @@ class GameTextures{
         cardElapsedTime = 0f;
         cardAnimStarted = false;
 
-        yellowBusAtlas = new TextureAtlas("Map1/YellowBusAnimSheet/YellowBusAnimSheet.atlas");
+        yellowBusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
         yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
         yellowBusElapsedTime = 0f;
         yellowBusAnimStarted = false;
@@ -166,6 +170,9 @@ class GameTextures{
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);
-    }
 
+        timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
+        timerAnim = new Animation<TextureRegion>(1f/26f, timerAtlas.getRegions());
+        timerElapsedTime = 0f;
+    }
 }
