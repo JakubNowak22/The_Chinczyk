@@ -1,11 +1,14 @@
 package com.thechinczyk.game.screens;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.Align;
 import com.thechinczyk.game.GameObject;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.thechinczyk.game.MyTheChinczyk;
+
 import java.util.Random;
 import static com.thechinczyk.game.screens.MainMenu.spriteInit;
 
@@ -39,6 +42,11 @@ public class MiniGame {
         this.timerAnimStarted = false;
     }
 
+    public static Vector2 getMiniGameMousePosition(MyTheChinczyk game) {
+        Vector3 cursorPosition3 = game.viewport.unproject(new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0));
+        return new Vector2(cursorPosition3.x, cursorPosition3.y);
+    }
+
     public void loadTextures(MiniGamesTypes type) {
         this.type = type;
         if (type == MiniGamesTypes.SPACE_INVADERS)
@@ -57,6 +65,7 @@ public class MiniGame {
         map.gameTextures.font.draw(spriteBatch, instruction, 660, 710, 600, Align.center, true);
         map.gameTextures.font.getData().setScale(0.3f, 0.3f);
     }
+
 
     static class SpaceInvadersMenu {
         SpriteBatch spriteBatch;
@@ -81,6 +90,7 @@ public class MiniGame {
         private boolean isStarted;
         private boolean isEnding;
         private boolean instructionDisplay;
+        private boolean isInstructionJustDisplayed;
 
         SpaceInvadersMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -96,8 +106,8 @@ public class MiniGame {
             this.backTexture = new Texture("SpaceInvadersMiniGame/MiniGame_Edge.png");
 
             buttonStartHovered = new Texture("SpaceInvadersMiniGame/ButtonSTARTon.png");
-            buttonStart = new GameObject(buttonStartHovered, 860, 270, 200, 100);
-            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, 860, 270 + 128, 200, 100);
+            buttonStart = new GameObject(buttonStartHovered, 860, 398, 200, 100);
+            buttonStartHoveredSprite = spriteInit(this.buttonStartHovered, 860, 398, 200, 100);
 
             buttonHTPHovered = new Texture("SpaceInvadersMiniGame/ButtonHTPon.png");
             buttonHTP = new GameObject(buttonHTPHovered, 860, 285, 200, 100);
@@ -105,44 +115,42 @@ public class MiniGame {
         }
 
         public void Update() {
+            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
             if (!this.isStarted) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.S) && !this.isButtonStartHovered) {
-                    this.isButtonStartHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-                    this.isButtonStartHovered = false;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H) && !this.isButtonHTPHovered) {
-                    this.isButtonHTPHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
-                    this.isButtonHTPHovered = false;
-                }
+                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
+                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
-                        MiniGame.displayInstructionHTP("In this mini-game, you control rocket. You move horizontal with " +
-                                "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
-                                "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
-                                "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map, 0.25f);
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.instructionDisplay = true;
-                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
-                            this.instructionDisplay = false;
-                            this.isButtonHTPHovered = false;
-                        }
+                        this.isInstructionJustDisplayed = true;
                     }
 
-                } else if (this.isButtonStartHovered) {
+                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
                     buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.game = new SpaceInvaders(spriteBatch, this);
                         isStarted = true;
                     }
                 }
-            }
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
+                    this.instructionDisplay = false;
+                    this.isButtonHTPHovered = false;
+                }
+                if (this.instructionDisplay) {
+                    MiniGame.displayInstructionHTP("In this mini-game, you control rocket. You move horizontal with " +
+                            "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
+                            "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
+                            "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map, 0.25f);
+                    this.instructionDisplay = true;
+                    this.isInstructionJustDisplayed = false;
+                }
 
+            }
             if (this.isStarted) {
                 game.Draw();
             }
-
         }
 
         public void resetAfterQuit() {
@@ -201,15 +209,11 @@ public class MiniGame {
             else
                 this.game.fontGreen.draw(this.spriteBatch, Integer.toString(this.result), 930, 450);
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
-                this.isButtonEndHovered = true;
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-                this.isButtonEndHovered = false;
-            }
-
+            Vector2 cursorPosition = getMiniGameMousePosition(this.menuSI.map.game);
+            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
             if (this.isButtonEndHovered) {
                 buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                     this.menuSI.map.miniGameOutput[0] = true;
                     menuSI.resetAfterQuit();
                 }
@@ -455,6 +459,7 @@ public class MiniGame {
         private boolean isStarted;
         private boolean isEnding;
         private boolean instructionDisplay;
+        private boolean isInstructionJustDisplayed;
 
         MathMiniGameMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -478,46 +483,44 @@ public class MiniGame {
         }
 
         public void Update() {
+            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
             if (!this.isStarted) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.S) && !this.isButtonStartHovered) {
-                    this.isButtonStartHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-                    this.isButtonStartHovered = false;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H) && !this.isButtonHTPHovered) {
-                    this.isButtonHTPHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
-                    this.isButtonHTPHovered = false;
-                }
+                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
+                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
-                        MiniGame.displayInstructionHTP("In this mini-game, you get random mathematical operation. You " +
-                                "have to type exact result, unless you get division - " +
-                                "it is integer division (e.g 5/2 = 2). " +
-                                "You have 15 seconds to solve it, but if you finish earlier, " +
-                                "you can use ENTER to end mini-game. If the answer is correct and " +
-                                "you finished under 10 seconds, your reward will be better.", this.map, 0.25f);
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.instructionDisplay = true;
-                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
-                            this.instructionDisplay = false;
-                            this.isButtonHTPHovered = false;
-                        }
+                        this.isInstructionJustDisplayed = true;
                     }
 
-                } else if (this.isButtonStartHovered) {
+                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
                     buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.game = new MathMiniGame(spriteBatch, this);
                         isStarted = true;
                     }
                 }
-            }
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
+                    this.instructionDisplay = false;
+                    this.isButtonHTPHovered = false;
+                }
+                if (this.instructionDisplay) {
+                    MiniGame.displayInstructionHTP("In this mini-game, you get random mathematical operation. You " +
+                            "have to type exact result, unless you get division - " +
+                            "it is integer division (e.g 5/2 = 2). " +
+                            "You have 15 seconds to solve it, but if you finish earlier, " +
+                            "you can use ENTER to end mini-game. If the answer is correct and " +
+                            "you finished under 10 seconds, your reward will be better.", this.map, 0.25f);
+                    this.instructionDisplay = true;
+                    this.isInstructionJustDisplayed = false;
+                }
 
+            }
             if (this.isStarted) {
                 game.Draw();
             }
-
         }
 
         public void resetAfterQuit() {
@@ -777,16 +780,11 @@ public class MiniGame {
 
         public void Update() {
             spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
-
-            if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
-                this.isButtonEndHovered = true;
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-                this.isButtonEndHovered = false;
-            }
-
+            Vector2 cursorPosition = getMiniGameMousePosition(this.menuMMG.map.game);
+            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
             if (this.isButtonEndHovered) {
                 buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                     this.menuMMG.map.miniGameOutput[1] = true;
                     menuMMG.resetAfterQuit();
                 }
@@ -819,6 +817,7 @@ public class MiniGame {
         private boolean isStarted;
         private boolean isEnding;
         private boolean instructionDisplay;
+        private boolean isInstructionJustDisplayed;
 
         MemoryMiniGameMenu(SpriteBatch batch, DayParkMap map) {
             this.spriteBatch = batch;
@@ -842,41 +841,40 @@ public class MiniGame {
         }
 
         public void Update() {
+            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
             if (!this.isStarted) {
-                if (Gdx.input.isKeyJustPressed(Input.Keys.S) && !this.isButtonStartHovered) {
-                    this.isButtonStartHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
-                    this.isButtonStartHovered = false;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H) && !this.isButtonHTPHovered) {
-                    this.isButtonHTPHovered = true;
-                } else if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
-                    this.isButtonHTPHovered = false;
-                }
+                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
+                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
 
                 if (this.isButtonHTPHovered) {
                     buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G) || this.instructionDisplay) {
-                        MiniGame.displayInstructionHTP("In this mini-game, you will be shown path of four colors. You have " +
-                                "seconds to remember it, and then, you have 10 seconds to repeat " +
-                                "this path by using NUMBER KEYS and BACKSPACE. If the answer is " +
-                                "correct and you finished in under 7 seconds, " +
-                                "your reward will be better.", this.map, 0.25f);
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.instructionDisplay = true;
-                        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
-                            this.instructionDisplay = false;
-                            this.isButtonHTPHovered = false;
-                        }
+                        this.isInstructionJustDisplayed = true;
                     }
 
-                } else if (this.isButtonStartHovered) {
+                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
                     buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
+                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                         this.game = new MemoryMiniGame(spriteBatch, this);
                         isStarted = true;
                     }
                 }
-            }
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
+                    this.instructionDisplay = false;
+                    this.isButtonHTPHovered = false;
+                }
+                if (this.instructionDisplay) {
+                    MiniGame.displayInstructionHTP("In this mini-game, you will be shown path of four colors. You have " +
+                            "seconds to remember it, and then, you have 10 seconds to repeat " +
+                            "this path by using NUMBER KEYS and BACKSPACE. If the answer is " +
+                            "correct and you finished in under 5 seconds, " +
+                            "your reward will be better.", this.map, 0.25f);
+                    this.instructionDisplay = true;
+                    this.isInstructionJustDisplayed = false;
+                }
 
+            }
             if (this.isStarted) {
                 game.Draw();
             }
@@ -1090,15 +1088,11 @@ public class MiniGame {
         public void Update() {
             spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.X) && !this.isButtonEndHovered) {
-                this.isButtonEndHovered = true;
-            } else if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
-                this.isButtonEndHovered = false;
-            }
-
+            Vector2 cursorPosition = getMiniGameMousePosition(this.menuMemory.map.game);
+            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
             if (this.isButtonEndHovered) {
                 buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isKeyPressed(Input.Keys.G)) {
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                     this.menuMemory.map.miniGameOutput[2] = true;
                     menuMemory.resetAfterQuit();
                 }
