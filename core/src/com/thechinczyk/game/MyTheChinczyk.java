@@ -9,10 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.thechinczyk.game.screens.ChooseGameSettings;
-import com.thechinczyk.game.screens.MainMenu;
-import com.thechinczyk.game.screens.DayParkMap;
-import com.thechinczyk.game.screens.MenuLoadingScreen;
+import com.thechinczyk.game.screens.*;
 
 public class MyTheChinczyk extends Game {
 
@@ -34,6 +31,7 @@ public class MyTheChinczyk extends Game {
 	public MainMenu MainMenu;
 
 	public DayParkMap dayParkMap;
+	public MiniGame miniGame;
 	public com.thechinczyk.game.screens.MenuLoadingScreen MenuLoadingScreen;
 	// public Game game alokacja w Loading Menu żeby nie marnować zasobów
 
@@ -55,7 +53,7 @@ public class MyTheChinczyk extends Game {
 		/*ChooseGameSettings = new ChooseGameSettings(this);
 		MainMenu = new MainMenu(this);
 		MenuLoadingScreen = new MenuLoadingScreen(this);
-		this.setScreen(MainMenu);*/
+		this.setScreen(MainMenu); */
 
 		this.setScreen(new DayParkMap(this));
 	}

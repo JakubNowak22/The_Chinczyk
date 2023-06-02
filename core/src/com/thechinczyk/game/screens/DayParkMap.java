@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.thechinczyk.game.MyTheChinczyk;
 import org.lwjgl.Sys;
@@ -21,15 +22,24 @@ public class DayParkMap implements Screen {
     Random rand;
     double diceRoll;
 
+    boolean[] miniGamePlaying;
+    boolean[] miniGameOutput;
+    MiniGamesTypes miniGameType;
+
     int yellowPawnsInBase;
     int bluePawnsInBase;
     int greenPawnsInBase;
     int pinkPawnsInBase;
 
     enum Players {None,Yellow, Green, Blue, Pink}
+    MiniGame miniGame;
 
     public DayParkMap(MyTheChinczyk game){
+        this.miniGamePlaying = new boolean[3];
+        this.miniGameOutput = new boolean[3];
+        this.miniGameType = MiniGamesTypes.NONE;
         this.game = game;
+        this.miniGame = new MiniGame(game.batch, this);
     }
     GameTextures gameTextures;
     @Override
@@ -53,31 +63,13 @@ public class DayParkMap implements Screen {
 
         game.batch.begin();
 
-        //Wyświetlenie głównego tła planszy
-        drawBackGround();
-        //Animacja rożka z lodem i huśtawki na planszy
-        drawIceCreamAndSwingAnim();
-
-        //Przykładowa obsługa zmiany ilości pionków w bazie
-        if(Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase>0){
-            yellowPawnsInBase--;
-            bluePawnsInBase--;
-            greenPawnsInBase--;
-            pinkPawnsInBase--;
-        }
-        if(Gdx.input.isKeyJustPressed(Input.Keys.EQUALS) && yellowPawnsInBase<4){
-            yellowPawnsInBase++;
-            bluePawnsInBase++;
-            greenPawnsInBase++;
-            pinkPawnsInBase++;
-        }
-        drawBase();
-
-        //Wyświetlenie liczby oczek
-        drawDice();
+            //Wyświetlenie głównego tła planszy
+            drawBackGround();
+            //Animacja rożka z lodem i huśtawki na planszy
+            drawIceCreamAndSwingAnim();
 
         //Powrót do menu głównego
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             game.gameScreen = 3;
             game.setScreen(game.MenuLoadingScreen);
         }
@@ -85,6 +77,21 @@ public class DayParkMap implements Screen {
         //Przykładowa obsługa animacji busa
         drawBusAnim();
 
+        if (!this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
+            //Przykładowa obsługa zmiany ilości pionków w bazie
+            if (Gdx.input.isKeyJustPressed(Input.Keys.MINUS) && yellowPawnsInBase > 0) {
+                yellowPawnsInBase--;
+                bluePawnsInBase--;
+                greenPawnsInBase--;
+                pinkPawnsInBase--;
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.EQUALS) && yellowPawnsInBase < 4) {
+                yellowPawnsInBase++;
+                bluePawnsInBase++;
+                greenPawnsInBase++;
+                pinkPawnsInBase++;
+            }
+            drawBase();
 
         //Przykład poruszania się pionkiem
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
@@ -131,22 +138,35 @@ public class DayParkMap implements Screen {
         else{
             game.batch.draw(gameTextures.pinkPlayer1Anim.getKeyFrame(gameTextures.pinkPlayer1ElapsedTime, false), 0, 0, 1080, 1080);
         }
+            //Wyświetlenie liczby oczek
+            drawDice();
 
+            //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
+            game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
-        //Przykładowa obsługa animacji karty
-        drawCardAnim("Hello World!\nSample text, sample tex");
+            //Przykładowa obsługa animacji karty
+            if (!this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2])
+                drawCardAnim("Hello World!\nSample text, sample tex");
 
-        //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
-        game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
+            //Obsługa animacji tabliczek oznaczających nową turę
+            changeWhichPlayersTurn();
 
-        //Obsługa animacji tabliczek oznaczających nową turę
-        changeWhichPlayersTurn();
+            //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
+            drawWhichPlayersTurnUI();
 
-        //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
-        drawWhichPlayersTurnUI();
+            //Przykładowa obsługa kostki
+            drawDiceAnim();
+        }
+        getInputForMiniGame();
 
-        //Przykładowa obsługa kostki
-        drawDiceAnim();
+        //Wylosowanie mini-gry Math
+        drawMathMiniGameMenu("Mini-Game!\nYour game will be...\nMATH MINI GAME");
+
+        //Wylosowanie mini-gry Space Invaders
+        drawSpaceInvadersMiniGameMenu("Mini-Game!\nYour game will be...\nSPACE INVADERS");
+
+        //Wylosowanie mini-gry Memory
+        drawMemoryMiniGameMenu("Mini-Game!\nYour game will be...\nMEMORY");
 
         //Obsługa animacji zbijania pionków
         drawPawnCaptureAnim(Players.Pink,Players.Green);
@@ -212,12 +232,17 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if(Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted){
+        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1]) || (Gdx.input.isKeyJustPressed(Input.Keys.N) && !gameTextures.cardAnimStarted && !this.miniGameOutput[2])){
             //Wysunięcie karty
+           // System.out.println("test2");
             gameTextures.cardAnimStarted = true;
         }
-        else if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
+        if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
+            //System.out.println("test");
+            this.miniGameOutput[0] = false;
+            this.miniGameOutput[1] = false;
+            this.miniGameOutput[2] = false;
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
@@ -226,9 +251,75 @@ public class DayParkMap implements Screen {
             game.batch.draw(gameTextures.cardAnim.getKeyFrame(gameTextures.cardElapsedTime, false), 304, 71, 1270, 938);
             if(gameTextures.cardElapsedTime>1.5f){
                 //Pojawienie się tekstu w momencie gdy karta się obraca
-                gameTextures.font.draw(game.batch, message, 750, 600);
+                gameTextures.font.draw(game.batch, message, 660, 740, 600, Align.center, true);
+                }
             }
+    }
+
+    public void drawSpaceInvadersMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
+            drawCardAnim(message);
+           // this.miniGamePlaying[0] = true;
         }
+        if (this.miniGamePlaying[0] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[0]) {
+                this.miniGame.loadTextures(MiniGamesTypes.SPACE_INVADERS);
+                this.miniGame.isLoaded[0] = true;
+            }
+          //  this.miniGamePlaying = true;
+            this.miniGame.menuSpaceInvaders.Draw();
+        }
+
+        if (this.miniGameOutput[0] && !this.miniGamePlaying[0]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive1");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMathMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MATH || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[2]) {
+            drawCardAnim(message);
+           // System.out.println("yes");
+           // this.miniGamePlaying[1] = true;
+        }
+        if (this.miniGamePlaying[1] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[1]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MATH);
+                this.miniGame.isLoaded[1] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMath.Draw();
+        }
+
+        if (this.miniGameOutput[1] && !this.miniGamePlaying[1]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive2");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
+    }
+
+    public void drawMemoryMiniGameMenu(String message) {
+        if((this.miniGameType == MiniGamesTypes.MEMORY || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[1]) {
+            drawCardAnim(message);
+        }
+        if (this.miniGamePlaying[2] && !this.gameTextures.cardAnimStarted) {
+            if (!this.miniGame.isLoaded[2]) {
+                this.miniGame.loadTextures(MiniGamesTypes.MEMORY);
+                this.miniGame.isLoaded[2] = true;
+            }
+            //  this.miniGamePlaying = true;
+            this.miniGame.menuMemory.Draw();
+        }
+
+        if (this.miniGameOutput[2] && !this.miniGamePlaying[2]) {
+            drawCardAnim("Text with reward/punishment\nthat player will receive3");
+        }
+
+        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
+            this.miniGameOutput = false; */
     }
 
     public void drawWhichPlayersTurnUI(){
@@ -281,6 +372,13 @@ public class DayParkMap implements Screen {
                 0, 888, 179, 192);
         game.batch.draw(gameTextures.swingAnim.getKeyFrame(gameTextures.loopElapsedTime, true),
                 1009, 137, 199, 95);
+
+    }
+
+    public void drawMiniGameTimer(int x, int y) {
+        gameTextures.timerElapsedTime += Gdx.graphics.getDeltaTime();
+        game.batch.draw(gameTextures.timerAnim.getKeyFrame(gameTextures.timerElapsedTime, true),
+                x, y, 100, 100);
     }
 
     public void drawBusAnim(){
@@ -543,6 +641,7 @@ public class DayParkMap implements Screen {
         gameTextures.diceAtlas.dispose();
         gameTextures.font.dispose();
         gameTextures.turnSignAtlas.dispose();
+        //gameTextures.timerAtlas.dispose();
 
         gameTextures.turnSignBlueBackground.dispose();
         gameTextures.turnSignPinkBackground.dispose();
@@ -584,6 +683,38 @@ public class DayParkMap implements Screen {
         gameTextures.scoreBoardGreen.dispose();
         gameTextures.scoreBoardPink.dispose();
     }
+
+    public void unlockMap(MiniGamesTypes type) {
+        if (type == MiniGamesTypes.SPACE_INVADERS) {
+            this.miniGamePlaying[0] = false;
+            this.miniGameOutput[0] = true;
+        }
+        else if (type == MiniGamesTypes.MATH){
+            this.miniGamePlaying[1] = false;
+            this.miniGameOutput[1] = true;
+        }
+        else if (type == MiniGamesTypes.MEMORY) {
+            this.miniGamePlaying[2] = false;
+            this.miniGameOutput[2] = true;
+        }
+
+    }
+
+    public void getInputForMiniGame() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+            this.miniGamePlaying[0] = true;
+            this.miniGameType = MiniGamesTypes.SPACE_INVADERS;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            this.miniGamePlaying[1] = true;
+            this.miniGameType = MiniGamesTypes.MATH;
+        }
+        else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            this.miniGamePlaying[2] = true;
+            this.miniGameType = MiniGamesTypes.MEMORY;
+        }
+    }
+
 }
 
 
@@ -632,6 +763,10 @@ class GameTextures{
     public float loopElapsedTime;
     public TextureAtlas swingAtlas;
     public Animation<TextureRegion> swingAnim;
+
+    public TextureAtlas timerAtlas;
+    public Animation<TextureRegion> timerAnim;
+    public float timerElapsedTime;
 
     public TextureAtlas cardAtlas;
     public Animation<TextureRegion> cardAnim;
@@ -724,6 +859,10 @@ class GameTextures{
         loopElapsedTime = 0f;
         swingAtlas = new TextureAtlas("Map1/SwingAnimSheet/SwingAnimSheet.atlas");
         swingAnim = new Animation<TextureRegion>(1f/30f, swingAtlas.getRegions());
+
+        timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
+        timerAnim = new Animation<TextureRegion>(1f/26f, timerAtlas.getRegions());
+        timerElapsedTime = 0f;
 
         cardAtlas = new TextureAtlas("Map1/CardAnimSheet/CardAnimSheet.atlas");
         cardAnim = new Animation<TextureRegion>(1f/30f, cardAtlas.getRegions());
