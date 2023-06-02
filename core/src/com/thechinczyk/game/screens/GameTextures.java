@@ -43,11 +43,10 @@ class GameTextures{
     public float cardElapsedTime;
     public boolean cardAnimStarted;
 
-    public TextureAtlas yellowBusAtlas;
-    public Animation<TextureRegion> yellowBusAnim;
-    public float yellowBusElapsedTime;
-    public boolean yellowBusAnimStarted;
-
+    public TextureAtlas BusAtlas;
+    public Animation<TextureRegion> BusAnim;
+    public float BusElapsedTime;
+    public int BusAnimStarted;
     public TextureAtlas diceAtlas;
     public Animation<TextureRegion> diceAnim;
     public float diceElapsedTime;
@@ -96,10 +95,10 @@ class GameTextures{
         cardElapsedTime = 0f;
         cardAnimStarted = false;
 
-        yellowBusAtlas = new TextureAtlas("Map1/YellowBusAnimSheet/YellowBusAnimSheet.atlas");
-        yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
-        yellowBusElapsedTime = 0f;
-        yellowBusAnimStarted = false;
+        BusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
+        BusAnim = new Animation<TextureRegion>(1f/30f, BusAtlas.getRegions());
+        BusElapsedTime = 0f;
+        BusAnimStarted = 0;
 
         diceAtlas = new TextureAtlas("Map1/DiceAnimSheet/DiceAnimSheet.atlas");
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
