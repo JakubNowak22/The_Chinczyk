@@ -7,6 +7,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class GameTextures{
     BitmapFont font;
     public Texture dayParkBackground;
@@ -86,6 +89,14 @@ class GameTextures{
     public float pawnCapture2ElapsedTime;
     public float pawnCaptureMainElapsedTime;
 
+    public Texture scoreBoardBackground;
+    public Texture scoreBoardYellow;
+    public Texture scoreBoardGreen;
+    public Texture scoreBoardBlue;
+    public Texture scoreBoardPink;
+    public boolean scoreBoardFlag;
+    List<Texture> scoreBoard = new ArrayList<Texture>();
+
     GameTextures(){
         dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
         dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
@@ -163,6 +174,17 @@ class GameTextures{
         pawnCapture2Anim = new Animation<TextureRegion>(1f/30f, pawnCapture2Atlas.getRegions());
         pawnCapture2ElapsedTime = 0;
         pawnCaptureMainElapsedTime = 0;
+
+        scoreBoardBackground = new Texture("Map1/ScoreBoard/TC_Map1_ScoreBoard.png");
+        scoreBoardYellow = new Texture("Map1/ScoreBoard/ScoreBoard_Yellow.png");
+        scoreBoardGreen = new Texture("Map1/ScoreBoard/ScoreBoard_Green.png");
+        scoreBoardBlue = new Texture("Map1/ScoreBoard/ScoreBoard_Blue.png");
+        scoreBoardPink = new Texture("Map1/ScoreBoard/ScoreBoard_Pink.png");
+        scoreBoardFlag = false;
+        scoreBoard.add(scoreBoardYellow);
+        scoreBoard.add(scoreBoardGreen);
+        scoreBoard.add(scoreBoardBlue);
+        scoreBoard.add(scoreBoardPink);
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);

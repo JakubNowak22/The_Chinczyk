@@ -116,18 +116,24 @@ public class DayParkMap implements Screen {
         //Animacja rożka z lodem i huśtawki na planszy
         drawIceCreamAndSwingAnim();
 
+        //Powrót do menu głównego
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.gameScreen = 3;
+            game.setScreen(game.MenuLoadingScreen);
+        }
+
         drawDice();
 
         drawBases();
+
+        drawPlayers(playerNumberTurn);
+        managePlayer(playerNumberTurn);
 
         //Obsługa animacji tabliczek oznaczających nową turę
         changeWhichPlayersTurn();
 
         //Wyświetlanie tabliczek w rogu z kolorem aktualnego gracza
         drawWhichPlayersTurnUI();
-
-        drawPlayers(playerNumberTurn);
-        managePlayer(playerNumberTurn);
 
         //Animacja autobusu
         drawBusAnim();
@@ -140,6 +146,7 @@ public class DayParkMap implements Screen {
 
         if(endGame){
             System.out.println("koniec gry!!!!!!");
+            scoreBoard();
         }
 
         game.batch.end();
@@ -180,7 +187,7 @@ public class DayParkMap implements Screen {
         }
         if (!throwDice) {
             drawDiceAnim();
-        } else if (player.activePawn == 0 && randNumber == 1) {
+        } else if (player.activePawn == 0 && randNumber == 6) {
             addPawn(player);
         } else if (player.activePawn >= 1 && player.activePawn <= 4) {
             if (!pawnChoose) {
@@ -228,21 +235,17 @@ public class DayParkMap implements Screen {
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1) &&
                 player.pawns[first].active && a.length >= 1) {
-            //System.out.println("pierwszy");
             enforcedPlayer(player, first);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2) &&
                 player.pawns[second].active && a.length >= 2) {
-            //System.out.println("drugi");
             enforcedPlayer(player, second);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3) &&
                 player.pawns[third].active && a.length >= 3) {
-            //System.out.println("trzeci");
             enforcedPlayer(player, third);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4) &&
                 player.pawns[fourth].active && a.length >= 4) {
-            //System.out.println("czwarty");
             enforcedPlayer(player, fourth);
-        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 1) {
+        } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 6) {
             if (canIAddPawn(player.playerBase)) {
                 addPawn(player);
             }
@@ -275,7 +278,7 @@ public class DayParkMap implements Screen {
             }
         }
         if (numberOfFalse == player.activePawn) {
-            if (canIAddPawn(player.playerBase) && randNumber == 1) {
+            if (canIAddPawn(player.playerBase) && randNumber == 6) {
                 addPawn(player);
             } else {
                 setPlayerNumberTurn();
@@ -409,7 +412,6 @@ public class DayParkMap implements Screen {
                 flag = true;
             }
         } else {
-            //player.pawns[pawNumber].onTheBus = false;
             killSomebody(player, pawNumber);
             setPlayerNumberTurn();
             resetFlags();
@@ -533,25 +535,36 @@ public class DayParkMap implements Screen {
             else if(turnSignKeyFrame == 139){
                 gameTextures.turnSignElapsedTime = 0;
             }
-            if(!skipFirstAnimation) {
-                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-                gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
-            } else{
-                gameTextures.turnSignElapsedTime = 1.3338771F;
-            }
-            if(game.playerCount==2){
-                if(gameTextures.turnSignElapsedTime>2.3){
-                    gameTextures.turnSignElapsedTime = 0.2F;
-                }
-            } else if (game.playerCount==3) {
-                if(gameTextures.turnSignElapsedTime>3.4){
-                    gameTextures.turnSignElapsedTime = 0.2F;
-                }
-            }
+
+            setAnimationTimeForPlayersTurn();
+
+            setAnimationForAppropriatePlayerCount();
+
             changeTurn=false;
         }
         drawWhichPlayersTurnAnim();
+    }
+
+    private void setAnimationTimeForPlayersTurn() {
+        if(!skipFirstAnimation) {
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+            gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
+        } else{
+            gameTextures.turnSignElapsedTime = 1.3338771F;
+        }
+    }
+
+    private void setAnimationForAppropriatePlayerCount() {
+        if(game.playerCount==2){
+            if(gameTextures.turnSignElapsedTime>2.3){
+                gameTextures.turnSignElapsedTime = 0.2F;
+            }
+        } else if (game.playerCount==3) {
+            if(gameTextures.turnSignElapsedTime>3.4){
+                gameTextures.turnSignElapsedTime = 0.2F;
+            }
+        }
     }
 
     public void drawBackGround() {
@@ -571,21 +584,21 @@ public class DayParkMap implements Screen {
             Player player = Players.get(i);
             for (int j = 0; j < player.activePawn; j++) {
                 //WYBÓR KOLORU PIONKA WSIADAJĄCEGO DO AUTOBUSU
-                if (player.playerNumber == 0 && isPlayerOnTheBus(player, j) && gameTextures.BusAnimStarted == 0) {
+                if (player.playerNumber == 0 && player.pawns[j].onTheBus && gameTextures.BusAnimStarted == 0) {
                     //Żółty autobus
                     gameTextures.BusAnimStarted = 1;
                     setAppropriateVariablesInBusAnimation(i, j);
-                } else if (player.playerNumber == 1 && isPlayerOnTheBus(player, j) && gameTextures.BusAnimStarted == 0) {
+                } else if (player.playerNumber == 1 && player.pawns[j].onTheBus && gameTextures.BusAnimStarted == 0) {
                     //Zielony autobus
                     gameTextures.BusAnimStarted = 2;
                     gameTextures.BusElapsedTime = 0.5805f;
                     setAppropriateVariablesInBusAnimation(i, j);
-                } else if (player.playerNumber == 2 && isPlayerOnTheBus(player, j) && gameTextures.BusAnimStarted == 0) {
+                } else if (player.playerNumber == 2 && player.pawns[j].onTheBus && gameTextures.BusAnimStarted == 0) {
                     //Niebieski autobus
                     gameTextures.BusAnimStarted = 3;
                     gameTextures.BusElapsedTime = 1.1444f;
                     setAppropriateVariablesInBusAnimation(i, j);
-                } else if (player.playerNumber == 3 && isPlayerOnTheBus(player, j) && gameTextures.BusAnimStarted == 0) {
+                } else if (player.playerNumber == 3 && player.pawns[j].onTheBus && gameTextures.BusAnimStarted == 0) {
                     //Różowy autobus
                     gameTextures.BusAnimStarted = 4;
                     gameTextures.BusElapsedTime = 1.7144f;
@@ -601,46 +614,16 @@ public class DayParkMap implements Screen {
         //DZIELENIE ANIMACJI ZE WZGLĘDU NA KOLORY
         if (gameTextures.BusAnimStarted == 1) {
             //Żółty autobus
-            if (gameTextures.BusElapsedTime > 0.54 && gameTextures.BusElapsedTime < 0.6) {
-                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
-                gameTextures.BusElapsedTime = 2.3f;
-            } else if (gameTextures.BusElapsedTime > 6.51f) {
-                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
-                setFlagAndElapseTimeToStopBus();
-            }
+            setAppropriateAnmationForYellowBus();
         } else if (gameTextures.BusAnimStarted == 2) {
             //Zielony autobus
-            if (gameTextures.BusElapsedTime > 1.11 && gameTextures.BusElapsedTime < 1.15) {
-                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
-                gameTextures.BusElapsedTime = 2.3f;
-            } else if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
-                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
-                gameTextures.BusElapsedTime = 6.5477f;
-            } else if (gameTextures.BusElapsedTime > 8.92f) {
-                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
-                setFlagAndElapseTimeToStopBus();
-            }
+            setAppropriateAnmationForGreenBus();
         } else if (gameTextures.BusAnimStarted == 3) {
             //Niebieski autobus
-            if (gameTextures.BusElapsedTime > 1.68 && gameTextures.BusElapsedTime < 1.7) {
-                //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
-                gameTextures.BusElapsedTime = 2.3f;
-            } else if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
-                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
-                gameTextures.BusElapsedTime = 8.9455f;
-            } else if (gameTextures.BusElapsedTime > 11.30f) {
-                //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
-                setFlagAndElapseTimeToStopBus();
-            }
+            setAppropriateAnmationForBlueBus();
         } else if (gameTextures.BusAnimStarted == 4) {
             //Różowy autobus
-            if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
-                //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
-                gameTextures.BusElapsedTime = 11.3432f;
-            } else if (gameTextures.BusElapsedTime > 13.71f) {
-                Player player = Players.get(whichPlayer);
-                player.pawns[whichPawn].onTheBus = false;
-            }
+            setAppropriateAnmationForPinkBus();
         }
 
         //Wyświetlenie animacji autobusu
@@ -648,6 +631,52 @@ public class DayParkMap implements Screen {
             gameTextures.BusElapsedTime += Gdx.graphics.getDeltaTime();
         }
         game.batch.draw(gameTextures.BusAnim.getKeyFrame(gameTextures.BusElapsedTime, false), 1526, 0, 394, 1080);
+    }
+
+    private void setAppropriateAnmationForPinkBus() {
+        if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
+            //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+            gameTextures.BusElapsedTime = 11.3432f;
+        } else if (gameTextures.BusElapsedTime > 13.71f) {
+            Player player = Players.get(whichPlayer);
+            player.pawns[whichPawn].onTheBus = false;
+        }
+    }
+
+    private void setAppropriateAnmationForBlueBus() {
+        if (gameTextures.BusElapsedTime > 1.68 && gameTextures.BusElapsedTime < 1.7) {
+            //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+            gameTextures.BusElapsedTime = 2.3f;
+        } else if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
+            //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+            gameTextures.BusElapsedTime = 8.9455f;
+        } else if (gameTextures.BusElapsedTime > 11.30f) {
+            //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+            setFlagAndElapseTimeToStopBus();
+        }
+    }
+
+    private void setAppropriateAnmationForGreenBus() {
+        if (gameTextures.BusElapsedTime > 1.11 && gameTextures.BusElapsedTime < 1.15) {
+            //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+            gameTextures.BusElapsedTime = 2.3f;
+        } else if (gameTextures.BusElapsedTime > 4.16f && gameTextures.BusElapsedTime < 4.2f) {
+            //To przeskakuje do końcówki animacji z pionkiem o odpowiednim kolorze
+            gameTextures.BusElapsedTime = 6.5477f;
+        } else if (gameTextures.BusElapsedTime > 8.92f) {
+            //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+            setFlagAndElapseTimeToStopBus();
+        }
+    }
+
+    private void setAppropriateAnmationForYellowBus() {
+        if (gameTextures.BusElapsedTime > 0.54 && gameTextures.BusElapsedTime < 0.6) {
+            //Jak pionek wejdzie to to pomija animacje innych kolorów wchodzących do busa
+            gameTextures.BusElapsedTime = 2.3f;
+        } else if (gameTextures.BusElapsedTime > 6.51f) {
+            //Jak animacja się skończy to to pomija końcówki animacji innych kolorów
+            setFlagAndElapseTimeToStopBus();
+        }
     }
 
     private void setFlagAndElapseTimeToStopBus() {
@@ -675,7 +704,7 @@ public class DayParkMap implements Screen {
                 throwDice = true;
             }
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){
-                randNumber = 1;//rand.nextInt(6) + 1;
+                randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
                 //System.out.println(randNumber);
                 //gameTextures.diceAnimStarted = false;
@@ -706,18 +735,7 @@ public class DayParkMap implements Screen {
     public void drawPawnCaptureAnim(ColorOfAllPlayers playerToKill, ColorOfAllPlayers playerKiller){
         if(gameTextures.pawnCapture1ElapsedTime!=0){
             //Odtwarzanie animacji zbijającego aż się nie skończy dla danego koloru
-            if(playerKiller == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture1ElapsedTime < 0.65f){
-                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
-            }
-            else if(playerKiller == ColorOfAllPlayers.Green && gameTextures.pawnCapture1ElapsedTime < 1.30f){
-                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
-            }
-            else if(playerKiller == ColorOfAllPlayers.Blue && gameTextures.pawnCapture1ElapsedTime < 1.98f){
-                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
-            }
-            else if(playerKiller == ColorOfAllPlayers.Pink && gameTextures.pawnCapture1ElapsedTime < 2.64f){
-                gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
-            }
+            startAnimationForPlayerKiller(playerKiller);
 
             //Sprawdzanie czy już czas na odtawarzanie animacji zbijanego pionka
             if(((playerKiller == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture1ElapsedTime > 0.34f) ||
@@ -751,31 +769,119 @@ public class DayParkMap implements Screen {
         }
         else if(startCaptureAnim && gameTextures.pawnCapture1ElapsedTime==0){
             //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijającego pionka
-            if(playerKiller == ColorOfAllPlayers.Yellow){
-                gameTextures.pawnCapture1ElapsedTime = 0.01f;
-            }
-            else if(playerKiller == ColorOfAllPlayers.Green){
-                gameTextures.pawnCapture1ElapsedTime = 0.6767f;
-            }
-            else if(playerKiller == ColorOfAllPlayers.Blue){
-                gameTextures.pawnCapture1ElapsedTime = 1.3408f;
-            }
-            else if(playerKiller == ColorOfAllPlayers.Pink){
-                gameTextures.pawnCapture1ElapsedTime = 2.01f;
-            }
+            setAnimationForPlayerKiller(playerKiller);
 
             //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijanego pionka
-            if(playerToKill == ColorOfAllPlayers.Yellow){
-                gameTextures.pawnCapture2ElapsedTime = 0.01f;
+            setAnimationForPlayerToKill(playerToKill);
+        }
+    }
+
+    private void setAnimationForPlayerToKill(ColorOfAllPlayers playerToKill) {
+        if(playerToKill == ColorOfAllPlayers.Yellow){
+            gameTextures.pawnCapture2ElapsedTime = 0.01f;
+        }
+        else if(playerToKill == ColorOfAllPlayers.Green){
+            gameTextures.pawnCapture2ElapsedTime = 0.6364f;
+        }
+        else if(playerToKill == ColorOfAllPlayers.Blue){
+            gameTextures.pawnCapture2ElapsedTime = 1.07f;
+        }
+        else if(playerToKill == ColorOfAllPlayers.Pink){
+            gameTextures.pawnCapture2ElapsedTime = 1.505f;
+        }
+    }
+
+    private void setAnimationForPlayerKiller(ColorOfAllPlayers playerKiller) {
+        if(playerKiller == ColorOfAllPlayers.Yellow){
+            gameTextures.pawnCapture1ElapsedTime = 0.01f;
+        }
+        else if(playerKiller == ColorOfAllPlayers.Green){
+            gameTextures.pawnCapture1ElapsedTime = 0.6767f;
+        }
+        else if(playerKiller == ColorOfAllPlayers.Blue){
+            gameTextures.pawnCapture1ElapsedTime = 1.3408f;
+        }
+        else if(playerKiller == ColorOfAllPlayers.Pink){
+            gameTextures.pawnCapture1ElapsedTime = 2.01f;
+        }
+    }
+
+    private void startAnimationForPlayerKiller(ColorOfAllPlayers playerKiller) {
+        if(playerKiller == ColorOfAllPlayers.Yellow && gameTextures.pawnCapture1ElapsedTime < 0.65f){
+            gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        else if(playerKiller == ColorOfAllPlayers.Green && gameTextures.pawnCapture1ElapsedTime < 1.30f){
+            gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        else if(playerKiller == ColorOfAllPlayers.Blue && gameTextures.pawnCapture1ElapsedTime < 1.98f){
+            gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+        else if(playerKiller == ColorOfAllPlayers.Pink && gameTextures.pawnCapture1ElapsedTime < 2.64f){
+            gameTextures.pawnCapture1ElapsedTime += Gdx.graphics.getDeltaTime();
+        }
+    }
+
+    public void scoreBoard(){
+        if(!gameTextures.scoreBoardFlag && endGame){
+            //Włączenie tablicy
+            gameTextures.scoreBoardFlag = true;
+        }
+        else if(gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            //Wyłączenie tablicy. Tu mozna podmienić to żeby zamiast chowania tablicy był powrót do menu głównego
+            gameTextures.scoreBoardFlag = false;
+            game.gameScreen = 3;
+            game.setScreen(game.MenuLoadingScreen);
+        }
+        else if(gameTextures.scoreBoardFlag){
+            System.out.println(winsPlayer[0] + " " + winsPlayer[1] + " " + winsPlayer[2] + " " + winsPlayer[3]);
+            
+            setMissingWinsPlayer();
+
+            ColorOfAllPlayers first = Players.get(winsPlayer[0]).playerColor;
+            ColorOfAllPlayers second = Players.get(winsPlayer[1]).playerColor;
+            ColorOfAllPlayers third = ColorOfAllPlayers.None;
+            ColorOfAllPlayers fourth = ColorOfAllPlayers.None;
+            if(game.playerCount>=3) {
+                third = Players.get(winsPlayer[2]).playerColor;
+                if (game.playerCount==4) {
+                    fourth = Players.get(winsPlayer[3]).playerColor;
+                }
             }
-            else if(playerToKill == ColorOfAllPlayers.Green){
-                gameTextures.pawnCapture2ElapsedTime = 0.6364f;
-            }
-            else if(playerToKill == ColorOfAllPlayers.Blue){
-                gameTextures.pawnCapture2ElapsedTime = 1.07f;
-            }
-            else if(playerToKill == ColorOfAllPlayers.Pink){
-                gameTextures.pawnCapture2ElapsedTime = 1.505f;
+
+            //Rysowanie tła
+            game.batch.draw(gameTextures.scoreBoardBackground, 0, 0, 1920, 1080);
+
+            //Wyświetlanie odpowiednich graczy na poszczególnych miejscach
+            showPlayersOnTheirPositions(first, second, third, fourth);
+        }
+    }
+
+    private void showPlayersOnTheirPositions(ColorOfAllPlayers first, ColorOfAllPlayers second, ColorOfAllPlayers third, ColorOfAllPlayers fourth) {
+        if(first.ordinal() >0){
+            game.batch.draw(gameTextures.scoreBoard.get(first.ordinal()-1), 900, 585, 450, 150);
+        }
+        if(second.ordinal()>0){
+            game.batch.draw(gameTextures.scoreBoard.get(second.ordinal()-1), 689, 480, 300, 100);
+        }
+        if(third.ordinal()>0){
+            game.batch.draw(gameTextures.scoreBoard.get(third.ordinal()-1), 1040, 383, 300, 100);
+        }
+        if(fourth.ordinal()>0){
+            game.batch.draw(gameTextures.scoreBoard.get(fourth.ordinal()-1), 759, 283, 300, 100);
+        }
+    }
+
+    private void setMissingWinsPlayer() {
+        for (int i=0;i<4;i++){
+            if(winsPlayer[i]==-1){
+                int lastPlayer = 0;
+                for (int j=0;j<game.playerCount;j++){
+                    Player player = Players.get(j);
+                    if(!player.win)
+                        lastPlayer = j;
+                }
+                winsPlayer[i] = lastPlayer;
+                break;
             }
         }
     }
