@@ -63,17 +63,7 @@ public class MenuLoadingScreen implements Screen {
 
         if(loadingBackgroundSpriteAlpha == 1){
             loadingBackgroundSpriteAlpha = 0;
-            if(game.gameScreen == 1){
-                game.gameScreen = 0;
-                game.MainMenu.dispose();
-                game.ChooseGameSettings.dispose();
-                game.ChooseGameSettings = null;
-                game.MainMenu = null;
-                game.dayParkMap = new DayParkMap(game);
-                game.setScreen(game.dayParkMap);
-            }
-            else if(game.gameScreen == 2){
-                game.gameScreen = 0;
+            if(game.gameScreen == 1 || game.gameScreen == 2){
                 game.MainMenu.dispose();
                 game.ChooseGameSettings.dispose();
                 game.ChooseGameSettings = null;

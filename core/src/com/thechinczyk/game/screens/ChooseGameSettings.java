@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.thechinczyk.game.GameObject;
 import com.thechinczyk.game.MyTheChinczyk;
+import org.lwjgl.Sys;
 
 public class ChooseGameSettings implements Screen {
     MyTheChinczyk game;
