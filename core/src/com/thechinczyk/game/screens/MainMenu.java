@@ -120,7 +120,7 @@ public class MainMenu implements Screen {
         game.batch.end();
     }
 
-    private Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
+    public static Sprite spriteInit(Texture texture, float x, float y, float width, float height) {
         Sprite sprite = new Sprite(texture);
         sprite.setPosition(x, y);
         sprite.setSize(width, height);
