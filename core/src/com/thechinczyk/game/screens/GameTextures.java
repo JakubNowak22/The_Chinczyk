@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import java.util.ArrayList;
+import java.util.List;
 
 class GameTextures{
     BitmapFont font;
@@ -53,10 +55,10 @@ class GameTextures{
     public float cardElapsedTime;
     public boolean cardAnimStarted;
 
-    public TextureAtlas yellowBusAtlas;
-    public Animation<TextureRegion> yellowBusAnim;
-    public float yellowBusElapsedTime;
-    public boolean yellowBusAnimStarted;
+    public TextureAtlas BusAtlas;
+    public Animation<TextureRegion> BusAnim;
+    public float BusElapsedTime;
+    public int BusAnimStarted;
 
     public TextureAtlas diceAtlas;
     public Animation<TextureRegion> diceAnim;
@@ -85,6 +87,14 @@ class GameTextures{
     public Animation<TextureRegion> pawnCapture2Anim;
     public float pawnCapture2ElapsedTime;
     public float pawnCaptureMainElapsedTime;
+
+    public Texture scoreBoardBackground;
+    public Texture scoreBoardYellow;
+    public Texture scoreBoardGreen;
+    public Texture scoreBoardBlue;
+    public Texture scoreBoardPink;
+    public boolean scoreBoardFlag;
+    List<Texture> scoreBoard = new ArrayList<Texture>();
 
     public TextureAtlas timerAtlas;
     public Animation<TextureRegion> timerAnim;
@@ -135,10 +145,10 @@ class GameTextures{
         cardElapsedTime = 0f;
         cardAnimStarted = false;
 
-        yellowBusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
-        yellowBusAnim = new Animation<TextureRegion>(1f/30f, yellowBusAtlas.getRegions());
-        yellowBusElapsedTime = 0f;
-        yellowBusAnimStarted = false;
+        BusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
+        BusAnim = new Animation<TextureRegion>(1f/30f, BusAtlas.getRegions());
+        BusElapsedTime = 0f;
+        BusAnimStarted = 0;
 
         diceAtlas = new TextureAtlas("Map1/DiceAnimSheet/DiceAnimSheet.atlas");
         diceAnim = new Animation<TextureRegion>(1f/30f, diceAtlas.getRegions());
@@ -167,6 +177,17 @@ class GameTextures{
         pawnCapture2Anim = new Animation<TextureRegion>(1f/30f, pawnCapture2Atlas.getRegions());
         pawnCapture2ElapsedTime = 0;
         pawnCaptureMainElapsedTime = 0;
+
+        scoreBoardBackground = new Texture("Map1/ScoreBoard/TC_Map1_ScoreBoard.png");
+        scoreBoardYellow = new Texture("Map1/ScoreBoard/ScoreBoard_Yellow.png");
+        scoreBoardGreen = new Texture("Map1/ScoreBoard/ScoreBoard_Green.png");
+        scoreBoardBlue = new Texture("Map1/ScoreBoard/ScoreBoard_Blue.png");
+        scoreBoardPink = new Texture("Map1/ScoreBoard/ScoreBoard_Pink.png");
+        scoreBoardFlag = false;
+        scoreBoard.add(scoreBoardYellow);
+        scoreBoard.add(scoreBoardGreen);
+        scoreBoard.add(scoreBoardBlue);
+        scoreBoard.add(scoreBoardPink);
 
         font = new BitmapFont(Gdx.files.internal("Fonts/BerlinSans.fnt"),false);
         font.getData().setScale(.3f,.3f);
