@@ -104,7 +104,7 @@ public class DayParkMap implements Screen {
                 player.baseOfPlayer.add(gameTextures.pinkBase1);
                 player.baseOfPlayer.add(gameTextures.pinkBase2);
                 player.baseOfPlayer.add(gameTextures.pinkBase3);
-                player.playerColor= ColorOfAllPlayers.Pink;
+                player.playerColor = ColorOfAllPlayers.Pink;
             }
         }
         playerNumberTurn = 0;
@@ -153,10 +153,7 @@ public class DayParkMap implements Screen {
         //Wyświetlenie górnej warstwy tła planszy (drzewa, latarnie itd.)
         game.batch.draw(gameTextures.dayParkTopground, 0, 0, 1920, 1080);
 
-        //if(endGame){
-            //System.out.println("koniec gry!!!!!!");
         scoreBoard();
-        //}
 
         game.batch.end();
     }
@@ -696,7 +693,6 @@ public class DayParkMap implements Screen {
                 1009, 137, 199, 95);
     }
 
-
     public void drawBusAnim(){
         for (int i = 0; i < game.playerCount; i++) {
             Player player = Players.get(i);
@@ -1094,6 +1090,7 @@ class Player {
     public boolean win;
     public int pawnsInBase;
     public ArrayList<Texture> baseOfPlayer = new ArrayList<>();
+
     public Pawn[] pawns = {new Pawn(playerBase),
             new Pawn(playerBase),
             new Pawn(playerBase),
