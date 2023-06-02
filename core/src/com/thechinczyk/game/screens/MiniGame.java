@@ -12,7 +12,101 @@ import com.thechinczyk.game.MyTheChinczyk;
 import java.util.Random;
 import static com.thechinczyk.game.screens.MainMenu.spriteInit;
 
-enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH, MEMORY};
+abstract class MiniGameMainMenu {
+    SpriteBatch spriteBatch;
+    DayParkMap map;
+    MiniGameGameplay game;
+    MiniGameEndMenu endMenu;
+
+    Texture menuTexture;
+
+    GameObject buttonStart;
+    Texture buttonStartHovered;
+    Sprite buttonStartHoveredSprite;
+    boolean isButtonStartHovered;
+
+    GameObject buttonHTP;
+    Texture buttonHTPHovered;
+    Sprite buttonHTPHoveredSprite;
+    boolean isButtonHTPHovered;
+
+    boolean isStarted;
+    boolean isEnding;
+    boolean instructionDisplay;
+    boolean isInstructionJustDisplayed;
+
+    MiniGameMainMenu(SpriteBatch batch, DayParkMap map) {
+        this.spriteBatch = batch;
+        this.isButtonStartHovered = false;
+        this.isButtonHTPHovered = false;
+        this.isStarted = false;
+        this.isEnding = false;
+        this.map = map;
+    }
+    public void resetAfterQuit(MiniGamesTypes type) {
+        this.isButtonStartHovered = false;
+        this.isButtonHTPHovered = false;
+        this.isEnding = false;
+        this.map.unlockMap(type);
+        this.isStarted = false;
+    }
+
+}
+enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH, MEMORY}
+
+abstract class MiniGameGameplay {
+    BitmapFont fontGreen, fontYellow;
+    static Random random = new Random();
+    SpriteBatch spriteBatch;
+    Texture gameTexture;
+    MiniGameMainMenu menu;
+    int timeSeconds;
+    float timer;
+
+    MiniGameGameplay (SpriteBatch spriteBatch, MiniGameMainMenu menu, int miniGameTime) {
+        this.fontGreen = new BitmapFont(Gdx.files.internal("Fonts/GreenBerlinSans.fnt"),false);
+        this.fontGreen.getData().setScale(.75f,.75f);
+        this.fontYellow = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
+        this.fontYellow.getData().setScale(.66f,.66f);
+        this.spriteBatch = spriteBatch;
+        this.menu = menu;
+        this.timer = 0;
+        this.timeSeconds = miniGameTime;
+    }
+
+    abstract public void Draw();
+
+    public boolean timerUpdate(float deltatime) {
+        timer += deltatime;
+        if(timer > 1){
+            timer-=1;
+            timeSeconds --;
+            return true;
+        }
+        return false;
+    }
+}
+
+abstract class MiniGameEndMenu {
+    GameObject buttonEnd;
+    Texture buttonEndHovered;
+    Sprite buttonEndHoveredSprite;
+    boolean isButtonEndHovered;
+
+    MiniGameGameplay game;
+    MiniGameMainMenu menu;
+    SpriteBatch spriteBatch;
+
+    Texture menuTexture;
+
+    abstract public void Draw();
+
+    MiniGameEndMenu (SpriteBatch batch, MiniGameMainMenu menu, MiniGameGameplay game) {
+        this.spriteBatch = batch;
+        this.menu = menu;
+        this.game = game;
+    }
+}
 
 public class MiniGame {
     public boolean[] isLoaded;
@@ -23,23 +117,12 @@ public class MiniGame {
     static SpriteBatch spriteBatch;
     MiniGamesTypes type;
 
-    public static TextureAtlas timerAtlas;
-    public static Animation<TextureRegion> timerAnim;
-    public float timerElapsedTime;
-    public boolean timerAnimStarted;
-    public static float loopElapsedTime;
-
     public MiniGame(SpriteBatch spriteBatchParam, DayParkMap map) {
         this.isLoaded = new boolean[3];
         spriteBatch = spriteBatchParam;
         this.menuSpaceInvaders = new SpaceInvadersMenu(spriteBatch, map);
         this.menuMath = new MathMiniGameMenu(spriteBatch, map);
         this.menuMemory = new MemoryMiniGameMenu(spriteBatch, map);
-        timerAtlas = new TextureAtlas("TimerAnimSheet/TimeAtlas.atlas");
-        timerAnim = new Animation<TextureRegion>(1f/30f, timerAtlas.getRegions());
-        loopElapsedTime = 0f;
-        this.timerElapsedTime = 0f;
-        this.timerAnimStarted = false;
     }
 
     public static Vector2 getMiniGameMousePosition(MyTheChinczyk game) {
@@ -66,39 +149,64 @@ public class MiniGame {
         map.gameTextures.font.getData().setScale(0.3f, 0.3f);
     }
 
+    public static void MiniGameMainMenuUpdate(MiniGameMainMenu mainMenu, String instruction, MiniGamesTypes type) {
+        Vector2 cursorPosition = getMiniGameMousePosition(mainMenu.map.game);
+        if (!mainMenu.isStarted) {
+            mainMenu.isButtonStartHovered = (mainMenu.buttonStart.contains(cursorPosition) && !mainMenu.isButtonHTPHovered);
+            mainMenu.isButtonHTPHovered = mainMenu.buttonHTP.contains(cursorPosition);
 
-    static class SpaceInvadersMenu {
-        SpriteBatch spriteBatch;
-        DayParkMap map;
-        SpaceInvaders game;
-        SpaceInvadersEndMenu endMenu;
+            if (mainMenu.isButtonHTPHovered) {
+                mainMenu.buttonHTPHoveredSprite.draw(spriteBatch);
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+                    mainMenu.instructionDisplay = true;
+                    mainMenu.isInstructionJustDisplayed = true;
+                }
 
-        private Texture menuTexture;
+            } else if (mainMenu.isButtonStartHovered && !mainMenu.instructionDisplay) {
+                mainMenu.buttonStartHoveredSprite.draw(spriteBatch);
+                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+                    if (type == MiniGamesTypes.SPACE_INVADERS)
+                        mainMenu.game = new SpaceInvaders(spriteBatch, mainMenu);
+                    else if (type == MiniGamesTypes.MATH)
+                        mainMenu.game = new MathMiniGame(spriteBatch, mainMenu);
+                    else
+                        mainMenu.game = new MemoryMiniGame(spriteBatch, mainMenu);
+                    mainMenu.isStarted = true;
+                }
+            }
+            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && mainMenu.instructionDisplay && !mainMenu.isInstructionJustDisplayed) {
+                mainMenu.instructionDisplay = false;
+                mainMenu.isButtonHTPHovered = false;
+            }
+            if (mainMenu.instructionDisplay) {
+                MiniGame.displayInstructionHTP(instruction, mainMenu.map, 0.25f);
+                mainMenu.instructionDisplay = true;
+                mainMenu.isInstructionJustDisplayed = false;
+            }
+
+        }
+        if (mainMenu.isStarted) {
+            mainMenu.game.Draw();
+        }
+    }
+
+    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu, int outputNumber, MiniGamesTypes type) {
+        Vector2 cursorPosition = getMiniGameMousePosition(mainMenu.map.game);
+        endMenu.isButtonEndHovered = endMenu.buttonEnd.contains(cursorPosition);
+        if (endMenu.isButtonEndHovered) {
+            endMenu.buttonEndHoveredSprite.draw(spriteBatch);
+            if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
+                mainMenu.map.miniGameOutput[outputNumber] = true;
+                mainMenu.resetAfterQuit(type);
+            }
+        }
+    }
+
+    static class SpaceInvadersMenu extends MiniGameMainMenu {
         private Texture backTexture;
 
-        private GameObject buttonStart;
-        private Texture buttonStartHovered;
-        private Sprite buttonStartHoveredSprite;
-        private boolean isButtonStartHovered;
-
-        private GameObject buttonHTP;
-        private Texture buttonHTPHovered;
-        private Sprite buttonHTPHoveredSprite;
-        private boolean isButtonHTPHovered;
-
-
-        private boolean isStarted;
-        private boolean isEnding;
-        private boolean instructionDisplay;
-        private boolean isInstructionJustDisplayed;
-
         SpaceInvadersMenu(SpriteBatch batch, DayParkMap map) {
-            this.spriteBatch = batch;
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isStarted = false;
-            this.isEnding = false;
-            this.map = map;
+            super(batch, map);
         }
 
         public void loadTextures() {
@@ -115,50 +223,10 @@ public class MiniGame {
         }
 
         public void Update() {
-            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
-            if (!this.isStarted) {
-                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
-                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
-
-                if (this.isButtonHTPHovered) {
-                    buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.instructionDisplay = true;
-                        this.isInstructionJustDisplayed = true;
-                    }
-
-                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
-                    buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.game = new SpaceInvaders(spriteBatch, this);
-                        isStarted = true;
-                    }
-                }
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
-                    this.instructionDisplay = false;
-                    this.isButtonHTPHovered = false;
-                }
-                if (this.instructionDisplay) {
-                    MiniGame.displayInstructionHTP("In this mini-game, you control rocket. You move horizontal with " +
-                            "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
-                            "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
-                            "to shoot. You have 10 seconds to eliminate as many enemies you can.", this.map, 0.25f);
-                    this.instructionDisplay = true;
-                    this.isInstructionJustDisplayed = false;
-                }
-
-            }
-            if (this.isStarted) {
-                game.Draw();
-            }
-        }
-
-        public void resetAfterQuit() {
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isEnding = false;
-            this.map.unlockMap(MiniGamesTypes.SPACE_INVADERS);
-            this.isStarted = false;
+            MiniGameMainMenuUpdate(this, "In this mini-game, you control rocket. You move horizontal with " +
+                    "LEFT and RIGHT ARROW. Your target is to make moving UFOs, which " +
+                    "are your enemies, disappear, by shooting them with bullets. Use ARROW UP " +
+                    "to shoot. You have 10 seconds to eliminate as many enemies you can.", MiniGamesTypes.SPACE_INVADERS);
         }
 
         public void Draw() {
@@ -172,24 +240,13 @@ public class MiniGame {
         }
     }
 
-    static class SpaceInvadersEndMenu {
-        SpriteBatch spriteBatch;
+    static class SpaceInvadersEndMenu extends MiniGameEndMenu{
         int result;
-        SpaceInvaders game;
-        SpaceInvadersMenu menuSI;
+        private Texture backTexture;
 
-        private Texture menuTexture, backTexture;
-
-        private GameObject buttonEnd;
-        private Texture buttonEndHovered;
-        private Sprite buttonEndHoveredSprite;
-        private boolean isButtonEndHovered;
-
-        SpaceInvadersEndMenu (SpriteBatch batch, int result, SpaceInvadersMenu SImenu, SpaceInvaders game) {
-            this.spriteBatch = batch;
+        SpaceInvadersEndMenu (SpriteBatch batch, int result, MiniGameMainMenu menu, SpaceInvaders game) {
+            super(batch, menu, game);
             this.result = result;
-            this.menuSI = SImenu;
-            this.game = game;
             this.loadTextures();
         }
 
@@ -203,30 +260,21 @@ public class MiniGame {
         }
 
         public void Update() {
+            MiniGameEndMenuUpdate(menu, this, 0, MiniGamesTypes.SPACE_INVADERS);
+        }
+
+        public void Draw() {
+            spriteBatch.draw(this.backTexture, 430, 220, 1060, 640);
             spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
             if (this.result < 10)
                 this.game.fontGreen.draw(this.spriteBatch, Integer.toString(this.result), 940, 450);
             else
                 this.game.fontGreen.draw(this.spriteBatch, Integer.toString(this.result), 930, 450);
-
-            Vector2 cursorPosition = getMiniGameMousePosition(this.menuSI.map.game);
-            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
-            if (this.isButtonEndHovered) {
-                buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                    this.menuSI.map.miniGameOutput[0] = true;
-                    menuSI.resetAfterQuit();
-                }
-            }
-        }
-
-        public void Draw() {
-            spriteBatch.draw(this.backTexture, 430, 220, 1060, 640);
             Update();
         }
     }
 
-    static class SpaceInvaders {
+    static class SpaceInvaders extends MiniGameGameplay{
 
         static class Player {
             public static final int MAX_BULLETS = 3;
@@ -295,17 +343,16 @@ public class MiniGame {
                         float MAX_Y_POS = 810;
                         if (this.bulletPosition[i] >= MAX_Y_POS)
                             this.showBullet[i] = false;
+                        spriteBullet[i].setPosition(this.positionWhenShoot[i], this.bulletPosition[i]);
                     }
                 }
-
+                spritePlayer.setPosition(this.position, Y_POS);
             }
 
             public void Draw() {
                 Update(Gdx.graphics.getDeltaTime());
-                spritePlayer.setPosition(this.position, Y_POS);
                 spritePlayer.draw(this.spriteBatch);
                 for (int i = 0; i<3; i++) {
-                    spriteBullet[i].setPosition(this.positionWhenShoot[i], this.bulletPosition[i]);
                     if (this.showBullet[i])
                         spriteBullet[i].draw(this.spriteBatch);
                 }
@@ -353,31 +400,16 @@ public class MiniGame {
             }
         }
 
-        static Random random = new Random();
-        SpriteBatch spriteBatch;
-        Texture gameTexture;
         Player rocket;
-        SpaceInvadersMenu menuSI;
-        int timeSeconds;
-        float timer;
-        BitmapFont fontGreen, fontYellow;
         Enemy[][] enemiesArray;
         private int eliminatedEnemies;
 
-
-        SpaceInvaders(SpriteBatch spriteBatch, SpaceInvadersMenu menuSI) {
-            this.fontGreen = new BitmapFont(Gdx.files.internal("Fonts/GreenBerlinSans.fnt"),false);
-            this.fontGreen.getData().setScale(.75f,.75f);
-            this.fontYellow = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.fontYellow.getData().setScale(.66f,.66f);
-            this.spriteBatch = spriteBatch;
+        SpaceInvaders(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
+            super(spriteBatch, menu, 10);
             this.rocket = new Player(this.spriteBatch);
             this.gameTexture = new Texture("SpaceInvadersMiniGame/Background.jpg");
-            this.menuSI = menuSI;
-            this.timer = 0;
-            this.timeSeconds = 10;
             this.eliminatedEnemies = 0;
-            this.menuSI.map.gameTextures.timerElapsedTime = 0f;
+            this.menu.map.gameTextures.timerElapsedTime = 0f;
             this.enemiesArray = new Enemy[4][7];
             int enemiesLeft = 14, fieldsLeft = 28;
             for (int i = 0; i<4; i++) {
@@ -396,17 +428,16 @@ public class MiniGame {
         public void Draw() {
             spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
-            this.fontGreen.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), 500, 780);
+            fontGreen.draw(this.spriteBatch, Integer.toString(this.eliminatedEnemies), 500, 780);
             if (this.timeSeconds > 9)
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
             else
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
-            this.menuSI.map.drawMiniGameTimer(1320, 690);
+            this.menu.map.drawMiniGameTimer(1320, 690);
         }
 
         public void Update(float deltatime) {
             this.rocket.Draw();
-
             for (int i = 0; i<4; i++) {
                 for (int j = 0; j<7; j++) {
                     for (int k = 0; k<3; k++) {
@@ -424,50 +455,19 @@ public class MiniGame {
                 Enemy.leftDir = !Enemy.leftDir;
                 Enemy.dirToChange = false;
             }
-            timer += deltatime;
-            if(timer > 1){
-                timer-=1;
-                timeSeconds --;
-            }
+            timerUpdate(deltatime);
 
             if (this.eliminatedEnemies == 14 || this.timeSeconds == 0) {
-                this.menuSI.isStarted = false;
-                this.menuSI.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menuSI, this);
-                this.menuSI.isEnding = true;
+                this.menu.isStarted = false;
+                this.menu.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menu, this);
+                this.menu.isEnding = true;
             }
         }
     }
 
-    static class MathMiniGameMenu {
-        SpriteBatch spriteBatch;
-        DayParkMap map;
-        MathMiniGame game;
-        MathMiniGameEndMenu endMenu;
-
-        private Texture menuTexture;
-
-        private GameObject buttonStart;
-        private Texture buttonStartHovered;
-        private Sprite buttonStartHoveredSprite;
-        private boolean isButtonStartHovered;
-
-        private GameObject buttonHTP;
-        private Texture buttonHTPHovered;
-        private Sprite buttonHTPHoveredSprite;
-        private boolean isButtonHTPHovered;
-
-        private boolean isStarted;
-        private boolean isEnding;
-        private boolean instructionDisplay;
-        private boolean isInstructionJustDisplayed;
-
+    static class MathMiniGameMenu extends MiniGameMainMenu{
         MathMiniGameMenu(SpriteBatch batch, DayParkMap map) {
-            this.spriteBatch = batch;
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isStarted = false;
-            this.isEnding = false;
-            this.map = map;
+            super(batch, map);
         }
 
         public void loadTextures() {
@@ -483,52 +483,12 @@ public class MiniGame {
         }
 
         public void Update() {
-            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
-            if (!this.isStarted) {
-                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
-                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
-
-                if (this.isButtonHTPHovered) {
-                    buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.instructionDisplay = true;
-                        this.isInstructionJustDisplayed = true;
-                    }
-
-                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
-                    buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.game = new MathMiniGame(spriteBatch, this);
-                        isStarted = true;
-                    }
-                }
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
-                    this.instructionDisplay = false;
-                    this.isButtonHTPHovered = false;
-                }
-                if (this.instructionDisplay) {
-                    MiniGame.displayInstructionHTP("In this mini-game, you get random mathematical operation. You " +
-                            "have to type exact result, unless you get division - " +
-                            "it is integer division (e.g 5/2 = 2). " +
-                            "You have 15 seconds to solve it, but if you finish earlier, " +
-                            "you can use ENTER to end mini-game. If the answer is correct and " +
-                            "you finished under 10 seconds, your reward will be better.", this.map, 0.25f);
-                    this.instructionDisplay = true;
-                    this.isInstructionJustDisplayed = false;
-                }
-
-            }
-            if (this.isStarted) {
-                game.Draw();
-            }
-        }
-
-        public void resetAfterQuit() {
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isEnding = false;
-            this.map.unlockMap(MiniGamesTypes.MATH);
-            this.isStarted = false;
+            MiniGameMainMenuUpdate(this,"In this mini-game, you get random mathematical operation. You " +
+                    "have to type exact result, unless you get division - " +
+                    "it is integer division (e.g 5/2 = 2). " +
+                    "You have 15 seconds to solve it, but if you finish earlier, " +
+                    "you can use ENTER to end mini-game. If the answer is correct and " +
+                    "you finished under 10 seconds, your reward will be better.", MiniGamesTypes.MATH);
         }
 
         public void Draw() {
@@ -541,15 +501,8 @@ public class MiniGame {
         }
     }
 
-    static class MathMiniGame {
+    static class MathMiniGame extends MiniGameGameplay{
 
-        static Random random = new Random();
-        SpriteBatch spriteBatch;
-        Texture gameTexture;
-        MathMiniGameMenu menuMMG;
-        int timeSeconds;
-        float timer;
-        BitmapFont font;
         int number1, number2, operation;
         int[] number1Array, number2Array;
         int expectedResult, playerResult;
@@ -562,13 +515,8 @@ public class MiniGame {
         private final int NUMBER_SIZE = 100;
 
 
-        MathMiniGame(SpriteBatch spriteBatch, MathMiniGameMenu menuMMG) {
-            this.font = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.font.getData().setScale(.66f,.66f);
-            this.spriteBatch = spriteBatch;
-            this.menuMMG = menuMMG;
-            this.timer = 0;
-            this.timeSeconds = 15;
+        MathMiniGame(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
+            super(spriteBatch, menu, 15);
             this.numberCounter = 0;
             this.operation = random.nextInt(4);
             this.number1 = 100 + random.nextInt(1000);
@@ -656,10 +604,10 @@ public class MiniGame {
             spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
             if (this.timeSeconds > 9)
-                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1314, 737);
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1314, 737);
             else
-                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1324, 737);
-            this.menuMMG.map.drawMiniGameTimer(1290, 660);
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1324, 737);
+            this.menu.map.drawMiniGameTimer(1290, 660);
             this.eqSignSprite.draw(this.spriteBatch);
             this.signSprite.draw(this.spriteBatch);
             for (int i = 0; i<4; i++) {
@@ -673,12 +621,7 @@ public class MiniGame {
         }
 
         public void Update(float deltatime) {
-            timer += deltatime;
-            if(timer > 1){
-                timer-=1;
-                timeSeconds --;
-            }
-
+            timerUpdate(deltatime);
             if (numberCounter < 5) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
                     this.playerResult *= 10;
@@ -736,34 +679,22 @@ public class MiniGame {
             refreshResultSprites();
 
             if (this.timeSeconds == 0  || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
-                this.menuMMG.isStarted = false;
-                this.menuMMG.endMenu = new MathMiniGameEndMenu(this.spriteBatch, this.expectedResult == this.playerResult, this.timeSeconds,  this.menuMMG ,this);
-                this.menuMMG.isEnding = true;
+                this.menu.isStarted = false;
+                this.menu.endMenu = new MathMiniGameEndMenu(this.spriteBatch, this.expectedResult == this.playerResult, this.timeSeconds,  this.menu ,this);
+                this.menu.isEnding = true;
             }
 
         }
     }
 
-    static class MathMiniGameEndMenu {
-        SpriteBatch spriteBatch;
+    static class MathMiniGameEndMenu extends MiniGameEndMenu {
         boolean result;
         int timer;
-        MathMiniGame game;
-        MathMiniGameMenu menuMMG;
 
-        private Texture menuTexture;
-
-        private GameObject buttonEnd;
-        private Texture buttonEndHovered;
-        private Sprite buttonEndHoveredSprite;
-        private boolean isButtonEndHovered;
-
-        MathMiniGameEndMenu (SpriteBatch batch, boolean result, int timer, MathMiniGameMenu menuMMG, MathMiniGame game) {
-            this.spriteBatch = batch;
+        MathMiniGameEndMenu (SpriteBatch batch, boolean result, int timer, MiniGameMainMenu menu, MathMiniGame game) {
+            super(batch, menu, game);
             this.result = result;
             this.timer = timer;
-            this.menuMMG = menuMMG;
-            this.game = game;
             this.loadTextures();
         }
 
@@ -779,53 +710,18 @@ public class MiniGame {
         }
 
         public void Update() {
-            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
-            Vector2 cursorPosition = getMiniGameMousePosition(this.menuMMG.map.game);
-            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
-            if (this.isButtonEndHovered) {
-                buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                    this.menuMMG.map.miniGameOutput[1] = true;
-                    menuMMG.resetAfterQuit();
-                }
-            }
+            MiniGameEndMenuUpdate(menu, this, 1, MiniGamesTypes.MATH);
         }
 
         public void Draw() {
+            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
             Update();
         }
     }
 
-    static class MemoryMiniGameMenu {
-        SpriteBatch spriteBatch;
-        DayParkMap map;
-        MemoryMiniGame game;
-        MemoryMiniGameEndMenu endMenu;
-
-        private Texture menuTexture;
-
-        private GameObject buttonStart;
-        private Texture buttonStartHovered;
-        private Sprite buttonStartHoveredSprite;
-        private boolean isButtonStartHovered;
-
-        private GameObject buttonHTP;
-        private Texture buttonHTPHovered;
-        private Sprite buttonHTPHoveredSprite;
-        private boolean isButtonHTPHovered;
-
-        private boolean isStarted;
-        private boolean isEnding;
-        private boolean instructionDisplay;
-        private boolean isInstructionJustDisplayed;
-
+    static class MemoryMiniGameMenu extends MiniGameMainMenu{
         MemoryMiniGameMenu(SpriteBatch batch, DayParkMap map) {
-            this.spriteBatch = batch;
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isStarted = false;
-            this.isEnding = false;
-            this.map = map;
+            super(batch, map);
         }
 
         public void loadTextures() {
@@ -841,51 +737,11 @@ public class MiniGame {
         }
 
         public void Update() {
-            Vector2 cursorPosition = getMiniGameMousePosition(this.map.game);
-            if (!this.isStarted) {
-                this.isButtonStartHovered = (buttonStart.contains(cursorPosition) && !this.isButtonHTPHovered);
-                this.isButtonHTPHovered = buttonHTP.contains(cursorPosition);
-
-                if (this.isButtonHTPHovered) {
-                    buttonHTPHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.instructionDisplay = true;
-                        this.isInstructionJustDisplayed = true;
-                    }
-
-                } else if (this.isButtonStartHovered && !this.instructionDisplay) {
-                    buttonStartHoveredSprite.draw(spriteBatch);
-                    if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                        this.game = new MemoryMiniGame(spriteBatch, this);
-                        isStarted = true;
-                    }
-                }
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && this.instructionDisplay && !this.isInstructionJustDisplayed) {
-                    this.instructionDisplay = false;
-                    this.isButtonHTPHovered = false;
-                }
-                if (this.instructionDisplay) {
-                    MiniGame.displayInstructionHTP("In this mini-game, you will be shown path of four colors. You have " +
-                            "seconds to remember it, and then, you have 10 seconds to repeat " +
-                            "this path by using NUMBER KEYS and BACKSPACE. If the answer is " +
-                            "correct and you finished in under 5 seconds, " +
-                            "your reward will be better.", this.map, 0.25f);
-                    this.instructionDisplay = true;
-                    this.isInstructionJustDisplayed = false;
-                }
-
-            }
-            if (this.isStarted) {
-                game.Draw();
-            }
-        }
-
-        public void resetAfterQuit() {
-            this.isButtonStartHovered = false;
-            this.isButtonHTPHovered = false;
-            this.isEnding = false;
-            this.map.unlockMap(MiniGamesTypes.MEMORY);
-            this.isStarted = false;
+            MiniGameMainMenuUpdate(this, "In this mini-game, you will be shown path of four colors. You have " +
+                    "seconds to remember it, and then, you have 10 seconds to repeat " +
+                    "this path by using NUMBER KEYS and BACKSPACE. If the answer is " +
+                    "correct and you finished in under 5 seconds, " +
+                    "your reward will be better.", MiniGamesTypes.MEMORY);
         }
 
         public void Draw() {
@@ -898,15 +754,8 @@ public class MiniGame {
         }
     }
 
-    static class MemoryMiniGame {
-
-        static Random random = new Random();
-        SpriteBatch spriteBatch;
+    static class MemoryMiniGame extends MiniGameGameplay{
         Texture gameTexture1, gameTexture2;
-        MemoryMiniGameMenu menuMemory;
-        int timeSeconds;
-        float timer;
-        BitmapFont font;
         int[] generatedNumbers, playerNumbers;
         int numberCounter;
 
@@ -916,14 +765,8 @@ public class MiniGame {
         private final int SIZE = 150;
         private final int OFFSET = 30;
 
-
-        MemoryMiniGame(SpriteBatch spriteBatch, MemoryMiniGameMenu menuMemory) {
-            this.font = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-            this.font.getData().setScale(.66f,.66f);
-            this.spriteBatch = spriteBatch;
-            this.menuMemory = menuMemory;
-            this.timer = 0;
-            this.timeSeconds = 15;
+        MemoryMiniGame(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
+            super(spriteBatch, menu, 15);
             this.numberCounter = 0;
             this.generatedNumbers = new int[4];
             this.playerNumbers = new int[4];
@@ -957,7 +800,6 @@ public class MiniGame {
             }
         }
 
-
          public void refreshResultSprite(int color) {
             if (color == -1)
                 this.gameColors[this.numberCounter] = spriteInit(this.emptyColor, 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
@@ -973,27 +815,21 @@ public class MiniGame {
             else
                 spriteBatch.draw(this.gameTexture2, 480, 270, 960, 540);
 
-
             this.Update(Gdx.graphics.getDeltaTime());
             if (this.timeSeconds > 9)
-                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
             else
-                this.font.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
-            this.menuMemory.map.drawMiniGameTimer(1320, 690);
+                this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
+            this.menu.map.drawMiniGameTimer(1320, 690);
             for (int i = 0; i < 4; i++) {
                 this.gameColors[i].draw(this.spriteBatch);
             }
         }
 
         public void Update(float deltatime) {
-            timer += deltatime;
-            if(timer > 1){
-                timer-=1;
-                timeSeconds --;
-                if (timeSeconds == 10) {
-                    for (int i = 0; i<4; i++)
-                        this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
-                }
+            if (timerUpdate(deltatime) && timeSeconds == 10) {
+                for (int i = 0; i<4; i++)
+                    this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
             }
 
             if (numberCounter < 4 && timeSeconds <= 10) {
@@ -1046,31 +882,19 @@ public class MiniGame {
                         break;
                     }
                 }
-                this.menuMemory.isStarted = false;
-                this.menuMemory.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check,  this.menuMemory,this);
-                this.menuMemory.isEnding = true;
+                this.menu.isStarted = false;
+                this.menu.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check,  this.menu,this);
+                this.menu.isEnding = true;
             }
         }
     }
 
-    static class MemoryMiniGameEndMenu {
-        SpriteBatch spriteBatch;
+    static class MemoryMiniGameEndMenu extends MiniGameEndMenu{
         boolean result;
-        MemoryMiniGame game;
-        MemoryMiniGameMenu menuMemory;
 
-        private Texture menuTexture;
-
-        private GameObject buttonEnd;
-        private Texture buttonEndHovered;
-        private Sprite buttonEndHoveredSprite;
-        private boolean isButtonEndHovered;
-
-        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, MemoryMiniGameMenu menuMemory, MemoryMiniGame game) {
-            this.spriteBatch = batch;
+        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, MiniGameMainMenu menu, MemoryMiniGame game) {
+            super(batch, menu, game);
             this.result = result;
-            this.menuMemory = menuMemory;
-            this.game = game;
             this.loadTextures();
         }
 
@@ -1086,20 +910,11 @@ public class MiniGame {
         }
 
         public void Update() {
-            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
-
-            Vector2 cursorPosition = getMiniGameMousePosition(this.menuMemory.map.game);
-            this.isButtonEndHovered = buttonEnd.contains(cursorPosition);
-            if (this.isButtonEndHovered) {
-                buttonEndHoveredSprite.draw(spriteBatch);
-                if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                    this.menuMemory.map.miniGameOutput[2] = true;
-                    menuMemory.resetAfterQuit();
-                }
-            }
+            MiniGameEndMenuUpdate(menu, this, 2, MiniGamesTypes.MEMORY);
         }
 
         public void Draw() {
+            spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
             Update();
         }
     }
