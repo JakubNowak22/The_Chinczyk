@@ -4,6 +4,8 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -21,6 +23,18 @@ public class DayParkMap implements Screen {
     Random rand = new Random();
     int randNumber = 0;
     int diceRoll = 0;
+
+    public Music ambient;
+    public Music music;
+
+    public Sound pawnSound;
+    public Sound diceSound;
+    public Sound cardSound;
+    public Sound endGameSound;
+    public Sound turnChangeSound;
+    public Sound outOfBaseSound;
+    public Sound captureSound;
+    public Sound busSound;
 
     /**
      * pola specjalne :
@@ -74,6 +88,8 @@ public class DayParkMap implements Screen {
     @Override
     public void show() {
         gameTextures = new GameTextures(game);
+        soundInit();
+
         for (int i = 0; i < game.playerCount; i++) {
             Player player = new Player(i, startPlayerBase[i]);
             Players.add(player);
@@ -127,8 +143,7 @@ public class DayParkMap implements Screen {
 
         //Powrót do menu głównego
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            game.gameScreen = 3;
-            game.setScreen(game.MenuLoadingScreen);
+            quitGame();
         }
 
         drawDice();
@@ -156,6 +171,33 @@ public class DayParkMap implements Screen {
         scoreBoard();
 
         game.batch.end();
+    }
+
+    public void quitGame(){
+        music.stop();
+        ambient.stop();
+        game.gameScreen = 3;
+        game.setScreen(game.MenuLoadingScreen);
+    }
+
+    public void soundInit(){
+        pawnSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/pawnSound.mp3"));
+        diceSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/diceSound.mp3"));
+        cardSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/cardSound.mp3"));
+        endGameSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/endGameSound.mp3"));
+        turnChangeSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/turnChangeSound.mp3"));
+        outOfBaseSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/outOfBaseSound.mp3"));
+        captureSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/captureSound.mp3"));
+        busSound = Gdx.audio.newSound(Gdx.files.internal("Map1/Sound/busSound.mp3"));
+
+        ambient = Gdx.audio.newMusic(Gdx.files.internal("Map1/Sound/ambient.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("Map1/Sound/Podington Bear - Blue Highway.mp3"));
+        ambient.setLooping(true);
+        ambient.setVolume(0.4f);
+        music.setLooping(true);
+        music.setVolume(0.07f);
+        ambient.play();
+        music.play();
     }
 
     public void drawBases(){
@@ -342,6 +384,7 @@ public class DayParkMap implements Screen {
         if (player.activePawn <= 4) {
             for (int i = 0; i < 4; i++) {
                 if (!player.pawns[i].active) {
+                    outOfBaseSound.play(0.5f);
                     player.activePawn++;
                     player.pawns[i].alive(player.playerBase);
                     killSomebody(player, i);
@@ -376,6 +419,7 @@ public class DayParkMap implements Screen {
     private void changeAnimationPawn(Player player, int pawNumber) {
         if (randNumber >= 1 && pawNumber != -1) {
             if (flag) {
+                pawnSound.play(0.7f);
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
                 flag = false;
             }
@@ -482,6 +526,7 @@ public class DayParkMap implements Screen {
             //Wysunięcie karty
             // System.out.println("test2");
             gameTextures.cardAnimStarted = true;
+            cardSound.play(0.9f);
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
@@ -643,6 +688,7 @@ public class DayParkMap implements Screen {
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
         if(changeTurn){
+            turnChangeSound.play(0.3f);
             if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
                 skipFirstAnimation = false;
             }
@@ -800,6 +846,7 @@ public class DayParkMap implements Screen {
     }
 
     private void setAppropriateVariablesInBusAnimation(int i, int j) {
+        busSound.play(0.3f);
         whichPlayer = i;
         whichPawn = j;
     }
@@ -807,6 +854,7 @@ public class DayParkMap implements Screen {
     public void drawDiceAnim() {// losuje liczbe oraz wyświetla animację losowania
         if (Gdx.input.isKeyJustPressed(Input.Keys.D) && !gameTextures.diceAnimStarted) {
             gameTextures.diceAnimStarted = true;
+            diceSound.play(0.5f);
         }
         if (gameTextures.diceAnimStarted) {
             if (!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)) {
@@ -887,6 +935,8 @@ public class DayParkMap implements Screen {
 
             //Ustawianie odpowiedniej klatki animacji w zależności od koloru zbijanego pionka
             setAnimationForPlayerToKill(playerToKill);
+
+            captureSound.play(0.5f);
         }
     }
 
@@ -939,12 +989,12 @@ public class DayParkMap implements Screen {
         if(!gameTextures.scoreBoardFlag && endGame){
             //Włączenie tablicy
             gameTextures.scoreBoardFlag = true;
+            endGameSound.play(0.5f);
         }
         else if(gameTextures.scoreBoardFlag && Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
             //Wyłączenie tablicy. Tu mozna podmienić to żeby zamiast chowania tablicy był powrót do menu głównego
             gameTextures.scoreBoardFlag = false;
-            game.gameScreen = 3;
-            game.setScreen(game.MenuLoadingScreen);
+            quitGame();
         }
         else if(gameTextures.scoreBoardFlag){
             System.out.println(winsPlayer[0] + " " + winsPlayer[1] + " " + winsPlayer[2] + " " + winsPlayer[3]);
