@@ -294,7 +294,7 @@ public class DayParkMap implements Screen {
                 player.pawns[fourth].active && a.length >= 4) {
             enforcedPlayer(player, fourth);
         } else if (Gdx.input.isKeyJustPressed(Input.Keys.N) && randNumber == 6) {
-            if (canIAddPawn(player.playerBase)) {
+            if (canIAddPawn(player, player.playerBase)) {
                 addPawn(player);
             }
         }
@@ -325,7 +325,7 @@ public class DayParkMap implements Screen {
             }
         }
         if(numberOfFalse == player.activePawn){
-            if(canIAddPawn(player.playerBase) && randNumber == 6){
+            if(canIAddPawn(player, player.playerBase) && randNumber == 6){
                 addPawn(player);
             }else{
                 setPlayerNumberTurn();
@@ -334,7 +334,9 @@ public class DayParkMap implements Screen {
         }
     }
 
-    private boolean canIAddPawn(int playerBase) {
+    private boolean canIAddPawn(Player p, int playerBase) {
+        if(p.activePawn==4)
+            return false;
         for (Player player : Players) {
             for (Pawn pawn : player.pawns) {
                 if (pawn.positionAtMap == playerBase) {
@@ -869,9 +871,9 @@ public class DayParkMap implements Screen {
                 randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
                 //System.out.println(randNumber);
-                //gameTextures.diceAnimStarted = false;
-                //gameTextures.diceElapsedTime = 0;
-                //throwDice = true;
+                /*gameTextures.diceAnimStarted = false;
+                gameTextures.diceElapsedTime = 0;
+                throwDice = true;*/
             }
         }
     }
