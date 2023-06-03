@@ -115,6 +115,7 @@ public class MiniGame {
     private static Sprite cardSprite;
     static SpriteBatch spriteBatch;
     MiniGamesTypes type;
+    MiniGameOutput result;
 
     public MiniGame(SpriteBatch spriteBatchParam, DayParkMap map) {
         this.isLoaded = new boolean[3];
@@ -695,6 +696,12 @@ public class MiniGame {
             super(batch, menu, game);
             this.result = result;
             this.timer = timer;
+            if (!result)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (timer < 5)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 

@@ -42,6 +42,8 @@ public class DayParkMap implements Screen {
     int winPlayerPosition = 0;
     boolean endGame = false;
     private boolean cardIsLoading;
+    private int randEvent;
+    private int randType;
 
     enum ColorOfAllPlayers {None,Yellow, Green, Blue, Pink}
     ColorOfAllPlayers playerToKillRightNow;
@@ -63,6 +65,7 @@ public class DayParkMap implements Screen {
     MiniGamesTypes miniGameType;
     MiniGame miniGame;
     boolean cardLoaded;
+    MiniGameOutput miniGameResult;
 
     RandomEvent[] randomEvents;
     int missedPlayers = 0;
@@ -73,6 +76,7 @@ public class DayParkMap implements Screen {
         this.miniGameType = MiniGamesTypes.NONE;
         this.game = game;
         this.miniGame = new MiniGame(game.batch, this);
+        this.miniGameResult = MiniGameOutput.NONE;
         RandomEvent.setMap(this);
     }
 
@@ -404,7 +408,7 @@ public class DayParkMap implements Screen {
                 killSomebody(player, pawNumber);
                 randomEventSystem(playerNumberTurn, pawNumber);
                 if (this.miniGameOutput) {
-                    RandomEvent.drawMiniGameOutput();
+                    RandomEvent.drawMiniGameOutput(player);
                 }
                 if (!this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardIsLoading && this.randNumber == 0) {
                     setPlayerNumberTurn();
@@ -500,7 +504,7 @@ public class DayParkMap implements Screen {
         if((/*this.miniGameType != MiniGamesTypes.NONE && */ !gameTextures.cardAnimStarted) //||
                 /*(!gameTextures.cardAnimStarted && (this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2])) */) {
             //Wysunięcie karty
-            System.out.println("test2");
+            //System.out.println("test2");
             gameTextures.cardAnimStarted = true;
             this.cardIsLoading = true;
         }
@@ -634,7 +638,6 @@ public class DayParkMap implements Screen {
 
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
-        //System.out.print(turnSignKeyFrame + " ");
         if(changeTurn){
             if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
                 skipFirstAnimation = false;
@@ -642,6 +645,9 @@ public class DayParkMap implements Screen {
             else if(turnSignKeyFrame == 139){
                 gameTextures.turnSignElapsedTime = 0;
             }
+
+            this.randEvent = rand.nextInt(8);
+            this.randType = rand.nextInt(2);
 
             setAnimationTimeForPlayersTurn();
 
@@ -1019,22 +1025,19 @@ public class DayParkMap implements Screen {
         Player player = Players.get(playerNumber);
         Pawn pawn = player.pawns[pawnNumber];
         if (pawn.positionAtMap == RandomEvent.ICE_CREAM_SPECIAL_FIELD_NUMBER) {
-            int randomEvent = RandomEvent.ICE_CREAM_EVENTS[0] + rand.nextInt(2);
-            drawCardAnim(randomEvents[randomEvent].cardMessage);
-            player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
-            player.pausingRounds = randomEvents[randomEvent].roundsMissed;
-            this.randNumber = randomEvents[randomEvent].thisRoundMovement;
+            drawCardAnim(randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].cardMessage);
+            player.additionalMovement = randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].nextRoundMovement;
+            player.pausingRounds = randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].roundsMissed;
+            this.randNumber = randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].thisRoundMovement;
         }
         else if (pawn.positionAtMap == RandomEvent.TRAMPOLINE_SPECIAL_FIELD_NUMBER) {
-            int randomEvent = RandomEvent.TRAMPOLINE_EVENTS[0] + rand.nextInt(2);
-            drawCardAnim(randomEvents[randomEvent].cardMessage);
-            player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
-            player.pausingRounds = randomEvents[randomEvent].roundsMissed;
-            this.randNumber = randomEvents[randomEvent].thisRoundMovement;
+            drawCardAnim(randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].cardMessage);
+            player.additionalMovement = randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].nextRoundMovement;
+            player.pausingRounds = randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].roundsMissed;
+            this.randNumber = randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].thisRoundMovement;
         }
         else if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput) {
-            //System.out.println("miejsce specjalne");
-            //int randomEvent = rand.nextInt(3);
+            //int randomEvent = this.randNumber;
             int randomEvent = 1;
             if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.SPACE_INVADERS) {
                 if (!this.miniGamePlaying[0])
@@ -1058,6 +1061,27 @@ public class DayParkMap implements Screen {
                 player.pausingRounds = randomEvents[randomEvent].roundsMissed;
                 this.randNumber = randomEvents[randomEvent].thisRoundMovement;
             }
+        }
+    }
+
+    public void miniGameResultToRandomEvent(Player player) {
+        if (this.miniGameResult == MiniGameOutput.BIG_WIN && this.miniGameOutput) {
+            drawCardAnim(randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].cardMessage);
+            player.additionalMovement = randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].nextRoundMovement;
+            player.pausingRounds = randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].roundsMissed;
+            this.randNumber = randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].thisRoundMovement;
+        }
+        else if (this.miniGameResult == MiniGameOutput.SMALL_WIN && this.miniGameOutput){
+            drawCardAnim(randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].cardMessage);
+            player.additionalMovement = randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].nextRoundMovement;
+            player.pausingRounds = randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].roundsMissed;
+            this.randNumber = randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].thisRoundMovement;
+        }
+        else if (this.miniGameResult == MiniGameOutput.LOSE && this.miniGameOutput) {
+            drawCardAnim(randomEvents[this.randType + RandomEvent.LOSE_EVENTS].cardMessage);
+            player.additionalMovement = randomEvents[this.randType + RandomEvent.LOSE_EVENTS].nextRoundMovement;
+            player.pausingRounds = randomEvents[this.randType + RandomEvent.LOSE_EVENTS].roundsMissed;
+            this.randNumber = randomEvents[this.randType + RandomEvent.LOSE_EVENTS].thisRoundMovement;
         }
     }
 
