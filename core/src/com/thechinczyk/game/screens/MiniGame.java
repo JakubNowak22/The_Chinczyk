@@ -248,6 +248,12 @@ public class MiniGame {
         SpaceInvadersEndMenu (SpriteBatch batch, int result, MiniGameMainMenu menu, SpaceInvaders game) {
             super(batch, menu, game);
             this.result = result;
+            if (result < 10)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (result < 14)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 
@@ -890,7 +896,7 @@ public class MiniGame {
                     }
                 }
                 this.menu.isStarted = false;
-                this.menu.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check,  this.menu,this);
+                this.menu.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check, timeSeconds, this.menu,this);
                 this.menu.isEnding = true;
             }
         }
@@ -898,10 +904,18 @@ public class MiniGame {
 
     static class MemoryMiniGameEndMenu extends MiniGameEndMenu{
         boolean result;
+        int timer;
 
-        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, MiniGameMainMenu menu, MemoryMiniGame game) {
+        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, int timer, MiniGameMainMenu menu, MemoryMiniGame game) {
             super(batch, menu, game);
             this.result = result;
+            this.timer = timer;
+            if (!result)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (timer < 5)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 
