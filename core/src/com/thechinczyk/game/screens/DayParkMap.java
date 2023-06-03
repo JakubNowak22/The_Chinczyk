@@ -24,7 +24,7 @@ public class DayParkMap implements Screen {
 
     /**
      * pola specjalne :
-     * wykżynik:
+     * wykrzynik:
      * - 16, 32, 43
      * znak zapytania:
      * - 3, 11, 20, 25, 37
@@ -41,6 +41,8 @@ public class DayParkMap implements Screen {
     int[] winsPlayer = {-1, -1, -1, -1};
     int winPlayerPosition = 0;
     boolean endGame = false;
+    private boolean cardIsLoading;
+
     enum ColorOfAllPlayers {None,Yellow, Green, Blue, Pink}
     ColorOfAllPlayers playerToKillRightNow;
     ColorOfAllPlayers playerKiller;
@@ -57,16 +59,21 @@ public class DayParkMap implements Screen {
     public ArrayList<Player> Players = new ArrayList<>();
 
     boolean[] miniGamePlaying;
-    boolean[] miniGameOutput;
+    boolean miniGameOutput;
     MiniGamesTypes miniGameType;
     MiniGame miniGame;
+    boolean cardLoaded;
+
+    RandomEvent[] randomEvents;
 
     public DayParkMap(MyTheChinczyk game) {
         this.miniGamePlaying = new boolean[3];
-        this.miniGameOutput = new boolean[3];
+        this.miniGameOutput = false;
+        this.randomEvents = RandomEvent.createRandomEventsArray();
         this.miniGameType = MiniGamesTypes.NONE;
         this.game = game;
         this.miniGame = new MiniGame(game.batch, this);
+        RandomEvent.setMap(this);
     }
 
     GameTextures gameTextures;
@@ -390,8 +397,15 @@ public class DayParkMap implements Screen {
                 bus(player.pawns[pawNumber]);
             }else {
                 killSomebody(player, pawNumber);
-                setPlayerNumberTurn();
-                resetFlags();
+                randomEventSystem(playerNumberTurn, pawNumber);
+                if (this.miniGameOutput) {
+                    RandomEvent.drawMiniGameOutput();
+                }
+                if (!this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardIsLoading) {
+                    System.out.println("costam");
+                    setPlayerNumberTurn();
+                    resetFlags();
+                }
                 if(player.numbersOfWinPawns==4){
                     player.win = true;
                     winsPlayer[winPlayerPosition] = player.playerNumber;
@@ -427,6 +441,7 @@ public class DayParkMap implements Screen {
         pawToChange = -1;
         throwDice = false;
         pawnChoose = false;
+        cardLoaded = false;
         randNumber = 0;
     }
 
@@ -478,17 +493,19 @@ public class DayParkMap implements Screen {
     }
 
     public void drawCardAnim(String message){
-        if((Gdx.input.isKeyJustPressed(Input.Keys.C) && !gameTextures.cardAnimStarted) || (Gdx.input.isKeyJustPressed(Input.Keys.Z) && !gameTextures.cardAnimStarted && !this.miniGameOutput[0]) || this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2] || (Gdx.input.isKeyJustPressed(Input.Keys.M) && !gameTextures.cardAnimStarted && !this.miniGameOutput[1]) || (Gdx.input.isKeyJustPressed(Input.Keys.N) && !gameTextures.cardAnimStarted && !this.miniGameOutput[2])){
+        if((/*this.miniGameType != MiniGamesTypes.NONE && */ !gameTextures.cardAnimStarted) //||
+                /*(!gameTextures.cardAnimStarted && (this.miniGameOutput[0] || this.miniGameOutput[1] || this.miniGameOutput[2])) */) {
             //Wysunięcie karty
-            // System.out.println("test2");
+            System.out.println("test2");
             gameTextures.cardAnimStarted = true;
+            this.cardIsLoading = true;
         }
         if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT) && gameTextures.cardAnim.isAnimationFinished(gameTextures.cardElapsedTime)){
             //Zamknięcie karty
             //System.out.println("test");
-            this.miniGameOutput[0] = false;
-            this.miniGameOutput[1] = false;
-            this.miniGameOutput[2] = false;
+            this.miniGameOutput = false;
+            this.cardLoaded = true;
+            this.cardIsLoading = false;
             gameTextures.cardAnimStarted = false;
             gameTextures.cardElapsedTime = 0;
         }
@@ -503,51 +520,32 @@ public class DayParkMap implements Screen {
     }
 
     public void drawSpaceInvadersMiniGameMenu(String message) {
-        if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2]) {
+        if((this.miniGameType == MiniGamesTypes.SPACE_INVADERS || gameTextures.cardAnimStarted) && !this.miniGameOutput && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardLoaded) {
             drawCardAnim(message);
-            // this.miniGamePlaying[0] = true;
         }
         if (this.miniGamePlaying[0] && !this.gameTextures.cardAnimStarted) {
             if (!this.miniGame.isLoaded[0]) {
                 this.miniGame.loadTextures(MiniGamesTypes.SPACE_INVADERS);
                 this.miniGame.isLoaded[0] = true;
             }
-            //  this.miniGamePlaying = true;
             this.miniGame.menuSpaceInvaders.Draw();
         }
-
-        if (this.miniGameOutput[0] && !this.miniGamePlaying[0]) {
-            drawCardAnim("Text with reward/punishment\nthat player will receive1");
-        }
-
-        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
-            this.miniGameOutput = false; */
     }
 
     public void drawMathMiniGameMenu(String message) {
-        if((this.miniGameType == MiniGamesTypes.MATH || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[2]) {
+        if((this.miniGameType == MiniGamesTypes.MATH || gameTextures.cardAnimStarted) && !this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[2] && !this.cardLoaded) {
             drawCardAnim(message);
-            // System.out.println("yes");
-            // this.miniGamePlaying[1] = true;
         }
         if (this.miniGamePlaying[1] && !this.gameTextures.cardAnimStarted) {
             if (!this.miniGame.isLoaded[1]) {
                 this.miniGame.loadTextures(MiniGamesTypes.MATH);
                 this.miniGame.isLoaded[1] = true;
             }
-            //  this.miniGamePlaying = true;
             this.miniGame.menuMath.Draw();
         }
-
-        if (this.miniGameOutput[1] && !this.miniGamePlaying[1]) {
-            drawCardAnim("Text with reward/punishment\nthat player will receive2");
-        }
-
-        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
-            this.miniGameOutput = false; */
     }
 
-    public void drawMemoryMiniGameMenu(String message) {
+    /*public void drawMemoryMiniGameMenu(String message) {
         if((this.miniGameType == MiniGamesTypes.MEMORY || gameTextures.cardAnimStarted) && !this.miniGameOutput[0] && !this.miniGameOutput[1] && !this.miniGameOutput[2] && !this.miniGamePlaying[0] && !this.miniGamePlaying[1]) {
             drawCardAnim(message);
         }
@@ -563,10 +561,7 @@ public class DayParkMap implements Screen {
         if (this.miniGameOutput[2] && !this.miniGamePlaying[2]) {
             drawCardAnim("Text with reward/punishment\nthat player will receive3");
         }
-
-        /*if (this.miniGameOutput && !this.gameTextures.cardAnimStarted)
-            this.miniGameOutput = false; */
-    }
+    }  */
 
     public void drawMiniGameTimer(int x, int y) {
         gameTextures.timerElapsedTime += Gdx.graphics.getDeltaTime();
@@ -577,32 +572,15 @@ public class DayParkMap implements Screen {
     public void unlockMap(MiniGamesTypes type) {
         if (type == MiniGamesTypes.SPACE_INVADERS) {
             this.miniGamePlaying[0] = false;
-            this.miniGameOutput[0] = true;
         }
         else if (type == MiniGamesTypes.MATH){
             this.miniGamePlaying[1] = false;
-            this.miniGameOutput[1] = true;
         }
         else if (type == MiniGamesTypes.MEMORY) {
             this.miniGamePlaying[2] = false;
-            this.miniGameOutput[2] = true;
         }
+        this.miniGameOutput = true;
 
-    }
-
-    public void getInputForMiniGame() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
-            this.miniGamePlaying[0] = true;
-            this.miniGameType = MiniGamesTypes.SPACE_INVADERS;
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
-            this.miniGamePlaying[1] = true;
-            this.miniGameType = MiniGamesTypes.MATH;
-        }
-        else if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
-            this.miniGamePlaying[2] = true;
-            this.miniGameType = MiniGamesTypes.MEMORY;
-        }
     }
 
     public void setPlayerNumberTurn() {
@@ -1000,6 +978,36 @@ public class DayParkMap implements Screen {
         }
     }
 
+    private void randomEventSystem(int playerNumber, int pawnNumber) {
+        Player player = Players.get(playerNumber);
+        Pawn pawn = player.pawns[pawnNumber];
+        if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput) {
+            //System.out.println("miejsce specjalne");
+            //int randomEvent = rand.nextInt(3);
+            int randomEvent = 3;
+            if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.SPACE_INVADERS) {
+                if (!this.miniGamePlaying[0])
+                {
+                    this.miniGamePlaying[0] = true;
+                    this.miniGameType = MiniGamesTypes.SPACE_INVADERS;
+                }
+                drawSpaceInvadersMiniGameMenu(randomEvents[randomEvent].cardMessage);
+            }
+            else if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.MATH) {
+                if (!this.miniGamePlaying[1])
+                {
+                    this.miniGamePlaying[1] = true;
+                    this.miniGameType = MiniGamesTypes.MATH;
+                }
+                drawMathMiniGameMenu(randomEvents[randomEvent].cardMessage);
+            }
+            else if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.NONE) {
+                drawCardAnim(randomEvents[randomEvent].cardMessage);
+                player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
+            }
+        }
+    }
+
     @Override
     public void resize(int width, int height) {
 
@@ -1089,6 +1097,7 @@ class Player {
     public int numbersOfWinPawns;
     public boolean win;
     public int pawnsInBase;
+    public int additionalMovement;
     public ArrayList<Texture> baseOfPlayer = new ArrayList<>();
 
     public Pawn[] pawns = {new Pawn(playerBase),
@@ -1100,6 +1109,7 @@ class Player {
         this.win = false;
         this.playerNumber = playerNumber;
         this.playerBase = playerBase;
+        this.additionalMovement = 0;
         activePawn = 0;
         numbersOfWinPawns = 0;
         pawnsInBase = 4;

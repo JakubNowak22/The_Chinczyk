@@ -52,7 +52,6 @@ abstract class MiniGameMainMenu {
     }
 
 }
-enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH, MEMORY}
 
 abstract class MiniGameGameplay {
     BitmapFont fontGreen, fontYellow;
@@ -191,13 +190,13 @@ public class MiniGame {
         }
     }
 
-    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu, int outputNumber, MiniGamesTypes type) {
+    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu, MiniGamesTypes type) {
         Vector2 cursorPosition = getMiniGameMousePosition(mainMenu.map.game);
         endMenu.isButtonEndHovered = endMenu.buttonEnd.contains(cursorPosition);
         if (endMenu.isButtonEndHovered) {
             endMenu.buttonEndHoveredSprite.draw(spriteBatch);
             if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                mainMenu.map.miniGameOutput[outputNumber] = true;
+                mainMenu.map.miniGameOutput = true;
                 mainMenu.resetAfterQuit(type);
             }
         }
@@ -261,7 +260,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 0, MiniGamesTypes.SPACE_INVADERS);
+            MiniGameEndMenuUpdate(menu, this, MiniGamesTypes.SPACE_INVADERS);
         }
 
         public void Draw() {
@@ -711,7 +710,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 1, MiniGamesTypes.MATH);
+            MiniGameEndMenuUpdate(menu, this,  MiniGamesTypes.MATH);
         }
 
         public void Draw() {
@@ -911,7 +910,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 2, MiniGamesTypes.MEMORY);
+            MiniGameEndMenuUpdate(menu, this, MiniGamesTypes.MEMORY);
         }
 
         public void Draw() {
