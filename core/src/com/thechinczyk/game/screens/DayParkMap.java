@@ -309,7 +309,7 @@ public class DayParkMap implements Screen {
     private void enforcedPlayer(Player player, int x) {
         if (canIMovePawn(player, x)) {
             manageParticularPawn(player, x);
-            if(player.pawns[x].position >= 50){
+            if(player.pawns[x].position > 48){
                 player.win();
             }
         }
@@ -859,7 +859,7 @@ public class DayParkMap implements Screen {
             diceSound.play(0.5f);
         }
         if (gameTextures.diceAnimStarted) {
-            if (!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)) {
+            /*if (!gameTextures.diceAnim.isAnimationFinished(gameTextures.diceElapsedTime)) {
                 gameTextures.diceElapsedTime += Gdx.graphics.getDeltaTime();
                 game.batch.draw(gameTextures.diceAnim.getKeyFrame(gameTextures.diceElapsedTime, false), 300, 0, 1000, 850);
             } else {
@@ -867,14 +867,14 @@ public class DayParkMap implements Screen {
                 gameTextures.diceElapsedTime = 0;
                 throwDice = true;
             }
-            if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){
+            if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){*/
                 randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
                 //System.out.println(randNumber);
-                /*gameTextures.diceAnimStarted = false;
+                gameTextures.diceAnimStarted = false;
                 gameTextures.diceElapsedTime = 0;
-                throwDice = true;*/
-            }
+                throwDice = true;
+            //}
         }
     }
 
@@ -1160,20 +1160,27 @@ class Player {
     public void win(){
         for (int i = 3; i >= 0; i--){
             System.out.println(i + " " + pawns[i].position);
-            if(pawns[i].position == 53 && !pawns[i].win && winsPosition[0] == 0){
-                enforceWin(i);
-            }
-            if(pawns[i].position == 52 && !pawns[i].win && winsPosition[0] == 1){
-                enforceWin(i);
-            }
-            if(pawns[i].position == 51 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1){
-                enforceWin(i);
-            }
-            if(pawns[i].position == 50 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1 && winsPosition[2] == 1){
-                enforceWin(i);
-            }
+            checkWin(i);
+        }
+        for (int i = 0; i < 4; i++){
+            checkWin(i);
         }
         System.out.println("wins " + numbersOfWinPawns);
+    }
+
+    private void checkWin(int i) {
+        if(pawns[i].position == 53 && !pawns[i].win && winsPosition[0] == 0){
+            enforceWin(i);
+        }
+        if(pawns[i].position == 52 && !pawns[i].win && winsPosition[0] == 1){
+            enforceWin(i);
+        }
+        if(pawns[i].position == 51 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1){
+            enforceWin(i);
+        }
+        if(pawns[i].position == 50 && !pawns[i].win && winsPosition[0] == 1 && winsPosition[1] == 1 && winsPosition[2] == 1){
+            enforceWin(i);
+        }
     }
 
     private void enforceWin(int i) {
