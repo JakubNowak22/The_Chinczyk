@@ -406,8 +406,7 @@ public class DayParkMap implements Screen {
                 if (this.miniGameOutput) {
                     RandomEvent.drawMiniGameOutput();
                 }
-                if (!this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardIsLoading) {
-                    System.out.println("costam");
+                if (!this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardIsLoading && this.randNumber == 0) {
                     setPlayerNumberTurn();
                     resetFlags();
                 }
@@ -635,7 +634,7 @@ public class DayParkMap implements Screen {
 
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
-        System.out.print(turnSignKeyFrame + " ");
+        //System.out.print(turnSignKeyFrame + " ");
         if(changeTurn){
             if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
                 skipFirstAnimation = false;
@@ -1019,10 +1018,24 @@ public class DayParkMap implements Screen {
     private void randomEventSystem(int playerNumber, int pawnNumber) {
         Player player = Players.get(playerNumber);
         Pawn pawn = player.pawns[pawnNumber];
-        if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput) {
+        if (pawn.positionAtMap == RandomEvent.ICE_CREAM_SPECIAL_FIELD_NUMBER) {
+            int randomEvent = RandomEvent.ICE_CREAM_EVENTS[0] + rand.nextInt(2);
+            drawCardAnim(randomEvents[randomEvent].cardMessage);
+            player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
+            player.pausingRounds = randomEvents[randomEvent].roundsMissed;
+            this.randNumber = randomEvents[randomEvent].thisRoundMovement;
+        }
+        else if (pawn.positionAtMap == RandomEvent.TRAMPOLINE_SPECIAL_FIELD_NUMBER) {
+            int randomEvent = RandomEvent.TRAMPOLINE_EVENTS[0] + rand.nextInt(2);
+            drawCardAnim(randomEvents[randomEvent].cardMessage);
+            player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
+            player.pausingRounds = randomEvents[randomEvent].roundsMissed;
+            this.randNumber = randomEvents[randomEvent].thisRoundMovement;
+        }
+        else if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput) {
             //System.out.println("miejsce specjalne");
             //int randomEvent = rand.nextInt(3);
-            int randomEvent = 5;
+            int randomEvent = 1;
             if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.SPACE_INVADERS) {
                 if (!this.miniGamePlaying[0])
                 {
@@ -1043,6 +1056,7 @@ public class DayParkMap implements Screen {
                 drawCardAnim(randomEvents[randomEvent].cardMessage);
                 player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
                 player.pausingRounds = randomEvents[randomEvent].roundsMissed;
+                this.randNumber = randomEvents[randomEvent].thisRoundMovement;
             }
         }
     }
