@@ -65,7 +65,7 @@ public class DayParkMap implements Screen {
     boolean cardLoaded;
 
     RandomEvent[] randomEvents;
-
+    int missedPlayers = 0;
     public DayParkMap(MyTheChinczyk game) {
         this.miniGamePlaying = new boolean[3];
         this.miniGameOutput = false;
@@ -314,12 +314,12 @@ public class DayParkMap implements Screen {
         if(player.pawns[x].win){
             return false;
         }
-        if(player.pawns[x].position + randNumber > 53 - player.numbersOfWinPawns){
+        if(player.pawns[x].position + randNumber + player.additionalMovement > 53 - player.numbersOfWinPawns){
             return false;
         }
         for (Pawn pawn : player.pawns) {
             if (pawn != player.pawns[x] && pawn.active) {
-                if (pawn.position == player.pawns[x].position + randNumber) {
+                if (pawn.position == player.pawns[x].position + randNumber + player.additionalMovement) {
                     return false;
                 }
             }
@@ -328,8 +328,10 @@ public class DayParkMap implements Screen {
     }
 
     private void manageParticularPawn(Player player, int x) {
-        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber) % 49;
-        player.pawns[x].position += randNumber;
+        System.out.println(randNumber + player.additionalMovement);
+        player.pawns[x].positionAtMap = (player.pawns[x].positionAtMap + randNumber + player.additionalMovement) % 49;
+        player.pawns[x].position += randNumber + player.additionalMovement;
+        //player.additionalMovement = 0;
         pawToChange = x;
         pawnChoose = true;
     }
@@ -381,7 +383,7 @@ public class DayParkMap implements Screen {
     }
 
     private void changeAnimationPawn(Player player, int pawNumber) {
-        if (randNumber >= 1 && pawNumber != -1) {
+        if (randNumber + player.additionalMovement >= 1 && pawNumber != -1 && !this.cardIsLoading) {
             if (flag) {
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
                 flag = false;
@@ -389,7 +391,10 @@ public class DayParkMap implements Screen {
             if (player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0) {
                 player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
-                randNumber--;
+                if (player.additionalMovement > 0)
+                    player.additionalMovement --;
+                else
+                    randNumber--;
                 flag = true;
             }
         } else {
@@ -590,6 +595,16 @@ public class DayParkMap implements Screen {
             } else {
                 playerNumberTurn = 0;
             }
+            while (Players.get(playerNumberTurn).pausingRounds != 0) {
+                this.missedPlayers++;
+                Players.get(playerNumberTurn).pausingRounds --;
+
+                if (playerNumberTurn < game.playerCount - 1) {
+                    playerNumberTurn++;
+                } else {
+                    playerNumberTurn = 0;
+                }
+            }
             changeTurn = true;
         }
     }
@@ -620,6 +635,7 @@ public class DayParkMap implements Screen {
 
     public void changeWhichPlayersTurn(){
         turnSignKeyFrame = gameTextures.turnSignAnim.getKeyFrameIndex(gameTextures.turnSignElapsedTime);
+        System.out.print(turnSignKeyFrame + " ");
         if(changeTurn){
             if(turnSignKeyFrame == 40 || turnSignKeyFrame == 73 || turnSignKeyFrame == 106){
                 skipFirstAnimation = false;
@@ -648,6 +664,26 @@ public class DayParkMap implements Screen {
     }
 
     private void setAnimationForAppropriatePlayerCount() {
+       /* while (missedPlayers!=0) {
+            //gameTextures.turnSignElapsedTime += 1.2f;
+            System.out.println("miss");
+            this.missedPlayers--;
+            if(game.playerCount==2){
+                if(gameTextures.turnSignElapsedTime>2.3){
+                    gameTextures.turnSignElapsedTime = 0.2F;
+                }
+            } else if (game.playerCount==3) {
+                if(gameTextures.turnSignElapsedTime>3.4){
+                    gameTextures.turnSignElapsedTime = 0.2F;
+                }
+            }
+            else {
+                if(gameTextures.turnSignElapsedTime>4.5){
+                    gameTextures.turnSignElapsedTime = 0.2F;
+                }
+            }
+        }
+        System.out.println(gameTextures.turnSignElapsedTime);
         if(game.playerCount==2){
             if(gameTextures.turnSignElapsedTime>2.3){
                 gameTextures.turnSignElapsedTime = 0.2F;
@@ -657,6 +693,8 @@ public class DayParkMap implements Screen {
                 gameTextures.turnSignElapsedTime = 0.2F;
             }
         }
+        System.out.println(gameTextures.turnSignElapsedTime); */
+        gameTextures.turnSignElapsedTime = this.playerNumberTurn*(1.1338771f + 0.04f) + 0.2f;
     }
 
     public void drawBackGround() {
@@ -984,7 +1022,7 @@ public class DayParkMap implements Screen {
         if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput) {
             //System.out.println("miejsce specjalne");
             //int randomEvent = rand.nextInt(3);
-            int randomEvent = 3;
+            int randomEvent = 5;
             if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.SPACE_INVADERS) {
                 if (!this.miniGamePlaying[0])
                 {
@@ -1004,6 +1042,7 @@ public class DayParkMap implements Screen {
             else if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.NONE) {
                 drawCardAnim(randomEvents[randomEvent].cardMessage);
                 player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
+                player.pausingRounds = randomEvents[randomEvent].roundsMissed;
             }
         }
     }
@@ -1097,7 +1136,7 @@ class Player {
     public int numbersOfWinPawns;
     public boolean win;
     public int pawnsInBase;
-    public int additionalMovement;
+    public int additionalMovement, pausingRounds;
     public ArrayList<Texture> baseOfPlayer = new ArrayList<>();
 
     public Pawn[] pawns = {new Pawn(playerBase),
@@ -1110,6 +1149,7 @@ class Player {
         this.playerNumber = playerNumber;
         this.playerBase = playerBase;
         this.additionalMovement = 0;
+        this.pausingRounds = 0;
         activePawn = 0;
         numbersOfWinPawns = 0;
         pawnsInBase = 4;
