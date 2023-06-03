@@ -11,7 +11,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
-		config.setWindowSizeLimits(640,360,3840,2160);
+		//config.setWindowSizeLimits(640,360,3840,2160);
 		config.setMaximized(true);
 		//config.setFullscreenMode(getDisplayMode());
 		config.setTitle("The Chinczyk");

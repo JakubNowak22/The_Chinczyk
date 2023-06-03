@@ -1,0 +1,1040 @@
+
+TurnSignAnimSheet.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image000
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image034
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image035
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image069
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image070
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image104
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image105
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image139
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image001
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image002
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image003
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image004
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image005
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image006
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image007
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image008
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image009
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image010
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image011
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image012
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image013
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet2.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image014
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image015
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image016
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image017
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image018
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image019
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image020
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image021
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image022
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image023
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image024
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image025
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image026
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image027
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet3.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image028
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image029
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image030
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image031
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image032
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image033
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image036
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image037
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image038
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image039
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image040
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image041
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image042
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image043
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet4.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image044
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image045
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image046
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image047
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image048
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image049
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image050
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image051
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image052
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image053
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image054
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image055
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image056
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image057
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet5.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image058
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image059
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image060
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image061
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image062
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image063
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image064
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image065
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image066
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image067
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image068
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image071
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image072
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image073
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet6.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image074
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image075
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image076
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image077
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image078
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image079
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image080
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image081
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image082
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image083
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image084
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image085
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image086
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image087
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet7.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image088
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image089
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image090
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image091
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image092
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image093
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image094
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image095
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image096
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image097
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image098
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image099
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image100
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image101
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet8.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image102
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image103
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image106
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image107
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image108
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image109
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image110
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image111
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image112
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image113
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image114
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image115
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image116
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image117
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet9.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image118
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image119
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image120
+  rotate: false
+  xy: 424, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image121
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image122
+  rotate: false
+  xy: 424, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image123
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image124
+  rotate: false
+  xy: 424, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image125
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image126
+  rotate: false
+  xy: 424, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image127
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image128
+  rotate: false
+  xy: 424, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image129
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image130
+  rotate: false
+  xy: 424, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image131
+  rotate: false
+  xy: 424, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+
+TurnSignAnimSheet10.png
+size: 512, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+image132
+  rotate: false
+  xy: 2, 854
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image133
+  rotate: false
+  xy: 2, 712
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image134
+  rotate: false
+  xy: 2, 570
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image135
+  rotate: false
+  xy: 2, 428
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image136
+  rotate: false
+  xy: 2, 286
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image137
+  rotate: false
+  xy: 2, 144
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
+image138
+  rotate: false
+  xy: 2, 2
+  size: 420, 140
+  orig: 420, 140
+  offset: 0, 0
+  index: -1
