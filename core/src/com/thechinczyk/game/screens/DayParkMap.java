@@ -73,7 +73,7 @@ public class DayParkMap implements Screen {
 
     @Override
     public void show() {
-        gameTextures = new GameTextures();
+        gameTextures = new GameTextures(game);
         for (int i = 0; i < game.playerCount; i++) {
             Player player = new Player(i, startPlayerBase[i]);
             Players.add(player);
