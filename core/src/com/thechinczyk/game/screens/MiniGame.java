@@ -43,11 +43,11 @@ abstract class MiniGameMainMenu {
         this.isEnding = false;
         this.map = map;
     }
-    public void resetAfterQuit(MiniGamesTypes type) {
+    public void resetAfterQuit() {
         this.isButtonStartHovered = false;
         this.isButtonHTPHovered = false;
         this.isEnding = false;
-        this.map.unlockMap(type);
+        this.map.unlockMap();
         this.isStarted = false;
     }
 
@@ -115,7 +115,6 @@ public class MiniGame {
     private static Sprite cardSprite;
     static SpriteBatch spriteBatch;
     MiniGamesTypes type;
-    MiniGameOutput result;
 
     public MiniGame(SpriteBatch spriteBatchParam, DayParkMap map) {
         this.isLoaded = new boolean[3];
@@ -191,14 +190,14 @@ public class MiniGame {
         }
     }
 
-    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu, MiniGamesTypes type) {
+    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu) {
         Vector2 cursorPosition = getMiniGameMousePosition(mainMenu.map.game);
         endMenu.isButtonEndHovered = endMenu.buttonEnd.contains(cursorPosition);
         if (endMenu.isButtonEndHovered) {
             endMenu.buttonEndHoveredSprite.draw(spriteBatch);
             if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
                 mainMenu.map.miniGameOutput = true;
-                mainMenu.resetAfterQuit(type);
+                mainMenu.resetAfterQuit();
             }
         }
     }
@@ -267,7 +266,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, MiniGamesTypes.SPACE_INVADERS);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
@@ -723,7 +722,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this,  MiniGamesTypes.MATH);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
@@ -931,7 +930,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, MiniGamesTypes.MEMORY);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
