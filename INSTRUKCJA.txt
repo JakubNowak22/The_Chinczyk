@@ -1,0 +1,14 @@
+1. Aby włączyć grę należy przejść do klasy DeskopLauncher.java, która znajduje się w: .\The_Chinczyk\desktop\src\com\thechinczyk\game i ją uruchomić w Intellij
+
+2. Rozgrywka: 
+	d - rzut kością
+	n - dodanie nowego pionka, po wylosowaniu 6 oczek
+	1,2,3,4 - poruszanie się pionkami
+
+3. Gracz rzuca kością po wylosowaniu 6 oczek pionek automatycznie się dodaje, gdy nie ma żadnego pionka danego koloru na mapie. Poruszanie się odbywa po kliknieciu odpowiednich cyfr. Cyfra 1 oznacza najdalej wysunięty pionek danego gracza na mapie, gdy pionek jest już wygrany nie można się nim poruszyć, a 1 jest przypisana kolejnemu pionkowi najdalej wysuniętemu na mapie. Po wylosowaniu liczby pionek nie może poruszyć się na pole, na którym znajduje się pionek tego samego gracza.
+
+4. Zbijanie odbywa się, gdy pionek gracza, którego jest teraz kolej przesunie się na pole, na którym to znajduje się już pionek innego gracza.
+
+5. Gdy gracz ustanie na oznakowanym polu przy autobusie, pionek ten przemieści się o 6 pól do przodu, nie wymaga to żadnej interakcji. 
+
+6. Wygranie następuje, gdy N-1 graczy skończy rozgrywkę. Gracz kończy rozgrywkę, gdy 4 jego pionki znajdują się w bazie na odpowiednich pozycjach czyli na 4 ostatnich polach. 

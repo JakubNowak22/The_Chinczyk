@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.thechinczyk.game.MyTheChinczyk;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,10 +105,66 @@ class GameTextures{
     public Animation<TextureRegion> timerAnim;
     public float timerElapsedTime;
 
-    GameTextures(){
-        dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
-        dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
+    MyTheChinczyk game;
 
+    GameTextures(MyTheChinczyk game){
+        this.game = game;
+        if(game.gameScreen==1){
+            dayParkBackground = new Texture("Map1/TC_Map1_Main.png");
+            dayParkTopground = new Texture("Map1/TC_Map1_TopLayer.png");
+
+            yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
+            yellowBase2= new Texture("Map1/Base/Base_Yellow2.png");
+            yellowBase1= new Texture("Map1/Base/Base_Yellow1.png");
+            yellowBase0= new Texture("Map1/Base/Base_Yellow0.png");
+            greenBase3= new Texture("Map1/Base/Base_Green3.png");
+            greenBase2= new Texture("Map1/Base/Base_Green2.png");
+            greenBase1= new Texture("Map1/Base/Base_Green1.png");
+            greenBase0= new Texture("Map1/Base/Base_Green0.png");
+            blueBase3= new Texture("Map1/Base/Base_Blue3.png");
+            blueBase2= new Texture("Map1/Base/Base_Blue2.png");
+            blueBase1= new Texture("Map1/Base/Base_Blue1.png");
+            blueBase0= new Texture("Map1/Base/Base_Blue0.png");
+            pinkBase3= new Texture("Map1/Base/Base_Pink3.png");
+            pinkBase2= new Texture("Map1/Base/Base_Pink2.png");
+            pinkBase1= new Texture("Map1/Base/Base_Pink1.png");
+            pinkBase0= new Texture("Map1/Base/Base_Pink0.png");
+
+            iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
+            swingAtlas = new TextureAtlas("Map1/SwingAnimSheet/SwingAnimSheet.atlas");
+
+            BusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
+        }
+        else{
+            dayParkBackground = new Texture("Map2/TC_Map2_Main.png");
+            dayParkTopground = new Texture("Map2/TC_Map2_TopLayer.png");
+
+            yellowBase3= new Texture("Map2/Base/Base_Yellow3.png");
+            yellowBase2= new Texture("Map2/Base/Base_Yellow2.png");
+            yellowBase1= new Texture("Map2/Base/Base_Yellow1.png");
+            yellowBase0= new Texture("Map2/Base/Base_Yellow0.png");
+            greenBase3= new Texture("Map2/Base/Base_Green3.png");
+            greenBase2= new Texture("Map2/Base/Base_Green2.png");
+            greenBase1= new Texture("Map2/Base/Base_Green1.png");
+            greenBase0= new Texture("Map2/Base/Base_Green0.png");
+            blueBase3= new Texture("Map2/Base/Base_Blue3.png");
+            blueBase2= new Texture("Map2/Base/Base_Blue2.png");
+            blueBase1= new Texture("Map2/Base/Base_Blue1.png");
+            blueBase0= new Texture("Map2/Base/Base_Blue0.png");
+            pinkBase3= new Texture("Map2/Base/Base_Pink3.png");
+            pinkBase2= new Texture("Map2/Base/Base_Pink2.png");
+            pinkBase1= new Texture("Map2/Base/Base_Pink1.png");
+            pinkBase0= new Texture("Map2/Base/Base_Pink0.png");
+
+            iceCreamAtlas = new TextureAtlas("Map2/IceCreamAnimationSheet/IceCreamAnimationSheet.atlas");
+            swingAtlas = new TextureAtlas("Map2/SwingAnimSheet/SwingAnimSheet.atlas");
+
+            BusAtlas = new TextureAtlas("Map2/BusAnimSheet/BusAnimSheet.atlas");
+        }
+
+        iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());
+        loopElapsedTime = 0f;
+        swingAnim = new Animation<TextureRegion>(1f/30f, swingAtlas.getRegions());
 
         yellowPlayerAtlas = new TextureAtlas("Map1/YellowPlayerAnimSheet/YellowPlayerAnimSheet.atlas");
         yellowPlayerAnim = new Animation<TextureRegion>(1f/30f, yellowPlayerAtlas.getRegions());
@@ -120,35 +178,11 @@ class GameTextures{
         pinkPlayerAtlas = new TextureAtlas("Map1/PinkPlayerAnimSheet/PinkPlayerAnimSheet.atlas");
         pinkPlayerAnim = new Animation<TextureRegion>(1f/30f, pinkPlayerAtlas.getRegions());
 
-        yellowBase3= new Texture("Map1/Base/Base_Yellow3.png");
-        yellowBase2= new Texture("Map1/Base/Base_Yellow2.png");
-        yellowBase1= new Texture("Map1/Base/Base_Yellow1.png");
-        yellowBase0= new Texture("Map1/Base/Base_Yellow0.png");
-        greenBase3= new Texture("Map1/Base/Base_Green3.png");
-        greenBase2= new Texture("Map1/Base/Base_Green2.png");
-        greenBase1= new Texture("Map1/Base/Base_Green1.png");
-        greenBase0= new Texture("Map1/Base/Base_Green0.png");
-        blueBase3= new Texture("Map1/Base/Base_Blue3.png");
-        blueBase2= new Texture("Map1/Base/Base_Blue2.png");
-        blueBase1= new Texture("Map1/Base/Base_Blue1.png");
-        blueBase0= new Texture("Map1/Base/Base_Blue0.png");
-        pinkBase3= new Texture("Map1/Base/Base_Pink3.png");
-        pinkBase2= new Texture("Map1/Base/Base_Pink2.png");
-        pinkBase1= new Texture("Map1/Base/Base_Pink1.png");
-        pinkBase0= new Texture("Map1/Base/Base_Pink0.png");
-
-        iceCreamAtlas = new TextureAtlas("Map1/IceCreamAnimationSheet/myIceCreamAnimationSheet.atlas");
-        iceCreamAnim = new Animation<TextureRegion>(1f/30f, iceCreamAtlas.getRegions());
-        loopElapsedTime = 0f;
-        swingAtlas = new TextureAtlas("Map1/SwingAnimSheet/SwingAnimSheet.atlas");
-        swingAnim = new Animation<TextureRegion>(1f/30f, swingAtlas.getRegions());
-
         cardAtlas = new TextureAtlas("Map1/CardAnimSheet/CardAnimSheet.atlas");
         cardAnim = new Animation<TextureRegion>(1f/30f, cardAtlas.getRegions());
         cardElapsedTime = 0f;
         cardAnimStarted = false;
 
-        BusAtlas = new TextureAtlas("Map1/BusAnimSheet/BusAnimSheet.atlas");
         BusAnim = new Animation<TextureRegion>(1f/30f, BusAtlas.getRegions());
         BusElapsedTime = 0f;
         BusAnimStarted = 0;
