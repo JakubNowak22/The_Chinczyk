@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.Align;
 
 public class DayParkMap implements Screen {
 
+    public static final float FIRST_TURN_SIGN_ELAPSED_TIME = 1.3338771F;
+    public static final float TURN_SIGN_ELAPSED_TIME_OFFSET = 1.1738771f;
     MyTheChinczyk game;
     Random rand = new Random();
     int randNumber = 0;
@@ -82,8 +84,8 @@ public class DayParkMap implements Screen {
     boolean cardLoaded;
     MiniGameOutput miniGameResult;
 
-    float prevAnimPlayerMod;
-    boolean firstAnimPlayerOfRound;
+    float prevAnimPlayerModulo;
+    boolean firstAnimPlayerThisRound;
 
     RandomEvent[] randomEvents;
     int missedPlayers = 0;
@@ -96,8 +98,8 @@ public class DayParkMap implements Screen {
         this.miniGame = new MiniGame(game.batch, this);
         this.miniGameResult = MiniGameOutput.NONE;
         this.tempFlag = true;
-        this.firstAnimPlayerOfRound = true;
-        this.prevAnimPlayerMod = 0;
+        this.firstAnimPlayerThisRound = true;
+        this.prevAnimPlayerModulo = 0;
         RandomEvent.setMap(this);
     }
 
@@ -446,17 +448,16 @@ public class DayParkMap implements Screen {
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
                 flag = false;
             }
-            if ((player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 != 0 && player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 >= prevAnimPlayerMod) || firstAnimPlayerOfRound || prevAnimPlayerMod == 0) {
-                prevAnimPlayerMod = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
-                this.prevAnimPlayerMod = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
+            if (player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10 >= prevAnimPlayerModulo || firstAnimPlayerThisRound || prevAnimPlayerModulo == 0) {
+                prevAnimPlayerModulo = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
+                this.prevAnimPlayerModulo = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
                 player.pawns[pawNumber].playerElapsedTime += Gdx.graphics.getDeltaTime();
             } else {
-                System.out.print("|");
-                this.prevAnimPlayerMod = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
+                this.prevAnimPlayerModulo = player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10;
                 randNumber--;
                 flag = true;
             }
-            firstAnimPlayerOfRound = false;
+            firstAnimPlayerThisRound = false;
 
             if (randNumber + player.additionalMovement == 0)
                 player.additionalMovement = 0;
@@ -470,7 +471,7 @@ public class DayParkMap implements Screen {
                 if (this.miniGameOutput) {
                     RandomEvent.drawMiniGameOutput(player, player.pawns[pawNumber]);
                 }
-                if (!this.miniGameOutput && !this.miniGamePlaying[0] && !this.miniGamePlaying[1] && !this.miniGamePlaying[2] && !this.cardIsLoading && this.randNumber <= 0) {
+                if (!this.miniGameOutput && miniGamePlaying() && !this.cardIsLoading && this.randNumber <= 0) {
                     setPlayerNumberTurn();
                     resetFlags();
                 }
@@ -484,6 +485,10 @@ public class DayParkMap implements Screen {
                 }
             }
         }
+    }
+
+    private boolean miniGamePlaying() {
+        return this.miniGamePlaying[0] || this.miniGamePlaying[1] || this.miniGamePlaying[2];
     }
 
     private void changeAnimationBus(Player player, int pawNumber){
@@ -512,8 +517,8 @@ public class DayParkMap implements Screen {
         cardLoaded = false;
         tempFlag = true;
         randNumber = 0;
-        this.firstAnimPlayerOfRound = true;
-        this.prevAnimPlayerMod = 0;
+        this.firstAnimPlayerThisRound = true;
+        this.prevAnimPlayerModulo = 0;
     }
 
     void drawPlayerPawns(Player player) {
@@ -714,12 +719,12 @@ public class DayParkMap implements Screen {
             gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
             gameTextures.turnSignElapsedTime += Gdx.graphics.getDeltaTime();
         } else{
-            gameTextures.turnSignElapsedTime = 1.3338771F;
+            gameTextures.turnSignElapsedTime = FIRST_TURN_SIGN_ELAPSED_TIME;
         }
     }
 
     private void setAnimationForAppropriatePlayerCount() {
-        gameTextures.turnSignElapsedTime = this.playerNumberTurn*1.1738771f + 0.2f;
+        gameTextures.turnSignElapsedTime = this.playerNumberTurn* TURN_SIGN_ELAPSED_TIME_OFFSET + 0.2f;
     }
 
     public void drawBackGround() {
@@ -863,14 +868,6 @@ public class DayParkMap implements Screen {
             if(gameTextures.diceAnim.getKeyFrameIndex(gameTextures.diceElapsedTime) == 55){
                 randNumber = rand.nextInt(6) + 1;
                 diceRoll = randNumber;
-               /* if (player.additionalMovement != 0) {
-                    randNumber += player.additionalMovement;
-                    player.additionalMovement = 0;
-                } */
-                //System.out.println(randNumber);
-                /*gameTextures.diceAnimStarted = false;
-                gameTextures.diceElapsedTime = 0;
-                throwDice = true;*/
             }
         }
     }
@@ -1051,26 +1048,21 @@ public class DayParkMap implements Screen {
 
     private void randomEventSystem(int playerNumber, int pawnNumber) {
         Player player = Players.get(playerNumber);
-        if (tempFlag) {
-        for (int i = 0; i<4; i++)
-            System.out.println(i + ")" + player.pawns[i].positionAtMap + " // " + player.pawns[i].position);
-        tempFlag = false;
-        }
+        if (tempFlag)
+            tempFlag = false;
+
         Pawn pawn = player.pawns[pawnNumber];
         if (pawn.positionAtMap == RandomEvent.ICE_CREAM_SPECIAL_FIELD_NUMBER && !pawn.win) {
-           // System.out.println("!1!");
             drawCardAnim(randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].cardMessage);
             player.additionalMovement = randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].nextRoundMovement;
             player.pausingRounds = randomEvents[RandomEvent.ICE_CREAM_EVENTS + this.randType].roundsMissed;
         }
         else if (pawn.positionAtMap == RandomEvent.TRAMPOLINE_SPECIAL_FIELD_NUMBER  && !pawn.win) {
-           // System.out.println("!2!");
             drawCardAnim(randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].cardMessage);
             player.additionalMovement = randomEvents[RandomEvent.TRAMPOLINE_EVENTS + this.randType].nextRoundMovement;
         }
         else if (RandomEvent.checkIsFieldSpecial(pawn.positionAtMap) && !this.miniGameOutput && !pawn.win) {
             int randomEvent = this.randEvent;
-          //  System.out.println("!3! -> " + pawn.positionAtMap);
             if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.SPACE_INVADERS) {
                 if (!this.miniGamePlaying[0])
                 {
@@ -1096,7 +1088,6 @@ public class DayParkMap implements Screen {
                 drawMemoryMiniGameMenu(randomEvents[randomEvent].cardMessage);
             }
             else if (randomEvents[randomEvent].miniGameType == MiniGamesTypes.NONE) {
-              //  System.out.println("!4!");
                 drawCardAnim(randomEvents[randomEvent].cardMessage);
                 player.additionalMovement = randomEvents[randomEvent].nextRoundMovement;
                 player.pausingRounds = randomEvents[randomEvent].roundsMissed;
@@ -1111,17 +1102,14 @@ public class DayParkMap implements Screen {
 
     public void miniGameResultToRandomEvent(Player player, Pawn pawn) {
         if (this.miniGameResult == MiniGameOutput.BIG_WIN && this.miniGameOutput) {
-          //  System.out.println("!5!");
             drawCardAnim(randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].cardMessage);
             player.additionalMovement = randomEvents[this.randType + RandomEvent.BIG_WIN_EVENTS].nextRoundMovement;
         }
         else if (this.miniGameResult == MiniGameOutput.SMALL_WIN && this.miniGameOutput){
-          //  System.out.println("!6!");
             drawCardAnim(randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].cardMessage);
             player.additionalMovement = randomEvents[this.randType + RandomEvent.SMALL_WIN_EVENTS].nextRoundMovement;
         }
         else if (this.miniGameResult == MiniGameOutput.LOSE && this.miniGameOutput) {
-          //  System.out.println("!7!");
             drawCardAnim(randomEvents[this.randType + RandomEvent.LOSE_EVENTS].cardMessage);
             player.pausingRounds = randomEvents[this.randType + RandomEvent.LOSE_EVENTS].roundsMissed;
             if (randomEvents[this.randType + RandomEvent.LOSE_EVENTS].pawnToBase && !this.cardIsLoading) {
