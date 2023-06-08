@@ -54,6 +54,8 @@ abstract class MiniGameMainMenu {
 }
 
 abstract class MiniGameGameplay {
+    public static final float YELLOW_FONT_SCALE = .66f;
+    public static final float GREEN_FONT_SCALE = .75f;
     BitmapFont fontGreen, fontYellow;
     static Random random = new Random();
     SpriteBatch spriteBatch;
@@ -64,9 +66,9 @@ abstract class MiniGameGameplay {
 
     MiniGameGameplay (SpriteBatch spriteBatch, MiniGameMainMenu menu, int miniGameTime) {
         this.fontGreen = new BitmapFont(Gdx.files.internal("Fonts/GreenBerlinSans.fnt"),false);
-        this.fontGreen.getData().setScale(.75f,.75f);
+        this.fontGreen.getData().setScale(GREEN_FONT_SCALE, GREEN_FONT_SCALE);
         this.fontYellow = new BitmapFont(Gdx.files.internal("Fonts/YellowBerlinSans.fnt"),false);
-        this.fontYellow.getData().setScale(.66f,.66f);
+        this.fontYellow.getData().setScale(YELLOW_FONT_SCALE, YELLOW_FONT_SCALE);
         this.spriteBatch = spriteBatch;
         this.menu = menu;
         this.timer = 0;
@@ -108,6 +110,8 @@ abstract class MiniGameEndMenu {
 }
 
 public class MiniGame {
+    public static final int MINI_GAMES_NUMBER = 3;
+    public static final float DEFAULT_FONT_SCALE = 0.3f;
     public boolean[] isLoaded;
     public SpaceInvadersMenu menuSpaceInvaders;
     public MathMiniGameMenu menuMath;
@@ -117,7 +121,7 @@ public class MiniGame {
     MiniGamesTypes type;
 
     public MiniGame(SpriteBatch spriteBatchParam, DayParkMap map) {
-        this.isLoaded = new boolean[3];
+        this.isLoaded = new boolean[MINI_GAMES_NUMBER];
         spriteBatch = spriteBatchParam;
         this.menuSpaceInvaders = new SpaceInvadersMenu(spriteBatch, map);
         this.menuMath = new MathMiniGameMenu(spriteBatch, map);
@@ -145,7 +149,7 @@ public class MiniGame {
         cardSprite.draw(spriteBatch);
         map.gameTextures.font.getData().setScale(scale, scale);
         map.gameTextures.font.draw(spriteBatch, instruction, 660, 710, 600, Align.center, true);
-        map.gameTextures.font.getData().setScale(0.3f, 0.3f);
+        map.gameTextures.font.getData().setScale(DEFAULT_FONT_SCALE, DEFAULT_FONT_SCALE);
     }
 
     public static void MiniGameMainMenuUpdate(MiniGameMainMenu mainMenu, String instruction, MiniGamesTypes type) {
@@ -241,15 +245,17 @@ public class MiniGame {
     }
 
     static class SpaceInvadersEndMenu extends MiniGameEndMenu{
+        public static final int GOOD_RESULT = 10;
+        public static final int BEST_RESULT = 14;
         int result;
         private Texture backTexture;
 
         SpaceInvadersEndMenu (SpriteBatch batch, int result, MiniGameMainMenu menu, SpaceInvaders game) {
             super(batch, menu, game);
             this.result = result;
-            if (result < 10)
+            if (result < GOOD_RESULT)
                 this.menu.map.miniGameResult = MiniGameOutput.LOSE;
-            else if (result < 14)
+            else if (result < BEST_RESULT)
                 this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
             else
                 this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
@@ -272,7 +278,7 @@ public class MiniGame {
         public void Draw() {
             spriteBatch.draw(this.backTexture, 430, 220, 1060, 640);
             spriteBatch.draw(this.menuTexture, 480, 270, 960, 540);
-            if (this.result < 10)
+            if (this.result < GOOD_RESULT)
                 this.game.fontGreen.draw(this.spriteBatch, Integer.toString(this.result), 940, 450);
             else
                 this.game.fontGreen.draw(this.spriteBatch, Integer.toString(this.result), 930, 450);
@@ -283,7 +289,6 @@ public class MiniGame {
     static class SpaceInvaders extends MiniGameGameplay{
 
         static class Player {
-            public static final int MAX_BULLETS = 3;
             private float position;
             private final float[] bulletPosition;
             public Sprite spritePlayer;
@@ -323,12 +328,12 @@ public class MiniGame {
                 else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT))
                     this.position += deltatime * PLAYER_MOVEMENT_OFFSET;
 
-                if (Gdx.input.isKeyPressed(Input.Keys.UP) && this.nextBullet < 3) {
+                if (Gdx.input.isKeyPressed(Input.Keys.UP) && this.nextBullet < MAX_BULLETS) {
                     this.positionWhenShoot[this.nextBullet] = this.position + ROCKET_SIZE/2f - BULLET_SIZE.x/2f;
                     this.bulletPosition[this.nextBullet] = Y_POS;
                     this.showBullet[this.nextBullet] = true;
                     this.lastShoot = this.nextBullet;
-                    this.nextBullet = 3;
+                    this.nextBullet = MAX_BULLETS;
                 }
 
                 float MAX_X_POS = 1340;
@@ -338,11 +343,11 @@ public class MiniGame {
                 else if (this.position < MIN_X_POS)
                     this.position = MIN_X_POS;
 
-                for (int i = 0; i<3; i++) {
+                for (int i = 0; i< MAX_BULLETS; i++) {
                     if (this.showBullet[i]) {
                         float BULLET_MOVEMENT_OFFSET = 500;
                         this.bulletPosition[i] += deltatime * BULLET_MOVEMENT_OFFSET;
-                        if (this.nextBullet == 3 && this.lastShoot == i && this.bulletPosition[i] >= 462)
+                        if (this.nextBullet == MAX_BULLETS && this.lastShoot == i && this.bulletPosition[i] >= 462)
                             this.nextBullet = i==2 ? 0 : (i+1);
 
 
@@ -358,7 +363,7 @@ public class MiniGame {
             public void Draw() {
                 Update(Gdx.graphics.getDeltaTime());
                 spritePlayer.draw(this.spriteBatch);
-                for (int i = 0; i<3; i++) {
+                for (int i = 0; i< MAX_BULLETS; i++) {
                     if (this.showBullet[i])
                         spriteBullet[i].draw(this.spriteBatch);
                 }
@@ -366,6 +371,7 @@ public class MiniGame {
         }
 
         static class Enemy {
+            public static final float WIDTH_FACTOR_ENEMY = (487 / 321f);
             private final Vector2 position;
             public Sprite spriteEnemy;
             private final SpriteBatch spriteBatch;
@@ -378,9 +384,9 @@ public class MiniGame {
             public Enemy(SpriteBatch batch, int rowNumber, int columnNumber, boolean toDraw) {
                 this.spriteBatch = batch;
                 this.spriteEnemy = new Sprite(new Texture("SpaceInvadersMiniGame/Enemy.png"));
-                this.spriteEnemy.setSize((487/321f)*ENEMY_SIZE,ENEMY_SIZE);
+                this.spriteEnemy.setSize(WIDTH_FACTOR_ENEMY *ENEMY_SIZE,ENEMY_SIZE);
                 float MIN_X_POS = 480 + 2.1f * ENEMY_SIZE;
-                this.position = new Vector2(MIN_X_POS + ((487/321f)*ENEMY_SIZE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
+                this.position = new Vector2(MIN_X_POS + (WIDTH_FACTOR_ENEMY *ENEMY_SIZE + ENEMY_POSITION_OFFSET)*columnNumber, MIN_Y_POS + (ENEMY_SIZE + ENEMY_POSITION_OFFSET)*rowNumber);
                 this.toDraw = toDraw;
                 spriteEnemy.setPosition(this.position.x, this.position.y);
             }
@@ -394,7 +400,7 @@ public class MiniGame {
 
                 spriteEnemy.setPosition(this.position.x, this.position.y);
 
-                if (this.position.x >= 1440 - (487/321f)*ENEMY_SIZE || this.position.x <= 480)
+                if (this.position.x >= 1440 - WIDTH_FACTOR_ENEMY *ENEMY_SIZE || this.position.x <= 480)
                     Enemy.dirToChange = true;
             }
 
@@ -406,20 +412,26 @@ public class MiniGame {
             }
         }
 
+
+        public static final int MINI_GAME_TIME = 10;
+        public static final int ENEMIES_ROWS = 4;
+        public static final int ENEMIES_COLUMNS = 7;
+        public static final int MAX_BULLETS = 3;
+        public static final int CHANGE_DIRECTION_PROBABILITY = 50;
         Player rocket;
         Enemy[][] enemiesArray;
         private int eliminatedEnemies;
 
         SpaceInvaders(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
-            super(spriteBatch, menu, 10);
+            super(spriteBatch, menu, MINI_GAME_TIME);
             this.rocket = new Player(this.spriteBatch);
             this.gameTexture = new Texture("SpaceInvadersMiniGame/Background.jpg");
             this.eliminatedEnemies = 0;
             this.menu.map.gameTextures.timerElapsedTime = 0f;
-            this.enemiesArray = new Enemy[4][7];
-            int enemiesLeft = 14, fieldsLeft = 28;
-            for (int i = 0; i<4; i++) {
-                for (int j = 0; j < 7; j++) {
+            this.enemiesArray = new Enemy[ENEMIES_ROWS][ENEMIES_COLUMNS];
+            int enemiesLeft = (ENEMIES_COLUMNS*ENEMIES_ROWS)/2, fieldsLeft = ENEMIES_COLUMNS*ENEMIES_ROWS;
+            for (int i = 0; i< ENEMIES_ROWS; i++) {
+                for (int j = 0; j < ENEMIES_COLUMNS; j++) {
                     if (random.nextInt(fieldsLeft) < enemiesLeft) {
                         enemiesArray[i][j] = new Enemy(this.spriteBatch, i, j, true);
                         enemiesLeft--;
@@ -444,9 +456,9 @@ public class MiniGame {
 
         public void Update(float deltatime) {
             this.rocket.Draw();
-            for (int i = 0; i<4; i++) {
-                for (int j = 0; j<7; j++) {
-                    for (int k = 0; k<3; k++) {
+            for (int i = 0; i< ENEMIES_ROWS; i++) {
+                for (int j = 0; j< ENEMIES_COLUMNS; j++) {
+                    for (int k = 0; k<MAX_BULLETS ; k++) {
                         if ((this.rocket.spriteBullet[k].getBoundingRectangle().overlaps(this.enemiesArray[i][j].spriteEnemy.getBoundingRectangle()) && this.enemiesArray[i][j].toDraw && this.rocket.showBullet[k])) {
                             this.enemiesArray[i][j].toDraw = false;
                             this.rocket.showBullet[k] = false;
@@ -457,13 +469,13 @@ public class MiniGame {
                 }
             }
 
-            if(random.nextInt(50) == 0 || Enemy.dirToChange) {
+            if(random.nextInt(CHANGE_DIRECTION_PROBABILITY) == 0 || Enemy.dirToChange) {
                 Enemy.leftDir = !Enemy.leftDir;
                 Enemy.dirToChange = false;
             }
             timerUpdate(deltatime);
 
-            if (this.eliminatedEnemies == 14 || this.timeSeconds == 0) {
+            if (this.eliminatedEnemies == (ENEMIES_COLUMNS*ENEMIES_ROWS)/2 || this.timeSeconds == 0) {
                 this.menu.isStarted = false;
                 this.menu.endMenu = new SpaceInvadersEndMenu(this.spriteBatch, this.eliminatedEnemies, this.menu, this);
                 this.menu.isEnding = true;
@@ -509,6 +521,18 @@ public class MiniGame {
 
     static class MathMiniGame extends MiniGameGameplay{
 
+        public static final int MINI_GAME_TIME = 15;
+        public static final int OPERATIONS_NUMBER = 4;
+        public static final int MAX_NUMBER_LENGTH = 4;
+        public static final int MAX_RESULT_LENGTH = 5;
+        public static final int NUMBER1_MINIMUM_VALUE = 100;
+        public static final int NUMBER1_RANGE = 1000;
+        public static final int NUMBER2_MINIMUM_VALUE_OPERATION_1 = 100;
+        public static final int NUMBER2_MINIMUM_VALUE_OPERATIONS_3_4 = 2;
+        public static final int NUMBER2_RANGE_OPERATION_1 = 100;
+        public static final int NUMBER2_RANGE_OPERATIONS_3_4 = 20;
+        public static final int NUMBERS_NUMBER = 10;
+        public static final int MAX_ONE_DIGIT_NUMBER = 9;
         int number1, number2, operation;
         int[] number1Array, number2Array;
         int expectedResult, playerResult;
@@ -519,15 +543,16 @@ public class MiniGame {
         private Sprite signSprite, eqSignSprite;
         private final Sprite[] number1Sprite, number2Sprite, resultSprite;
         private final int NUMBER_SIZE = 100;
-
-
+        private final static String[] TEXTURE_NAMES = {"Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"};
+        private static final int MULTIPLY_FACTOR = 10;
+        
         MathMiniGame(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
-            super(spriteBatch, menu, 15);
+            super(spriteBatch, menu, MINI_GAME_TIME);
             this.numberCounter = 0;
-            this.operation = random.nextInt(4);
-            this.number1 = 100 + random.nextInt(1000);
+            this.operation = random.nextInt(OPERATIONS_NUMBER);
+            this.number1 = NUMBER1_MINIMUM_VALUE + random.nextInt(NUMBER1_RANGE);
             if (this.operation == 0) {
-                this.number2 = 100 + random.nextInt(1000);
+                this.number2 = NUMBER2_MINIMUM_VALUE_OPERATION_1 + random.nextInt(NUMBER2_RANGE_OPERATION_1);
                 this.expectedResult = this.number1 + this.number2;
             }
             else if (this.operation == 1) {
@@ -535,20 +560,20 @@ public class MiniGame {
                 this.expectedResult = this.number1 - this.number2;
             }
             else if (this.operation == 2) {
-                this.number2 = 2 + random.nextInt(20);
+                this.number2 = NUMBER2_MINIMUM_VALUE_OPERATIONS_3_4 + random.nextInt(NUMBER2_RANGE_OPERATIONS_3_4);
                 this.expectedResult = this.number1 * this.number2;
             }
             else {
-                this.number2 = 2 + random.nextInt(20);
+                this.number2 = NUMBER2_MINIMUM_VALUE_OPERATIONS_3_4 + random.nextInt(NUMBER2_RANGE_OPERATIONS_3_4);
                 this.expectedResult = this.number1 / this.number2;
             }
 
             this.number1Array = this.intToArray(this.number1);
             this.number2Array = this.intToArray(this.number2);
-            this.number1Sprite = new Sprite[4];
-            this.number2Sprite = new Sprite[4];
-            this.resultSprite = new Sprite[5];
-            this.numbers = new Texture[10];
+            this.number1Sprite = new Sprite[MAX_NUMBER_LENGTH];
+            this.number2Sprite = new Sprite[MAX_NUMBER_LENGTH];
+            this.resultSprite = new Sprite[MAX_RESULT_LENGTH];
+            this.numbers = new Texture[NUMBERS_NUMBER];
             this.loadTextures();
         }
 
@@ -559,16 +584,8 @@ public class MiniGame {
             this.subSign = new Texture("MathMiniGame/SubtractSign.png");
             this.mulSign = new Texture("MathMiniGame/MultiplySign.png");
             this.divSign = new Texture("MathMiniGame/DivideSign.png");
-            this.numbers[0] = new Texture("MathMiniGame/Zero.png");
-            this.numbers[1] = new Texture("MathMiniGame/One.png");
-            this.numbers[2] = new Texture("MathMiniGame/Two.png");
-            this.numbers[3] = new Texture("MathMiniGame/Three.png");
-            this.numbers[4] = new Texture("MathMiniGame/Four.png");
-            this.numbers[5] = new Texture("MathMiniGame/Five.png");
-            this.numbers[6] = new Texture("MathMiniGame/Six.png");
-            this.numbers[7] = new Texture("MathMiniGame/Seven.png");
-            this.numbers[8] = new Texture("MathMiniGame/Eight.png");
-            this.numbers[9] = new Texture("MathMiniGame/Nine.png");
+            for (int i = 0; i<NUMBERS_NUMBER; i++)
+                this.numbers[i] = new Texture("MathMiniGame/" + TEXTURE_NAMES[i] + ".png");
             this.texturesToSprites();
         }
 
@@ -585,8 +602,8 @@ public class MiniGame {
 
             this.eqSignSprite = spriteInit(this.eqSign, 960 - SIZE / 2f, 540 - SIZE / 2f, SIZE, SIZE);
 
-            for (int i = 0; i < 4; i++) {
-                this.number1Sprite[i] = spriteInit(this.numbers[number1Array[i]], 960 - (4 - i) * (NUMBER_SIZE / 2f + 10) - 50, 700 - SIZE / 2f, NUMBER_SIZE / 2f, NUMBER_SIZE);
+            for (int i = 0; i < MAX_NUMBER_LENGTH; i++) {
+                this.number1Sprite[i] = spriteInit(this.numbers[number1Array[i]], 960 - (MAX_NUMBER_LENGTH - i) * (NUMBER_SIZE / 2f + 10) - 50, 700 - SIZE / 2f, NUMBER_SIZE / 2f, NUMBER_SIZE);
                 this.number2Sprite[i] = spriteInit(this.numbers[number2Array[i]], 960 + i * (NUMBER_SIZE / 2f + 10) + 50, 700 - SIZE / 2f, NUMBER_SIZE / 2f, NUMBER_SIZE);
             }
         }
@@ -598,7 +615,7 @@ public class MiniGame {
         }
 
         public int[] intToArray(int number) {
-            int[] array = new int[4];
+            int[] array = new int[MAX_NUMBER_LENGTH];
             array[3] = number%10;
             array[2] = (number/10)%10;
             array[1] = (number/100)%10;
@@ -609,77 +626,78 @@ public class MiniGame {
         public void Draw() {
             spriteBatch.draw(this.gameTexture, 480, 270, 960, 540);
             this.Update(Gdx.graphics.getDeltaTime());
-            if (this.timeSeconds > 9)
+            if (this.timeSeconds > MAX_ONE_DIGIT_NUMBER)
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1314, 737);
             else
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1324, 737);
             this.menu.map.drawMiniGameTimer(1290, 660);
             this.eqSignSprite.draw(this.spriteBatch);
             this.signSprite.draw(this.spriteBatch);
-            for (int i = 0; i<4; i++) {
-                if (this.number1/Math.pow(10, 3-i) >= 1)
+            for (int i = 0; i< MAX_NUMBER_LENGTH; i++) {
+                if (this.number1/Math.pow(10, MAX_NUMBER_LENGTH - 1 -i) >= 1)
                     this.number1Sprite[i].draw(this.spriteBatch);
-                if (this.number2/Math.pow(10, 3-i) >= 1)
+                if (this.number2/Math.pow(10, MAX_NUMBER_LENGTH - 1 -i) >= 1)
                     this.number2Sprite[i].draw(this.spriteBatch);
             }
             for (int i = 0; i<this.numberCounter; i++)
                 this.resultSprite[i].draw(this.spriteBatch);
         }
 
+        //todo: metoda zamiast ifa
         public void Update(float deltatime) {
             timerUpdate(deltatime);
-            if (numberCounter < 5) {
+            if (numberCounter < MAX_RESULT_LENGTH) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 1;
                     this.numberCounter++;
                 } else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_2))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 2;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_3))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 3;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_4))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 4;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_5))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 5;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_6)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_6))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 6;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_7)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_7))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 7;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_8))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 8;
                     this.numberCounter++;
                 }
                 else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_9))) {
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                     this.playerResult += 9;
                     this.numberCounter++;
                 }
                 else if (((Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))) && this.numberCounter >0) {
                     this.numberCounter++;
-                    this.playerResult *= 10;
+                    this.playerResult *= MULTIPLY_FACTOR;
                 }
             }
             if ((Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) && numberCounter != 0) {
-                    this.playerResult /= 10;
+                    this.playerResult /= MULTIPLY_FACTOR;
                     this.numberCounter--;
             }
             refreshResultSprites();
@@ -694,6 +712,7 @@ public class MiniGame {
     }
 
     static class MathMiniGameEndMenu extends MiniGameEndMenu {
+        public static final int GREAT_TIME = 5;
         boolean result;
         int timer;
 
@@ -703,7 +722,7 @@ public class MiniGame {
             this.timer = timer;
             if (!result)
                 this.menu.map.miniGameResult = MiniGameOutput.LOSE;
-            else if (timer < 5)
+            else if (timer < GREAT_TIME)
                 this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
             else
                 this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
@@ -767,6 +786,7 @@ public class MiniGame {
     }
 
     static class MemoryMiniGame extends MiniGameGameplay{
+        public static final int NO_COLOR_FLAG = -1;
         Texture gameTexture1, gameTexture2;
         int[] generatedNumbers, playerNumbers;
         int numberCounter;
@@ -776,17 +796,23 @@ public class MiniGame {
         private final Sprite[] gameColors;
         private final int SIZE = 150;
         private final int OFFSET = 30;
+        public static final int MINI_GAME_TIME = 15;
+        public static final int GENERATED_COLORS_NUMBER = 4;
+        public static final int COLORS_NUMBER = 9;
+        private final static String[] TEXTURE_NAMES = {"Blue", "Brown", "Cyan", "Green", "Pink", "Purple", "Red", "White", "Yellow"};
+        public final static int CHANGE_SCREEN_TIME = 10;
+        public static final int MAX_ONE_DIGIT_NUMBER = 9;
 
         MemoryMiniGame(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
-            super(spriteBatch, menu, 15);
+            super(spriteBatch, menu, MINI_GAME_TIME);
             this.numberCounter = 0;
-            this.generatedNumbers = new int[4];
-            this.playerNumbers = new int[4];
-            for (int i = 0; i<4; i++)
-                this.generatedNumbers[i] = random.nextInt(8);
+            this.generatedNumbers = new int[GENERATED_COLORS_NUMBER];
+            this.playerNumbers = new int[GENERATED_COLORS_NUMBER];
+            for (int i = 0; i< GENERATED_COLORS_NUMBER; i++)
+                this.generatedNumbers[i] = random.nextInt(COLORS_NUMBER-1);
 
-            this.gameColors = new Sprite[4];
-            this.colors = new Texture[9];
+            this.gameColors = new Sprite[GENERATED_COLORS_NUMBER];
+            this.colors = new Texture[COLORS_NUMBER];
             this.loadTextures();
         }
 
@@ -794,57 +820,51 @@ public class MiniGame {
             this.gameTexture1 = new Texture("MemoryMiniGame/Background1.png");
             this.gameTexture2 = new Texture("MemoryMiniGame/Background2.png");
             this.emptyColor = new Texture("MemoryMiniGame/ColorEmpty.png");
-            this.colors[0] = new Texture("MemoryMiniGame/ColorBlue.png");
-            this.colors[1] = new Texture("MemoryMiniGame/ColorBrown.png");
-            this.colors[2] = new Texture("MemoryMiniGame/ColorCyan.png");
-            this.colors[3] = new Texture("MemoryMiniGame/ColorGreen.png");
-            this.colors[4] = new Texture("MemoryMiniGame/ColorPink.png");
-            this.colors[5] = new Texture("MemoryMiniGame/ColorPurple.png");
-            this.colors[6] = new Texture("MemoryMiniGame/ColorRed.png");
-            this.colors[7] = new Texture("MemoryMiniGame/ColorWhite.png");
-            this.colors[8] = new Texture("MemoryMiniGame/ColorYellow.png");
+            for (int i = 0; i<COLORS_NUMBER; i++)
+                this.colors[i] = new Texture("MemoryMiniGame/Color" + TEXTURE_NAMES[i] + ".png");
             this.texturesToSprites();
         }
 
         public void texturesToSprites() {
-            for (int i = 0; i < 4; i++) {
-                this.gameColors[i] = spriteInit(this.colors[this.generatedNumbers[i]], 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
+            for (int i = 0; i < GENERATED_COLORS_NUMBER; i++) {
+                this.gameColors[i] = spriteInit(this.colors[this.generatedNumbers[i]], 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
             }
         }
 
          public void refreshResultSprite(int color) {
-            if (color == -1)
-                this.gameColors[this.numberCounter] = spriteInit(this.emptyColor, 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
+            if (color == NO_COLOR_FLAG)
+                this.gameColors[this.numberCounter] = spriteInit(this.emptyColor, 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
             else
-                this.gameColors[this.numberCounter] = spriteInit(this.colors[color], 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
+                this.gameColors[this.numberCounter] = spriteInit(this.colors[color], 960 - (1 - this.numberCounter) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
 
              this.playerNumbers[this.numberCounter] = color;
         }
 
         public void Draw() {
-            if (timeSeconds > 10)
+            if (timeSeconds > CHANGE_SCREEN_TIME)
                 spriteBatch.draw(this.gameTexture1, 480, 270, 960, 540);
             else
                 spriteBatch.draw(this.gameTexture2, 480, 270, 960, 540);
 
             this.Update(Gdx.graphics.getDeltaTime());
-            if (this.timeSeconds > 9)
+            if (this.timeSeconds > MAX_ONE_DIGIT_NUMBER)
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1344, 767);
             else
                 this.fontYellow.draw(this.spriteBatch, Integer.toString(this.timeSeconds), 1354, 767);
             this.menu.map.drawMiniGameTimer(1320, 690);
-            for (int i = 0; i < 4; i++) {
+            for (int i = 0; i < GENERATED_COLORS_NUMBER; i++) {
                 this.gameColors[i].draw(this.spriteBatch);
             }
         }
 
+        //todo: metoda zamiast ifa
         public void Update(float deltatime) {
-            if (timerUpdate(deltatime) && timeSeconds == 10) {
-                for (int i = 0; i<4; i++)
-                    this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3*SIZE/2f, SIZE, SIZE);
+            if (timerUpdate(deltatime) && timeSeconds == CHANGE_SCREEN_TIME) {
+                for (int i = 0; i<GENERATED_COLORS_NUMBER; i++)
+                    this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
             }
 
-            if (numberCounter < 4 && timeSeconds <= 10) {
+            if (numberCounter < GENERATED_COLORS_NUMBER && timeSeconds <= CHANGE_SCREEN_TIME) {
                 if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
                     refreshResultSprite(0);
                     this.numberCounter++;
@@ -883,12 +903,12 @@ public class MiniGame {
             }
             if (this.numberCounter > 0 && Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
                 this.numberCounter--;
-                refreshResultSprite(-1);
+                refreshResultSprite(NO_COLOR_FLAG);
             }
 
             if (this.timeSeconds == 0 || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 boolean check = true;
-                for (int i = 0; i<4; i++) {
+                for (int i = 0; i<GENERATED_COLORS_NUMBER; i++) {
                     if (this.playerNumbers[i]!=this.generatedNumbers[i]) {
                         check = false;
                         break;
@@ -902,6 +922,7 @@ public class MiniGame {
     }
 
     static class MemoryMiniGameEndMenu extends MiniGameEndMenu{
+        public static final int GREAT_TIME = 5;
         boolean result;
         int timer;
 
@@ -911,7 +932,7 @@ public class MiniGame {
             this.timer = timer;
             if (!result)
                 this.menu.map.miniGameResult = MiniGameOutput.LOSE;
-            else if (timer < 5)
+            else if (timer < GREAT_TIME)
                 this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
             else
                 this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;

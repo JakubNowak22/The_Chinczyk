@@ -471,7 +471,7 @@ public class DayParkMap implements Screen {
                 if (this.miniGameOutput) {
                     RandomEvent.drawMiniGameOutput(player, player.pawns[pawNumber]);
                 }
-                if (!this.miniGameOutput && miniGamePlaying() && !this.cardIsLoading && this.randNumber <= 0) {
+                if (!this.miniGameOutput && !miniGamePlaying() && !this.cardIsLoading && this.randNumber <= 0) {
                     setPlayerNumberTurn();
                     resetFlags();
                 }
