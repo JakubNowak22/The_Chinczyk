@@ -43,16 +43,15 @@ abstract class MiniGameMainMenu {
         this.isEnding = false;
         this.map = map;
     }
-    public void resetAfterQuit(MiniGamesTypes type) {
+    public void resetAfterQuit() {
         this.isButtonStartHovered = false;
         this.isButtonHTPHovered = false;
         this.isEnding = false;
-        this.map.unlockMap(type);
+        this.map.unlockMap();
         this.isStarted = false;
     }
 
 }
-enum MiniGamesTypes {NONE, SPACE_INVADERS, MATH, MEMORY}
 
 abstract class MiniGameGameplay {
     BitmapFont fontGreen, fontYellow;
@@ -191,14 +190,14 @@ public class MiniGame {
         }
     }
 
-    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu, int outputNumber, MiniGamesTypes type) {
+    public static void MiniGameEndMenuUpdate (MiniGameMainMenu mainMenu, MiniGameEndMenu endMenu) {
         Vector2 cursorPosition = getMiniGameMousePosition(mainMenu.map.game);
         endMenu.isButtonEndHovered = endMenu.buttonEnd.contains(cursorPosition);
         if (endMenu.isButtonEndHovered) {
             endMenu.buttonEndHoveredSprite.draw(spriteBatch);
             if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
-                mainMenu.map.miniGameOutput[outputNumber] = true;
-                mainMenu.resetAfterQuit(type);
+                mainMenu.map.miniGameOutput = true;
+                mainMenu.resetAfterQuit();
             }
         }
     }
@@ -248,6 +247,12 @@ public class MiniGame {
         SpaceInvadersEndMenu (SpriteBatch batch, int result, MiniGameMainMenu menu, SpaceInvaders game) {
             super(batch, menu, game);
             this.result = result;
+            if (result < 10)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (result < 14)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 
@@ -261,7 +266,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 0, MiniGamesTypes.SPACE_INVADERS);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
@@ -696,6 +701,12 @@ public class MiniGame {
             super(batch, menu, game);
             this.result = result;
             this.timer = timer;
+            if (!result)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (timer < 5)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 
@@ -711,7 +722,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 1, MiniGamesTypes.MATH);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
@@ -884,7 +895,7 @@ public class MiniGame {
                     }
                 }
                 this.menu.isStarted = false;
-                this.menu.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check,  this.menu,this);
+                this.menu.endMenu = new MemoryMiniGameEndMenu(this.spriteBatch, check, timeSeconds, this.menu,this);
                 this.menu.isEnding = true;
             }
         }
@@ -892,10 +903,18 @@ public class MiniGame {
 
     static class MemoryMiniGameEndMenu extends MiniGameEndMenu{
         boolean result;
+        int timer;
 
-        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, MiniGameMainMenu menu, MemoryMiniGame game) {
+        MemoryMiniGameEndMenu (SpriteBatch batch, boolean result, int timer, MiniGameMainMenu menu, MemoryMiniGame game) {
             super(batch, menu, game);
             this.result = result;
+            this.timer = timer;
+            if (!result)
+                this.menu.map.miniGameResult = MiniGameOutput.LOSE;
+            else if (timer < 5)
+                this.menu.map.miniGameResult = MiniGameOutput.SMALL_WIN;
+            else
+                this.menu.map.miniGameResult = MiniGameOutput.BIG_WIN;
             this.loadTextures();
         }
 
@@ -911,7 +930,7 @@ public class MiniGame {
         }
 
         public void Update() {
-            MiniGameEndMenuUpdate(menu, this, 2, MiniGamesTypes.MEMORY);
+            MiniGameEndMenuUpdate(menu, this);
         }
 
         public void Draw() {
