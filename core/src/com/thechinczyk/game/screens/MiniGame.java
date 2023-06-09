@@ -533,6 +533,8 @@ public class MiniGame {
         public static final int NUMBER2_RANGE_OPERATIONS_3_4 = 20;
         public static final int NUMBERS_NUMBER = 10;
         public static final int MAX_ONE_DIGIT_NUMBER = 9;
+        public static final int ZERO_INPUT_CODE = 7;
+        public static final int ZERO_NUMPAD_INPUT_CODE = 144;
         int number1, number2, operation;
         int[] number1Array, number2Array;
         int expectedResult, playerResult;
@@ -643,63 +645,29 @@ public class MiniGame {
                 this.resultSprite[i].draw(this.spriteBatch);
         }
 
-        //todo: metoda zamiast ifa
-        public void Update(float deltatime) {
-            timerUpdate(deltatime);
+        public void inputGamePlay() {
             if (numberCounter < MAX_RESULT_LENGTH) {
-                if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 1;
-                    this.numberCounter++;
-                } else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_2))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 2;
-                    this.numberCounter++;
+                for (int i = 1 ;i<NUMBERS_NUMBER; i++) {
+                    if (Gdx.input.isKeyJustPressed(ZERO_INPUT_CODE+i) || Gdx.input.isKeyJustPressed(ZERO_NUMPAD_INPUT_CODE+i)) {
+                        this.playerResult *= MULTIPLY_FACTOR;
+                        this.playerResult += i;
+                        this.numberCounter++;
+                    }
                 }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_3))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 3;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_4))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 4;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_5))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 5;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_6)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_6))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 6;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_7)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_7))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 7;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_8))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 8;
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_9))) {
-                    this.playerResult *= MULTIPLY_FACTOR;
-                    this.playerResult += 9;
-                    this.numberCounter++;
-                }
-                else if (((Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))) && this.numberCounter >0) {
+                if (((Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_0))) && this.numberCounter >0) {
                     this.numberCounter++;
                     this.playerResult *= MULTIPLY_FACTOR;
                 }
             }
             if ((Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) && numberCounter != 0) {
-                    this.playerResult /= MULTIPLY_FACTOR;
-                    this.numberCounter--;
+                this.playerResult /= MULTIPLY_FACTOR;
+                this.numberCounter--;
             }
+        }
+        
+        public void Update(float deltatime) {
+            timerUpdate(deltatime);
+            inputGamePlay();
             refreshResultSprites();
 
             if (this.timeSeconds == 0  || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
@@ -802,6 +770,8 @@ public class MiniGame {
         private final static String[] TEXTURE_NAMES = {"Blue", "Brown", "Cyan", "Green", "Pink", "Purple", "Red", "White", "Yellow"};
         public final static int CHANGE_SCREEN_TIME = 10;
         public static final int MAX_ONE_DIGIT_NUMBER = 9;
+        public static final int ZERO_INPUT_CODE = 7;
+        public static final int ZERO_NUMPAD_INPUT_CODE = 144;
 
         MemoryMiniGame(SpriteBatch spriteBatch, MiniGameMainMenu menu) {
             super(spriteBatch, menu, MINI_GAME_TIME);
@@ -857,54 +827,27 @@ public class MiniGame {
             }
         }
 
-        //todo: metoda zamiast ifa
-        public void Update(float deltatime) {
-            if (timerUpdate(deltatime) && timeSeconds == CHANGE_SCREEN_TIME) {
-                for (int i = 0; i<GENERATED_COLORS_NUMBER; i++)
-                    this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
-            }
-
+        public void inputGamePlay() {
             if (numberCounter < GENERATED_COLORS_NUMBER && timeSeconds <= CHANGE_SCREEN_TIME) {
-                if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_1))) {
-                    refreshResultSprite(0);
-                    this.numberCounter++;
-                } else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_2))) {
-                    refreshResultSprite(1);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_3))) {
-                    refreshResultSprite(2);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_4))) {
-                    refreshResultSprite(3);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_5))) {
-                    refreshResultSprite(4);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_6)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_6))) {
-                    refreshResultSprite(5);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_7)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_7))) {
-                    refreshResultSprite(6);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_8))) {
-                    refreshResultSprite(7);
-                    this.numberCounter++;
-                }
-                else if ((Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_9))) {
-                    refreshResultSprite(8);
-                    this.numberCounter++;
+                for (int i = 1 ;i<=COLORS_NUMBER; i++) {
+                    if (Gdx.input.isKeyJustPressed(ZERO_INPUT_CODE+i) || Gdx.input.isKeyJustPressed(ZERO_NUMPAD_INPUT_CODE+i)) {
+                        refreshResultSprite(i-1);
+                        this.numberCounter++;
+                    }
                 }
             }
             if (this.numberCounter > 0 && Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
                 this.numberCounter--;
                 refreshResultSprite(NO_COLOR_FLAG);
             }
+        }
+
+        public void Update(float deltatime) {
+            if (timerUpdate(deltatime) && timeSeconds == CHANGE_SCREEN_TIME) {
+                for (int i = 0; i<GENERATED_COLORS_NUMBER; i++)
+                    this.gameColors[i] = spriteInit(this.emptyColor, 960 - (1 - i) * (SIZE+OFFSET) - SIZE - OFFSET/2f, 540 - 3 *SIZE/2f, SIZE, SIZE);
+            }
+            inputGamePlay();
 
             if (this.timeSeconds == 0 || (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) || (Gdx.input.isKeyJustPressed(Input.Keys.NUMPAD_ENTER))) {
                 boolean check = true;

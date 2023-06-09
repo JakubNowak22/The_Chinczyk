@@ -442,7 +442,6 @@ public class DayParkMap implements Screen {
 
     private void changeAnimationPawn(Player player, int pawNumber) {
         if (randNumber + player.additionalMovement>= 1 && pawNumber != -1 && !this.cardIsLoading) {
-            System.out.print(player.moveAnimation.getKeyFrameIndex(player.pawns[pawNumber].playerElapsedTime) % 10);
             if (flag) {
                 pawnSound.play(0.7f);
                 player.pawns[pawNumber].playerElapsedTime += 3 * Gdx.graphics.getDeltaTime();
